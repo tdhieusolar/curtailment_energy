@@ -7,18 +7,26 @@ from selenium.webdriver.common.action_chains import ActionChains # Cho Double-Cl
 import time
 import threading
 from concurrent.futures import ThreadPoolExecutor
+import re
 
 # --- HẰNG SỐ CẤU HÌNH ---
 USERNAME = "installer"
 PASSWORD = "Mo_g010rP!"
 CHROMIUM_DRIVER_PATH = "/usr/bin/chromedriver" # Đường dẫn Driver đã xác định trên Orange Pi
+MAX_WORKERS = 4
 
 # CÁC BỘ CHỌN (SELECTORS)
+# ON-OFF
 SELECTOR_DROPDOWN_TOGGLE = "#login-dropdown-list > a.dropdown-toggle"
 ID_USERNAME_FIELD = "login-username"
 ID_PASSWORD_FIELD = "login-password"
 ID_LOGIN_BUTTON = "login-buttons-password"
 ID_CONNECT_GRID_LINK = "link-grid-disconnect" 
+# LOGGER
+SELECTOR_STATUS_LOG_BUTTON = "button.js-display-web-log" 
+ID_LOG_DIALOG = "log-dlg"
+SELECTOR_LOG_CONTENT = "div.k-log-view"
+SELECTOR_CLOSE_BUTTON = 'button[data-dismiss="modal"]'
 # -----------------------------
 
 def initialize_driver():
@@ -284,8 +292,6 @@ def process_inv_list(task_list):
 # -----------------------------
 
 def run_parallel(list_request):
-    # Sử dụng hằng số cho số lượng luồng làm việc
-    MAX_WORKERS = 4 
     
     start_time = time.time()
     print(f"Bắt đầu chương trình bằng Đa luồng (Tái sử dụng Driver, {MAX_WORKERS} luồng)...")
@@ -437,8 +443,227 @@ def run_sequentially(list_request):
 
 # -----------------------------
 
+def extract_and_log_status_code(driver, full_inv_name):
+    extracted_codes_log = []
+    name = threading.current_thread().name.split("-")[1]
+    log_prefix = f"[{name}] {full_inv_name}"
+    
+    try:
+        # 1. Click button Status History và chờ hộp thoại mở (Giữ nguyên)
+        log_button = WebDriverWait(driver, 10).until(
+            EC.element_to_be_clickable((By.CSS_SELECTOR, SELECTOR_STATUS_LOG_BUTTON))
+        )
+        log_button.click()
+        
+        # Chờ hộp thoại log xuất hiện
+        log_dialog = WebDriverWait(driver, 5).until(
+            EC.visibility_of_element_located((By.ID, ID_LOG_DIALOG))
+        )
+
+        # 2. CHỜ 2 GIÂY ĐỂ DỮ LIỆU LOG LOAD
+        time.sleep(2) 
+
+        # 3. TÌM VÀ PHÂN TÍCH TỪNG DÒNG LOG
+        log_content_container = log_dialog.find_element(By.CSS_SELECTOR, SELECTOR_LOG_CONTENT)
+        log_entries = log_content_container.find_elements(By.TAG_NAME, "span")
+        
+        fault_messages = []       
+        status_code_messages = [] 
+
+        for entry in log_entries:
+            entry_text = entry.text.strip()
+            if not entry_text:
+                continue
+
+            # A. Kiểm tra lỗi ưu tiên (k-log-fault)
+            if "k-log-fault" in entry.get_attribute("class"):
+                # Ghi log lỗi ưu tiên (Code Fault)
+                formatted_message = f"Code Fault: {entry_text}"
+                print(f"{log_prefix}    !!! {formatted_message}") 
+                fault_messages.append(f"{full_inv_name}: {formatted_message}")
+            
+            # B. Tìm mã trạng thái (N) trong dòng đó
+            has_status_code = re.search(r'\(\d+\)', entry_text)
+
+            if has_status_code:
+                # Ghi log mã trạng thái (Status Code) với tiền tố mới
+                formatted_message = f"Status Code: {entry_text}"
+                status_code_messages.append(f"{full_inv_name}: {formatted_message}")
+
+
+        # 4. Xử lý Uniqueness và format cho Status Codes
+        unique_status_code_messages = sorted(list(set(status_code_messages)))
+        
+        # 5. Ghi Log Status Codes ra console
+        for message in unique_status_code_messages:
+            # Tách để chỉ lấy nội dung sau tiền tố INV_NAME: 
+            content = message.split(': ', 1)[1] 
+            # In ra console với tiền tố " -> "
+            print(f"{log_prefix}    -> {content}")
+
+
+        # 6. Tổng hợp: Fault Codes (ưu tiên) trước, Status Codes sau
+        extracted_codes_log.extend(fault_messages)
+        # Thêm các dòng log Status Code đã được định dạng và lọc trùng lặp
+        extracted_codes_log.extend(unique_status_code_messages)
+        
+        if not extracted_codes_log:
+             print(f"{log_prefix}    -> Không tìm thấy mã trạng thái hay lỗi nào.")
+
+    except Exception as e:
+        extracted_codes_log.append(f"{full_inv_name}: LỖI TRÍCH XUẤT LOG: {e}")
+        print(f"{log_prefix} ❌ LỖI MỞ/ĐỌC LOG: {e}")
+    
+    finally:
+        # 7. Đóng hộp thoại Log (Giữ nguyên)
+        try:
+            close_button = WebDriverWait(driver, 3).until(
+                EC.element_to_be_clickable((By.CSS_SELECTOR, SELECTOR_CLOSE_BUTTON))
+            )
+            close_button.click()
+            WebDriverWait(driver, 3).until(
+                 EC.invisibility_of_element_located((By.ID, ID_LOG_DIALOG))
+            )
+        except:
+            pass
+            
+    return extracted_codes_log
+
+# -----------------------------
+
+def process_status_logging_list(task_list):
+    """
+    Hàm worker chuyên biệt: CHỈ truy cập URL và trích xuất log trạng thái (Status Code), 
+    BỎ QUA bước đăng nhập.
+    task_list: Danh sách các tuple (full_inv_name, target_url, required_action, inv_status)
+    Trả về: Danh sách các log mã trạng thái (local_status_code_log)
+    """
+    thread_name = threading.current_thread().name.split("-")[1]
+    print(f"\n[{thread_name}] Bắt đầu xử lý LOG TRẠNG THÁI cho {len(task_list)} INV. Khởi tạo Driver...")
+    
+    driver = initialize_driver()
+    if driver is None:
+        return [(task[0] + ": LỖI KHỞI TẠO DRIVER")]
+
+    local_status_code_log = []
+
+    try:
+        for i, (full_inv_name, target_url, required_action, inv_status) in enumerate(task_list):
+            
+            log_prefix = f"[{thread_name}] (Log {i+1}/{len(task_list)}) {full_inv_name}"
+            
+            # Đảm bảo URL có protocol (ví dụ: http://)
+            if not target_url.startswith(('http://', 'https://')):
+                full_url = f"http://{target_url}"
+            else:
+                full_url = target_url
+            
+            try:
+                # Điều hướng trực tiếp đến trang web
+                driver.get(full_url)
+                print(f"{log_prefix} -> Đã truy cập URL thành công: {full_url}")
+            except Exception as e:
+                # Ghi lại lỗi truy cập và chuyển sang INV tiếp theo
+                local_status_code_log.append(f"{full_inv_name}: LỖI TRUY CẬP URL")
+                print(f"{log_prefix} ❌ LỖI TRUY CẬP URL. Chuyển sang INV tiếp theo.")
+                continue 
+
+            # 2. TRÍCH XUẤT LOG
+            # Hàm này sẽ tìm nút, click, trích xuất log và đóng hộp thoại.
+            extracted_codes = extract_and_log_status_code(driver, full_inv_name)
+            local_status_code_log.extend(extracted_codes) 
+
+    except Exception as e:
+        local_status_code_log.append(f"LỖI TOÀN CỤC LUỒNG LOG: {e}")
+        print(f"[{thread_name}] LỖI BẤT THƯỜNG TOÀN CỤC: {e}")
+
+    finally:
+        if driver:
+            print(f"[{thread_name}] Hoàn thành danh sách Log. Đóng Driver.")
+            driver.quit()
+            
+    return local_status_code_log
+
+# -----------------------------
+
+def run_logger():
+    start_time = time.time()
+    print(f"Bắt đầu chương trình ({MAX_WORKERS} luồng).")
+
+    tasks_to_run = []
+
+    # --- 1. TẠO DANH SÁCH TÁC VỤ CHO TẤT CẢ INV ---
+    # Duyệt qua TẤT CẢ INV, không cần kiểm tra CONTROL_REQUESTS
+    for zone_name, stations in SYSTEM_URLS.items():
+        for station_name, inverters in stations.items():
+            for inv_name, inv_info in inverters.items(): # Duyệt qua mọi INV
+                
+                full_inv_name = f"{station_name}-{inv_name}"
+                target_url = inv_info["url"]
+                
+                # Lấy trạng thái INV (để có thể báo cáo nếu INV đó FAULTY)
+                inv_status = inv_info.get("status", "OK").upper()
+                
+                # 'required_action' được đặt là "LOG" (Hoặc bất kỳ giá trị nào)
+                # vì nó không được sử dụng trong hàm logging.
+                tasks_to_run.append((full_inv_name, target_url, "LOG", inv_status)) 
+
+    print(f"Tổng cộng có {len(tasks_to_run)} tác vụ INV cần trích xuất Log.")
+
+    # --- 2. PHÂN CHIA TÁC VỤ CHO CÁC LUỒNG (Round-Robin) ---
+    chunked_tasks = [[] for _ in range(MAX_WORKERS)]
+    for i, task in enumerate(tasks_to_run):
+        worker_index = i % MAX_WORKERS
+        chunked_tasks[worker_index].append(task)
+
+    tasks_to_submit = [chunk for chunk in chunked_tasks if chunk]
+
+    final_status_code_log = [] 
+
+    print("\n==============================================")
+    print("Bắt đầu trích xuất Log Status (Song song)")
+    print("==============================================")
+    
+    # --- 3. CHẠY TRÍCH XUẤT LOG STATUS ---
+    try:
+        with ThreadPoolExecutor(max_workers=MAX_WORKERS) as executor:
+            # Chạy hàm logging đã được tối ưu
+            results_logging = list(executor.map(process_status_logging_list, tasks_to_submit))
+
+        # Tổng hợp log trạng thái
+        for local_status_code_log in results_logging:
+            final_status_code_log.extend(local_status_code_log)
+            
+    except Exception as e:
+        print(f"LỖI XẢY RA TRONG QUÁ TRÌNH THỰC HIỆN LOGGING: {e}")
+
+    # --- 4. BÁO CÁO KẾT QUẢ VÀ THỜI GIAN ---
+    end_time = time.time()
+    total_time = end_time - start_time
+
+    print("\n\n==============================================")
+    print("BÁO CÁO KẾT THÚC CHƯƠNG TRÌNH LOG STATUS")
+    print("==============================================")
+    
+    if final_status_code_log:
+        print("\n📝 CÁC MÃ TRẠNG THÁI ĐƯỢC TRÍCH XUẤT TỪ LOGS:")
+        for log_entry in final_status_code_log:
+            print(f"   - {log_entry}")
+    else:
+        print("\n✅ KHÔNG CÓ MÃ TRẠNG THÁI NÀO ĐƯỢC TRÍCH XUẤT.")
+        
+    minutes = int(total_time // 60)
+    seconds = total_time % 60
+    
+    print(f"\n⏰ TỔNG THỜI GIAN CHẠY: {minutes} phút {seconds:.2f} giây.")
+    print("Hoàn thành và đóng trình duyệt.")
+
+# -----------------------------
+# -----------------------------
+
 def main():
-    run_parallel(CONTROL_REQUESTS_ON)
+    run_logger()
+    # run_parallel(CONTROL_REQUESTS_ON)
     # run_sequentially(CONTROL_REQUESTS_ON)
 
 if __name__ == "__main__":
