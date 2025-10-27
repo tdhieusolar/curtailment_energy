@@ -455,20 +455,19 @@ def extract_and_log_status_code(driver, full_inv_name):
         )
         log_button.click()
         
-        # Chờ hộp thoại log xuất hiện
         log_dialog = WebDriverWait(driver, 5).until(
             EC.visibility_of_element_located((By.ID, ID_LOG_DIALOG))
         )
 
-        # 2. CHỜ 2 GIÂY ĐỂ DỮ LIỆU LOG LOAD
+        # 2. CHỜ 2 GIÂY ĐỂ DỮ LIỆU LOG LOAD (Giữ nguyên)
         time.sleep(2) 
 
         # 3. TÌM VÀ PHÂN TÍCH TỪNG DÒNG LOG
         log_content_container = log_dialog.find_element(By.CSS_SELECTOR, SELECTOR_LOG_CONTENT)
         log_entries = log_content_container.find_elements(By.TAG_NAME, "span")
         
-        fault_messages = []       
-        status_code_messages = [] 
+        fault_messages = []       # Lỗi ưu tiên (k-log-fault)
+        classified_messages = []  # Log đã phân loại (Error, Warning, Status)
 
         for entry in log_entries:
             entry_text = entry.text.strip()
@@ -477,35 +476,54 @@ def extract_and_log_status_code(driver, full_inv_name):
 
             # A. Kiểm tra lỗi ưu tiên (k-log-fault)
             if "k-log-fault" in entry.get_attribute("class"):
-                # Ghi log lỗi ưu tiên (Code Fault)
-                formatted_message = f"Code Fault: {entry_text}"
+                formatted_message = f"Code Fault: ❌ {entry_text}"
                 print(f"{log_prefix}    !!! {formatted_message}") 
                 fault_messages.append(f"{full_inv_name}: {formatted_message}")
             
-            # B. Tìm mã trạng thái (N) trong dòng đó
-            has_status_code = re.search(r'\(\d+\)', entry_text)
+            # B. Trích xuất mã số từ ngoặc đơn
+            code_match = re.search(r'\((?P<code_value>\d+)\)', entry_text)
+            
+            if code_match:
+                code_value = int(code_match.group("code_value"))
+                
+                # PHÂN LOẠI LOG DỰA TRÊN MÃ SỐ
+                
+                if code_value in ERROR_CODES:
+                    prefix = "Error Code"
+                    icon = "❌"
+                    
+                elif code_value in WARNING_CODES:
+                    prefix = "Warning Code"
+                    icon = "⚠️"
+                    
+                elif code_value in STATUS_CODES:
+                    prefix = "Status Code"
+                    icon = "✅"
+                    
+                else:
+                    # Nếu không nằm trong bất kỳ list nào, chỉ hiển thị là Status
+                    prefix = "Unclassified Status"
+                    icon = "❓"
+                
+                # Định dạng tin nhắn cuối cùng
+                formatted_message = f"{prefix}: {icon} {entry_text}"
+                classified_messages.append(f"{full_inv_name}: {formatted_message}")
 
-            if has_status_code:
-                # Ghi log mã trạng thái (Status Code) với tiền tố mới
-                formatted_message = f"Status Code: {entry_text}"
-                status_code_messages.append(f"{full_inv_name}: {formatted_message}")
 
-
-        # 4. Xử lý Uniqueness và format cho Status Codes
-        unique_status_code_messages = sorted(list(set(status_code_messages)))
+        # 4. Xử lý Uniqueness và format cho Classified Messages
+        # Lọc các thông báo trùng lặp (nếu cùng một dòng log được tạo ra nhiều lần)
+        unique_classified_messages = sorted(list(set(classified_messages)))
         
-        # 5. Ghi Log Status Codes ra console
-        for message in unique_status_code_messages:
-            # Tách để chỉ lấy nội dung sau tiền tố INV_NAME: 
+        # 5. Ghi Log ra console
+        for message in unique_classified_messages:
+            # Tách để chỉ lấy nội dung sau tiền tố INV_NAME:
             content = message.split(': ', 1)[1] 
-            # In ra console với tiền tố " -> "
             print(f"{log_prefix}    -> {content}")
 
 
-        # 6. Tổng hợp: Fault Codes (ưu tiên) trước, Status Codes sau
+        # 6. Tổng hợp: Fault Codes (ưu tiên) trước, Classified Messages sau
         extracted_codes_log.extend(fault_messages)
-        # Thêm các dòng log Status Code đã được định dạng và lọc trùng lặp
-        extracted_codes_log.extend(unique_status_code_messages)
+        extracted_codes_log.extend(unique_classified_messages)
         
         if not extracted_codes_log:
              print(f"{log_prefix}    -> Không tìm thấy mã trạng thái hay lỗi nào.")
@@ -561,10 +579,10 @@ def process_status_logging_list(task_list):
             try:
                 # Điều hướng trực tiếp đến trang web
                 driver.get(full_url)
-                print(f"{log_prefix} -> Đã truy cập URL thành công: {full_url}")
+                # print(f"{log_prefix} -> Đã truy cập URL thành công: {full_url}")
             except Exception as e:
                 # Ghi lại lỗi truy cập và chuyển sang INV tiếp theo
-                local_status_code_log.append(f"{full_inv_name}: LỖI TRUY CẬP URL")
+                local_status_code_log.append(f"{full_inv_name}: Code Fault: ❌LỖI TRUY CẬP URL")
                 print(f"{log_prefix} ❌ LỖI TRUY CẬP URL. Chuyển sang INV tiếp theo.")
                 continue 
 
@@ -640,6 +658,9 @@ def run_logger():
     # --- 4. BÁO CÁO KẾT QUẢ VÀ THỜI GIAN ---
     end_time = time.time()
     total_time = end_time - start_time
+
+    # Sắp xếp log theo tên INV (phần trước dấu ": ", ví dụ: "B2-INV-01")
+    final_status_code_log.sort(key=lambda x: x.split(': ', 1)[0])
 
     print("\n\n==============================================")
     print("BÁO CÁO KẾT THÚC CHƯƠNG TRÌNH LOG STATUS")
@@ -853,4 +874,9 @@ if __name__ == "__main__":
             },
         }
     }
+    
+    STATUS_CODES = (2, 4, 8, 9)
+    WARNING_CODES = (36, 38, 41, 42, 43, 44, 45, 46, 64, 75, 73, 79)
+    ERROR_CODES = (180, 181, 182, 183, 184, 185, 186, 188, 189, 190, 191, 192, 193, 194, 195, 203, 204, 205, 206, 207, 208, 209, 216, 217, 226, 227)
+
     main()
