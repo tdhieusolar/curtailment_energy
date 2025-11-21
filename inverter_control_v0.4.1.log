@@ -1,0 +1,612 @@
+2025-11-21 13:25:02,301 - INFO - [MainThread] - ℹ️ 🚀 Bắt đầu xử lý 4 yêu cầu - Phiên bản 0.4.1 (Dynamic Driver Pool)
+2025-11-21 13:25:02,302 - INFO - [MainThread] - ℹ️ 📊 Tổng số inverters cần xử lý: 33
+2025-11-21 13:25:02,302 - INFO - [MainThread] - ℹ️ 📦 Tổng số tasks: 33
+2025-11-21 13:25:02,302 - INFO - [MainThread] - ℹ️ 🔄 Đang khởi tạo driver pool...
+2025-11-21 13:25:02,302 - INFO - [MainThread] - ℹ️ 📊 Tính toán pool size: 33 tasks / 5 tasks/driver = 7 drivers
+2025-11-21 13:25:02,302 - INFO - [MainThread] - ℹ️ 🔄 Tính toán: 33 tasks → 7 drivers
+2025-11-21 13:25:05,833 - INFO - [MainThread] - ℹ️ 🚀 Đã khởi tạo driver 1/7
+2025-11-21 13:25:06,581 - INFO - [MainThread] - ℹ️ 🚀 Đã khởi tạo driver 2/7
+2025-11-21 13:25:07,311 - INFO - [MainThread] - ℹ️ 🚀 Đã khởi tạo driver 3/7
+2025-11-21 13:25:08,052 - INFO - [MainThread] - ℹ️ 🚀 Đã khởi tạo driver 4/7
+2025-11-21 13:25:08,773 - INFO - [MainThread] - ℹ️ 🚀 Đã khởi tạo driver 5/7
+2025-11-21 13:25:09,532 - INFO - [MainThread] - ℹ️ 🚀 Đã khởi tạo driver 6/7
+2025-11-21 13:25:10,306 - INFO - [MainThread] - ℹ️ 🚀 Đã khởi tạo driver 7/7
+2025-11-21 13:25:10,307 - INFO - [MainThread] - ℹ️ ✅ Đã khởi tạo thành công 7/7 drivers
+2025-11-21 13:25:10,307 - INFO - [MainThread] - ℹ️ 🎯 Driver pool: 7 drivers (Available: 7, In Use: 0)
+2025-11-21 13:25:10,307 - INFO - [MainThread] - ℹ️ 📥 Đã thêm 33 tasks vào hàng đợi chính
+2025-11-21 13:25:10,307 - INFO - [MainThread] - ℹ️ 🔄 Xử lý batch 1 với 8 tasks
+2025-11-21 13:25:10,307 - INFO - [ThreadPoolExecutor-0_0] - ℹ️ [B3R1-INV-01] Bắt đầu xử lý ON
+2025-11-21 13:25:10,308 - INFO - [ThreadPoolExecutor-0_1] - ℹ️ [B3R1-INV-02] Bắt đầu xử lý ON
+2025-11-21 13:25:10,308 - INFO - [ThreadPoolExecutor-0_2] - ℹ️ [B3R1-INV-03] Bắt đầu xử lý ON
+2025-11-21 13:25:10,310 - INFO - [ThreadPoolExecutor-0_3] - ℹ️ [B3R1-INV-04] Bắt đầu xử lý ON
+2025-11-21 13:25:10,310 - INFO - [ThreadPoolExecutor-0_4] - ℹ️ [B3R1-INV-05] Bắt đầu xử lý ON
+2025-11-21 13:25:10,311 - INFO - [ThreadPoolExecutor-0_5] - ℹ️ [B3R1-INV-06] Bắt đầu xử lý ON
+2025-11-21 13:25:10,313 - INFO - [ThreadPoolExecutor-0_6] - ℹ️ [B3R1-INV-07] Bắt đầu xử lý ON
+2025-11-21 13:25:10,314 - INFO - [ThreadPoolExecutor-0_7] - ℹ️ [B3R1-INV-08] Bắt đầu xử lý ON
+2025-11-21 13:25:19,394 - INFO - [ThreadPoolExecutor-0_5] - ✅ [B3R1-INV-06] BỎ QUA: Đã ở trạng thái mong muốn (Disconnect Grid)
+2025-11-21 13:25:19,400 - INFO - [ThreadPoolExecutor-0_6] - ✅ [B3R1-INV-07] BỎ QUA: Đã ở trạng thái mong muốn (Disconnect Grid)
+2025-11-21 13:25:19,947 - INFO - [ThreadPoolExecutor-0_0] - ✅ [B3R1-INV-01] BỎ QUA: Đã ở trạng thái mong muốn (Disconnect Grid)
+2025-11-21 13:25:19,983 - INFO - [ThreadPoolExecutor-0_3] - ✅ [B3R1-INV-04] BỎ QUA: Đã ở trạng thái mong muốn (Disconnect Grid)
+2025-11-21 13:25:19,993 - INFO - [ThreadPoolExecutor-0_4] - ✅ [B3R1-INV-05] BỎ QUA: Đã ở trạng thái mong muốn (Disconnect Grid)
+2025-11-21 13:25:20,009 - INFO - [ThreadPoolExecutor-0_2] - ✅ [B3R1-INV-03] BỎ QUA: Đã ở trạng thái mong muốn (Disconnect Grid)
+2025-11-21 13:25:20,492 - INFO - [ThreadPoolExecutor-0_1] - ✅ [B3R1-INV-02] BỎ QUA: Đã ở trạng thái mong muốn (Disconnect Grid)
+2025-11-21 13:25:26,832 - INFO - [ThreadPoolExecutor-0_7] - ✅ [B3R1-INV-08] BỎ QUA: Đã ở trạng thái mong muốn (Disconnect Grid)
+2025-11-21 13:25:26,859 - INFO - [MainThread] - ℹ️ 📦 Batch 1: Hoàn thành 8, Retry 0, Thất bại 0
+2025-11-21 13:25:26,859 - INFO - [MainThread] - 📊 Hàng đợi - Chính: 25, Retry: 0, Hoàn thành: 8, Thất bại: 0
+2025-11-21 13:25:26,860 - INFO - [MainThread] - ℹ️ 📈 Tiến trình tổng: 8/33 (24.2%)
+2025-11-21 13:25:26,860 - INFO - [MainThread] - ℹ️ 🔄 Xử lý batch 2 với 8 tasks
+2025-11-21 13:25:26,860 - INFO - [ThreadPoolExecutor-1_0] - ℹ️ [B3R1-INV-09] Bắt đầu xử lý ON
+2025-11-21 13:25:26,861 - INFO - [ThreadPoolExecutor-1_1] - ℹ️ [B4R2-INV-01] Bắt đầu xử lý ON
+2025-11-21 13:25:26,861 - INFO - [ThreadPoolExecutor-1_2] - ℹ️ [B4R2-INV-02] Bắt đầu xử lý ON
+2025-11-21 13:25:26,862 - INFO - [ThreadPoolExecutor-1_3] - ℹ️ [B4R2-INV-03] Bắt đầu xử lý ON
+2025-11-21 13:25:26,863 - INFO - [ThreadPoolExecutor-1_4] - ℹ️ [B4R2-INV-04] Bắt đầu xử lý ON
+2025-11-21 13:25:26,864 - INFO - [ThreadPoolExecutor-1_5] - ℹ️ [B4R2-INV-05] Bắt đầu xử lý ON
+2025-11-21 13:25:26,867 - INFO - [ThreadPoolExecutor-1_6] - ℹ️ [B4R2-INV-06] Bắt đầu xử lý ON
+2025-11-21 13:25:26,871 - INFO - [ThreadPoolExecutor-1_7] - ℹ️ [B4R2-INV-07] Bắt đầu xử lý ON
+2025-11-21 13:25:34,560 - INFO - [ThreadPoolExecutor-1_0] - ✅ [B3R1-INV-09] BỎ QUA: Đã ở trạng thái mong muốn (Disconnect Grid)
+2025-11-21 13:25:36,184 - INFO - [ThreadPoolExecutor-1_6] - ✅ [B4R2-INV-06] BỎ QUA: Đã ở trạng thái mong muốn (Disconnect Grid)
+2025-11-21 13:25:36,333 - INFO - [ThreadPoolExecutor-1_1] - ✅ [B4R2-INV-01] BỎ QUA: Đã ở trạng thái mong muốn (Disconnect Grid)
+2025-11-21 13:25:36,362 - INFO - [ThreadPoolExecutor-1_3] - ✅ [B4R2-INV-03] BỎ QUA: Đã ở trạng thái mong muốn (Disconnect Grid)
+2025-11-21 13:25:36,384 - INFO - [ThreadPoolExecutor-1_4] - ✅ [B4R2-INV-04] BỎ QUA: Đã ở trạng thái mong muốn (Disconnect Grid)
+2025-11-21 13:25:36,418 - INFO - [ThreadPoolExecutor-1_5] - ✅ [B4R2-INV-05] BỎ QUA: Đã ở trạng thái mong muốn (Disconnect Grid)
+2025-11-21 13:25:36,422 - INFO - [ThreadPoolExecutor-1_2] - ✅ [B4R2-INV-02] BỎ QUA: Đã ở trạng thái mong muốn (Disconnect Grid)
+2025-11-21 13:25:42,451 - INFO - [ThreadPoolExecutor-1_7] - ✅ [B4R2-INV-07] BỎ QUA: Đã ở trạng thái mong muốn (Disconnect Grid)
+2025-11-21 13:25:42,480 - INFO - [MainThread] - ℹ️ 📦 Batch 2: Hoàn thành 8, Retry 0, Thất bại 0
+2025-11-21 13:25:42,481 - INFO - [MainThread] - 📊 Hàng đợi - Chính: 17, Retry: 0, Hoàn thành: 16, Thất bại: 0
+2025-11-21 13:25:42,481 - INFO - [MainThread] - ℹ️ 📈 Tiến trình tổng: 16/33 (48.5%)
+2025-11-21 13:25:42,481 - INFO - [MainThread] - ℹ️ 🔄 Xử lý batch 3 với 8 tasks
+2025-11-21 13:25:42,481 - INFO - [ThreadPoolExecutor-2_0] - ℹ️ [B4R2-INV-08] Bắt đầu xử lý ON
+2025-11-21 13:25:42,481 - INFO - [ThreadPoolExecutor-2_1] - ℹ️ [B4R2-INV-09] Bắt đầu xử lý ON
+2025-11-21 13:25:42,482 - INFO - [ThreadPoolExecutor-2_2] - ℹ️ [B4R2-INV-10] Bắt đầu xử lý ON
+2025-11-21 13:25:42,484 - INFO - [ThreadPoolExecutor-2_3] - ℹ️ [B5R2-INV-01] Bắt đầu xử lý ON
+2025-11-21 13:25:42,484 - INFO - [ThreadPoolExecutor-2_4] - ℹ️ [B5R2-INV-02] Bắt đầu xử lý ON
+2025-11-21 13:25:42,485 - INFO - [ThreadPoolExecutor-2_5] - ℹ️ [B5R2-INV-03] Bắt đầu xử lý ON
+2025-11-21 13:25:42,491 - INFO - [ThreadPoolExecutor-2_6] - ℹ️ [B5R2-INV-04] Bắt đầu xử lý ON
+2025-11-21 13:25:42,493 - INFO - [ThreadPoolExecutor-2_7] - ℹ️ [B5R2-INV-05] Bắt đầu xử lý ON
+2025-11-21 13:25:52,141 - INFO - [ThreadPoolExecutor-2_2] - ✅ [B4R2-INV-10] BỎ QUA: Đã ở trạng thái mong muốn (Disconnect Grid)
+2025-11-21 13:25:52,175 - INFO - [ThreadPoolExecutor-2_1] - ✅ [B4R2-INV-09] BỎ QUA: Đã ở trạng thái mong muốn (Disconnect Grid)
+2025-11-21 13:25:52,320 - INFO - [ThreadPoolExecutor-2_0] - ✅ [B4R2-INV-08] BỎ QUA: Đã ở trạng thái mong muốn (Disconnect Grid)
+2025-11-21 13:25:52,762 - INFO - [ThreadPoolExecutor-2_5] - ✅ [B5R2-INV-03] BỎ QUA: Đã ở trạng thái mong muốn (Disconnect Grid)
+2025-11-21 13:25:52,783 - INFO - [ThreadPoolExecutor-2_4] - ✅ [B5R2-INV-02] BỎ QUA: Đã ở trạng thái mong muốn (Disconnect Grid)
+2025-11-21 13:25:52,906 - INFO - [ThreadPoolExecutor-2_6] - ✅ [B5R2-INV-04] BỎ QUA: Đã ở trạng thái mong muốn (Disconnect Grid)
+2025-11-21 13:25:53,443 - INFO - [ThreadPoolExecutor-2_3] - ✅ [B5R2-INV-01] BỎ QUA: Đã ở trạng thái mong muốn (Disconnect Grid)
+2025-11-21 13:25:59,601 - INFO - [ThreadPoolExecutor-2_7] - ✅ [B5R2-INV-05] BỎ QUA: Đã ở trạng thái mong muốn (Disconnect Grid)
+2025-11-21 13:25:59,628 - INFO - [MainThread] - ℹ️ 📦 Batch 3: Hoàn thành 8, Retry 0, Thất bại 0
+2025-11-21 13:25:59,628 - INFO - [MainThread] - 📊 Hàng đợi - Chính: 9, Retry: 0, Hoàn thành: 24, Thất bại: 0
+2025-11-21 13:25:59,628 - INFO - [MainThread] - ℹ️ 📈 Tiến trình tổng: 24/33 (72.7%)
+2025-11-21 13:25:59,628 - INFO - [MainThread] - ℹ️ 🔄 Xử lý batch 4 với 8 tasks
+2025-11-21 13:25:59,629 - INFO - [ThreadPoolExecutor-3_0] - ℹ️ [B5R2-INV-06] Bắt đầu xử lý ON
+2025-11-21 13:25:59,629 - INFO - [ThreadPoolExecutor-3_1] - ℹ️ [B5R2-INV-07] Bắt đầu xử lý ON
+2025-11-21 13:25:59,629 - INFO - [ThreadPoolExecutor-3_2] - ℹ️ [B5R2-INV-08] Bắt đầu xử lý ON
+2025-11-21 13:25:59,630 - INFO - [ThreadPoolExecutor-3_3] - ℹ️ [B5R2-INV-09] Bắt đầu xử lý ON
+2025-11-21 13:25:59,632 - INFO - [ThreadPoolExecutor-3_4] - ℹ️ [B5R2-INV-10] Bắt đầu xử lý ON
+2025-11-21 13:25:59,633 - INFO - [ThreadPoolExecutor-3_5] - ℹ️ [B8-INV-01] Bắt đầu xử lý ON
+2025-11-21 13:25:59,635 - INFO - [ThreadPoolExecutor-3_6] - ℹ️ [B8-INV-02] Bắt đầu xử lý ON
+2025-11-21 13:25:59,640 - INFO - [ThreadPoolExecutor-3_7] - ℹ️ [B8-INV-03] Bắt đầu xử lý ON
+2025-11-21 13:26:07,508 - INFO - [ThreadPoolExecutor-3_5] - ✅ [B8-INV-01] BỎ QUA: Đã ở trạng thái mong muốn (Disconnect Grid)
+2025-11-21 13:26:07,521 - INFO - [ThreadPoolExecutor-3_6] - ✅ [B8-INV-02] BỎ QUA: Đã ở trạng thái mong muốn (Disconnect Grid)
+2025-11-21 13:26:08,127 - INFO - [ThreadPoolExecutor-3_2] - ✅ [B5R2-INV-08] BỎ QUA: Đã ở trạng thái mong muốn (Disconnect Grid)
+2025-11-21 13:26:08,253 - INFO - [ThreadPoolExecutor-3_4] - ✅ [B5R2-INV-10] BỎ QUA: Đã ở trạng thái mong muốn (Disconnect Grid)
+2025-11-21 13:26:08,491 - INFO - [ThreadPoolExecutor-3_3] - ✅ [B5R2-INV-09] BỎ QUA: Đã ở trạng thái mong muốn (Disconnect Grid)
+2025-11-21 13:26:08,632 - INFO - [ThreadPoolExecutor-3_0] - ✅ [B5R2-INV-06] BỎ QUA: Đã ở trạng thái mong muốn (Disconnect Grid)
+2025-11-21 13:26:09,140 - INFO - [ThreadPoolExecutor-3_1] - ✅ [B5R2-INV-07] BỎ QUA: Đã ở trạng thái mong muốn (Disconnect Grid)
+2025-11-21 13:26:15,394 - INFO - [ThreadPoolExecutor-3_7] - ✅ [B8-INV-03] BỎ QUA: Đã ở trạng thái mong muốn (Disconnect Grid)
+2025-11-21 13:26:15,438 - INFO - [MainThread] - ℹ️ 📦 Batch 4: Hoàn thành 8, Retry 0, Thất bại 0
+2025-11-21 13:26:15,438 - INFO - [MainThread] - 📊 Hàng đợi - Chính: 1, Retry: 0, Hoàn thành: 32, Thất bại: 0
+2025-11-21 13:26:15,439 - INFO - [MainThread] - ℹ️ 📈 Tiến trình tổng: 32/33 (97.0%)
+2025-11-21 13:26:15,439 - INFO - [MainThread] - ℹ️ 🔄 Xử lý batch 5 với 1 tasks
+2025-11-21 13:26:15,439 - INFO - [ThreadPoolExecutor-4_0] - ℹ️ [B8-INV-04] Bắt đầu xử lý ON
+2025-11-21 13:26:23,331 - INFO - [ThreadPoolExecutor-4_0] - ✅ [B8-INV-04] BỎ QUA: Đã ở trạng thái mong muốn (Disconnect Grid)
+2025-11-21 13:26:23,356 - INFO - [MainThread] - ℹ️ 📦 Batch 5: Hoàn thành 1, Retry 0, Thất bại 0
+2025-11-21 13:26:23,356 - INFO - [MainThread] - 📊 Hàng đợi - Chính: 0, Retry: 0, Hoàn thành: 33, Thất bại: 0
+2025-11-21 13:26:23,356 - INFO - [MainThread] - ℹ️ 📈 Tiến trình tổng: 33/33 (100.0%)
+2025-11-21 13:26:23,357 - INFO - [MainThread] - ℹ️ ⏹️ Chỉ còn ít tasks retry, kết thúc sớm
+2025-11-21 13:26:23,357 - INFO - [MainThread] - ℹ️ ============================================================
+2025-11-21 13:26:23,357 - INFO - [MainThread] - ℹ️ 🎯 BÁO CÁO TỔNG KẾT - PHIÊN BẢN 0.4.1 (DYNAMIC DRIVER POOL)
+2025-11-21 13:26:23,357 - INFO - [MainThread] - ℹ️ ============================================================
+2025-11-21 13:26:23,357 - INFO - [MainThread] - ℹ️ 📦 Tổng số tác vụ: 33
+2025-11-21 13:26:23,357 - INFO - [MainThread] - ℹ️ 🎯 Số drivers sử dụng: 7
+2025-11-21 13:26:23,357 - INFO - [MainThread] - ℹ️ ✅ Thành công: 33
+2025-11-21 13:26:23,357 - INFO - [MainThread] - ℹ️ ❌ Thất bại: 0
+2025-11-21 13:26:23,358 - INFO - [MainThread] - ℹ️ ⏭️ Bỏ qua: 0
+2025-11-21 13:26:23,358 - INFO - [MainThread] - ℹ️ 🔄 Tổng số lần retry: 0
+2025-11-21 13:26:23,358 - INFO - [MainThread] - ℹ️ 📊 Tỷ lệ thành công: 100.0%
+2025-11-21 13:26:23,358 - INFO - [MainThread] - ℹ️ ⏱️ Thời gian trung bình/task: 2.46s
+2025-11-21 13:26:23,358 - INFO - [MainThread] - ℹ️ 🕒 Tổng thời gian thực hiện: 0:01:21.055627
+2025-11-21 13:26:23,358 - INFO - [MainThread] - ℹ️ 🧹 Đang dọn dẹp driver pool...
+2025-11-21 13:26:23,878 - INFO - [MainThread] - ℹ️ ✅ Đã đóng 7 drivers
+2025-11-21 13:26:43,175 - INFO - [MainThread] - ℹ️ 🚀 Bắt đầu xử lý 14 yêu cầu - Phiên bản 0.4.1 (Dynamic Driver Pool)
+2025-11-21 13:26:43,175 - INFO - [MainThread] - ℹ️ 📊 Tổng số inverters cần xử lý: 132
+2025-11-21 13:26:43,175 - INFO - [MainThread] - ℹ️ 📦 Tổng số tasks: 132
+2025-11-21 13:26:43,176 - INFO - [MainThread] - ℹ️ 🔄 Đang khởi tạo driver pool...
+2025-11-21 13:26:43,176 - INFO - [MainThread] - ℹ️ 📊 Tính toán pool size: 132 tasks / 5 tasks/driver = 8 drivers
+2025-11-21 13:26:43,176 - INFO - [MainThread] - ℹ️ 🔄 Tính toán: 132 tasks → 8 drivers
+2025-11-21 13:26:43,841 - INFO - [MainThread] - ℹ️ 🚀 Đã khởi tạo driver 1/8
+2025-11-21 13:26:44,530 - INFO - [MainThread] - ℹ️ 🚀 Đã khởi tạo driver 2/8
+2025-11-21 13:26:45,188 - INFO - [MainThread] - ℹ️ 🚀 Đã khởi tạo driver 3/8
+2025-11-21 13:26:45,921 - INFO - [MainThread] - ℹ️ 🚀 Đã khởi tạo driver 4/8
+2025-11-21 13:26:46,636 - INFO - [MainThread] - ℹ️ 🚀 Đã khởi tạo driver 5/8
+2025-11-21 13:26:47,333 - INFO - [MainThread] - ℹ️ 🚀 Đã khởi tạo driver 6/8
+2025-11-21 13:26:48,063 - INFO - [MainThread] - ℹ️ 🚀 Đã khởi tạo driver 7/8
+2025-11-21 13:26:48,780 - INFO - [MainThread] - ℹ️ 🚀 Đã khởi tạo driver 8/8
+2025-11-21 13:26:48,780 - INFO - [MainThread] - ℹ️ ✅ Đã khởi tạo thành công 8/8 drivers
+2025-11-21 13:26:48,780 - INFO - [MainThread] - ℹ️ 🎯 Driver pool: 8 drivers (Available: 8, In Use: 0)
+2025-11-21 13:26:48,780 - INFO - [MainThread] - ℹ️ 📥 Đã thêm 132 tasks vào hàng đợi chính
+2025-11-21 13:26:48,780 - INFO - [MainThread] - ℹ️ 🔄 Xử lý batch 1 với 8 tasks
+2025-11-21 13:26:48,781 - INFO - [ThreadPoolExecutor-0_0] - ℹ️ [B2-INV-01] Bắt đầu xử lý ON
+2025-11-21 13:26:48,781 - INFO - [ThreadPoolExecutor-0_1] - ℹ️ [B2-INV-02] Bắt đầu xử lý ON
+2025-11-21 13:26:48,782 - INFO - [ThreadPoolExecutor-0_2] - ℹ️ [B2-INV-03] Bắt đầu xử lý ON
+2025-11-21 13:26:48,784 - INFO - [ThreadPoolExecutor-0_3] - ℹ️ [B2-INV-04] Bắt đầu xử lý ON
+2025-11-21 13:26:48,784 - INFO - [ThreadPoolExecutor-0_4] - ℹ️ [B2-INV-05] Bắt đầu xử lý ON
+2025-11-21 13:26:48,788 - INFO - [ThreadPoolExecutor-0_5] - ℹ️ [B2-INV-06] Bắt đầu xử lý ON
+2025-11-21 13:26:48,788 - INFO - [ThreadPoolExecutor-0_6] - ℹ️ [B2-INV-07] Bắt đầu xử lý ON
+2025-11-21 13:26:48,789 - INFO - [ThreadPoolExecutor-0_7] - ℹ️ [B2-INV-08] Bắt đầu xử lý ON
+2025-11-21 13:27:02,759 - WARNING - [ThreadPoolExecutor-0_0] - ⚠️ [B2-INV-01] Không thể xác định trạng thái hiện tại
+2025-11-21 13:27:02,760 - WARNING - [ThreadPoolExecutor-0_6] - ⚠️ [B2-INV-07] Không thể xác định trạng thái hiện tại
+2025-11-21 13:27:02,762 - WARNING - [ThreadPoolExecutor-0_5] - ⚠️ [B2-INV-06] Không thể xác định trạng thái hiện tại
+2025-11-21 13:27:02,763 - WARNING - [ThreadPoolExecutor-0_4] - ⚠️ [B2-INV-05] Không thể xác định trạng thái hiện tại
+2025-11-21 13:27:02,763 - WARNING - [ThreadPoolExecutor-0_3] - ⚠️ [B2-INV-04] Không thể xác định trạng thái hiện tại
+2025-11-21 13:27:02,764 - WARNING - [ThreadPoolExecutor-0_2] - ⚠️ [B2-INV-03] Không thể xác định trạng thái hiện tại
+2025-11-21 13:27:02,764 - WARNING - [ThreadPoolExecutor-0_1] - ⚠️ [B2-INV-02] Không thể xác định trạng thái hiện tại
+2025-11-21 13:27:02,764 - WARNING - [ThreadPoolExecutor-0_7] - ⚠️ [B2-INV-08] Không thể xác định trạng thái hiện tại
+2025-11-21 13:27:02,868 - WARNING - [MainThread] - ⚠️ ⏳ Đã chuyển B2-INV-06 sang retry queue (lần 1)
+2025-11-21 13:27:02,874 - WARNING - [MainThread] - ⚠️ ⏳ Đã chuyển B2-INV-01 sang retry queue (lần 1)
+2025-11-21 13:27:02,904 - WARNING - [MainThread] - ⚠️ ⏳ Đã chuyển B2-INV-08 sang retry queue (lần 1)
+2025-11-21 13:27:02,906 - WARNING - [MainThread] - ⚠️ ⏳ Đã chuyển B2-INV-07 sang retry queue (lần 1)
+2025-11-21 13:27:02,924 - WARNING - [MainThread] - ⚠️ ⏳ Đã chuyển B2-INV-05 sang retry queue (lần 1)
+2025-11-21 13:27:02,926 - WARNING - [MainThread] - ⚠️ ⏳ Đã chuyển B2-INV-02 sang retry queue (lần 1)
+2025-11-21 13:27:02,927 - WARNING - [MainThread] - ⚠️ ⏳ Đã chuyển B2-INV-03 sang retry queue (lần 1)
+2025-11-21 13:27:02,930 - WARNING - [MainThread] - ⚠️ ⏳ Đã chuyển B2-INV-04 sang retry queue (lần 1)
+2025-11-21 13:27:02,932 - INFO - [MainThread] - ℹ️ 📦 Batch 1: Hoàn thành 0, Retry 8, Thất bại 0
+2025-11-21 13:27:02,932 - INFO - [MainThread] - 📊 Hàng đợi - Chính: 124, Retry: 8, Hoàn thành: 0, Thất bại: 0
+2025-11-21 13:27:02,932 - INFO - [MainThread] - ℹ️ 📈 Tiến trình tổng: 0/132 (0.0%)
+2025-11-21 13:27:02,932 - INFO - [MainThread] - ℹ️ 🔄 Xử lý batch 2 với 8 tasks
+2025-11-21 13:27:02,933 - INFO - [ThreadPoolExecutor-1_0] - ℹ️ [B2-INV-09] Bắt đầu xử lý ON
+2025-11-21 13:27:02,933 - INFO - [ThreadPoolExecutor-1_1] - ℹ️ [B3R1-INV-01] Bắt đầu xử lý ON
+2025-11-21 13:27:02,935 - INFO - [ThreadPoolExecutor-1_2] - ℹ️ [B3R1-INV-02] Bắt đầu xử lý ON
+2025-11-21 13:27:02,936 - INFO - [ThreadPoolExecutor-1_3] - ℹ️ [B3R1-INV-03] Bắt đầu xử lý ON
+2025-11-21 13:27:02,936 - INFO - [ThreadPoolExecutor-1_4] - ℹ️ [B3R1-INV-04] Bắt đầu xử lý ON
+2025-11-21 13:27:02,937 - INFO - [ThreadPoolExecutor-1_5] - ℹ️ [B3R1-INV-05] Bắt đầu xử lý ON
+2025-11-21 13:27:02,939 - INFO - [ThreadPoolExecutor-1_6] - ℹ️ [B3R1-INV-06] Bắt đầu xử lý ON
+2025-11-21 13:27:02,940 - INFO - [ThreadPoolExecutor-1_7] - ℹ️ [B3R1-INV-07] Bắt đầu xử lý ON
+2025-11-21 13:27:10,760 - INFO - [ThreadPoolExecutor-1_1] - ✅ [B3R1-INV-01] BỎ QUA: Đã ở trạng thái mong muốn (Disconnect Grid)
+2025-11-21 13:27:10,795 - INFO - [ThreadPoolExecutor-1_3] - ✅ [B3R1-INV-03] BỎ QUA: Đã ở trạng thái mong muốn (Disconnect Grid)
+2025-11-21 13:27:10,799 - INFO - [ThreadPoolExecutor-1_7] - ✅ [B3R1-INV-07] BỎ QUA: Đã ở trạng thái mong muốn (Disconnect Grid)
+2025-11-21 13:27:10,827 - INFO - [ThreadPoolExecutor-1_5] - ✅ [B3R1-INV-05] BỎ QUA: Đã ở trạng thái mong muốn (Disconnect Grid)
+2025-11-21 13:27:11,009 - INFO - [ThreadPoolExecutor-1_6] - ✅ [B3R1-INV-06] BỎ QUA: Đã ở trạng thái mong muốn (Disconnect Grid)
+2025-11-21 13:27:11,063 - INFO - [ThreadPoolExecutor-1_2] - ✅ [B3R1-INV-02] BỎ QUA: Đã ở trạng thái mong muốn (Disconnect Grid)
+2025-11-21 13:27:11,153 - INFO - [ThreadPoolExecutor-1_4] - ✅ [B3R1-INV-04] BỎ QUA: Đã ở trạng thái mong muốn (Disconnect Grid)
+2025-11-21 13:27:14,900 - WARNING - [ThreadPoolExecutor-1_0] - ⚠️ [B2-INV-09] Không thể xác định trạng thái hiện tại
+2025-11-21 13:27:14,948 - WARNING - [MainThread] - ⚠️ ⏳ Đã chuyển B2-INV-09 sang retry queue (lần 1)
+2025-11-21 13:27:14,949 - INFO - [MainThread] - ℹ️ 📦 Batch 2: Hoàn thành 7, Retry 1, Thất bại 0
+2025-11-21 13:27:14,949 - INFO - [MainThread] - 📊 Hàng đợi - Chính: 116, Retry: 9, Hoàn thành: 7, Thất bại: 0
+2025-11-21 13:27:14,949 - INFO - [MainThread] - ℹ️ 📈 Tiến trình tổng: 7/132 (5.3%)
+2025-11-21 13:27:14,949 - INFO - [MainThread] - ℹ️ 🔄 Xử lý batch 3 với 8 tasks
+2025-11-21 13:27:14,950 - INFO - [ThreadPoolExecutor-2_0] - ℹ️ [B3R1-INV-08] Bắt đầu xử lý ON
+2025-11-21 13:27:14,950 - INFO - [ThreadPoolExecutor-2_1] - ℹ️ [B3R1-INV-09] Bắt đầu xử lý ON
+2025-11-21 13:27:14,950 - INFO - [ThreadPoolExecutor-2_2] - ℹ️ [B3R2-INV-01] Bắt đầu xử lý ON
+2025-11-21 13:27:14,952 - INFO - [ThreadPoolExecutor-2_3] - ℹ️ [B3R2-INV-02] Bắt đầu xử lý ON
+2025-11-21 13:27:14,952 - INFO - [ThreadPoolExecutor-2_4] - ℹ️ [B3R2-INV-03] Bắt đầu xử lý ON
+2025-11-21 13:27:14,953 - INFO - [ThreadPoolExecutor-2_5] - ℹ️ [B3R2-INV-04] Bắt đầu xử lý ON
+2025-11-21 13:27:14,953 - INFO - [ThreadPoolExecutor-2_6] - ℹ️ [B3R2-INV-05] Bắt đầu xử lý ON
+2025-11-21 13:27:14,954 - INFO - [ThreadPoolExecutor-2_7] - ℹ️ [B3R2-INV-06] Bắt đầu xử lý ON
+2025-11-21 13:27:22,353 - INFO - [ThreadPoolExecutor-2_0] - ✅ [B3R1-INV-08] BỎ QUA: Đã ở trạng thái mong muốn (Disconnect Grid)
+2025-11-21 13:27:22,354 - INFO - [ThreadPoolExecutor-2_1] - ✅ [B3R1-INV-09] BỎ QUA: Đã ở trạng thái mong muốn (Disconnect Grid)
+2025-11-21 13:27:22,452 - INFO - [ThreadPoolExecutor-2_2] - ✅ [B3R2-INV-01] BỎ QUA: Đã ở trạng thái mong muốn (Disconnect Grid)
+2025-11-21 13:27:23,884 - INFO - [ThreadPoolExecutor-2_6] - ✅ [B3R2-INV-05] BỎ QUA: Đã ở trạng thái mong muốn (Disconnect Grid)
+2025-11-21 13:27:24,446 - INFO - [ThreadPoolExecutor-2_5] - ✅ [B3R2-INV-04] BỎ QUA: Đã ở trạng thái mong muốn (Disconnect Grid)
+2025-11-21 13:27:24,594 - INFO - [ThreadPoolExecutor-2_3] - ✅ [B3R2-INV-02] BỎ QUA: Đã ở trạng thái mong muốn (Disconnect Grid)
+2025-11-21 13:27:24,892 - INFO - [ThreadPoolExecutor-2_7] - ✅ [B3R2-INV-06] BỎ QUA: Đã ở trạng thái mong muốn (Disconnect Grid)
+2025-11-21 13:27:24,899 - INFO - [ThreadPoolExecutor-2_4] - ✅ [B3R2-INV-03] BỎ QUA: Đã ở trạng thái mong muốn (Disconnect Grid)
+2025-11-21 13:27:24,941 - INFO - [MainThread] - ℹ️ 📦 Batch 3: Hoàn thành 8, Retry 0, Thất bại 0
+2025-11-21 13:27:24,942 - INFO - [MainThread] - 📊 Hàng đợi - Chính: 108, Retry: 9, Hoàn thành: 15, Thất bại: 0
+2025-11-21 13:27:24,942 - INFO - [MainThread] - ℹ️ 📈 Tiến trình tổng: 15/132 (11.4%)
+2025-11-21 13:27:24,942 - INFO - [MainThread] - ℹ️ 🔄 Xử lý batch 4 với 8 tasks
+2025-11-21 13:27:24,942 - INFO - [ThreadPoolExecutor-3_0] - ℹ️ [B3R2-INV-07] Bắt đầu xử lý ON
+2025-11-21 13:27:24,943 - INFO - [ThreadPoolExecutor-3_1] - ℹ️ [B3R2-INV-08] Bắt đầu xử lý ON
+2025-11-21 13:27:24,943 - INFO - [ThreadPoolExecutor-3_2] - ℹ️ [B3R2-INV-09] Bắt đầu xử lý ON
+2025-11-21 13:27:24,944 - INFO - [ThreadPoolExecutor-3_3] - ℹ️ [B4R1-INV-01] Bắt đầu xử lý ON
+2025-11-21 13:27:24,945 - INFO - [ThreadPoolExecutor-3_4] - ℹ️ [B4R1-INV-02] Bắt đầu xử lý ON
+2025-11-21 13:27:24,946 - INFO - [ThreadPoolExecutor-3_5] - ℹ️ [B4R1-INV-03] Bắt đầu xử lý ON
+2025-11-21 13:27:24,947 - INFO - [ThreadPoolExecutor-3_6] - ℹ️ [B4R1-INV-04] Bắt đầu xử lý ON
+2025-11-21 13:27:24,947 - INFO - [ThreadPoolExecutor-3_7] - ℹ️ [B4R1-INV-05] Bắt đầu xử lý ON
+2025-11-21 13:27:34,345 - INFO - [ThreadPoolExecutor-3_1] - ✅ [B3R2-INV-08] BỎ QUA: Đã ở trạng thái mong muốn (Disconnect Grid)
+2025-11-21 13:27:34,661 - INFO - [ThreadPoolExecutor-3_0] - ✅ [B3R2-INV-07] BỎ QUA: Đã ở trạng thái mong muốn (Disconnect Grid)
+2025-11-21 13:27:34,943 - INFO - [ThreadPoolExecutor-3_2] - ✅ [B3R2-INV-09] BỎ QUA: Đã ở trạng thái mong muốn (Disconnect Grid)
+2025-11-21 13:27:35,531 - INFO - [ThreadPoolExecutor-3_6] - ✅ [B4R1-INV-04] BỎ QUA: Đã ở trạng thái mong muốn (Disconnect Grid)
+2025-11-21 13:27:36,044 - INFO - [ThreadPoolExecutor-3_5] - ✅ [B4R1-INV-03] BỎ QUA: Đã ở trạng thái mong muốn (Disconnect Grid)
+2025-11-21 13:27:36,164 - INFO - [ThreadPoolExecutor-3_4] - ✅ [B4R1-INV-02] BỎ QUA: Đã ở trạng thái mong muốn (Disconnect Grid)
+2025-11-21 13:27:36,477 - INFO - [ThreadPoolExecutor-3_7] - ✅ [B4R1-INV-05] BỎ QUA: Đã ở trạng thái mong muốn (Disconnect Grid)
+2025-11-21 13:27:36,699 - INFO - [ThreadPoolExecutor-3_3] - ✅ [B4R1-INV-01] BỎ QUA: Đã ở trạng thái mong muốn (Disconnect Grid)
+2025-11-21 13:27:36,728 - INFO - [MainThread] - ℹ️ 📦 Batch 4: Hoàn thành 8, Retry 0, Thất bại 0
+2025-11-21 13:27:36,728 - INFO - [MainThread] - 📊 Hàng đợi - Chính: 100, Retry: 9, Hoàn thành: 23, Thất bại: 0
+2025-11-21 13:27:36,728 - INFO - [MainThread] - ℹ️ 📈 Tiến trình tổng: 23/132 (17.4%)
+2025-11-21 13:27:36,728 - INFO - [MainThread] - ℹ️ 🔄 Xử lý batch 5 với 8 tasks
+2025-11-21 13:27:36,729 - INFO - [ThreadPoolExecutor-4_0] - ℹ️ [B4R1-INV-06] Bắt đầu xử lý ON
+2025-11-21 13:27:36,729 - INFO - [ThreadPoolExecutor-4_1] - ℹ️ [B4R1-INV-07] Bắt đầu xử lý ON
+2025-11-21 13:27:36,729 - INFO - [ThreadPoolExecutor-4_2] - ℹ️ [B4R1-INV-08] Bắt đầu xử lý ON
+2025-11-21 13:27:36,730 - INFO - [ThreadPoolExecutor-4_3] - ℹ️ [B4R1-INV-09] Bắt đầu xử lý ON
+2025-11-21 13:27:36,731 - INFO - [ThreadPoolExecutor-4_4] - ℹ️ [B4R1-INV-10] Bắt đầu xử lý ON
+2025-11-21 13:27:36,731 - INFO - [ThreadPoolExecutor-4_5] - ℹ️ [B4R2-INV-01] Bắt đầu xử lý ON
+2025-11-21 13:27:36,732 - INFO - [ThreadPoolExecutor-4_6] - ℹ️ [B4R2-INV-02] Bắt đầu xử lý ON
+2025-11-21 13:27:36,734 - INFO - [ThreadPoolExecutor-4_7] - ℹ️ [B4R2-INV-03] Bắt đầu xử lý ON
+2025-11-21 13:27:44,721 - INFO - [ThreadPoolExecutor-4_0] - ✅ [B4R1-INV-06] BỎ QUA: Đã ở trạng thái mong muốn (Disconnect Grid)
+2025-11-21 13:27:45,675 - INFO - [ThreadPoolExecutor-4_1] - ✅ [B4R1-INV-07] BỎ QUA: Đã ở trạng thái mong muốn (Disconnect Grid)
+2025-11-21 13:27:45,961 - INFO - [ThreadPoolExecutor-4_3] - ✅ [B4R1-INV-09] BỎ QUA: Đã ở trạng thái mong muốn (Disconnect Grid)
+2025-11-21 13:27:46,301 - INFO - [ThreadPoolExecutor-4_2] - ✅ [B4R1-INV-08] BỎ QUA: Đã ở trạng thái mong muốn (Disconnect Grid)
+2025-11-21 13:27:46,306 - INFO - [ThreadPoolExecutor-4_4] - ✅ [B4R1-INV-10] BỎ QUA: Đã ở trạng thái mong muốn (Disconnect Grid)
+2025-11-21 13:27:47,324 - INFO - [ThreadPoolExecutor-4_6] - ✅ [B4R2-INV-02] BỎ QUA: Đã ở trạng thái mong muốn (Disconnect Grid)
+2025-11-21 13:27:47,677 - INFO - [ThreadPoolExecutor-4_7] - ✅ [B4R2-INV-03] BỎ QUA: Đã ở trạng thái mong muốn (Disconnect Grid)
+2025-11-21 13:27:47,941 - INFO - [ThreadPoolExecutor-4_5] - ✅ [B4R2-INV-01] BỎ QUA: Đã ở trạng thái mong muốn (Disconnect Grid)
+2025-11-21 13:27:47,967 - INFO - [MainThread] - ℹ️ 📦 Batch 5: Hoàn thành 8, Retry 0, Thất bại 0
+2025-11-21 13:27:47,967 - INFO - [MainThread] - 📊 Hàng đợi - Chính: 92, Retry: 9, Hoàn thành: 31, Thất bại: 0
+2025-11-21 13:27:47,967 - INFO - [MainThread] - ℹ️ 📈 Tiến trình tổng: 31/132 (23.5%)
+2025-11-21 13:27:47,967 - INFO - [MainThread] - ℹ️ 🔄 Xử lý batch 6 với 8 tasks
+2025-11-21 13:27:47,968 - INFO - [ThreadPoolExecutor-5_0] - ℹ️ [B4R2-INV-04] Bắt đầu xử lý ON
+2025-11-21 13:27:47,968 - INFO - [ThreadPoolExecutor-5_1] - ℹ️ [B4R2-INV-05] Bắt đầu xử lý ON
+2025-11-21 13:27:47,968 - INFO - [ThreadPoolExecutor-5_2] - ℹ️ [B4R2-INV-06] Bắt đầu xử lý ON
+2025-11-21 13:27:47,969 - INFO - [ThreadPoolExecutor-5_3] - ℹ️ [B4R2-INV-07] Bắt đầu xử lý ON
+2025-11-21 13:27:47,970 - INFO - [ThreadPoolExecutor-5_4] - ℹ️ [B4R2-INV-08] Bắt đầu xử lý ON
+2025-11-21 13:27:47,971 - INFO - [ThreadPoolExecutor-5_5] - ℹ️ [B4R2-INV-09] Bắt đầu xử lý ON
+2025-11-21 13:27:47,972 - INFO - [ThreadPoolExecutor-5_6] - ℹ️ [B4R2-INV-10] Bắt đầu xử lý ON
+2025-11-21 13:27:47,972 - INFO - [ThreadPoolExecutor-5_7] - ℹ️ [B5R1-INV-01] Bắt đầu xử lý ON
+2025-11-21 13:27:55,643 - INFO - [ThreadPoolExecutor-5_7] - ✅ [B5R1-INV-01] BỎ QUA: Đã ở trạng thái mong muốn (Disconnect Grid)
+2025-11-21 13:27:56,880 - INFO - [ThreadPoolExecutor-5_6] - ✅ [B4R2-INV-10] BỎ QUA: Đã ở trạng thái mong muốn (Disconnect Grid)
+2025-11-21 13:27:57,321 - INFO - [ThreadPoolExecutor-5_5] - ✅ [B4R2-INV-09] BỎ QUA: Đã ở trạng thái mong muốn (Disconnect Grid)
+2025-11-21 13:27:57,820 - INFO - [ThreadPoolExecutor-5_3] - ✅ [B4R2-INV-07] BỎ QUA: Đã ở trạng thái mong muốn (Disconnect Grid)
+2025-11-21 13:27:58,037 - INFO - [ThreadPoolExecutor-5_0] - ✅ [B4R2-INV-04] BỎ QUA: Đã ở trạng thái mong muốn (Disconnect Grid)
+2025-11-21 13:27:58,038 - INFO - [ThreadPoolExecutor-5_1] - ✅ [B4R2-INV-05] BỎ QUA: Đã ở trạng thái mong muốn (Disconnect Grid)
+2025-11-21 13:27:58,069 - INFO - [ThreadPoolExecutor-5_2] - ✅ [B4R2-INV-06] BỎ QUA: Đã ở trạng thái mong muốn (Disconnect Grid)
+2025-11-21 13:27:58,094 - INFO - [ThreadPoolExecutor-5_4] - ✅ [B4R2-INV-08] BỎ QUA: Đã ở trạng thái mong muốn (Disconnect Grid)
+2025-11-21 13:27:58,135 - INFO - [MainThread] - ℹ️ 📦 Batch 6: Hoàn thành 8, Retry 0, Thất bại 0
+2025-11-21 13:27:58,136 - INFO - [MainThread] - 📊 Hàng đợi - Chính: 84, Retry: 9, Hoàn thành: 39, Thất bại: 0
+2025-11-21 13:27:58,136 - INFO - [MainThread] - ℹ️ 📈 Tiến trình tổng: 39/132 (29.5%)
+2025-11-21 13:27:58,136 - INFO - [MainThread] - ℹ️ 🔄 Xử lý batch 7 với 8 tasks
+2025-11-21 13:27:58,136 - INFO - [ThreadPoolExecutor-6_0] - ℹ️ [B5R1-INV-02] Bắt đầu xử lý ON
+2025-11-21 13:27:58,137 - INFO - [ThreadPoolExecutor-6_1] - ℹ️ [B5R1-INV-03] Bắt đầu xử lý ON
+2025-11-21 13:27:58,137 - INFO - [ThreadPoolExecutor-6_2] - ℹ️ [B5R1-INV-04] Bắt đầu xử lý ON
+2025-11-21 13:27:58,137 - INFO - [ThreadPoolExecutor-6_3] - ℹ️ [B5R1-INV-05] Bắt đầu xử lý ON
+2025-11-21 13:27:58,138 - INFO - [ThreadPoolExecutor-6_4] - ℹ️ [B5R1-INV-06] Bắt đầu xử lý ON
+2025-11-21 13:27:58,141 - INFO - [ThreadPoolExecutor-6_5] - ℹ️ [B5R1-INV-07] Bắt đầu xử lý ON
+2025-11-21 13:27:58,143 - INFO - [ThreadPoolExecutor-6_6] - ℹ️ [B5R1-INV-08] Bắt đầu xử lý ON
+2025-11-21 13:27:58,144 - INFO - [ThreadPoolExecutor-6_7] - ℹ️ [B5R1-INV-09] Bắt đầu xử lý ON
+2025-11-21 13:28:09,708 - INFO - [ThreadPoolExecutor-6_2] - ✅ [B5R1-INV-04] BỎ QUA: Đã ở trạng thái mong muốn (Disconnect Grid)
+2025-11-21 13:28:10,627 - INFO - [ThreadPoolExecutor-6_7] - ✅ [B5R1-INV-09] BỎ QUA: Đã ở trạng thái mong muốn (Disconnect Grid)
+2025-11-21 13:28:10,629 - INFO - [ThreadPoolExecutor-6_1] - ✅ [B5R1-INV-03] BỎ QUA: Đã ở trạng thái mong muốn (Disconnect Grid)
+2025-11-21 13:28:10,698 - INFO - [ThreadPoolExecutor-6_6] - ✅ [B5R1-INV-08] BỎ QUA: Đã ở trạng thái mong muốn (Disconnect Grid)
+2025-11-21 13:28:10,896 - INFO - [ThreadPoolExecutor-6_5] - ✅ [B5R1-INV-07] BỎ QUA: Đã ở trạng thái mong muốn (Disconnect Grid)
+2025-11-21 13:28:10,907 - INFO - [ThreadPoolExecutor-6_3] - ✅ [B5R1-INV-05] BỎ QUA: Đã ở trạng thái mong muốn (Disconnect Grid)
+2025-11-21 13:28:10,972 - INFO - [ThreadPoolExecutor-6_0] - ✅ [B5R1-INV-02] BỎ QUA: Đã ở trạng thái mong muốn (Disconnect Grid)
+2025-11-21 13:28:10,981 - INFO - [ThreadPoolExecutor-6_4] - ✅ [B5R1-INV-06] BỎ QUA: Đã ở trạng thái mong muốn (Disconnect Grid)
+2025-11-21 13:28:11,025 - INFO - [MainThread] - ℹ️ 📦 Batch 7: Hoàn thành 8, Retry 0, Thất bại 0
+2025-11-21 13:28:11,025 - INFO - [MainThread] - 📊 Hàng đợi - Chính: 76, Retry: 9, Hoàn thành: 47, Thất bại: 0
+2025-11-21 13:28:11,026 - INFO - [MainThread] - ℹ️ 📈 Tiến trình tổng: 47/132 (35.6%)
+2025-11-21 13:28:11,026 - INFO - [MainThread] - ℹ️ 🔄 Xử lý batch 8 với 8 tasks
+2025-11-21 13:28:11,026 - INFO - [ThreadPoolExecutor-7_0] - ℹ️ [B5R1-INV-10] Bắt đầu xử lý ON
+2025-11-21 13:28:11,027 - INFO - [ThreadPoolExecutor-7_1] - ℹ️ [B5R2-INV-01] Bắt đầu xử lý ON
+2025-11-21 13:28:11,027 - INFO - [ThreadPoolExecutor-7_2] - ℹ️ [B5R2-INV-02] Bắt đầu xử lý ON
+2025-11-21 13:28:11,028 - INFO - [ThreadPoolExecutor-7_3] - ℹ️ [B5R2-INV-03] Bắt đầu xử lý ON
+2025-11-21 13:28:11,029 - INFO - [ThreadPoolExecutor-7_4] - ℹ️ [B5R2-INV-04] Bắt đầu xử lý ON
+2025-11-21 13:28:11,029 - INFO - [ThreadPoolExecutor-7_5] - ℹ️ [B5R2-INV-05] Bắt đầu xử lý ON
+2025-11-21 13:28:11,030 - INFO - [ThreadPoolExecutor-7_6] - ℹ️ [B5R2-INV-06] Bắt đầu xử lý ON
+2025-11-21 13:28:11,031 - INFO - [ThreadPoolExecutor-7_7] - ℹ️ [B5R2-INV-07] Bắt đầu xử lý ON
+2025-11-21 13:28:20,771 - INFO - [ThreadPoolExecutor-7_7] - ✅ [B5R2-INV-07] BỎ QUA: Đã ở trạng thái mong muốn (Disconnect Grid)
+2025-11-21 13:28:20,893 - INFO - [ThreadPoolExecutor-7_5] - ✅ [B5R2-INV-05] BỎ QUA: Đã ở trạng thái mong muốn (Disconnect Grid)
+2025-11-21 13:28:21,384 - INFO - [ThreadPoolExecutor-7_0] - ✅ [B5R1-INV-10] BỎ QUA: Đã ở trạng thái mong muốn (Disconnect Grid)
+2025-11-21 13:28:21,561 - INFO - [ThreadPoolExecutor-7_6] - ✅ [B5R2-INV-06] BỎ QUA: Đã ở trạng thái mong muốn (Disconnect Grid)
+2025-11-21 13:28:21,603 - INFO - [ThreadPoolExecutor-7_3] - ✅ [B5R2-INV-03] BỎ QUA: Đã ở trạng thái mong muốn (Disconnect Grid)
+2025-11-21 13:28:21,873 - INFO - [ThreadPoolExecutor-7_4] - ✅ [B5R2-INV-04] BỎ QUA: Đã ở trạng thái mong muốn (Disconnect Grid)
+2025-11-21 13:28:21,886 - INFO - [ThreadPoolExecutor-7_2] - ✅ [B5R2-INV-02] BỎ QUA: Đã ở trạng thái mong muốn (Disconnect Grid)
+2025-11-21 13:28:21,912 - INFO - [ThreadPoolExecutor-7_1] - ✅ [B5R2-INV-01] BỎ QUA: Đã ở trạng thái mong muốn (Disconnect Grid)
+2025-11-21 13:28:21,947 - INFO - [MainThread] - ℹ️ 📦 Batch 8: Hoàn thành 8, Retry 0, Thất bại 0
+2025-11-21 13:28:21,948 - INFO - [MainThread] - 📊 Hàng đợi - Chính: 68, Retry: 9, Hoàn thành: 55, Thất bại: 0
+2025-11-21 13:28:21,948 - INFO - [MainThread] - ℹ️ 📈 Tiến trình tổng: 55/132 (41.7%)
+2025-11-21 13:28:21,948 - INFO - [MainThread] - ℹ️ 🔄 Xử lý batch 9 với 8 tasks
+2025-11-21 13:28:21,949 - INFO - [ThreadPoolExecutor-8_0] - ℹ️ [B5R2-INV-08] Bắt đầu xử lý ON
+2025-11-21 13:28:21,950 - INFO - [ThreadPoolExecutor-8_1] - ℹ️ [B5R2-INV-09] Bắt đầu xử lý ON
+2025-11-21 13:28:21,950 - INFO - [ThreadPoolExecutor-8_2] - ℹ️ [B5R2-INV-10] Bắt đầu xử lý ON
+2025-11-21 13:28:21,951 - INFO - [ThreadPoolExecutor-8_3] - ℹ️ [B6R1-INV-01] Bắt đầu xử lý ON
+2025-11-21 13:28:21,951 - INFO - [ThreadPoolExecutor-8_4] - ℹ️ [B6R1-INV-02] Bắt đầu xử lý ON
+2025-11-21 13:28:21,952 - INFO - [ThreadPoolExecutor-8_5] - ℹ️ [B6R1-INV-03] Bắt đầu xử lý ON
+2025-11-21 13:28:21,954 - INFO - [ThreadPoolExecutor-8_6] - ℹ️ [B6R1-INV-04] Bắt đầu xử lý ON
+2025-11-21 13:28:21,955 - INFO - [ThreadPoolExecutor-8_7] - ℹ️ [B6R1-INV-05] Bắt đầu xử lý ON
+2025-11-21 13:28:28,802 - INFO - [ThreadPoolExecutor-8_7] - ✅ [B6R1-INV-05] BỎ QUA: Đã ở trạng thái mong muốn (Disconnect Grid)
+2025-11-21 13:28:29,801 - INFO - [ThreadPoolExecutor-8_2] - ✅ [B5R2-INV-10] BỎ QUA: Đã ở trạng thái mong muốn (Disconnect Grid)
+2025-11-21 13:28:30,295 - INFO - [ThreadPoolExecutor-8_0] - ✅ [B5R2-INV-08] BỎ QUA: Đã ở trạng thái mong muốn (Disconnect Grid)
+2025-11-21 13:28:30,916 - INFO - [ThreadPoolExecutor-8_3] - ✅ [B6R1-INV-01] BỎ QUA: Đã ở trạng thái mong muốn (Disconnect Grid)
+2025-11-21 13:28:31,187 - INFO - [ThreadPoolExecutor-8_6] - ✅ [B6R1-INV-04] BỎ QUA: Đã ở trạng thái mong muốn (Disconnect Grid)
+2025-11-21 13:28:31,265 - INFO - [ThreadPoolExecutor-8_5] - ✅ [B6R1-INV-03] BỎ QUA: Đã ở trạng thái mong muốn (Disconnect Grid)
+2025-11-21 13:28:31,389 - INFO - [ThreadPoolExecutor-8_1] - ✅ [B5R2-INV-09] BỎ QUA: Đã ở trạng thái mong muốn (Disconnect Grid)
+2025-11-21 13:28:32,364 - INFO - [ThreadPoolExecutor-8_4] - ✅ [B6R1-INV-02] BỎ QUA: Đã ở trạng thái mong muốn (Disconnect Grid)
+2025-11-21 13:28:32,388 - INFO - [MainThread] - ℹ️ 📦 Batch 9: Hoàn thành 8, Retry 0, Thất bại 0
+2025-11-21 13:28:32,388 - INFO - [MainThread] - 📊 Hàng đợi - Chính: 60, Retry: 9, Hoàn thành: 63, Thất bại: 0
+2025-11-21 13:28:32,388 - INFO - [MainThread] - ℹ️ 📈 Tiến trình tổng: 63/132 (47.7%)
+2025-11-21 13:28:32,389 - INFO - [MainThread] - ℹ️ 🔄 Xử lý batch 10 với 8 tasks
+2025-11-21 13:28:32,389 - INFO - [ThreadPoolExecutor-9_0] - ℹ️ [B6R1-INV-06] Bắt đầu xử lý ON
+2025-11-21 13:28:32,389 - INFO - [ThreadPoolExecutor-9_1] - ℹ️ [B6R1-INV-07] Bắt đầu xử lý ON
+2025-11-21 13:28:32,390 - INFO - [ThreadPoolExecutor-9_2] - ℹ️ [B6R1-INV-08] Bắt đầu xử lý ON
+2025-11-21 13:28:32,390 - INFO - [ThreadPoolExecutor-9_3] - ℹ️ [B6R1-INV-09] Bắt đầu xử lý ON
+2025-11-21 13:28:32,391 - INFO - [ThreadPoolExecutor-9_4] - ℹ️ [B6R1-INV-10] Bắt đầu xử lý ON
+2025-11-21 13:28:32,392 - INFO - [ThreadPoolExecutor-9_5] - ℹ️ [B6R2-INV-01] Bắt đầu xử lý ON
+2025-11-21 13:28:32,394 - INFO - [ThreadPoolExecutor-9_6] - ℹ️ [B6R2-INV-02] Bắt đầu xử lý ON
+2025-11-21 13:28:32,397 - INFO - [ThreadPoolExecutor-9_7] - ℹ️ [B6R2-INV-03] Bắt đầu xử lý ON
+2025-11-21 13:28:44,810 - INFO - [ThreadPoolExecutor-9_2] - ✅ [B6R1-INV-08] BỎ QUA: Đã ở trạng thái mong muốn (Disconnect Grid)
+2025-11-21 13:28:45,584 - INFO - [ThreadPoolExecutor-9_6] - ✅ [B6R2-INV-02] BỎ QUA: Đã ở trạng thái mong muốn (Disconnect Grid)
+2025-11-21 13:28:45,606 - INFO - [ThreadPoolExecutor-9_4] - ✅ [B6R1-INV-10] BỎ QUA: Đã ở trạng thái mong muốn (Disconnect Grid)
+2025-11-21 13:28:45,674 - INFO - [ThreadPoolExecutor-9_7] - ✅ [B6R2-INV-03] BỎ QUA: Đã ở trạng thái mong muốn (Disconnect Grid)
+2025-11-21 13:28:45,906 - INFO - [ThreadPoolExecutor-9_5] - ✅ [B6R2-INV-01] BỎ QUA: Đã ở trạng thái mong muốn (Disconnect Grid)
+2025-11-21 13:28:45,928 - INFO - [ThreadPoolExecutor-9_0] - ✅ [B6R1-INV-06] BỎ QUA: Đã ở trạng thái mong muốn (Disconnect Grid)
+2025-11-21 13:28:45,958 - INFO - [ThreadPoolExecutor-9_3] - ✅ [B6R1-INV-09] BỎ QUA: Đã ở trạng thái mong muốn (Disconnect Grid)
+2025-11-21 13:28:46,004 - INFO - [ThreadPoolExecutor-9_1] - ✅ [B6R1-INV-07] BỎ QUA: Đã ở trạng thái mong muốn (Disconnect Grid)
+2025-11-21 13:28:46,032 - INFO - [MainThread] - ℹ️ 📦 Batch 10: Hoàn thành 8, Retry 0, Thất bại 0
+2025-11-21 13:28:46,032 - INFO - [MainThread] - 📊 Hàng đợi - Chính: 52, Retry: 9, Hoàn thành: 71, Thất bại: 0
+2025-11-21 13:28:46,032 - INFO - [MainThread] - ℹ️ 📈 Tiến trình tổng: 71/132 (53.8%)
+2025-11-21 13:28:46,032 - INFO - [MainThread] - ℹ️ 🔄 Xử lý batch 11 với 8 tasks
+2025-11-21 13:28:46,033 - INFO - [ThreadPoolExecutor-10_0] - ℹ️ [B6R2-INV-04] Bắt đầu xử lý ON
+2025-11-21 13:28:46,033 - INFO - [ThreadPoolExecutor-10_1] - ℹ️ [B6R2-INV-05] Bắt đầu xử lý ON
+2025-11-21 13:28:46,034 - INFO - [ThreadPoolExecutor-10_2] - ℹ️ [B6R2-INV-06] Bắt đầu xử lý ON
+2025-11-21 13:28:46,034 - INFO - [ThreadPoolExecutor-10_3] - ℹ️ [B6R2-INV-07] Bắt đầu xử lý ON
+2025-11-21 13:28:46,035 - INFO - [ThreadPoolExecutor-10_4] - ℹ️ [B6R2-INV-08] Bắt đầu xử lý ON
+2025-11-21 13:28:46,037 - INFO - [ThreadPoolExecutor-10_5] - ℹ️ [B6R2-INV-09] Bắt đầu xử lý ON
+2025-11-21 13:28:46,039 - INFO - [ThreadPoolExecutor-10_6] - ℹ️ [B6R2-INV-10] Bắt đầu xử lý ON
+2025-11-21 13:28:46,041 - INFO - [ThreadPoolExecutor-10_7] - ℹ️ [B7-INV-01] Bắt đầu xử lý ON
+2025-11-21 13:28:54,519 - INFO - [ThreadPoolExecutor-10_7] - ✅ [B7-INV-01] BỎ QUA: Đã ở trạng thái mong muốn (Disconnect Grid)
+2025-11-21 13:28:56,135 - INFO - [ThreadPoolExecutor-10_5] - ✅ [B6R2-INV-09] BỎ QUA: Đã ở trạng thái mong muốn (Disconnect Grid)
+2025-11-21 13:28:56,718 - INFO - [ThreadPoolExecutor-10_0] - ✅ [B6R2-INV-04] BỎ QUA: Đã ở trạng thái mong muốn (Disconnect Grid)
+2025-11-21 13:28:56,724 - INFO - [ThreadPoolExecutor-10_4] - ✅ [B6R2-INV-08] BỎ QUA: Đã ở trạng thái mong muốn (Disconnect Grid)
+2025-11-21 13:28:56,814 - INFO - [ThreadPoolExecutor-10_1] - ✅ [B6R2-INV-05] BỎ QUA: Đã ở trạng thái mong muốn (Disconnect Grid)
+2025-11-21 13:28:56,814 - INFO - [ThreadPoolExecutor-10_6] - ✅ [B6R2-INV-10] BỎ QUA: Đã ở trạng thái mong muốn (Disconnect Grid)
+2025-11-21 13:28:56,853 - INFO - [ThreadPoolExecutor-10_2] - ✅ [B6R2-INV-06] BỎ QUA: Đã ở trạng thái mong muốn (Disconnect Grid)
+2025-11-21 13:28:57,194 - INFO - [ThreadPoolExecutor-10_3] - ✅ [B6R2-INV-07] BỎ QUA: Đã ở trạng thái mong muốn (Disconnect Grid)
+2025-11-21 13:28:57,219 - INFO - [MainThread] - ℹ️ 📦 Batch 11: Hoàn thành 8, Retry 0, Thất bại 0
+2025-11-21 13:28:57,220 - INFO - [MainThread] - 📊 Hàng đợi - Chính: 44, Retry: 9, Hoàn thành: 79, Thất bại: 0
+2025-11-21 13:28:57,220 - INFO - [MainThread] - ℹ️ 📈 Tiến trình tổng: 79/132 (59.8%)
+2025-11-21 13:28:57,220 - INFO - [MainThread] - ℹ️ 🔄 Xử lý batch 12 với 8 tasks
+2025-11-21 13:28:57,220 - INFO - [ThreadPoolExecutor-11_0] - ℹ️ [B7-INV-02] Bắt đầu xử lý ON
+2025-11-21 13:28:57,221 - INFO - [ThreadPoolExecutor-11_1] - ℹ️ [B7-INV-03] Bắt đầu xử lý ON
+2025-11-21 13:28:57,221 - INFO - [ThreadPoolExecutor-11_2] - ℹ️ [B7-INV-04] Bắt đầu xử lý ON
+2025-11-21 13:28:57,224 - INFO - [ThreadPoolExecutor-11_3] - ℹ️ [B7-INV-05] Bắt đầu xử lý ON
+2025-11-21 13:28:57,225 - INFO - [ThreadPoolExecutor-11_4] - ℹ️ [B7-INV-06] Bắt đầu xử lý ON
+2025-11-21 13:28:57,226 - INFO - [ThreadPoolExecutor-11_5] - ℹ️ [B7-INV-07] Bắt đầu xử lý ON
+2025-11-21 13:28:57,228 - INFO - [ThreadPoolExecutor-11_6] - ℹ️ [B7-INV-08] Bắt đầu xử lý ON
+2025-11-21 13:28:57,234 - INFO - [ThreadPoolExecutor-11_7] - ℹ️ [B7-INV-09] Bắt đầu xử lý ON
+2025-11-21 13:29:03,559 - INFO - [ThreadPoolExecutor-11_0] - ✅ [B7-INV-02] BỎ QUA: Đã ở trạng thái mong muốn (Disconnect Grid)
+2025-11-21 13:29:05,654 - INFO - [ThreadPoolExecutor-11_6] - ✅ [B7-INV-08] BỎ QUA: Đã ở trạng thái mong muốn (Disconnect Grid)
+2025-11-21 13:29:06,031 - INFO - [ThreadPoolExecutor-11_2] - ✅ [B7-INV-04] BỎ QUA: Đã ở trạng thái mong muốn (Disconnect Grid)
+2025-11-21 13:29:06,205 - INFO - [ThreadPoolExecutor-11_3] - ✅ [B7-INV-05] BỎ QUA: Đã ở trạng thái mong muốn (Disconnect Grid)
+2025-11-21 13:29:06,254 - INFO - [ThreadPoolExecutor-11_1] - ✅ [B7-INV-03] BỎ QUA: Đã ở trạng thái mong muốn (Disconnect Grid)
+2025-11-21 13:29:06,262 - INFO - [ThreadPoolExecutor-11_5] - ✅ [B7-INV-07] BỎ QUA: Đã ở trạng thái mong muốn (Disconnect Grid)
+2025-11-21 13:29:06,463 - INFO - [ThreadPoolExecutor-11_7] - ✅ [B7-INV-09] BỎ QUA: Đã ở trạng thái mong muốn (Disconnect Grid)
+2025-11-21 13:29:06,463 - INFO - [ThreadPoolExecutor-11_4] - ✅ [B7-INV-06] BỎ QUA: Đã ở trạng thái mong muốn (Disconnect Grid)
+2025-11-21 13:29:06,500 - INFO - [MainThread] - ℹ️ 📦 Batch 12: Hoàn thành 8, Retry 0, Thất bại 0
+2025-11-21 13:29:06,500 - INFO - [MainThread] - 📊 Hàng đợi - Chính: 36, Retry: 9, Hoàn thành: 87, Thất bại: 0
+2025-11-21 13:29:06,500 - INFO - [MainThread] - ℹ️ 📈 Tiến trình tổng: 87/132 (65.9%)
+2025-11-21 13:29:06,500 - INFO - [MainThread] - ℹ️ 🔄 Xử lý batch 13 với 8 tasks
+2025-11-21 13:29:06,501 - INFO - [ThreadPoolExecutor-12_0] - ℹ️ [B7-INV-10] Bắt đầu xử lý ON
+2025-11-21 13:29:06,501 - INFO - [ThreadPoolExecutor-12_1] - ℹ️ [B8-INV-01] Bắt đầu xử lý ON
+2025-11-21 13:29:06,503 - INFO - [ThreadPoolExecutor-12_2] - ℹ️ [B8-INV-02] Bắt đầu xử lý ON
+2025-11-21 13:29:06,504 - INFO - [ThreadPoolExecutor-12_3] - ℹ️ [B8-INV-03] Bắt đầu xử lý ON
+2025-11-21 13:29:06,506 - INFO - [ThreadPoolExecutor-12_4] - ℹ️ [B8-INV-04] Bắt đầu xử lý ON
+2025-11-21 13:29:06,507 - INFO - [ThreadPoolExecutor-12_5] - ℹ️ [B8-INV-05] Bắt đầu xử lý ON
+2025-11-21 13:29:06,508 - INFO - [ThreadPoolExecutor-12_6] - ℹ️ [B11-INV-01] Bắt đầu xử lý ON
+2025-11-21 13:29:06,508 - INFO - [ThreadPoolExecutor-12_7] - ℹ️ [B11-INV-02] Bắt đầu xử lý ON
+2025-11-21 13:29:14,303 - INFO - [ThreadPoolExecutor-12_6] - ✅ [B11-INV-01] BỎ QUA: Đã ở trạng thái mong muốn (Disconnect Grid)
+2025-11-21 13:29:14,322 - INFO - [ThreadPoolExecutor-12_3] - ✅ [B8-INV-03] BỎ QUA: Đã ở trạng thái mong muốn (Disconnect Grid)
+2025-11-21 13:29:14,355 - INFO - [ThreadPoolExecutor-12_2] - ✅ [B8-INV-02] BỎ QUA: Đã ở trạng thái mong muốn (Disconnect Grid)
+2025-11-21 13:29:15,977 - INFO - [ThreadPoolExecutor-12_1] - ✅ [B8-INV-01] BỎ QUA: Đã ở trạng thái mong muốn (Disconnect Grid)
+2025-11-21 13:29:16,430 - INFO - [ThreadPoolExecutor-12_4] - ✅ [B8-INV-04] BỎ QUA: Đã ở trạng thái mong muốn (Disconnect Grid)
+2025-11-21 13:29:16,459 - INFO - [ThreadPoolExecutor-12_5] - ✅ [B8-INV-05] BỎ QUA: Đã ở trạng thái mong muốn (Disconnect Grid)
+2025-11-21 13:29:16,491 - INFO - [ThreadPoolExecutor-12_7] - ✅ [B11-INV-02] BỎ QUA: Đã ở trạng thái mong muốn (Disconnect Grid)
+2025-11-21 13:29:16,989 - INFO - [ThreadPoolExecutor-12_0] - ✅ [B7-INV-10] BỎ QUA: Đã ở trạng thái mong muốn (Disconnect Grid)
+2025-11-21 13:29:17,025 - INFO - [MainThread] - ℹ️ 📦 Batch 13: Hoàn thành 8, Retry 0, Thất bại 0
+2025-11-21 13:29:17,025 - INFO - [MainThread] - 📊 Hàng đợi - Chính: 28, Retry: 9, Hoàn thành: 95, Thất bại: 0
+2025-11-21 13:29:17,025 - INFO - [MainThread] - ℹ️ 📈 Tiến trình tổng: 95/132 (72.0%)
+2025-11-21 13:29:17,025 - INFO - [MainThread] - ℹ️ 🔄 Xử lý batch 14 với 8 tasks
+2025-11-21 13:29:17,025 - INFO - [ThreadPoolExecutor-13_0] - ℹ️ [B11-INV-03] Bắt đầu xử lý ON
+2025-11-21 13:29:17,026 - INFO - [ThreadPoolExecutor-13_1] - ℹ️ [B11-INV-04] Bắt đầu xử lý ON
+2025-11-21 13:29:17,026 - INFO - [ThreadPoolExecutor-13_2] - ℹ️ [B11-INV-05] Bắt đầu xử lý ON
+2025-11-21 13:29:17,027 - INFO - [ThreadPoolExecutor-13_3] - ℹ️ [B11-INV-06] Bắt đầu xử lý ON
+2025-11-21 13:29:17,029 - INFO - [ThreadPoolExecutor-13_4] - ℹ️ [B11-INV-07] Bắt đầu xử lý ON
+2025-11-21 13:29:17,029 - INFO - [ThreadPoolExecutor-13_5] - ℹ️ [B11-INV-08] Bắt đầu xử lý ON
+2025-11-21 13:29:17,032 - INFO - [ThreadPoolExecutor-13_6] - ℹ️ [B11-INV-09] Bắt đầu xử lý ON
+2025-11-21 13:29:17,033 - INFO - [ThreadPoolExecutor-13_7] - ℹ️ [B11-INV-10] Bắt đầu xử lý ON
+2025-11-21 13:29:23,519 - INFO - [ThreadPoolExecutor-13_0] - ✅ [B11-INV-03] BỎ QUA: Đã ở trạng thái mong muốn (Disconnect Grid)
+2025-11-21 13:29:24,571 - INFO - [ThreadPoolExecutor-13_3] - ✅ [B11-INV-06] BỎ QUA: Đã ở trạng thái mong muốn (Disconnect Grid)
+2025-11-21 13:29:24,677 - INFO - [ThreadPoolExecutor-13_5] - ✅ [B11-INV-08] BỎ QUA: Đã ở trạng thái mong muốn (Disconnect Grid)
+2025-11-21 13:29:24,705 - INFO - [ThreadPoolExecutor-13_4] - ✅ [B11-INV-07] BỎ QUA: Đã ở trạng thái mong muốn (Disconnect Grid)
+2025-11-21 13:29:24,767 - INFO - [ThreadPoolExecutor-13_6] - ✅ [B11-INV-09] BỎ QUA: Đã ở trạng thái mong muốn (Disconnect Grid)
+2025-11-21 13:29:25,040 - INFO - [ThreadPoolExecutor-13_2] - ✅ [B11-INV-05] BỎ QUA: Đã ở trạng thái mong muốn (Disconnect Grid)
+2025-11-21 13:29:25,088 - INFO - [ThreadPoolExecutor-13_1] - ✅ [B11-INV-04] BỎ QUA: Đã ở trạng thái mong muốn (Disconnect Grid)
+2025-11-21 13:29:25,410 - INFO - [ThreadPoolExecutor-13_7] - ✅ [B11-INV-10] BỎ QUA: Đã ở trạng thái mong muốn (Disconnect Grid)
+2025-11-21 13:29:25,462 - INFO - [MainThread] - ℹ️ 📦 Batch 14: Hoàn thành 8, Retry 0, Thất bại 0
+2025-11-21 13:29:25,462 - INFO - [MainThread] - 📊 Hàng đợi - Chính: 20, Retry: 9, Hoàn thành: 103, Thất bại: 0
+2025-11-21 13:29:25,462 - INFO - [MainThread] - ℹ️ 📈 Tiến trình tổng: 103/132 (78.0%)
+2025-11-21 13:29:25,463 - INFO - [MainThread] - ℹ️ 🔄 Xử lý batch 15 với 8 tasks
+2025-11-21 13:29:25,463 - INFO - [ThreadPoolExecutor-14_0] - ℹ️ [B12-INV-01] Bắt đầu xử lý ON
+2025-11-21 13:29:25,463 - INFO - [ThreadPoolExecutor-14_1] - ℹ️ [B12-INV-02] Bắt đầu xử lý ON
+2025-11-21 13:29:25,464 - INFO - [ThreadPoolExecutor-14_2] - ℹ️ [B12-INV-03] Bắt đầu xử lý ON
+2025-11-21 13:29:25,465 - INFO - [ThreadPoolExecutor-14_3] - ℹ️ [B12-INV-04] Bắt đầu xử lý ON
+2025-11-21 13:29:25,465 - INFO - [ThreadPoolExecutor-14_4] - ℹ️ [B12-INV-05] Bắt đầu xử lý ON
+2025-11-21 13:29:25,466 - INFO - [ThreadPoolExecutor-14_5] - ℹ️ [B12-INV-06] Bắt đầu xử lý ON
+2025-11-21 13:29:25,468 - INFO - [ThreadPoolExecutor-14_6] - ℹ️ [B12-INV-07] Bắt đầu xử lý ON
+2025-11-21 13:29:25,471 - INFO - [ThreadPoolExecutor-14_7] - ℹ️ [B12-INV-08] Bắt đầu xử lý ON
+2025-11-21 13:29:31,642 - INFO - [ThreadPoolExecutor-14_7] - ✅ [B12-INV-08] BỎ QUA: Đã ở trạng thái mong muốn (Disconnect Grid)
+2025-11-21 13:29:33,429 - INFO - [ThreadPoolExecutor-14_4] - ✅ [B12-INV-05] BỎ QUA: Đã ở trạng thái mong muốn (Disconnect Grid)
+2025-11-21 13:29:33,476 - INFO - [ThreadPoolExecutor-14_5] - ✅ [B12-INV-06] BỎ QUA: Đã ở trạng thái mong muốn (Disconnect Grid)
+2025-11-21 13:29:33,512 - INFO - [ThreadPoolExecutor-14_3] - ✅ [B12-INV-04] BỎ QUA: Đã ở trạng thái mong muốn (Disconnect Grid)
+2025-11-21 13:29:33,527 - INFO - [ThreadPoolExecutor-14_6] - ✅ [B12-INV-07] BỎ QUA: Đã ở trạng thái mong muốn (Disconnect Grid)
+2025-11-21 13:29:33,533 - INFO - [ThreadPoolExecutor-14_1] - ✅ [B12-INV-02] BỎ QUA: Đã ở trạng thái mong muốn (Disconnect Grid)
+2025-11-21 13:29:33,992 - INFO - [ThreadPoolExecutor-14_2] - ✅ [B12-INV-03] BỎ QUA: Đã ở trạng thái mong muốn (Disconnect Grid)
+2025-11-21 13:29:34,013 - INFO - [ThreadPoolExecutor-14_0] - ✅ [B12-INV-01] BỎ QUA: Đã ở trạng thái mong muốn (Disconnect Grid)
+2025-11-21 13:29:34,057 - INFO - [MainThread] - ℹ️ 📦 Batch 15: Hoàn thành 8, Retry 0, Thất bại 0
+2025-11-21 13:29:34,057 - INFO - [MainThread] - 📊 Hàng đợi - Chính: 12, Retry: 9, Hoàn thành: 111, Thất bại: 0
+2025-11-21 13:29:34,057 - INFO - [MainThread] - ℹ️ 📈 Tiến trình tổng: 111/132 (84.1%)
+2025-11-21 13:29:34,057 - INFO - [MainThread] - ℹ️ 🔄 Xử lý batch 16 với 8 tasks
+2025-11-21 13:29:34,058 - INFO - [ThreadPoolExecutor-15_0] - ℹ️ [B12-INV-09] Bắt đầu xử lý ON
+2025-11-21 13:29:34,058 - INFO - [ThreadPoolExecutor-15_1] - ℹ️ [B12-INV-10] Bắt đầu xử lý ON
+2025-11-21 13:29:34,059 - INFO - [ThreadPoolExecutor-15_2] - ℹ️ [B13-14-INV-01] Bắt đầu xử lý ON
+2025-11-21 13:29:34,060 - INFO - [ThreadPoolExecutor-15_3] - ℹ️ [B13-14-INV-02] Bắt đầu xử lý ON
+2025-11-21 13:29:34,060 - INFO - [ThreadPoolExecutor-15_4] - ℹ️ [B13-14-INV-03] Bắt đầu xử lý ON
+2025-11-21 13:29:34,063 - INFO - [ThreadPoolExecutor-15_5] - ℹ️ [B13-14-INV-04] Bắt đầu xử lý ON
+2025-11-21 13:29:34,065 - INFO - [ThreadPoolExecutor-15_6] - ℹ️ [B13-14-INV-05] Bắt đầu xử lý ON
+2025-11-21 13:29:34,069 - INFO - [ThreadPoolExecutor-15_7] - ℹ️ [B13-14-INV-06] Bắt đầu xử lý ON
+2025-11-21 13:29:41,961 - INFO - [ThreadPoolExecutor-15_4] - ✅ [B13-14-INV-03] BỎ QUA: Đã ở trạng thái mong muốn (Disconnect Grid)
+2025-11-21 13:29:41,976 - INFO - [ThreadPoolExecutor-15_1] - ✅ [B12-INV-10] BỎ QUA: Đã ở trạng thái mong muốn (Disconnect Grid)
+2025-11-21 13:29:41,989 - INFO - [ThreadPoolExecutor-15_2] - ✅ [B13-14-INV-01] BỎ QUA: Đã ở trạng thái mong muốn (Disconnect Grid)
+2025-11-21 13:29:42,446 - INFO - [ThreadPoolExecutor-15_7] - ✅ [B13-14-INV-06] BỎ QUA: Đã ở trạng thái mong muốn (Disconnect Grid)
+2025-11-21 13:29:42,457 - INFO - [ThreadPoolExecutor-15_0] - ✅ [B12-INV-09] BỎ QUA: Đã ở trạng thái mong muốn (Disconnect Grid)
+2025-11-21 13:29:42,499 - INFO - [ThreadPoolExecutor-15_3] - ✅ [B13-14-INV-02] BỎ QUA: Đã ở trạng thái mong muốn (Disconnect Grid)
+2025-11-21 13:29:42,535 - INFO - [ThreadPoolExecutor-15_6] - ✅ [B13-14-INV-05] BỎ QUA: Đã ở trạng thái mong muốn (Disconnect Grid)
+2025-11-21 13:29:42,758 - INFO - [ThreadPoolExecutor-15_5] - ✅ [B13-14-INV-04] BỎ QUA: Đã ở trạng thái mong muốn (Disconnect Grid)
+2025-11-21 13:29:42,804 - INFO - [MainThread] - ℹ️ 📦 Batch 16: Hoàn thành 8, Retry 0, Thất bại 0
+2025-11-21 13:29:42,804 - INFO - [MainThread] - 📊 Hàng đợi - Chính: 4, Retry: 9, Hoàn thành: 119, Thất bại: 0
+2025-11-21 13:29:42,804 - INFO - [MainThread] - ℹ️ 📈 Tiến trình tổng: 119/132 (90.2%)
+2025-11-21 13:29:42,804 - INFO - [MainThread] - ℹ️ 🔄 Lấy task từ retry queue: B2-INV-06 (retry 1)
+2025-11-21 13:29:42,804 - INFO - [MainThread] - ℹ️ 🔄 Lấy task từ retry queue: B2-INV-01 (retry 1)
+2025-11-21 13:29:42,804 - INFO - [MainThread] - ℹ️ 🔄 Lấy task từ retry queue: B2-INV-08 (retry 1)
+2025-11-21 13:29:42,805 - INFO - [MainThread] - ℹ️ 🔄 Lấy task từ retry queue: B2-INV-07 (retry 1)
+2025-11-21 13:29:42,805 - INFO - [MainThread] - ℹ️ 🔄 Xử lý batch 17 với 8 tasks
+2025-11-21 13:29:42,805 - INFO - [ThreadPoolExecutor-16_0] - ℹ️ [B13-14-INV-07] Bắt đầu xử lý ON
+2025-11-21 13:29:42,805 - INFO - [ThreadPoolExecutor-16_1] - ℹ️ [B13-14-INV-08] Bắt đầu xử lý ON
+2025-11-21 13:29:42,806 - INFO - [ThreadPoolExecutor-16_2] - ℹ️ [B13-14-INV-09] Bắt đầu xử lý ON
+2025-11-21 13:29:42,808 - INFO - [ThreadPoolExecutor-16_3] - ℹ️ [B13-14-INV-10] Bắt đầu xử lý ON
+2025-11-21 13:29:42,809 - INFO - [ThreadPoolExecutor-16_4] - ℹ️ [B2-INV-06] Bắt đầu xử lý ON
+2025-11-21 13:29:42,810 - INFO - [ThreadPoolExecutor-16_5] - ℹ️ [B2-INV-01] Bắt đầu xử lý ON
+2025-11-21 13:29:42,813 - INFO - [ThreadPoolExecutor-16_6] - ℹ️ [B2-INV-08] Bắt đầu xử lý ON
+2025-11-21 13:29:42,815 - INFO - [ThreadPoolExecutor-16_7] - ℹ️ [B2-INV-07] Bắt đầu xử lý ON
+2025-11-21 13:29:48,436 - INFO - [ThreadPoolExecutor-16_1] - ✅ [B13-14-INV-08] BỎ QUA: Đã ở trạng thái mong muốn (Disconnect Grid)
+2025-11-21 13:29:49,755 - INFO - [ThreadPoolExecutor-16_0] - ✅ [B13-14-INV-07] BỎ QUA: Đã ở trạng thái mong muốn (Disconnect Grid)
+2025-11-21 13:29:50,525 - INFO - [ThreadPoolExecutor-16_3] - ✅ [B13-14-INV-10] BỎ QUA: Đã ở trạng thái mong muốn (Disconnect Grid)
+2025-11-21 13:29:50,834 - INFO - [ThreadPoolExecutor-16_2] - ✅ [B13-14-INV-09] BỎ QUA: Đã ở trạng thái mong muốn (Disconnect Grid)
+2025-11-21 13:29:54,975 - WARNING - [ThreadPoolExecutor-16_5] - ⚠️ [B2-INV-01] Không thể xác định trạng thái hiện tại
+2025-11-21 13:29:54,976 - WARNING - [ThreadPoolExecutor-16_4] - ⚠️ [B2-INV-06] Không thể xác định trạng thái hiện tại
+2025-11-21 13:29:54,976 - WARNING - [ThreadPoolExecutor-16_7] - ⚠️ [B2-INV-07] Không thể xác định trạng thái hiện tại
+2025-11-21 13:29:54,977 - WARNING - [ThreadPoolExecutor-16_6] - ⚠️ [B2-INV-08] Không thể xác định trạng thái hiện tại
+2025-11-21 13:29:55,048 - WARNING - [MainThread] - ⚠️ ⏳ Đã chuyển B2-INV-01 sang retry queue (lần 2)
+2025-11-21 13:29:55,056 - WARNING - [MainThread] - ⚠️ ⏳ Đã chuyển B2-INV-08 sang retry queue (lần 2)
+2025-11-21 13:29:55,058 - WARNING - [MainThread] - ⚠️ ⏳ Đã chuyển B2-INV-06 sang retry queue (lần 2)
+2025-11-21 13:29:55,062 - WARNING - [MainThread] - ⚠️ ⏳ Đã chuyển B2-INV-07 sang retry queue (lần 2)
+2025-11-21 13:29:55,063 - INFO - [MainThread] - ℹ️ 📦 Batch 17: Hoàn thành 4, Retry 4, Thất bại 0
+2025-11-21 13:29:55,064 - INFO - [MainThread] - 📊 Hàng đợi - Chính: 0, Retry: 9, Hoàn thành: 123, Thất bại: 0
+2025-11-21 13:29:55,064 - INFO - [MainThread] - ℹ️ 📈 Tiến trình tổng: 123/132 (93.2%)
+2025-11-21 13:29:55,064 - INFO - [MainThread] - ℹ️ 🔄 Lấy task từ retry queue: B2-INV-05 (retry 1)
+2025-11-21 13:29:55,064 - INFO - [MainThread] - ℹ️ 🔄 Lấy task từ retry queue: B2-INV-02 (retry 1)
+2025-11-21 13:29:55,064 - INFO - [MainThread] - ℹ️ 🔄 Lấy task từ retry queue: B2-INV-03 (retry 1)
+2025-11-21 13:29:55,064 - INFO - [MainThread] - ℹ️ 🔄 Lấy task từ retry queue: B2-INV-04 (retry 1)
+2025-11-21 13:29:55,065 - INFO - [MainThread] - ℹ️ 🔄 Lấy task từ retry queue: B2-INV-09 (retry 1)
+2025-11-21 13:29:55,065 - INFO - [MainThread] - ℹ️ 🔄 Lấy task từ retry queue: B2-INV-01 (retry 2)
+2025-11-21 13:29:55,065 - INFO - [MainThread] - ℹ️ 🔄 Lấy task từ retry queue: B2-INV-08 (retry 2)
+2025-11-21 13:29:55,065 - INFO - [MainThread] - ℹ️ 🔄 Lấy task từ retry queue: B2-INV-06 (retry 2)
+2025-11-21 13:29:55,065 - INFO - [MainThread] - ℹ️ 🔄 Xử lý batch 18 với 8 tasks
+2025-11-21 13:29:55,065 - INFO - [ThreadPoolExecutor-17_0] - ℹ️ [B2-INV-05] Bắt đầu xử lý ON
+2025-11-21 13:29:55,066 - INFO - [ThreadPoolExecutor-17_1] - ℹ️ [B2-INV-02] Bắt đầu xử lý ON
+2025-11-21 13:29:55,066 - INFO - [ThreadPoolExecutor-17_2] - ℹ️ [B2-INV-03] Bắt đầu xử lý ON
+2025-11-21 13:29:55,067 - INFO - [ThreadPoolExecutor-17_3] - ℹ️ [B2-INV-04] Bắt đầu xử lý ON
+2025-11-21 13:29:55,068 - INFO - [ThreadPoolExecutor-17_4] - ℹ️ [B2-INV-09] Bắt đầu xử lý ON
+2025-11-21 13:29:55,070 - INFO - [ThreadPoolExecutor-17_5] - ℹ️ [B2-INV-01] Bắt đầu xử lý ON
+2025-11-21 13:29:55,074 - INFO - [ThreadPoolExecutor-17_6] - ℹ️ [B2-INV-08] Bắt đầu xử lý ON
+2025-11-21 13:29:55,076 - INFO - [ThreadPoolExecutor-17_7] - ℹ️ [B2-INV-06] Bắt đầu xử lý ON
+2025-11-21 13:30:09,574 - WARNING - [ThreadPoolExecutor-17_0] - ⚠️ [B2-INV-05] Không thể xác định trạng thái hiện tại
+2025-11-21 13:30:09,576 - WARNING - [ThreadPoolExecutor-17_1] - ⚠️ [B2-INV-02] Không thể xác định trạng thái hiện tại
+2025-11-21 13:30:09,576 - WARNING - [ThreadPoolExecutor-17_3] - ⚠️ [B2-INV-04] Không thể xác định trạng thái hiện tại
+2025-11-21 13:30:09,576 - WARNING - [ThreadPoolExecutor-17_2] - ⚠️ [B2-INV-03] Không thể xác định trạng thái hiện tại
+2025-11-21 13:30:09,646 - WARNING - [MainThread] - ⚠️ ⏳ Đã chuyển B2-INV-05 sang retry queue (lần 2)
+2025-11-21 13:30:09,656 - WARNING - [MainThread] - ⚠️ ⏳ Đã chuyển B2-INV-02 sang retry queue (lần 2)
+2025-11-21 13:30:09,659 - WARNING - [MainThread] - ⚠️ ⏳ Đã chuyển B2-INV-04 sang retry queue (lần 2)
+2025-11-21 13:30:09,668 - WARNING - [MainThread] - ⚠️ ⏳ Đã chuyển B2-INV-03 sang retry queue (lần 2)
+2025-11-21 13:30:12,526 - WARNING - [ThreadPoolExecutor-17_5] - ⚠️ [B2-INV-01] Không thể xác định trạng thái hiện tại
+2025-11-21 13:30:12,527 - WARNING - [ThreadPoolExecutor-17_7] - ⚠️ [B2-INV-06] Không thể xác định trạng thái hiện tại
+2025-11-21 13:30:12,585 - ERROR - [MainThread] - ❌ 💥 Task B2-INV-06 đã vượt quá số lần retry tối đa
+2025-11-21 13:30:12,586 - ERROR - [MainThread] - ❌ 💥 Task B2-INV-01 đã vượt quá số lần retry tối đa
+2025-11-21 13:30:12,770 - WARNING - [ThreadPoolExecutor-17_4] - ⚠️ [B2-INV-09] Không thể xác định trạng thái hiện tại
+2025-11-21 13:30:12,771 - WARNING - [ThreadPoolExecutor-17_6] - ⚠️ [B2-INV-08] Không thể xác định trạng thái hiện tại
+2025-11-21 13:30:12,822 - WARNING - [MainThread] - ⚠️ ⏳ Đã chuyển B2-INV-09 sang retry queue (lần 2)
+2025-11-21 13:30:12,825 - ERROR - [MainThread] - ❌ 💥 Task B2-INV-08 đã vượt quá số lần retry tối đa
+2025-11-21 13:30:12,826 - INFO - [MainThread] - ℹ️ 📦 Batch 18: Hoàn thành 0, Retry 5, Thất bại 3
+2025-11-21 13:30:12,826 - INFO - [MainThread] - 📊 Hàng đợi - Chính: 0, Retry: 6, Hoàn thành: 123, Thất bại: 3
+2025-11-21 13:30:12,826 - INFO - [MainThread] - ℹ️ 📈 Tiến trình tổng: 123/132 (93.2%)
+2025-11-21 13:30:12,827 - INFO - [MainThread] - ℹ️ 🔄 Lấy task từ retry queue: B2-INV-07 (retry 2)
+2025-11-21 13:30:12,827 - INFO - [MainThread] - ℹ️ 🔄 Lấy task từ retry queue: B2-INV-05 (retry 2)
+2025-11-21 13:30:12,827 - INFO - [MainThread] - ℹ️ 🔄 Lấy task từ retry queue: B2-INV-02 (retry 2)
+2025-11-21 13:30:12,827 - INFO - [MainThread] - ℹ️ 🔄 Lấy task từ retry queue: B2-INV-04 (retry 2)
+2025-11-21 13:30:12,827 - INFO - [MainThread] - ℹ️ 🔄 Lấy task từ retry queue: B2-INV-03 (retry 2)
+2025-11-21 13:30:12,827 - INFO - [MainThread] - ℹ️ 🔄 Lấy task từ retry queue: B2-INV-09 (retry 2)
+2025-11-21 13:30:12,827 - INFO - [MainThread] - ℹ️ 🔄 Xử lý batch 19 với 6 tasks
+2025-11-21 13:30:12,828 - INFO - [ThreadPoolExecutor-18_0] - ℹ️ [B2-INV-07] Bắt đầu xử lý ON
+2025-11-21 13:30:12,828 - INFO - [ThreadPoolExecutor-18_1] - ℹ️ [B2-INV-05] Bắt đầu xử lý ON
+2025-11-21 13:30:12,830 - INFO - [ThreadPoolExecutor-18_2] - ℹ️ [B2-INV-02] Bắt đầu xử lý ON
+2025-11-21 13:30:12,831 - INFO - [ThreadPoolExecutor-18_3] - ℹ️ [B2-INV-04] Bắt đầu xử lý ON
+2025-11-21 13:30:12,832 - INFO - [ThreadPoolExecutor-18_4] - ℹ️ [B2-INV-03] Bắt đầu xử lý ON
+2025-11-21 13:30:12,832 - INFO - [ThreadPoolExecutor-18_5] - ℹ️ [B2-INV-09] Bắt đầu xử lý ON
+2025-11-21 13:30:27,759 - WARNING - [ThreadPoolExecutor-18_1] - ⚠️ [B2-INV-05] Không thể xác định trạng thái hiện tại
+2025-11-21 13:30:27,759 - WARNING - [ThreadPoolExecutor-18_0] - ⚠️ [B2-INV-07] Không thể xác định trạng thái hiện tại
+2025-11-21 13:30:27,759 - WARNING - [ThreadPoolExecutor-18_3] - ⚠️ [B2-INV-04] Không thể xác định trạng thái hiện tại
+2025-11-21 13:30:27,760 - WARNING - [ThreadPoolExecutor-18_2] - ⚠️ [B2-INV-02] Không thể xác định trạng thái hiện tại
+2025-11-21 13:30:27,760 - WARNING - [ThreadPoolExecutor-18_5] - ⚠️ [B2-INV-09] Không thể xác định trạng thái hiện tại
+2025-11-21 13:30:27,843 - ERROR - [MainThread] - ❌ 💥 Task B2-INV-04 đã vượt quá số lần retry tối đa
+2025-11-21 13:30:27,850 - ERROR - [MainThread] - ❌ 💥 Task B2-INV-05 đã vượt quá số lần retry tối đa
+2025-11-21 13:30:27,852 - ERROR - [MainThread] - ❌ 💥 Task B2-INV-09 đã vượt quá số lần retry tối đa
+2025-11-21 13:30:27,857 - ERROR - [MainThread] - ❌ 💥 Task B2-INV-07 đã vượt quá số lần retry tối đa
+2025-11-21 13:30:27,862 - ERROR - [MainThread] - ❌ 💥 Task B2-INV-02 đã vượt quá số lần retry tối đa
+2025-11-21 13:30:28,122 - WARNING - [ThreadPoolExecutor-18_4] - ⚠️ [B2-INV-03] Không thể xác định trạng thái hiện tại
+2025-11-21 13:30:28,166 - ERROR - [MainThread] - ❌ 💥 Task B2-INV-03 đã vượt quá số lần retry tối đa
+2025-11-21 13:30:28,167 - INFO - [MainThread] - ℹ️ 📦 Batch 19: Hoàn thành 0, Retry 0, Thất bại 6
+2025-11-21 13:30:28,167 - INFO - [MainThread] - 📊 Hàng đợi - Chính: 0, Retry: 0, Hoàn thành: 123, Thất bại: 9
+2025-11-21 13:30:28,167 - INFO - [MainThread] - ℹ️ 📈 Tiến trình tổng: 123/132 (93.2%)
+2025-11-21 13:30:28,167 - INFO - [MainThread] - ℹ️ ⏹️ Chỉ còn ít tasks retry, kết thúc sớm
+2025-11-21 13:30:28,168 - INFO - [MainThread] - ℹ️ ============================================================
+2025-11-21 13:30:28,168 - INFO - [MainThread] - ℹ️ 🎯 BÁO CÁO TỔNG KẾT - PHIÊN BẢN 0.4.1 (DYNAMIC DRIVER POOL)
+2025-11-21 13:30:28,168 - INFO - [MainThread] - ℹ️ ============================================================
+2025-11-21 13:30:28,168 - INFO - [MainThread] - ℹ️ 📦 Tổng số tác vụ: 132
+2025-11-21 13:30:28,168 - INFO - [MainThread] - ℹ️ 🎯 Số drivers sử dụng: 8
+2025-11-21 13:30:28,168 - INFO - [MainThread] - ℹ️ ✅ Thành công: 123
+2025-11-21 13:30:28,168 - INFO - [MainThread] - ℹ️ ❌ Thất bại: 9
+2025-11-21 13:30:28,168 - INFO - [MainThread] - ℹ️ ⏭️ Bỏ qua: 0
+2025-11-21 13:30:28,168 - INFO - [MainThread] - ℹ️ 🔄 Tổng số lần retry: 18
+2025-11-21 13:30:28,169 - INFO - [MainThread] - ℹ️ 📊 Tỷ lệ thành công: 93.2%
+2025-11-21 13:30:28,169 - INFO - [MainThread] - ℹ️ ⏱️ Thời gian trung bình/task: 1.70s
+2025-11-21 13:30:28,169 - INFO - [MainThread] - ℹ️ 🕒 Tổng thời gian thực hiện: 0:03:44.993085
+2025-11-21 13:30:28,169 - INFO - [MainThread] - ℹ️ 🔍 CHI TIẾT LỖI:
+2025-11-21 13:30:28,169 - ERROR - [MainThread] - ❌ [B2-INV-06] Vượt quá số lần retry: Không thể xác định trạng thái hiện tại
+2025-11-21 13:30:28,169 - ERROR - [MainThread] - ❌ [B2-INV-01] Vượt quá số lần retry: Không thể xác định trạng thái hiện tại
+2025-11-21 13:30:28,169 - ERROR - [MainThread] - ❌ [B2-INV-08] Vượt quá số lần retry: Không thể xác định trạng thái hiện tại
+2025-11-21 13:30:28,169 - ERROR - [MainThread] - ❌ [B2-INV-04] Vượt quá số lần retry: Không thể xác định trạng thái hiện tại
+2025-11-21 13:30:28,169 - ERROR - [MainThread] - ❌ [B2-INV-05] Vượt quá số lần retry: Không thể xác định trạng thái hiện tại
+2025-11-21 13:30:28,169 - ERROR - [MainThread] - ❌ [B2-INV-09] Vượt quá số lần retry: Không thể xác định trạng thái hiện tại
+2025-11-21 13:30:28,170 - ERROR - [MainThread] - ❌ [B2-INV-07] Vượt quá số lần retry: Không thể xác định trạng thái hiện tại
+2025-11-21 13:30:28,170 - ERROR - [MainThread] - ❌ [B2-INV-02] Vượt quá số lần retry: Không thể xác định trạng thái hiện tại
+2025-11-21 13:30:28,170 - ERROR - [MainThread] - ❌ [B2-INV-03] Vượt quá số lần retry: Không thể xác định trạng thái hiện tại
+2025-11-21 13:30:28,170 - INFO - [MainThread] - ℹ️ 🧹 Đang dọn dẹp driver pool...
+2025-11-21 13:30:28,831 - INFO - [MainThread] - ℹ️ ✅ Đã đóng 8 drivers
+2025-11-21 13:31:38,206 - INFO - [MainThread] - ℹ️ 🚀 Bắt đầu xử lý 1 yêu cầu - Phiên bản 0.4.1 (Dynamic Driver Pool)
+2025-11-21 13:31:38,207 - INFO - [MainThread] - ℹ️ 📊 Tổng số inverters cần xử lý: 1
+2025-11-21 13:31:38,207 - INFO - [MainThread] - ℹ️ 📦 Tổng số tasks: 1
+2025-11-21 13:31:38,207 - INFO - [MainThread] - ℹ️ 🔄 Đang khởi tạo driver pool...
+2025-11-21 13:31:38,208 - INFO - [MainThread] - ℹ️ 📊 Tính toán pool size: 1 tasks / 5 tasks/driver = 2 drivers
+2025-11-21 13:31:38,208 - INFO - [MainThread] - ℹ️ 🔄 Tính toán: 1 tasks → 2 drivers
+2025-11-21 13:31:38,976 - INFO - [MainThread] - ℹ️ 🚀 Đã khởi tạo driver 1/2
+2025-11-21 13:31:39,724 - INFO - [MainThread] - ℹ️ 🚀 Đã khởi tạo driver 2/2
+2025-11-21 13:31:39,724 - INFO - [MainThread] - ℹ️ ✅ Đã khởi tạo thành công 2/2 drivers
+2025-11-21 13:31:39,724 - INFO - [MainThread] - ℹ️ 🎯 Driver pool: 2 drivers (Available: 2, In Use: 0)
+2025-11-21 13:31:39,725 - INFO - [MainThread] - ℹ️ 📥 Đã thêm 1 tasks vào hàng đợi chính
+2025-11-21 13:31:39,725 - INFO - [MainThread] - ℹ️ 🔄 Xử lý batch 1 với 1 tasks
+2025-11-21 13:31:39,725 - INFO - [ThreadPoolExecutor-0_0] - ℹ️ [B3R1-INV-01] Bắt đầu xử lý ON
+2025-11-21 13:31:49,333 - INFO - [ThreadPoolExecutor-0_0] - ✅ [B3R1-INV-01] BỎ QUA: Đã ở trạng thái mong muốn (Disconnect Grid)
+2025-11-21 13:31:49,359 - INFO - [MainThread] - ℹ️ 📦 Batch 1: Hoàn thành 1, Retry 0, Thất bại 0
+2025-11-21 13:31:49,359 - INFO - [MainThread] - 📊 Hàng đợi - Chính: 0, Retry: 0, Hoàn thành: 1, Thất bại: 0
+2025-11-21 13:31:49,359 - INFO - [MainThread] - ℹ️ 📈 Tiến trình tổng: 1/1 (100.0%)
+2025-11-21 13:31:49,359 - INFO - [MainThread] - ℹ️ ⏹️ Chỉ còn ít tasks retry, kết thúc sớm
+2025-11-21 13:31:49,359 - INFO - [MainThread] - ℹ️ ============================================================
+2025-11-21 13:31:49,359 - INFO - [MainThread] - ℹ️ 🎯 BÁO CÁO TỔNG KẾT - PHIÊN BẢN 0.4.1 (DYNAMIC DRIVER POOL)
+2025-11-21 13:31:49,359 - INFO - [MainThread] - ℹ️ ============================================================
+2025-11-21 13:31:49,360 - INFO - [MainThread] - ℹ️ 📦 Tổng số tác vụ: 1
+2025-11-21 13:31:49,360 - INFO - [MainThread] - ℹ️ 🎯 Số drivers sử dụng: 2
+2025-11-21 13:31:49,360 - INFO - [MainThread] - ℹ️ ✅ Thành công: 1
+2025-11-21 13:31:49,360 - INFO - [MainThread] - ℹ️ ❌ Thất bại: 0
+2025-11-21 13:31:49,360 - INFO - [MainThread] - ℹ️ ⏭️ Bỏ qua: 0
+2025-11-21 13:31:49,360 - INFO - [MainThread] - ℹ️ 🔄 Tổng số lần retry: 0
+2025-11-21 13:31:49,360 - INFO - [MainThread] - ℹ️ 📊 Tỷ lệ thành công: 100.0%
+2025-11-21 13:31:49,360 - INFO - [MainThread] - ℹ️ ⏱️ Thời gian trung bình/task: 11.15s
+2025-11-21 13:31:49,360 - INFO - [MainThread] - ℹ️ 🕒 Tổng thời gian thực hiện: 0:00:11.152765
+2025-11-21 13:31:49,361 - INFO - [MainThread] - ℹ️ 🧹 Đang dọn dẹp driver pool...
+2025-11-21 13:31:49,519 - INFO - [MainThread] - ℹ️ ✅ Đã đóng 2 drivers
