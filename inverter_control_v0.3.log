@@ -1,0 +1,1251 @@
+2025-11-21 11:09:00,331 - INFO - [MainThread] - ℹ️ 🚀 Bắt đầu xử lý 14 yêu cầu - Phiên bản 0.3 (Smart Queue)
+2025-11-21 11:09:00,332 - INFO - [MainThread] - ℹ️ Đã thêm 132 tasks vào hàng đợi chính
+2025-11-21 11:09:00,333 - INFO - [MainThread] - ℹ️ 📊 Tổng số tác vụ cần xử lý: 132
+2025-11-21 11:09:00,333 - INFO - [MainThread] - ℹ️ 🔄 Vòng xử lý thứ 1
+2025-11-21 11:09:00,334 - INFO - [ThreadPoolExecutor-0_0] - ℹ️ [B2-INV-01] Bắt đầu xử lý ON
+2025-11-21 11:09:00,336 - INFO - [ThreadPoolExecutor-0_1] - ℹ️ [B2-INV-02] Bắt đầu xử lý ON
+2025-11-21 11:09:00,336 - INFO - [ThreadPoolExecutor-0_2] - ℹ️ [B2-INV-03] Bắt đầu xử lý ON
+2025-11-21 11:09:00,338 - INFO - [ThreadPoolExecutor-0_3] - ℹ️ [B2-INV-04] Bắt đầu xử lý ON
+2025-11-21 11:09:00,340 - INFO - [ThreadPoolExecutor-0_4] - ℹ️ [B2-INV-05] Bắt đầu xử lý ON
+2025-11-21 11:09:00,341 - INFO - [ThreadPoolExecutor-0_5] - ℹ️ [B2-INV-06] Bắt đầu xử lý ON
+2025-11-21 11:09:04,367 - INFO - [ThreadPoolExecutor-0_0] - ℹ️ Driver khởi tạo thành công với WebDriverWait
+2025-11-21 11:09:04,368 - INFO - [ThreadPoolExecutor-0_5] - ℹ️ Driver khởi tạo thành công với WebDriverWait
+2025-11-21 11:09:04,368 - INFO - [ThreadPoolExecutor-0_1] - ℹ️ Driver khởi tạo thành công với WebDriverWait
+2025-11-21 11:09:04,369 - INFO - [ThreadPoolExecutor-0_3] - ℹ️ Driver khởi tạo thành công với WebDriverWait
+2025-11-21 11:09:04,369 - INFO - [ThreadPoolExecutor-0_2] - ℹ️ Driver khởi tạo thành công với WebDriverWait
+2025-11-21 11:09:04,369 - INFO - [ThreadPoolExecutor-0_4] - ℹ️ Driver khởi tạo thành công với WebDriverWait
+2025-11-21 11:09:04,369 - INFO - [ThreadPoolExecutor-0_0] - ℹ️ Truy cập URL: http://10.10.10.101 (lần 1)
+2025-11-21 11:09:04,370 - INFO - [ThreadPoolExecutor-0_5] - ℹ️ Truy cập URL: http://10.10.10.106 (lần 1)
+2025-11-21 11:09:04,370 - INFO - [ThreadPoolExecutor-0_1] - ℹ️ Truy cập URL: http://10.10.10.102 (lần 1)
+2025-11-21 11:09:04,371 - INFO - [ThreadPoolExecutor-0_3] - ℹ️ Truy cập URL: http://10.10.10.104 (lần 1)
+2025-11-21 11:09:04,371 - INFO - [ThreadPoolExecutor-0_2] - ℹ️ Truy cập URL: http://10.10.10.103 (lần 1)
+2025-11-21 11:09:04,375 - INFO - [ThreadPoolExecutor-0_4] - ℹ️ Truy cập URL: http://10.10.10.105 (lần 1)
+2025-11-21 11:09:08,130 - INFO - [ThreadPoolExecutor-0_0] - ℹ️ [http://10.10.10.101] Thực hiện đăng nhập...
+2025-11-21 11:09:08,130 - INFO - [ThreadPoolExecutor-0_1] - ℹ️ [http://10.10.10.102] Thực hiện đăng nhập...
+2025-11-21 11:09:08,132 - INFO - [ThreadPoolExecutor-0_2] - ℹ️ [http://10.10.10.103] Thực hiện đăng nhập...
+2025-11-21 11:09:08,133 - INFO - [ThreadPoolExecutor-0_4] - ℹ️ [http://10.10.10.105] Thực hiện đăng nhập...
+2025-11-21 11:09:08,134 - INFO - [ThreadPoolExecutor-0_3] - ℹ️ [http://10.10.10.104] Thực hiện đăng nhập...
+2025-11-21 11:09:08,134 - INFO - [ThreadPoolExecutor-0_5] - ℹ️ [http://10.10.10.106] Thực hiện đăng nhập...
+2025-11-21 11:09:19,997 - WARNING - [ThreadPoolExecutor-0_3] - ⚠️ [http://10.10.10.104] Không tìm thấy field username, có thể đã đăng nhập
+2025-11-21 11:09:19,998 - WARNING - [ThreadPoolExecutor-0_1] - ⚠️ [http://10.10.10.102] Không tìm thấy field username, có thể đã đăng nhập
+2025-11-21 11:09:19,998 - WARNING - [ThreadPoolExecutor-0_4] - ⚠️ [http://10.10.10.105] Không tìm thấy field username, có thể đã đăng nhập
+2025-11-21 11:09:19,998 - WARNING - [ThreadPoolExecutor-0_2] - ⚠️ [http://10.10.10.103] Không tìm thấy field username, có thể đã đăng nhập
+2025-11-21 11:09:19,999 - WARNING - [ThreadPoolExecutor-0_0] - ⚠️ [http://10.10.10.101] Không tìm thấy field username, có thể đã đăng nhập
+2025-11-21 11:09:19,999 - WARNING - [ThreadPoolExecutor-0_5] - ⚠️ [http://10.10.10.106] Không tìm thấy field username, có thể đã đăng nhập
+2025-11-21 11:09:25,280 - WARNING - [ThreadPoolExecutor-0_2] - ⚠️ Không tìm thấy element grid control
+2025-11-21 11:09:25,281 - WARNING - [ThreadPoolExecutor-0_0] - ⚠️ Không tìm thấy element grid control
+2025-11-21 11:09:25,282 - WARNING - [ThreadPoolExecutor-0_1] - ⚠️ Không tìm thấy element grid control
+2025-11-21 11:09:25,282 - WARNING - [ThreadPoolExecutor-0_3] - ⚠️ Không tìm thấy element grid control
+2025-11-21 11:09:25,282 - WARNING - [ThreadPoolExecutor-0_4] - ⚠️ Không tìm thấy element grid control
+2025-11-21 11:09:25,282 - WARNING - [ThreadPoolExecutor-0_5] - ⚠️ Không tìm thấy element grid control
+2025-11-21 11:09:25,282 - WARNING - [ThreadPoolExecutor-0_2] - ⚠️ [B2-INV-03] Không thể xác định trạng thái hiện tại
+2025-11-21 11:09:25,282 - WARNING - [ThreadPoolExecutor-0_0] - ⚠️ [B2-INV-01] Không thể xác định trạng thái hiện tại
+2025-11-21 11:09:25,283 - WARNING - [ThreadPoolExecutor-0_1] - ⚠️ [B2-INV-02] Không thể xác định trạng thái hiện tại
+2025-11-21 11:09:25,283 - WARNING - [ThreadPoolExecutor-0_3] - ⚠️ [B2-INV-04] Không thể xác định trạng thái hiện tại
+2025-11-21 11:09:25,283 - WARNING - [ThreadPoolExecutor-0_4] - ⚠️ [B2-INV-05] Không thể xác định trạng thái hiện tại
+2025-11-21 11:09:25,283 - WARNING - [ThreadPoolExecutor-0_5] - ⚠️ [B2-INV-06] Không thể xác định trạng thái hiện tại
+2025-11-21 11:09:25,454 - INFO - [ThreadPoolExecutor-0_0] - ℹ️ Driver đã đóng
+2025-11-21 11:09:25,455 - INFO - [ThreadPoolExecutor-0_0] - ℹ️ [B2-INV-07] Bắt đầu xử lý ON
+2025-11-21 11:09:25,455 - WARNING - [MainThread] - ⚠️ Đã chuyển B2-INV-01 sang retry queue (lần 1)
+2025-11-21 11:09:25,456 - INFO - [ThreadPoolExecutor-0_5] - ℹ️ Driver đã đóng
+2025-11-21 11:09:25,456 - INFO - [ThreadPoolExecutor-0_1] - ℹ️ Driver đã đóng
+2025-11-21 11:09:25,457 - INFO - [ThreadPoolExecutor-0_4] - ℹ️ Driver đã đóng
+2025-11-21 11:09:25,457 - INFO - [ThreadPoolExecutor-0_5] - ℹ️ [B2-INV-08] Bắt đầu xử lý ON
+2025-11-21 11:09:25,458 - WARNING - [MainThread] - ⚠️ Đã chuyển B2-INV-06 sang retry queue (lần 1)
+2025-11-21 11:09:25,458 - INFO - [ThreadPoolExecutor-0_1] - ℹ️ [B2-INV-09] Bắt đầu xử lý ON
+2025-11-21 11:09:25,458 - INFO - [ThreadPoolExecutor-0_2] - ℹ️ Driver đã đóng
+2025-11-21 11:09:25,458 - INFO - [ThreadPoolExecutor-0_4] - ℹ️ [B3R1-INV-01] Bắt đầu xử lý ON
+2025-11-21 11:09:25,459 - INFO - [ThreadPoolExecutor-0_3] - ℹ️ Driver đã đóng
+2025-11-21 11:09:25,459 - WARNING - [MainThread] - ⚠️ Đã chuyển B2-INV-02 sang retry queue (lần 1)
+2025-11-21 11:09:25,460 - INFO - [ThreadPoolExecutor-0_2] - ℹ️ [B3R1-INV-02] Bắt đầu xử lý ON
+2025-11-21 11:09:25,462 - INFO - [ThreadPoolExecutor-0_3] - ℹ️ [B3R1-INV-03] Bắt đầu xử lý ON
+2025-11-21 11:09:25,463 - WARNING - [MainThread] - ⚠️ Đã chuyển B2-INV-05 sang retry queue (lần 1)
+2025-11-21 11:09:25,466 - WARNING - [MainThread] - ⚠️ Đã chuyển B2-INV-03 sang retry queue (lần 1)
+2025-11-21 11:09:25,467 - WARNING - [MainThread] - ⚠️ Đã chuyển B2-INV-04 sang retry queue (lần 1)
+2025-11-21 11:09:26,245 - INFO - [ThreadPoolExecutor-0_4] - ℹ️ Driver khởi tạo thành công với WebDriverWait
+2025-11-21 11:09:26,245 - INFO - [ThreadPoolExecutor-0_4] - ℹ️ Truy cập URL: http://10.10.10.121 (lần 1)
+2025-11-21 11:09:26,591 - INFO - [ThreadPoolExecutor-0_5] - ℹ️ Driver khởi tạo thành công với WebDriverWait
+2025-11-21 11:09:26,591 - INFO - [ThreadPoolExecutor-0_5] - ℹ️ Truy cập URL: http://10.10.10.108 (lần 1)
+2025-11-21 11:09:26,602 - INFO - [ThreadPoolExecutor-0_2] - ℹ️ Driver khởi tạo thành công với WebDriverWait
+2025-11-21 11:09:26,602 - INFO - [ThreadPoolExecutor-0_2] - ℹ️ Truy cập URL: http://10.10.10.122 (lần 1)
+2025-11-21 11:09:26,625 - INFO - [ThreadPoolExecutor-0_0] - ℹ️ Driver khởi tạo thành công với WebDriverWait
+2025-11-21 11:09:26,626 - INFO - [ThreadPoolExecutor-0_0] - ℹ️ Truy cập URL: http://10.10.10.107 (lần 1)
+2025-11-21 11:09:26,646 - INFO - [ThreadPoolExecutor-0_3] - ℹ️ Driver khởi tạo thành công với WebDriverWait
+2025-11-21 11:09:26,647 - INFO - [ThreadPoolExecutor-0_3] - ℹ️ Truy cập URL: http://10.10.10.123 (lần 1)
+2025-11-21 11:09:26,656 - INFO - [ThreadPoolExecutor-0_1] - ℹ️ Driver khởi tạo thành công với WebDriverWait
+2025-11-21 11:09:26,656 - INFO - [ThreadPoolExecutor-0_1] - ℹ️ Truy cập URL: http://10.10.10.109 (lần 1)
+2025-11-21 11:09:30,356 - INFO - [ThreadPoolExecutor-0_1] - ℹ️ [http://10.10.10.109] Thực hiện đăng nhập...
+2025-11-21 11:09:30,357 - INFO - [ThreadPoolExecutor-0_0] - ℹ️ [http://10.10.10.107] Thực hiện đăng nhập...
+2025-11-21 11:09:30,358 - INFO - [ThreadPoolExecutor-0_5] - ℹ️ [http://10.10.10.108] Thực hiện đăng nhập...
+2025-11-21 11:09:32,021 - INFO - [ThreadPoolExecutor-0_3] - ℹ️ [http://10.10.10.123] Thực hiện đăng nhập...
+2025-11-21 11:09:32,037 - INFO - [ThreadPoolExecutor-0_4] - ℹ️ [http://10.10.10.121] Thực hiện đăng nhập...
+2025-11-21 11:09:32,166 - INFO - [ThreadPoolExecutor-0_2] - ℹ️ [http://10.10.10.122] Thực hiện đăng nhập...
+2025-11-21 11:09:34,203 - INFO - [ThreadPoolExecutor-0_4] - ✅ [http://10.10.10.121] Đăng nhập thành công
+2025-11-21 11:09:34,219 - INFO - [ThreadPoolExecutor-0_3] - ✅ [http://10.10.10.123] Đăng nhập thành công
+2025-11-21 11:09:34,221 - INFO - [ThreadPoolExecutor-0_4] - ✅ [B3R1-INV-01] BỎ QUA: Đã ở trạng thái mong muốn (Disconnect Grid)
+2025-11-21 11:09:34,241 - INFO - [ThreadPoolExecutor-0_3] - ✅ [B3R1-INV-03] BỎ QUA: Đã ở trạng thái mong muốn (Disconnect Grid)
+2025-11-21 11:09:34,285 - INFO - [ThreadPoolExecutor-0_4] - ℹ️ Driver đã đóng
+2025-11-21 11:09:34,285 - INFO - [ThreadPoolExecutor-0_4] - ℹ️ [B3R1-INV-04] Bắt đầu xử lý ON
+2025-11-21 11:09:34,304 - INFO - [ThreadPoolExecutor-0_3] - ℹ️ Driver đã đóng
+2025-11-21 11:09:34,305 - INFO - [ThreadPoolExecutor-0_3] - ℹ️ [B3R1-INV-05] Bắt đầu xử lý ON
+2025-11-21 11:09:34,311 - INFO - [ThreadPoolExecutor-0_2] - ✅ [http://10.10.10.122] Đăng nhập thành công
+2025-11-21 11:09:34,330 - INFO - [ThreadPoolExecutor-0_2] - ✅ [B3R1-INV-02] BỎ QUA: Đã ở trạng thái mong muốn (Disconnect Grid)
+2025-11-21 11:09:34,394 - INFO - [ThreadPoolExecutor-0_2] - ℹ️ Driver đã đóng
+2025-11-21 11:09:34,394 - INFO - [ThreadPoolExecutor-0_2] - ℹ️ [B3R1-INV-06] Bắt đầu xử lý ON
+2025-11-21 11:09:35,031 - INFO - [ThreadPoolExecutor-0_4] - ℹ️ Driver khởi tạo thành công với WebDriverWait
+2025-11-21 11:09:35,032 - INFO - [ThreadPoolExecutor-0_4] - ℹ️ Truy cập URL: http://10.10.10.124 (lần 1)
+2025-11-21 11:09:35,075 - INFO - [ThreadPoolExecutor-0_3] - ℹ️ Driver khởi tạo thành công với WebDriverWait
+2025-11-21 11:09:35,076 - INFO - [ThreadPoolExecutor-0_3] - ℹ️ Truy cập URL: http://10.10.10.125 (lần 1)
+2025-11-21 11:09:35,147 - INFO - [ThreadPoolExecutor-0_2] - ℹ️ Driver khởi tạo thành công với WebDriverWait
+2025-11-21 11:09:35,147 - INFO - [ThreadPoolExecutor-0_2] - ℹ️ Truy cập URL: http://10.10.10.126 (lần 1)
+2025-11-21 11:09:40,414 - INFO - [ThreadPoolExecutor-0_4] - ℹ️ [http://10.10.10.124] Thực hiện đăng nhập...
+2025-11-21 11:09:40,415 - INFO - [ThreadPoolExecutor-0_3] - ℹ️ [http://10.10.10.125] Thực hiện đăng nhập...
+2025-11-21 11:09:40,546 - INFO - [ThreadPoolExecutor-0_2] - ℹ️ [http://10.10.10.126] Thực hiện đăng nhập...
+2025-11-21 11:09:40,828 - WARNING - [ThreadPoolExecutor-0_1] - ⚠️ [http://10.10.10.109] Không tìm thấy field username, có thể đã đăng nhập
+2025-11-21 11:09:40,829 - WARNING - [ThreadPoolExecutor-0_5] - ⚠️ [http://10.10.10.108] Không tìm thấy field username, có thể đã đăng nhập
+2025-11-21 11:09:40,830 - WARNING - [ThreadPoolExecutor-0_0] - ⚠️ [http://10.10.10.107] Không tìm thấy field username, có thể đã đăng nhập
+2025-11-21 11:09:42,642 - INFO - [ThreadPoolExecutor-0_4] - ✅ [http://10.10.10.124] Đăng nhập thành công
+2025-11-21 11:09:42,661 - INFO - [ThreadPoolExecutor-0_4] - ✅ [B3R1-INV-04] BỎ QUA: Đã ở trạng thái mong muốn (Disconnect Grid)
+2025-11-21 11:09:42,716 - INFO - [ThreadPoolExecutor-0_2] - ✅ [http://10.10.10.126] Đăng nhập thành công
+2025-11-21 11:09:42,725 - INFO - [ThreadPoolExecutor-0_4] - ℹ️ Driver đã đóng
+2025-11-21 11:09:42,726 - INFO - [ThreadPoolExecutor-0_4] - ℹ️ [B3R1-INV-07] Bắt đầu xử lý ON
+2025-11-21 11:09:42,736 - INFO - [ThreadPoolExecutor-0_2] - ✅ [B3R1-INV-06] BỎ QUA: Đã ở trạng thái mong muốn (Disconnect Grid)
+2025-11-21 11:09:42,800 - INFO - [ThreadPoolExecutor-0_2] - ℹ️ Driver đã đóng
+2025-11-21 11:09:42,800 - INFO - [ThreadPoolExecutor-0_2] - ℹ️ [B3R1-INV-08] Bắt đầu xử lý ON
+2025-11-21 11:09:43,068 - INFO - [ThreadPoolExecutor-0_3] - ✅ [http://10.10.10.125] Đăng nhập thành công
+2025-11-21 11:09:43,089 - INFO - [ThreadPoolExecutor-0_3] - ✅ [B3R1-INV-05] BỎ QUA: Đã ở trạng thái mong muốn (Disconnect Grid)
+2025-11-21 11:09:43,156 - INFO - [ThreadPoolExecutor-0_3] - ℹ️ Driver đã đóng
+2025-11-21 11:09:43,157 - INFO - [ThreadPoolExecutor-0_3] - ℹ️ [B3R1-INV-09] Bắt đầu xử lý ON
+2025-11-21 11:09:43,523 - INFO - [ThreadPoolExecutor-0_4] - ℹ️ Driver khởi tạo thành công với WebDriverWait
+2025-11-21 11:09:43,523 - INFO - [ThreadPoolExecutor-0_4] - ℹ️ Truy cập URL: http://10.10.10.127 (lần 1)
+2025-11-21 11:09:43,564 - INFO - [ThreadPoolExecutor-0_2] - ℹ️ Driver khởi tạo thành công với WebDriverWait
+2025-11-21 11:09:43,565 - INFO - [ThreadPoolExecutor-0_2] - ℹ️ Truy cập URL: http://10.10.10.128 (lần 1)
+2025-11-21 11:09:43,919 - INFO - [ThreadPoolExecutor-0_3] - ℹ️ Driver khởi tạo thành công với WebDriverWait
+2025-11-21 11:09:43,920 - INFO - [ThreadPoolExecutor-0_3] - ℹ️ Truy cập URL: http://10.10.10.129 (lần 1)
+2025-11-21 11:09:47,558 - WARNING - [ThreadPoolExecutor-0_5] - ⚠️ Không tìm thấy element grid control
+2025-11-21 11:09:47,558 - WARNING - [ThreadPoolExecutor-0_5] - ⚠️ [B2-INV-08] Không thể xác định trạng thái hiện tại
+2025-11-21 11:09:47,559 - WARNING - [ThreadPoolExecutor-0_1] - ⚠️ Không tìm thấy element grid control
+2025-11-21 11:09:47,559 - WARNING - [ThreadPoolExecutor-0_0] - ⚠️ Không tìm thấy element grid control
+2025-11-21 11:09:47,560 - WARNING - [ThreadPoolExecutor-0_1] - ⚠️ [B2-INV-09] Không thể xác định trạng thái hiện tại
+2025-11-21 11:09:47,560 - WARNING - [ThreadPoolExecutor-0_0] - ⚠️ [B2-INV-07] Không thể xác định trạng thái hiện tại
+2025-11-21 11:09:47,622 - INFO - [ThreadPoolExecutor-0_5] - ℹ️ Driver đã đóng
+2025-11-21 11:09:47,622 - INFO - [ThreadPoolExecutor-0_5] - ℹ️ [B3R2-INV-01] Bắt đầu xử lý ON
+2025-11-21 11:09:47,623 - WARNING - [MainThread] - ⚠️ Đã chuyển B2-INV-08 sang retry queue (lần 1)
+2025-11-21 11:09:47,624 - INFO - [ThreadPoolExecutor-0_1] - ℹ️ Driver đã đóng
+2025-11-21 11:09:47,625 - INFO - [ThreadPoolExecutor-0_1] - ℹ️ [B3R2-INV-02] Bắt đầu xử lý ON
+2025-11-21 11:09:47,625 - WARNING - [MainThread] - ⚠️ Đã chuyển B2-INV-09 sang retry queue (lần 1)
+2025-11-21 11:09:47,625 - INFO - [ThreadPoolExecutor-0_0] - ℹ️ Driver đã đóng
+2025-11-21 11:09:47,625 - INFO - [ThreadPoolExecutor-0_0] - ℹ️ [B3R2-INV-03] Bắt đầu xử lý ON
+2025-11-21 11:09:47,626 - WARNING - [MainThread] - ⚠️ Đã chuyển B2-INV-07 sang retry queue (lần 1)
+2025-11-21 11:09:48,388 - INFO - [ThreadPoolExecutor-0_5] - ℹ️ Driver khởi tạo thành công với WebDriverWait
+2025-11-21 11:09:48,388 - INFO - [ThreadPoolExecutor-0_5] - ℹ️ Truy cập URL: http://10.10.10.111 (lần 1)
+2025-11-21 11:09:48,407 - INFO - [ThreadPoolExecutor-0_0] - ℹ️ Driver khởi tạo thành công với WebDriverWait
+2025-11-21 11:09:48,408 - INFO - [ThreadPoolExecutor-0_0] - ℹ️ Truy cập URL: http://10.10.10.113 (lần 1)
+2025-11-21 11:09:48,437 - INFO - [ThreadPoolExecutor-0_1] - ℹ️ Driver khởi tạo thành công với WebDriverWait
+2025-11-21 11:09:48,437 - INFO - [ThreadPoolExecutor-0_1] - ℹ️ Truy cập URL: http://10.10.10.112 (lần 1)
+2025-11-21 11:09:50,312 - INFO - [ThreadPoolExecutor-0_2] - ℹ️ [http://10.10.10.128] Thực hiện đăng nhập...
+2025-11-21 11:09:50,401 - INFO - [ThreadPoolExecutor-0_4] - ℹ️ [http://10.10.10.127] Thực hiện đăng nhập...
+2025-11-21 11:09:50,687 - INFO - [ThreadPoolExecutor-0_3] - ℹ️ [http://10.10.10.129] Thực hiện đăng nhập...
+2025-11-21 11:09:52,746 - INFO - [ThreadPoolExecutor-0_4] - ✅ [http://10.10.10.127] Đăng nhập thành công
+2025-11-21 11:09:52,770 - INFO - [ThreadPoolExecutor-0_4] - ✅ [B3R1-INV-07] BỎ QUA: Đã ở trạng thái mong muốn (Disconnect Grid)
+2025-11-21 11:09:52,834 - INFO - [ThreadPoolExecutor-0_4] - ℹ️ Driver đã đóng
+2025-11-21 11:09:52,835 - INFO - [ThreadPoolExecutor-0_4] - ℹ️ [B3R2-INV-04] Bắt đầu xử lý ON
+2025-11-21 11:09:52,961 - INFO - [ThreadPoolExecutor-0_3] - ✅ [http://10.10.10.129] Đăng nhập thành công
+2025-11-21 11:09:52,979 - INFO - [ThreadPoolExecutor-0_3] - ✅ [B3R1-INV-09] BỎ QUA: Đã ở trạng thái mong muốn (Disconnect Grid)
+2025-11-21 11:09:53,046 - INFO - [ThreadPoolExecutor-0_3] - ℹ️ Driver đã đóng
+2025-11-21 11:09:53,046 - INFO - [ThreadPoolExecutor-0_3] - ℹ️ [B3R2-INV-05] Bắt đầu xử lý ON
+2025-11-21 11:09:53,254 - INFO - [ThreadPoolExecutor-0_2] - ✅ [http://10.10.10.128] Đăng nhập thành công
+2025-11-21 11:09:53,282 - INFO - [ThreadPoolExecutor-0_2] - ✅ [B3R1-INV-08] BỎ QUA: Đã ở trạng thái mong muốn (Disconnect Grid)
+2025-11-21 11:09:53,347 - INFO - [ThreadPoolExecutor-0_2] - ℹ️ Driver đã đóng
+2025-11-21 11:09:53,347 - INFO - [ThreadPoolExecutor-0_2] - ℹ️ [B3R2-INV-06] Bắt đầu xử lý ON
+2025-11-21 11:09:53,645 - INFO - [ThreadPoolExecutor-0_4] - ℹ️ Driver khởi tạo thành công với WebDriverWait
+2025-11-21 11:09:53,645 - INFO - [ThreadPoolExecutor-0_4] - ℹ️ Truy cập URL: http://10.10.10.114 (lần 1)
+2025-11-21 11:09:53,862 - INFO - [ThreadPoolExecutor-0_3] - ℹ️ Driver khởi tạo thành công với WebDriverWait
+2025-11-21 11:09:53,862 - INFO - [ThreadPoolExecutor-0_3] - ℹ️ Truy cập URL: http://10.10.10.115 (lần 1)
+2025-11-21 11:09:54,215 - INFO - [ThreadPoolExecutor-0_5] - ℹ️ [http://10.10.10.111] Thực hiện đăng nhập...
+2025-11-21 11:09:54,242 - INFO - [ThreadPoolExecutor-0_1] - ℹ️ [http://10.10.10.112] Thực hiện đăng nhập...
+2025-11-21 11:09:54,430 - INFO - [ThreadPoolExecutor-0_2] - ℹ️ Driver khởi tạo thành công với WebDriverWait
+2025-11-21 11:09:54,431 - INFO - [ThreadPoolExecutor-0_2] - ℹ️ Truy cập URL: http://10.10.10.116 (lần 1)
+2025-11-21 11:09:54,572 - INFO - [ThreadPoolExecutor-0_0] - ℹ️ [http://10.10.10.113] Thực hiện đăng nhập...
+2025-11-21 11:09:56,122 - INFO - [ThreadPoolExecutor-0_5] - ✅ [http://10.10.10.111] Đăng nhập thành công
+2025-11-21 11:09:56,142 - INFO - [ThreadPoolExecutor-0_5] - ✅ [B3R2-INV-01] BỎ QUA: Đã ở trạng thái mong muốn (Disconnect Grid)
+2025-11-21 11:09:56,210 - INFO - [ThreadPoolExecutor-0_5] - ℹ️ Driver đã đóng
+2025-11-21 11:09:56,210 - INFO - [ThreadPoolExecutor-0_5] - ℹ️ [B3R2-INV-07] Bắt đầu xử lý ON
+2025-11-21 11:09:56,700 - INFO - [ThreadPoolExecutor-0_1] - ✅ [http://10.10.10.112] Đăng nhập thành công
+2025-11-21 11:09:56,724 - INFO - [ThreadPoolExecutor-0_1] - ✅ [B3R2-INV-02] BỎ QUA: Đã ở trạng thái mong muốn (Disconnect Grid)
+2025-11-21 11:09:56,795 - INFO - [ThreadPoolExecutor-0_1] - ℹ️ Driver đã đóng
+2025-11-21 11:09:56,795 - INFO - [ThreadPoolExecutor-0_1] - ℹ️ [B3R2-INV-08] Bắt đầu xử lý ON
+2025-11-21 11:09:56,857 - INFO - [ThreadPoolExecutor-0_0] - ✅ [http://10.10.10.113] Đăng nhập thành công
+2025-11-21 11:09:56,884 - INFO - [ThreadPoolExecutor-0_0] - ✅ [B3R2-INV-03] BỎ QUA: Đã ở trạng thái mong muốn (Disconnect Grid)
+2025-11-21 11:09:56,959 - INFO - [ThreadPoolExecutor-0_0] - ℹ️ Driver đã đóng
+2025-11-21 11:09:56,960 - INFO - [ThreadPoolExecutor-0_0] - ℹ️ [B3R2-INV-09] Bắt đầu xử lý ON
+2025-11-21 11:09:57,017 - INFO - [ThreadPoolExecutor-0_5] - ℹ️ Driver khởi tạo thành công với WebDriverWait
+2025-11-21 11:09:57,018 - INFO - [ThreadPoolExecutor-0_5] - ℹ️ Truy cập URL: http://10.10.10.117 (lần 1)
+2025-11-21 11:09:57,554 - INFO - [ThreadPoolExecutor-0_1] - ℹ️ Driver khởi tạo thành công với WebDriverWait
+2025-11-21 11:09:57,554 - INFO - [ThreadPoolExecutor-0_1] - ℹ️ Truy cập URL: http://10.10.10.118 (lần 1)
+2025-11-21 11:09:57,728 - INFO - [ThreadPoolExecutor-0_0] - ℹ️ Driver khởi tạo thành công với WebDriverWait
+2025-11-21 11:09:57,729 - INFO - [ThreadPoolExecutor-0_0] - ℹ️ Truy cập URL: http://10.10.10.119 (lần 1)
+2025-11-21 11:09:59,310 - INFO - [ThreadPoolExecutor-0_4] - ℹ️ [http://10.10.10.114] Thực hiện đăng nhập...
+2025-11-21 11:09:59,604 - INFO - [ThreadPoolExecutor-0_3] - ℹ️ [http://10.10.10.115] Thực hiện đăng nhập...
+2025-11-21 11:10:00,310 - INFO - [ThreadPoolExecutor-0_2] - ℹ️ [http://10.10.10.116] Thực hiện đăng nhập...
+2025-11-21 11:10:01,632 - INFO - [ThreadPoolExecutor-0_4] - ✅ [http://10.10.10.114] Đăng nhập thành công
+2025-11-21 11:10:01,650 - INFO - [ThreadPoolExecutor-0_4] - ✅ [B3R2-INV-04] BỎ QUA: Đã ở trạng thái mong muốn (Disconnect Grid)
+2025-11-21 11:10:01,714 - INFO - [ThreadPoolExecutor-0_4] - ℹ️ Driver đã đóng
+2025-11-21 11:10:01,714 - INFO - [ThreadPoolExecutor-0_4] - ℹ️ [B4R1-INV-01] Bắt đầu xử lý ON
+2025-11-21 11:10:01,962 - INFO - [ThreadPoolExecutor-0_3] - ✅ [http://10.10.10.115] Đăng nhập thành công
+2025-11-21 11:10:01,982 - INFO - [ThreadPoolExecutor-0_3] - ✅ [B3R2-INV-05] BỎ QUA: Đã ở trạng thái mong muốn (Disconnect Grid)
+2025-11-21 11:10:02,080 - INFO - [ThreadPoolExecutor-0_3] - ℹ️ Driver đã đóng
+2025-11-21 11:10:02,080 - INFO - [ThreadPoolExecutor-0_3] - ℹ️ [B4R1-INV-02] Bắt đầu xử lý ON
+2025-11-21 11:10:02,462 - INFO - [ThreadPoolExecutor-0_4] - ℹ️ Driver khởi tạo thành công với WebDriverWait
+2025-11-21 11:10:02,463 - INFO - [ThreadPoolExecutor-0_4] - ℹ️ Truy cập URL: http://10.10.10.141 (lần 1)
+2025-11-21 11:10:02,520 - INFO - [ThreadPoolExecutor-0_2] - ✅ [http://10.10.10.116] Đăng nhập thành công
+2025-11-21 11:10:02,548 - INFO - [ThreadPoolExecutor-0_2] - ✅ [B3R2-INV-06] BỎ QUA: Đã ở trạng thái mong muốn (Disconnect Grid)
+2025-11-21 11:10:02,627 - INFO - [ThreadPoolExecutor-0_2] - ℹ️ Driver đã đóng
+2025-11-21 11:10:02,628 - INFO - [ThreadPoolExecutor-0_2] - ℹ️ [B4R1-INV-03] Bắt đầu xử lý ON
+2025-11-21 11:10:02,832 - INFO - [ThreadPoolExecutor-0_5] - ℹ️ [http://10.10.10.117] Thực hiện đăng nhập...
+2025-11-21 11:10:02,910 - INFO - [ThreadPoolExecutor-0_3] - ℹ️ Driver khởi tạo thành công với WebDriverWait
+2025-11-21 11:10:02,910 - INFO - [ThreadPoolExecutor-0_3] - ℹ️ Truy cập URL: http://10.10.10.142 (lần 1)
+2025-11-21 11:10:03,510 - INFO - [ThreadPoolExecutor-0_0] - ℹ️ [http://10.10.10.119] Thực hiện đăng nhập...
+2025-11-21 11:10:03,602 - INFO - [ThreadPoolExecutor-0_2] - ℹ️ Driver khởi tạo thành công với WebDriverWait
+2025-11-21 11:10:03,602 - INFO - [ThreadPoolExecutor-0_2] - ℹ️ Truy cập URL: http://10.10.10.143 (lần 1)
+2025-11-21 11:10:03,643 - INFO - [ThreadPoolExecutor-0_1] - ℹ️ [http://10.10.10.118] Thực hiện đăng nhập...
+2025-11-21 11:10:05,621 - INFO - [ThreadPoolExecutor-0_5] - ✅ [http://10.10.10.117] Đăng nhập thành công
+2025-11-21 11:10:05,674 - INFO - [ThreadPoolExecutor-0_5] - ✅ [B3R2-INV-07] BỎ QUA: Đã ở trạng thái mong muốn (Disconnect Grid)
+2025-11-21 11:10:05,738 - INFO - [ThreadPoolExecutor-0_5] - ℹ️ Driver đã đóng
+2025-11-21 11:10:05,739 - INFO - [ThreadPoolExecutor-0_5] - ℹ️ [B4R1-INV-04] Bắt đầu xử lý ON
+2025-11-21 11:10:05,784 - INFO - [ThreadPoolExecutor-0_1] - ✅ [http://10.10.10.118] Đăng nhập thành công
+2025-11-21 11:10:05,802 - INFO - [ThreadPoolExecutor-0_1] - ✅ [B3R2-INV-08] BỎ QUA: Đã ở trạng thái mong muốn (Disconnect Grid)
+2025-11-21 11:10:05,865 - INFO - [ThreadPoolExecutor-0_1] - ℹ️ Driver đã đóng
+2025-11-21 11:10:05,866 - INFO - [ThreadPoolExecutor-0_1] - ℹ️ [B4R1-INV-05] Bắt đầu xử lý ON
+2025-11-21 11:10:06,182 - INFO - [ThreadPoolExecutor-0_0] - ✅ [http://10.10.10.119] Đăng nhập thành công
+2025-11-21 11:10:06,203 - INFO - [ThreadPoolExecutor-0_0] - ✅ [B3R2-INV-09] BỎ QUA: Đã ở trạng thái mong muốn (Disconnect Grid)
+2025-11-21 11:10:06,270 - INFO - [ThreadPoolExecutor-0_0] - ℹ️ Driver đã đóng
+2025-11-21 11:10:06,271 - INFO - [ThreadPoolExecutor-0_0] - ℹ️ [B4R1-INV-06] Bắt đầu xử lý ON
+2025-11-21 11:10:06,500 - INFO - [ThreadPoolExecutor-0_5] - ℹ️ Driver khởi tạo thành công với WebDriverWait
+2025-11-21 11:10:06,500 - INFO - [ThreadPoolExecutor-0_5] - ℹ️ Truy cập URL: http://10.10.10.144 (lần 1)
+2025-11-21 11:10:06,647 - INFO - [ThreadPoolExecutor-0_1] - ℹ️ Driver khởi tạo thành công với WebDriverWait
+2025-11-21 11:10:06,647 - INFO - [ThreadPoolExecutor-0_1] - ℹ️ Truy cập URL: http://10.10.10.145 (lần 1)
+2025-11-21 11:10:07,004 - INFO - [ThreadPoolExecutor-0_0] - ℹ️ Driver khởi tạo thành công với WebDriverWait
+2025-11-21 11:10:07,004 - INFO - [ThreadPoolExecutor-0_0] - ℹ️ Truy cập URL: http://10.10.10.146 (lần 1)
+2025-11-21 11:10:07,788 - INFO - [ThreadPoolExecutor-0_4] - ℹ️ [http://10.10.10.141] Thực hiện đăng nhập...
+2025-11-21 11:10:08,310 - INFO - [ThreadPoolExecutor-0_3] - ℹ️ [http://10.10.10.142] Thực hiện đăng nhập...
+2025-11-21 11:10:09,040 - INFO - [ThreadPoolExecutor-0_2] - ℹ️ [http://10.10.10.143] Thực hiện đăng nhập...
+2025-11-21 11:10:10,503 - INFO - [ThreadPoolExecutor-0_4] - ✅ [http://10.10.10.141] Đăng nhập thành công
+2025-11-21 11:10:10,522 - INFO - [ThreadPoolExecutor-0_4] - ✅ [B4R1-INV-01] BỎ QUA: Đã ở trạng thái mong muốn (Disconnect Grid)
+2025-11-21 11:10:10,586 - INFO - [ThreadPoolExecutor-0_4] - ℹ️ Driver đã đóng
+2025-11-21 11:10:10,586 - INFO - [ThreadPoolExecutor-0_4] - ℹ️ [B4R1-INV-07] Bắt đầu xử lý ON
+2025-11-21 11:10:11,113 - INFO - [ThreadPoolExecutor-0_3] - ✅ [http://10.10.10.142] Đăng nhập thành công
+2025-11-21 11:10:11,151 - INFO - [ThreadPoolExecutor-0_3] - ✅ [B4R1-INV-02] BỎ QUA: Đã ở trạng thái mong muốn (Disconnect Grid)
+2025-11-21 11:10:11,229 - INFO - [ThreadPoolExecutor-0_3] - ℹ️ Driver đã đóng
+2025-11-21 11:10:11,229 - INFO - [ThreadPoolExecutor-0_3] - ℹ️ [B4R1-INV-08] Bắt đầu xử lý ON
+2025-11-21 11:10:11,417 - INFO - [ThreadPoolExecutor-0_4] - ℹ️ Driver khởi tạo thành công với WebDriverWait
+2025-11-21 11:10:11,417 - INFO - [ThreadPoolExecutor-0_4] - ℹ️ Truy cập URL: http://10.10.10.147 (lần 1)
+2025-11-21 11:10:11,787 - INFO - [ThreadPoolExecutor-0_2] - ✅ [http://10.10.10.143] Đăng nhập thành công
+2025-11-21 11:10:11,818 - INFO - [ThreadPoolExecutor-0_2] - ✅ [B4R1-INV-03] BỎ QUA: Đã ở trạng thái mong muốn (Disconnect Grid)
+2025-11-21 11:10:11,887 - INFO - [ThreadPoolExecutor-0_2] - ℹ️ Driver đã đóng
+2025-11-21 11:10:11,887 - INFO - [ThreadPoolExecutor-0_2] - ℹ️ [B4R1-INV-09] Bắt đầu xử lý ON
+2025-11-21 11:10:12,027 - INFO - [ThreadPoolExecutor-0_3] - ℹ️ Driver khởi tạo thành công với WebDriverWait
+2025-11-21 11:10:12,027 - INFO - [ThreadPoolExecutor-0_3] - ℹ️ Truy cập URL: http://10.10.10.148 (lần 1)
+2025-11-21 11:10:12,422 - INFO - [ThreadPoolExecutor-0_5] - ℹ️ [http://10.10.10.144] Thực hiện đăng nhập...
+2025-11-21 11:10:12,469 - INFO - [ThreadPoolExecutor-0_0] - ℹ️ [http://10.10.10.146] Thực hiện đăng nhập...
+2025-11-21 11:10:12,572 - INFO - [ThreadPoolExecutor-0_1] - ℹ️ [http://10.10.10.145] Thực hiện đăng nhập...
+2025-11-21 11:10:12,646 - INFO - [ThreadPoolExecutor-0_2] - ℹ️ Driver khởi tạo thành công với WebDriverWait
+2025-11-21 11:10:12,647 - INFO - [ThreadPoolExecutor-0_2] - ℹ️ Truy cập URL: http://10.10.10.149 (lần 1)
+2025-11-21 11:10:14,719 - INFO - [ThreadPoolExecutor-0_0] - ✅ [http://10.10.10.146] Đăng nhập thành công
+2025-11-21 11:10:14,745 - INFO - [ThreadPoolExecutor-0_0] - ✅ [B4R1-INV-06] BỎ QUA: Đã ở trạng thái mong muốn (Disconnect Grid)
+2025-11-21 11:10:14,770 - INFO - [ThreadPoolExecutor-0_5] - ✅ [http://10.10.10.144] Đăng nhập thành công
+2025-11-21 11:10:14,789 - INFO - [ThreadPoolExecutor-0_5] - ✅ [B4R1-INV-04] BỎ QUA: Đã ở trạng thái mong muốn (Disconnect Grid)
+2025-11-21 11:10:14,813 - INFO - [ThreadPoolExecutor-0_0] - ℹ️ Driver đã đóng
+2025-11-21 11:10:14,814 - INFO - [ThreadPoolExecutor-0_0] - ℹ️ [B4R1-INV-10] Bắt đầu xử lý ON
+2025-11-21 11:10:14,856 - INFO - [ThreadPoolExecutor-0_5] - ℹ️ Driver đã đóng
+2025-11-21 11:10:14,857 - INFO - [ThreadPoolExecutor-0_5] - ℹ️ [B4R2-INV-01] Bắt đầu xử lý ON
+2025-11-21 11:10:14,902 - INFO - [ThreadPoolExecutor-0_1] - ✅ [http://10.10.10.145] Đăng nhập thành công
+2025-11-21 11:10:14,921 - INFO - [ThreadPoolExecutor-0_1] - ✅ [B4R1-INV-05] BỎ QUA: Đã ở trạng thái mong muốn (Disconnect Grid)
+2025-11-21 11:10:14,985 - INFO - [ThreadPoolExecutor-0_1] - ℹ️ Driver đã đóng
+2025-11-21 11:10:14,985 - INFO - [ThreadPoolExecutor-0_1] - ℹ️ [B4R2-INV-02] Bắt đầu xử lý ON
+2025-11-21 11:10:15,603 - INFO - [ThreadPoolExecutor-0_0] - ℹ️ Driver khởi tạo thành công với WebDriverWait
+2025-11-21 11:10:15,604 - INFO - [ThreadPoolExecutor-0_0] - ℹ️ Truy cập URL: http://10.10.10.150 (lần 1)
+2025-11-21 11:10:15,638 - INFO - [ThreadPoolExecutor-0_5] - ℹ️ Driver khởi tạo thành công với WebDriverWait
+2025-11-21 11:10:15,638 - INFO - [ThreadPoolExecutor-0_5] - ℹ️ Truy cập URL: http://10.10.10.131 (lần 1)
+2025-11-21 11:10:15,758 - INFO - [ThreadPoolExecutor-0_1] - ℹ️ Driver khởi tạo thành công với WebDriverWait
+2025-11-21 11:10:15,759 - INFO - [ThreadPoolExecutor-0_1] - ℹ️ Truy cập URL: http://10.10.10.132 (lần 1)
+2025-11-21 11:10:16,927 - INFO - [ThreadPoolExecutor-0_4] - ℹ️ [http://10.10.10.147] Thực hiện đăng nhập...
+2025-11-21 11:10:17,505 - INFO - [ThreadPoolExecutor-0_3] - ℹ️ [http://10.10.10.148] Thực hiện đăng nhập...
+2025-11-21 11:10:18,040 - INFO - [ThreadPoolExecutor-0_2] - ℹ️ [http://10.10.10.149] Thực hiện đăng nhập...
+2025-11-21 11:10:20,856 - INFO - [ThreadPoolExecutor-0_4] - ✅ [http://10.10.10.147] Đăng nhập thành công
+2025-11-21 11:10:20,875 - INFO - [ThreadPoolExecutor-0_4] - ✅ [B4R1-INV-07] BỎ QUA: Đã ở trạng thái mong muốn (Disconnect Grid)
+2025-11-21 11:10:20,939 - INFO - [ThreadPoolExecutor-0_4] - ℹ️ Driver đã đóng
+2025-11-21 11:10:20,939 - INFO - [ThreadPoolExecutor-0_4] - ℹ️ [B4R2-INV-03] Bắt đầu xử lý ON
+2025-11-21 11:10:21,534 - INFO - [ThreadPoolExecutor-0_3] - ✅ [http://10.10.10.148] Đăng nhập thành công
+2025-11-21 11:10:21,562 - INFO - [ThreadPoolExecutor-0_3] - ✅ [B4R1-INV-08] BỎ QUA: Đã ở trạng thái mong muốn (Disconnect Grid)
+2025-11-21 11:10:21,634 - INFO - [ThreadPoolExecutor-0_3] - ℹ️ Driver đã đóng
+2025-11-21 11:10:21,634 - INFO - [ThreadPoolExecutor-0_3] - ℹ️ [B4R2-INV-04] Bắt đầu xử lý ON
+2025-11-21 11:10:21,739 - INFO - [ThreadPoolExecutor-0_4] - ℹ️ Driver khởi tạo thành công với WebDriverWait
+2025-11-21 11:10:21,739 - INFO - [ThreadPoolExecutor-0_4] - ℹ️ Truy cập URL: http://10.10.10.133 (lần 1)
+2025-11-21 11:10:21,927 - INFO - [ThreadPoolExecutor-0_2] - ✅ [http://10.10.10.149] Đăng nhập thành công
+2025-11-21 11:10:21,957 - INFO - [ThreadPoolExecutor-0_2] - ✅ [B4R1-INV-09] BỎ QUA: Đã ở trạng thái mong muốn (Disconnect Grid)
+2025-11-21 11:10:22,024 - INFO - [ThreadPoolExecutor-0_2] - ℹ️ Driver đã đóng
+2025-11-21 11:10:22,024 - INFO - [ThreadPoolExecutor-0_2] - ℹ️ [B4R2-INV-05] Bắt đầu xử lý ON
+2025-11-21 11:10:22,515 - INFO - [ThreadPoolExecutor-0_0] - ℹ️ [http://10.10.10.150] Thực hiện đăng nhập...
+2025-11-21 11:10:22,598 - INFO - [ThreadPoolExecutor-0_5] - ℹ️ [http://10.10.10.131] Thực hiện đăng nhập...
+2025-11-21 11:10:22,630 - INFO - [ThreadPoolExecutor-0_3] - ℹ️ Driver khởi tạo thành công với WebDriverWait
+2025-11-21 11:10:22,630 - INFO - [ThreadPoolExecutor-0_3] - ℹ️ Truy cập URL: http://10.10.10.134 (lần 1)
+2025-11-21 11:10:22,854 - INFO - [ThreadPoolExecutor-0_2] - ℹ️ Driver khởi tạo thành công với WebDriverWait
+2025-11-21 11:10:22,854 - INFO - [ThreadPoolExecutor-0_2] - ℹ️ Truy cập URL: http://10.10.10.135 (lần 1)
+2025-11-21 11:10:22,909 - INFO - [ThreadPoolExecutor-0_1] - ℹ️ [http://10.10.10.132] Thực hiện đăng nhập...
+2025-11-21 11:10:24,887 - INFO - [ThreadPoolExecutor-0_0] - ✅ [http://10.10.10.150] Đăng nhập thành công
+2025-11-21 11:10:24,913 - INFO - [ThreadPoolExecutor-0_5] - ✅ [http://10.10.10.131] Đăng nhập thành công
+2025-11-21 11:10:24,913 - INFO - [ThreadPoolExecutor-0_0] - ✅ [B4R1-INV-10] BỎ QUA: Đã ở trạng thái mong muốn (Disconnect Grid)
+2025-11-21 11:10:24,942 - INFO - [ThreadPoolExecutor-0_5] - ✅ [B4R2-INV-01] BỎ QUA: Đã ở trạng thái mong muốn (Disconnect Grid)
+2025-11-21 11:10:24,985 - INFO - [ThreadPoolExecutor-0_0] - ℹ️ Driver đã đóng
+2025-11-21 11:10:24,985 - INFO - [ThreadPoolExecutor-0_0] - ℹ️ [B4R2-INV-06] Bắt đầu xử lý ON
+2025-11-21 11:10:25,007 - INFO - [ThreadPoolExecutor-0_5] - ℹ️ Driver đã đóng
+2025-11-21 11:10:25,007 - INFO - [ThreadPoolExecutor-0_5] - ℹ️ [B4R2-INV-07] Bắt đầu xử lý ON
+2025-11-21 11:10:25,124 - INFO - [ThreadPoolExecutor-0_1] - ✅ [http://10.10.10.132] Đăng nhập thành công
+2025-11-21 11:10:25,172 - INFO - [ThreadPoolExecutor-0_1] - ✅ [B4R2-INV-02] BỎ QUA: Đã ở trạng thái mong muốn (Disconnect Grid)
+2025-11-21 11:10:25,238 - INFO - [ThreadPoolExecutor-0_1] - ℹ️ Driver đã đóng
+2025-11-21 11:10:25,239 - INFO - [ThreadPoolExecutor-0_1] - ℹ️ [B4R2-INV-08] Bắt đầu xử lý ON
+2025-11-21 11:10:25,731 - INFO - [ThreadPoolExecutor-0_0] - ℹ️ Driver khởi tạo thành công với WebDriverWait
+2025-11-21 11:10:25,731 - INFO - [ThreadPoolExecutor-0_0] - ℹ️ Truy cập URL: http://10.10.10.136 (lần 1)
+2025-11-21 11:10:25,807 - INFO - [ThreadPoolExecutor-0_5] - ℹ️ Driver khởi tạo thành công với WebDriverWait
+2025-11-21 11:10:25,807 - INFO - [ThreadPoolExecutor-0_5] - ℹ️ Truy cập URL: http://10.10.10.137 (lần 1)
+2025-11-21 11:10:26,021 - INFO - [ThreadPoolExecutor-0_1] - ℹ️ Driver khởi tạo thành công với WebDriverWait
+2025-11-21 11:10:26,022 - INFO - [ThreadPoolExecutor-0_1] - ℹ️ Truy cập URL: http://10.10.10.138 (lần 1)
+2025-11-21 11:10:27,432 - INFO - [ThreadPoolExecutor-0_4] - ℹ️ [http://10.10.10.133] Thực hiện đăng nhập...
+2025-11-21 11:10:28,027 - INFO - [ThreadPoolExecutor-0_3] - ℹ️ [http://10.10.10.134] Thực hiện đăng nhập...
+2025-11-21 11:10:28,466 - INFO - [ThreadPoolExecutor-0_2] - ℹ️ [http://10.10.10.135] Thực hiện đăng nhập...
+2025-11-21 11:10:29,682 - INFO - [ThreadPoolExecutor-0_4] - ✅ [http://10.10.10.133] Đăng nhập thành công
+2025-11-21 11:10:29,699 - INFO - [ThreadPoolExecutor-0_4] - ✅ [B4R2-INV-03] BỎ QUA: Đã ở trạng thái mong muốn (Disconnect Grid)
+2025-11-21 11:10:29,761 - INFO - [ThreadPoolExecutor-0_4] - ℹ️ Driver đã đóng
+2025-11-21 11:10:29,762 - INFO - [ThreadPoolExecutor-0_4] - ℹ️ [B4R2-INV-09] Bắt đầu xử lý ON
+2025-11-21 11:10:30,216 - INFO - [ThreadPoolExecutor-0_3] - ✅ [http://10.10.10.134] Đăng nhập thành công
+2025-11-21 11:10:30,239 - INFO - [ThreadPoolExecutor-0_3] - ✅ [B4R2-INV-04] BỎ QUA: Đã ở trạng thái mong muốn (Disconnect Grid)
+2025-11-21 11:10:30,308 - INFO - [ThreadPoolExecutor-0_3] - ℹ️ Driver đã đóng
+2025-11-21 11:10:30,309 - INFO - [ThreadPoolExecutor-0_3] - ℹ️ [B4R2-INV-10] Bắt đầu xử lý ON
+2025-11-21 11:10:30,479 - INFO - [ThreadPoolExecutor-0_4] - ℹ️ Driver khởi tạo thành công với WebDriverWait
+2025-11-21 11:10:30,479 - INFO - [ThreadPoolExecutor-0_4] - ℹ️ Truy cập URL: http://10.10.10.139 (lần 1)
+2025-11-21 11:10:30,533 - INFO - [ThreadPoolExecutor-0_2] - ✅ [http://10.10.10.135] Đăng nhập thành công
+2025-11-21 11:10:30,578 - INFO - [ThreadPoolExecutor-0_2] - ✅ [B4R2-INV-05] BỎ QUA: Đã ở trạng thái mong muốn (Disconnect Grid)
+2025-11-21 11:10:30,642 - INFO - [ThreadPoolExecutor-0_2] - ℹ️ Driver đã đóng
+2025-11-21 11:10:30,642 - INFO - [ThreadPoolExecutor-0_2] - ℹ️ [B5R1-INV-01] Bắt đầu xử lý ON
+2025-11-21 11:10:31,042 - INFO - [ThreadPoolExecutor-0_3] - ℹ️ Driver khởi tạo thành công với WebDriverWait
+2025-11-21 11:10:31,043 - INFO - [ThreadPoolExecutor-0_3] - ℹ️ Truy cập URL: http://10.10.10.140 (lần 1)
+2025-11-21 11:10:31,365 - INFO - [ThreadPoolExecutor-0_0] - ℹ️ [http://10.10.10.136] Thực hiện đăng nhập...
+2025-11-21 11:10:31,450 - INFO - [ThreadPoolExecutor-0_2] - ℹ️ Driver khởi tạo thành công với WebDriverWait
+2025-11-21 11:10:31,450 - INFO - [ThreadPoolExecutor-0_2] - ℹ️ Truy cập URL: http://10.10.10.161 (lần 1)
+2025-11-21 11:10:31,706 - INFO - [ThreadPoolExecutor-0_1] - ℹ️ [http://10.10.10.138] Thực hiện đăng nhập...
+2025-11-21 11:10:31,732 - INFO - [ThreadPoolExecutor-0_5] - ℹ️ [http://10.10.10.137] Thực hiện đăng nhập...
+2025-11-21 11:10:33,606 - INFO - [ThreadPoolExecutor-0_0] - ✅ [http://10.10.10.136] Đăng nhập thành công
+2025-11-21 11:10:33,624 - INFO - [ThreadPoolExecutor-0_0] - ✅ [B4R2-INV-06] BỎ QUA: Đã ở trạng thái mong muốn (Disconnect Grid)
+2025-11-21 11:10:33,691 - INFO - [ThreadPoolExecutor-0_0] - ℹ️ Driver đã đóng
+2025-11-21 11:10:33,691 - INFO - [ThreadPoolExecutor-0_0] - ℹ️ [B5R1-INV-02] Bắt đầu xử lý ON
+2025-11-21 11:10:34,012 - INFO - [ThreadPoolExecutor-0_1] - ✅ [http://10.10.10.138] Đăng nhập thành công
+2025-11-21 11:10:34,014 - INFO - [ThreadPoolExecutor-0_5] - ✅ [http://10.10.10.137] Đăng nhập thành công
+2025-11-21 11:10:34,030 - INFO - [ThreadPoolExecutor-0_1] - ✅ [B4R2-INV-08] BỎ QUA: Đã ở trạng thái mong muốn (Disconnect Grid)
+2025-11-21 11:10:34,031 - INFO - [ThreadPoolExecutor-0_5] - ✅ [B4R2-INV-07] BỎ QUA: Đã ở trạng thái mong muốn (Disconnect Grid)
+2025-11-21 11:10:34,094 - INFO - [ThreadPoolExecutor-0_1] - ℹ️ Driver đã đóng
+2025-11-21 11:10:34,095 - INFO - [ThreadPoolExecutor-0_1] - ℹ️ [B5R1-INV-03] Bắt đầu xử lý ON
+2025-11-21 11:10:34,095 - INFO - [ThreadPoolExecutor-0_5] - ℹ️ Driver đã đóng
+2025-11-21 11:10:34,095 - INFO - [ThreadPoolExecutor-0_5] - ℹ️ [B5R1-INV-04] Bắt đầu xử lý ON
+2025-11-21 11:10:34,404 - INFO - [ThreadPoolExecutor-0_0] - ℹ️ Driver khởi tạo thành công với WebDriverWait
+2025-11-21 11:10:34,404 - INFO - [ThreadPoolExecutor-0_0] - ℹ️ Truy cập URL: http://10.10.10.162 (lần 1)
+2025-11-21 11:10:34,881 - INFO - [ThreadPoolExecutor-0_1] - ℹ️ Driver khởi tạo thành công với WebDriverWait
+2025-11-21 11:10:34,881 - INFO - [ThreadPoolExecutor-0_5] - ℹ️ Driver khởi tạo thành công với WebDriverWait
+2025-11-21 11:10:34,882 - INFO - [ThreadPoolExecutor-0_1] - ℹ️ Truy cập URL: http://10.10.10.163 (lần 1)
+2025-11-21 11:10:34,882 - INFO - [ThreadPoolExecutor-0_5] - ℹ️ Truy cập URL: http://10.10.10.164 (lần 1)
+2025-11-21 11:10:35,721 - INFO - [ThreadPoolExecutor-0_4] - ℹ️ [http://10.10.10.139] Thực hiện đăng nhập...
+2025-11-21 11:10:36,133 - INFO - [ThreadPoolExecutor-0_3] - ℹ️ [http://10.10.10.140] Thực hiện đăng nhập...
+2025-11-21 11:10:36,430 - INFO - [ThreadPoolExecutor-0_2] - ℹ️ [http://10.10.10.161] Thực hiện đăng nhập...
+2025-11-21 11:10:38,388 - INFO - [ThreadPoolExecutor-0_4] - ✅ [http://10.10.10.139] Đăng nhập thành công
+2025-11-21 11:10:38,409 - INFO - [ThreadPoolExecutor-0_4] - ✅ [B4R2-INV-09] BỎ QUA: Đã ở trạng thái mong muốn (Disconnect Grid)
+2025-11-21 11:10:38,473 - INFO - [ThreadPoolExecutor-0_4] - ℹ️ Driver đã đóng
+2025-11-21 11:10:38,473 - INFO - [ThreadPoolExecutor-0_4] - ℹ️ [B5R1-INV-05] Bắt đầu xử lý ON
+2025-11-21 11:10:38,767 - INFO - [ThreadPoolExecutor-0_2] - ✅ [http://10.10.10.161] Đăng nhập thành công
+2025-11-21 11:10:38,787 - INFO - [ThreadPoolExecutor-0_2] - ✅ [B5R1-INV-01] BỎ QUA: Đã ở trạng thái mong muốn (Disconnect Grid)
+2025-11-21 11:10:38,851 - INFO - [ThreadPoolExecutor-0_2] - ℹ️ Driver đã đóng
+2025-11-21 11:10:38,851 - INFO - [ThreadPoolExecutor-0_2] - ℹ️ [B5R1-INV-06] Bắt đầu xử lý ON
+2025-11-21 11:10:38,895 - INFO - [ThreadPoolExecutor-0_3] - ✅ [http://10.10.10.140] Đăng nhập thành công
+2025-11-21 11:10:38,917 - INFO - [ThreadPoolExecutor-0_3] - ✅ [B4R2-INV-10] BỎ QUA: Đã ở trạng thái mong muốn (Disconnect Grid)
+2025-11-21 11:10:38,982 - INFO - [ThreadPoolExecutor-0_3] - ℹ️ Driver đã đóng
+2025-11-21 11:10:38,982 - INFO - [ThreadPoolExecutor-0_3] - ℹ️ [B5R1-INV-07] Bắt đầu xử lý ON
+2025-11-21 11:10:39,240 - INFO - [ThreadPoolExecutor-0_4] - ℹ️ Driver khởi tạo thành công với WebDriverWait
+2025-11-21 11:10:39,240 - INFO - [ThreadPoolExecutor-0_4] - ℹ️ Truy cập URL: http://10.10.10.165 (lần 1)
+2025-11-21 11:10:39,849 - INFO - [ThreadPoolExecutor-0_2] - ℹ️ Driver khởi tạo thành công với WebDriverWait
+2025-11-21 11:10:39,849 - INFO - [ThreadPoolExecutor-0_2] - ℹ️ Truy cập URL: http://10.10.10.166 (lần 1)
+2025-11-21 11:10:39,987 - INFO - [ThreadPoolExecutor-0_3] - ℹ️ Driver khởi tạo thành công với WebDriverWait
+2025-11-21 11:10:39,987 - INFO - [ThreadPoolExecutor-0_3] - ℹ️ Truy cập URL: http://10.10.10.167 (lần 1)
+2025-11-21 11:10:40,206 - INFO - [ThreadPoolExecutor-0_0] - ℹ️ [http://10.10.10.162] Thực hiện đăng nhập...
+2025-11-21 11:10:40,484 - INFO - [ThreadPoolExecutor-0_5] - ℹ️ [http://10.10.10.164] Thực hiện đăng nhập...
+2025-11-21 11:10:40,613 - INFO - [ThreadPoolExecutor-0_1] - ℹ️ [http://10.10.10.163] Thực hiện đăng nhập...
+2025-11-21 11:10:42,740 - INFO - [ThreadPoolExecutor-0_5] - ✅ [http://10.10.10.164] Đăng nhập thành công
+2025-11-21 11:10:42,759 - INFO - [ThreadPoolExecutor-0_5] - ✅ [B5R1-INV-04] BỎ QUA: Đã ở trạng thái mong muốn (Disconnect Grid)
+2025-11-21 11:10:42,824 - INFO - [ThreadPoolExecutor-0_5] - ℹ️ Driver đã đóng
+2025-11-21 11:10:42,824 - INFO - [ThreadPoolExecutor-0_5] - ℹ️ [B5R1-INV-08] Bắt đầu xử lý ON
+2025-11-21 11:10:42,899 - INFO - [ThreadPoolExecutor-0_1] - ✅ [http://10.10.10.163] Đăng nhập thành công
+2025-11-21 11:10:42,922 - INFO - [ThreadPoolExecutor-0_1] - ✅ [B5R1-INV-03] BỎ QUA: Đã ở trạng thái mong muốn (Disconnect Grid)
+2025-11-21 11:10:42,926 - INFO - [ThreadPoolExecutor-0_0] - ✅ [http://10.10.10.162] Đăng nhập thành công
+2025-11-21 11:10:42,949 - INFO - [ThreadPoolExecutor-0_0] - ✅ [B5R1-INV-02] BỎ QUA: Đã ở trạng thái mong muốn (Disconnect Grid)
+2025-11-21 11:10:42,989 - INFO - [ThreadPoolExecutor-0_1] - ℹ️ Driver đã đóng
+2025-11-21 11:10:42,989 - INFO - [ThreadPoolExecutor-0_1] - ℹ️ [B5R1-INV-09] Bắt đầu xử lý ON
+2025-11-21 11:10:43,013 - INFO - [ThreadPoolExecutor-0_0] - ℹ️ Driver đã đóng
+2025-11-21 11:10:43,013 - INFO - [ThreadPoolExecutor-0_0] - ℹ️ [B5R1-INV-10] Bắt đầu xử lý ON
+2025-11-21 11:10:43,584 - INFO - [ThreadPoolExecutor-0_5] - ℹ️ Driver khởi tạo thành công với WebDriverWait
+2025-11-21 11:10:43,584 - INFO - [ThreadPoolExecutor-0_5] - ℹ️ Truy cập URL: http://10.10.10.168 (lần 1)
+2025-11-21 11:10:43,789 - INFO - [ThreadPoolExecutor-0_1] - ℹ️ Driver khởi tạo thành công với WebDriverWait
+2025-11-21 11:10:43,790 - INFO - [ThreadPoolExecutor-0_1] - ℹ️ Truy cập URL: http://10.10.10.169 (lần 1)
+2025-11-21 11:10:43,840 - INFO - [ThreadPoolExecutor-0_0] - ℹ️ Driver khởi tạo thành công với WebDriverWait
+2025-11-21 11:10:43,840 - INFO - [ThreadPoolExecutor-0_0] - ℹ️ Truy cập URL: http://10.10.10.170 (lần 1)
+2025-11-21 11:10:44,931 - INFO - [ThreadPoolExecutor-0_4] - ℹ️ [http://10.10.10.165] Thực hiện đăng nhập...
+2025-11-21 11:10:45,286 - INFO - [ThreadPoolExecutor-0_2] - ℹ️ [http://10.10.10.166] Thực hiện đăng nhập...
+2025-11-21 11:10:45,516 - INFO - [ThreadPoolExecutor-0_3] - ℹ️ [http://10.10.10.167] Thực hiện đăng nhập...
+2025-11-21 11:10:47,630 - INFO - [ThreadPoolExecutor-0_2] - ✅ [http://10.10.10.166] Đăng nhập thành công
+2025-11-21 11:10:47,669 - INFO - [ThreadPoolExecutor-0_2] - ✅ [B5R1-INV-06] BỎ QUA: Đã ở trạng thái mong muốn (Disconnect Grid)
+2025-11-21 11:10:47,678 - INFO - [ThreadPoolExecutor-0_4] - ✅ [http://10.10.10.165] Đăng nhập thành công
+2025-11-21 11:10:47,700 - INFO - [ThreadPoolExecutor-0_4] - ✅ [B5R1-INV-05] BỎ QUA: Đã ở trạng thái mong muốn (Disconnect Grid)
+2025-11-21 11:10:47,735 - INFO - [ThreadPoolExecutor-0_2] - ℹ️ Driver đã đóng
+2025-11-21 11:10:47,735 - INFO - [ThreadPoolExecutor-0_2] - ℹ️ [B5R2-INV-01] Bắt đầu xử lý ON
+2025-11-21 11:10:47,766 - INFO - [ThreadPoolExecutor-0_4] - ℹ️ Driver đã đóng
+2025-11-21 11:10:47,766 - INFO - [ThreadPoolExecutor-0_4] - ℹ️ [B5R2-INV-02] Bắt đầu xử lý ON
+2025-11-21 11:10:48,405 - INFO - [ThreadPoolExecutor-0_3] - ✅ [http://10.10.10.167] Đăng nhập thành công
+2025-11-21 11:10:48,438 - INFO - [ThreadPoolExecutor-0_3] - ✅ [B5R1-INV-07] BỎ QUA: Đã ở trạng thái mong muốn (Disconnect Grid)
+2025-11-21 11:10:48,510 - INFO - [ThreadPoolExecutor-0_3] - ℹ️ Driver đã đóng
+2025-11-21 11:10:48,510 - INFO - [ThreadPoolExecutor-0_3] - ℹ️ [B5R2-INV-03] Bắt đầu xử lý ON
+2025-11-21 11:10:48,533 - INFO - [ThreadPoolExecutor-0_2] - ℹ️ Driver khởi tạo thành công với WebDriverWait
+2025-11-21 11:10:48,534 - INFO - [ThreadPoolExecutor-0_2] - ℹ️ Truy cập URL: http://10.10.10.151 (lần 1)
+2025-11-21 11:10:48,584 - INFO - [ThreadPoolExecutor-0_4] - ℹ️ Driver khởi tạo thành công với WebDriverWait
+2025-11-21 11:10:48,585 - INFO - [ThreadPoolExecutor-0_4] - ℹ️ Truy cập URL: http://10.10.10.152 (lần 1)
+2025-11-21 11:10:49,226 - INFO - [ThreadPoolExecutor-0_5] - ℹ️ [http://10.10.10.168] Thực hiện đăng nhập...
+2025-11-21 11:10:49,450 - INFO - [ThreadPoolExecutor-0_3] - ℹ️ Driver khởi tạo thành công với WebDriverWait
+2025-11-21 11:10:49,451 - INFO - [ThreadPoolExecutor-0_3] - ℹ️ Truy cập URL: http://10.10.10.153 (lần 1)
+2025-11-21 11:10:49,600 - INFO - [ThreadPoolExecutor-0_0] - ℹ️ [http://10.10.10.170] Thực hiện đăng nhập...
+2025-11-21 11:10:49,618 - INFO - [ThreadPoolExecutor-0_1] - ℹ️ [http://10.10.10.169] Thực hiện đăng nhập...
+2025-11-21 11:10:51,578 - INFO - [ThreadPoolExecutor-0_5] - ✅ [http://10.10.10.168] Đăng nhập thành công
+2025-11-21 11:10:51,602 - INFO - [ThreadPoolExecutor-0_5] - ✅ [B5R1-INV-08] BỎ QUA: Đã ở trạng thái mong muốn (Disconnect Grid)
+2025-11-21 11:10:51,668 - INFO - [ThreadPoolExecutor-0_5] - ℹ️ Driver đã đóng
+2025-11-21 11:10:51,669 - INFO - [ThreadPoolExecutor-0_5] - ℹ️ [B5R2-INV-04] Bắt đầu xử lý ON
+2025-11-21 11:10:51,869 - INFO - [ThreadPoolExecutor-0_1] - ✅ [http://10.10.10.169] Đăng nhập thành công
+2025-11-21 11:10:53,387 - INFO - [ThreadPoolExecutor-0_1] - ✅ [B5R1-INV-09] BỎ QUA: Đã ở trạng thái mong muốn (Disconnect Grid)
+2025-11-21 11:10:53,451 - INFO - [ThreadPoolExecutor-0_1] - ℹ️ Driver đã đóng
+2025-11-21 11:10:53,451 - INFO - [ThreadPoolExecutor-0_1] - ℹ️ [B5R2-INV-05] Bắt đầu xử lý ON
+2025-11-21 11:10:53,863 - INFO - [ThreadPoolExecutor-0_0] - ✅ [http://10.10.10.170] Đăng nhập thành công
+2025-11-21 11:10:53,892 - INFO - [ThreadPoolExecutor-0_0] - ✅ [B5R1-INV-10] BỎ QUA: Đã ở trạng thái mong muốn (Disconnect Grid)
+2025-11-21 11:10:53,894 - INFO - [ThreadPoolExecutor-0_5] - ℹ️ Driver khởi tạo thành công với WebDriverWait
+2025-11-21 11:10:53,895 - INFO - [ThreadPoolExecutor-0_5] - ℹ️ Truy cập URL: http://10.10.10.154 (lần 1)
+2025-11-21 11:10:53,962 - INFO - [ThreadPoolExecutor-0_0] - ℹ️ Driver đã đóng
+2025-11-21 11:10:53,962 - INFO - [ThreadPoolExecutor-0_0] - ℹ️ [B5R2-INV-06] Bắt đầu xử lý ON
+2025-11-21 11:10:54,249 - INFO - [ThreadPoolExecutor-0_1] - ℹ️ Driver khởi tạo thành công với WebDriverWait
+2025-11-21 11:10:54,249 - INFO - [ThreadPoolExecutor-0_1] - ℹ️ Truy cập URL: http://10.10.10.155 (lần 1)
+2025-11-21 11:10:54,926 - INFO - [ThreadPoolExecutor-0_0] - ℹ️ Driver khởi tạo thành công với WebDriverWait
+2025-11-21 11:10:54,926 - INFO - [ThreadPoolExecutor-0_0] - ℹ️ Truy cập URL: http://10.10.10.156 (lần 1)
+2025-11-21 11:10:55,426 - INFO - [ThreadPoolExecutor-0_2] - ℹ️ [http://10.10.10.151] Thực hiện đăng nhập...
+2025-11-21 11:10:55,530 - INFO - [ThreadPoolExecutor-0_4] - ℹ️ [http://10.10.10.152] Thực hiện đăng nhập...
+2025-11-21 11:10:56,524 - INFO - [ThreadPoolExecutor-0_3] - ℹ️ [http://10.10.10.153] Thực hiện đăng nhập...
+2025-11-21 11:10:57,730 - INFO - [ThreadPoolExecutor-0_2] - ✅ [http://10.10.10.151] Đăng nhập thành công
+2025-11-21 11:10:57,749 - INFO - [ThreadPoolExecutor-0_2] - ✅ [B5R2-INV-01] BỎ QUA: Đã ở trạng thái mong muốn (Disconnect Grid)
+2025-11-21 11:10:57,813 - INFO - [ThreadPoolExecutor-0_2] - ℹ️ Driver đã đóng
+2025-11-21 11:10:57,813 - INFO - [ThreadPoolExecutor-0_2] - ℹ️ [B5R2-INV-07] Bắt đầu xử lý ON
+2025-11-21 11:10:57,850 - INFO - [ThreadPoolExecutor-0_4] - ✅ [http://10.10.10.152] Đăng nhập thành công
+2025-11-21 11:10:57,869 - INFO - [ThreadPoolExecutor-0_4] - ✅ [B5R2-INV-02] BỎ QUA: Đã ở trạng thái mong muốn (Disconnect Grid)
+2025-11-21 11:10:57,936 - INFO - [ThreadPoolExecutor-0_4] - ℹ️ Driver đã đóng
+2025-11-21 11:10:57,936 - INFO - [ThreadPoolExecutor-0_4] - ℹ️ [B5R2-INV-08] Bắt đầu xử lý ON
+2025-11-21 11:10:58,593 - INFO - [ThreadPoolExecutor-0_2] - ℹ️ Driver khởi tạo thành công với WebDriverWait
+2025-11-21 11:10:58,593 - INFO - [ThreadPoolExecutor-0_2] - ℹ️ Truy cập URL: http://10.10.10.157 (lần 1)
+2025-11-21 11:10:58,728 - INFO - [ThreadPoolExecutor-0_4] - ℹ️ Driver khởi tạo thành công với WebDriverWait
+2025-11-21 11:10:58,728 - INFO - [ThreadPoolExecutor-0_4] - ℹ️ Truy cập URL: http://10.10.10.158 (lần 1)
+2025-11-21 11:10:59,584 - INFO - [ThreadPoolExecutor-0_5] - ℹ️ [http://10.10.10.154] Thực hiện đăng nhập...
+2025-11-21 11:10:59,802 - INFO - [ThreadPoolExecutor-0_1] - ℹ️ [http://10.10.10.155] Thực hiện đăng nhập...
+2025-11-21 11:10:59,908 - INFO - [ThreadPoolExecutor-0_3] - ✅ [http://10.10.10.153] Đăng nhập thành công
+2025-11-21 11:10:59,983 - INFO - [ThreadPoolExecutor-0_3] - ✅ [B5R2-INV-03] BỎ QUA: Đã ở trạng thái mong muốn (Disconnect Grid)
+2025-11-21 11:11:00,052 - INFO - [ThreadPoolExecutor-0_3] - ℹ️ Driver đã đóng
+2025-11-21 11:11:00,052 - INFO - [ThreadPoolExecutor-0_3] - ℹ️ [B5R2-INV-09] Bắt đầu xử lý ON
+2025-11-21 11:11:00,352 - INFO - [ThreadPoolExecutor-0_0] - ℹ️ [http://10.10.10.156] Thực hiện đăng nhập...
+2025-11-21 11:11:01,153 - INFO - [ThreadPoolExecutor-0_3] - ℹ️ Driver khởi tạo thành công với WebDriverWait
+2025-11-21 11:11:01,153 - INFO - [ThreadPoolExecutor-0_3] - ℹ️ Truy cập URL: http://10.10.10.159 (lần 1)
+2025-11-21 11:11:02,204 - INFO - [ThreadPoolExecutor-0_5] - ✅ [http://10.10.10.154] Đăng nhập thành công
+2025-11-21 11:11:02,223 - INFO - [ThreadPoolExecutor-0_5] - ✅ [B5R2-INV-04] BỎ QUA: Đã ở trạng thái mong muốn (Disconnect Grid)
+2025-11-21 11:11:02,288 - INFO - [ThreadPoolExecutor-0_5] - ℹ️ Driver đã đóng
+2025-11-21 11:11:02,289 - INFO - [ThreadPoolExecutor-0_5] - ℹ️ [B5R2-INV-10] Bắt đầu xử lý ON
+2025-11-21 11:11:02,870 - INFO - [ThreadPoolExecutor-0_1] - ✅ [http://10.10.10.155] Đăng nhập thành công
+2025-11-21 11:11:02,870 - INFO - [ThreadPoolExecutor-0_0] - ✅ [http://10.10.10.156] Đăng nhập thành công
+2025-11-21 11:11:02,896 - INFO - [ThreadPoolExecutor-0_0] - ✅ [B5R2-INV-06] BỎ QUA: Đã ở trạng thái mong muốn (Disconnect Grid)
+2025-11-21 11:11:02,899 - INFO - [ThreadPoolExecutor-0_1] - ✅ [B5R2-INV-05] BỎ QUA: Đã ở trạng thái mong muốn (Disconnect Grid)
+2025-11-21 11:11:02,973 - INFO - [ThreadPoolExecutor-0_0] - ℹ️ Driver đã đóng
+2025-11-21 11:11:02,973 - INFO - [ThreadPoolExecutor-0_0] - ℹ️ [B6R1-INV-01] Bắt đầu xử lý ON
+2025-11-21 11:11:02,975 - INFO - [ThreadPoolExecutor-0_1] - ℹ️ Driver đã đóng
+2025-11-21 11:11:02,975 - INFO - [ThreadPoolExecutor-0_1] - ℹ️ [B6R1-INV-02] Bắt đầu xử lý ON
+2025-11-21 11:11:03,051 - INFO - [ThreadPoolExecutor-0_5] - ℹ️ Driver khởi tạo thành công với WebDriverWait
+2025-11-21 11:11:03,051 - INFO - [ThreadPoolExecutor-0_5] - ℹ️ Truy cập URL: http://10.10.10.160 (lần 1)
+2025-11-21 11:11:03,961 - INFO - [ThreadPoolExecutor-0_1] - ℹ️ Driver khởi tạo thành công với WebDriverWait
+2025-11-21 11:11:03,961 - INFO - [ThreadPoolExecutor-0_1] - ℹ️ Truy cập URL: http://10.10.10.182 (lần 1)
+2025-11-21 11:11:03,985 - INFO - [ThreadPoolExecutor-0_0] - ℹ️ Driver khởi tạo thành công với WebDriverWait
+2025-11-21 11:11:03,985 - INFO - [ThreadPoolExecutor-0_0] - ℹ️ Truy cập URL: http://10.10.10.181 (lần 1)
+2025-11-21 11:11:04,383 - INFO - [ThreadPoolExecutor-0_2] - ℹ️ [http://10.10.10.157] Thực hiện đăng nhập...
+2025-11-21 11:11:04,402 - INFO - [ThreadPoolExecutor-0_4] - ℹ️ [http://10.10.10.158] Thực hiện đăng nhập...
+2025-11-21 11:11:06,593 - INFO - [ThreadPoolExecutor-0_2] - ✅ [http://10.10.10.157] Đăng nhập thành công
+2025-11-21 11:11:06,595 - INFO - [ThreadPoolExecutor-0_4] - ✅ [http://10.10.10.158] Đăng nhập thành công
+2025-11-21 11:11:06,602 - INFO - [ThreadPoolExecutor-0_3] - ℹ️ [http://10.10.10.159] Thực hiện đăng nhập...
+2025-11-21 11:11:06,612 - INFO - [ThreadPoolExecutor-0_2] - ✅ [B5R2-INV-07] BỎ QUA: Đã ở trạng thái mong muốn (Disconnect Grid)
+2025-11-21 11:11:06,615 - INFO - [ThreadPoolExecutor-0_4] - ✅ [B5R2-INV-08] BỎ QUA: Đã ở trạng thái mong muốn (Disconnect Grid)
+2025-11-21 11:11:06,678 - INFO - [ThreadPoolExecutor-0_2] - ℹ️ Driver đã đóng
+2025-11-21 11:11:06,678 - INFO - [ThreadPoolExecutor-0_2] - ℹ️ [B6R1-INV-03] Bắt đầu xử lý ON
+2025-11-21 11:11:06,681 - INFO - [ThreadPoolExecutor-0_4] - ℹ️ Driver đã đóng
+2025-11-21 11:11:06,681 - INFO - [ThreadPoolExecutor-0_4] - ℹ️ [B6R1-INV-04] Bắt đầu xử lý ON
+2025-11-21 11:11:07,450 - INFO - [ThreadPoolExecutor-0_4] - ℹ️ Driver khởi tạo thành công với WebDriverWait
+2025-11-21 11:11:07,450 - INFO - [ThreadPoolExecutor-0_4] - ℹ️ Truy cập URL: http://10.10.10.184 (lần 1)
+2025-11-21 11:11:07,458 - INFO - [ThreadPoolExecutor-0_2] - ℹ️ Driver khởi tạo thành công với WebDriverWait
+2025-11-21 11:11:07,458 - INFO - [ThreadPoolExecutor-0_2] - ℹ️ Truy cập URL: http://10.10.10.183 (lần 1)
+2025-11-21 11:11:08,360 - INFO - [ThreadPoolExecutor-0_5] - ℹ️ [http://10.10.10.160] Thực hiện đăng nhập...
+2025-11-21 11:11:09,208 - INFO - [ThreadPoolExecutor-0_0] - ℹ️ [http://10.10.10.181] Thực hiện đăng nhập...
+2025-11-21 11:11:09,228 - INFO - [ThreadPoolExecutor-0_1] - ℹ️ [http://10.10.10.182] Thực hiện đăng nhập...
+2025-11-21 11:11:09,323 - INFO - [ThreadPoolExecutor-0_3] - ✅ [http://10.10.10.159] Đăng nhập thành công
+2025-11-21 11:11:09,344 - INFO - [ThreadPoolExecutor-0_3] - ✅ [B5R2-INV-09] BỎ QUA: Đã ở trạng thái mong muốn (Disconnect Grid)
+2025-11-21 11:11:09,413 - INFO - [ThreadPoolExecutor-0_3] - ℹ️ Driver đã đóng
+2025-11-21 11:11:09,413 - INFO - [ThreadPoolExecutor-0_3] - ℹ️ [B6R1-INV-05] Bắt đầu xử lý ON
+2025-11-21 11:11:10,143 - INFO - [ThreadPoolExecutor-0_3] - ℹ️ Driver khởi tạo thành công với WebDriverWait
+2025-11-21 11:11:10,144 - INFO - [ThreadPoolExecutor-0_3] - ℹ️ Truy cập URL: http://10.10.10.185 (lần 1)
+2025-11-21 11:11:11,068 - INFO - [ThreadPoolExecutor-0_5] - ✅ [http://10.10.10.160] Đăng nhập thành công
+2025-11-21 11:11:11,088 - INFO - [ThreadPoolExecutor-0_5] - ✅ [B5R2-INV-10] BỎ QUA: Đã ở trạng thái mong muốn (Disconnect Grid)
+2025-11-21 11:11:11,151 - INFO - [ThreadPoolExecutor-0_5] - ℹ️ Driver đã đóng
+2025-11-21 11:11:11,152 - INFO - [ThreadPoolExecutor-0_5] - ℹ️ [B6R1-INV-06] Bắt đầu xử lý ON
+2025-11-21 11:11:11,906 - INFO - [ThreadPoolExecutor-0_5] - ℹ️ Driver khởi tạo thành công với WebDriverWait
+2025-11-21 11:11:11,906 - INFO - [ThreadPoolExecutor-0_5] - ℹ️ Truy cập URL: http://10.10.10.186 (lần 1)
+2025-11-21 11:11:12,028 - INFO - [ThreadPoolExecutor-0_1] - ✅ [http://10.10.10.182] Đăng nhập thành công
+2025-11-21 11:11:12,051 - INFO - [ThreadPoolExecutor-0_1] - ✅ [B6R1-INV-02] BỎ QUA: Đã ở trạng thái mong muốn (Disconnect Grid)
+2025-11-21 11:11:12,052 - INFO - [ThreadPoolExecutor-0_0] - ✅ [http://10.10.10.181] Đăng nhập thành công
+2025-11-21 11:11:12,082 - INFO - [ThreadPoolExecutor-0_0] - ✅ [B6R1-INV-01] BỎ QUA: Đã ở trạng thái mong muốn (Disconnect Grid)
+2025-11-21 11:11:12,128 - INFO - [ThreadPoolExecutor-0_1] - ℹ️ Driver đã đóng
+2025-11-21 11:11:12,128 - INFO - [ThreadPoolExecutor-0_1] - ℹ️ [B6R1-INV-07] Bắt đầu xử lý ON
+2025-11-21 11:11:12,150 - INFO - [ThreadPoolExecutor-0_0] - ℹ️ Driver đã đóng
+2025-11-21 11:11:12,151 - INFO - [ThreadPoolExecutor-0_0] - ℹ️ [B6R1-INV-08] Bắt đầu xử lý ON
+2025-11-21 11:11:12,606 - INFO - [ThreadPoolExecutor-0_2] - ℹ️ [http://10.10.10.183] Thực hiện đăng nhập...
+2025-11-21 11:11:12,862 - INFO - [ThreadPoolExecutor-0_4] - ℹ️ [http://10.10.10.184] Thực hiện đăng nhập...
+2025-11-21 11:11:12,980 - INFO - [ThreadPoolExecutor-0_1] - ℹ️ Driver khởi tạo thành công với WebDriverWait
+2025-11-21 11:11:12,980 - INFO - [ThreadPoolExecutor-0_1] - ℹ️ Truy cập URL: http://10.10.10.187 (lần 1)
+2025-11-21 11:11:13,035 - INFO - [ThreadPoolExecutor-0_0] - ℹ️ Driver khởi tạo thành công với WebDriverWait
+2025-11-21 11:11:13,036 - INFO - [ThreadPoolExecutor-0_0] - ℹ️ Truy cập URL: http://10.10.10.188 (lần 1)
+2025-11-21 11:11:14,977 - INFO - [ThreadPoolExecutor-0_2] - ✅ [http://10.10.10.183] Đăng nhập thành công
+2025-11-21 11:11:15,004 - INFO - [ThreadPoolExecutor-0_2] - ✅ [B6R1-INV-03] BỎ QUA: Đã ở trạng thái mong muốn (Disconnect Grid)
+2025-11-21 11:11:15,078 - INFO - [ThreadPoolExecutor-0_2] - ℹ️ Driver đã đóng
+2025-11-21 11:11:15,079 - INFO - [ThreadPoolExecutor-0_2] - ℹ️ [B6R1-INV-09] Bắt đầu xử lý ON
+2025-11-21 11:11:15,532 - INFO - [ThreadPoolExecutor-0_3] - ℹ️ [http://10.10.10.185] Thực hiện đăng nhập...
+2025-11-21 11:11:15,656 - INFO - [ThreadPoolExecutor-0_4] - ✅ [http://10.10.10.184] Đăng nhập thành công
+2025-11-21 11:11:15,682 - INFO - [ThreadPoolExecutor-0_4] - ✅ [B6R1-INV-04] BỎ QUA: Đã ở trạng thái mong muốn (Disconnect Grid)
+2025-11-21 11:11:15,751 - INFO - [ThreadPoolExecutor-0_4] - ℹ️ Driver đã đóng
+2025-11-21 11:11:15,751 - INFO - [ThreadPoolExecutor-0_4] - ℹ️ [B6R1-INV-10] Bắt đầu xử lý ON
+2025-11-21 11:11:15,885 - INFO - [ThreadPoolExecutor-0_2] - ℹ️ Driver khởi tạo thành công với WebDriverWait
+2025-11-21 11:11:15,885 - INFO - [ThreadPoolExecutor-0_2] - ℹ️ Truy cập URL: http://10.10.10.189 (lần 1)
+2025-11-21 11:11:16,467 - INFO - [ThreadPoolExecutor-0_4] - ℹ️ Driver khởi tạo thành công với WebDriverWait
+2025-11-21 11:11:16,467 - INFO - [ThreadPoolExecutor-0_4] - ℹ️ Truy cập URL: http://10.10.10.190 (lần 1)
+2025-11-21 11:11:17,161 - INFO - [ThreadPoolExecutor-0_3] - ✅ [http://10.10.10.185] Đăng nhập thành công
+2025-11-21 11:11:17,183 - INFO - [ThreadPoolExecutor-0_3] - ✅ [B6R1-INV-05] BỎ QUA: Đã ở trạng thái mong muốn (Disconnect Grid)
+2025-11-21 11:11:17,246 - INFO - [ThreadPoolExecutor-0_3] - ℹ️ Driver đã đóng
+2025-11-21 11:11:17,247 - INFO - [ThreadPoolExecutor-0_3] - ℹ️ [B6R2-INV-01] Bắt đầu xử lý ON
+2025-11-21 11:11:17,402 - INFO - [ThreadPoolExecutor-0_5] - ℹ️ [http://10.10.10.186] Thực hiện đăng nhập...
+2025-11-21 11:11:18,043 - INFO - [ThreadPoolExecutor-0_3] - ℹ️ Driver khởi tạo thành công với WebDriverWait
+2025-11-21 11:11:18,043 - INFO - [ThreadPoolExecutor-0_3] - ℹ️ Truy cập URL: http://10.10.10.171 (lần 1)
+2025-11-21 11:11:18,395 - INFO - [ThreadPoolExecutor-0_1] - ℹ️ [http://10.10.10.187] Thực hiện đăng nhập...
+2025-11-21 11:11:18,560 - INFO - [ThreadPoolExecutor-0_0] - ℹ️ [http://10.10.10.188] Thực hiện đăng nhập...
+2025-11-21 11:11:19,708 - INFO - [ThreadPoolExecutor-0_5] - ✅ [http://10.10.10.186] Đăng nhập thành công
+2025-11-21 11:11:19,728 - INFO - [ThreadPoolExecutor-0_5] - ✅ [B6R1-INV-06] BỎ QUA: Đã ở trạng thái mong muốn (Disconnect Grid)
+2025-11-21 11:11:19,792 - INFO - [ThreadPoolExecutor-0_5] - ℹ️ Driver đã đóng
+2025-11-21 11:11:19,793 - INFO - [ThreadPoolExecutor-0_5] - ℹ️ [B6R2-INV-02] Bắt đầu xử lý ON
+2025-11-21 11:11:20,505 - INFO - [ThreadPoolExecutor-0_5] - ℹ️ Driver khởi tạo thành công với WebDriverWait
+2025-11-21 11:11:20,506 - INFO - [ThreadPoolExecutor-0_5] - ℹ️ Truy cập URL: http://10.10.10.172 (lần 1)
+2025-11-21 11:11:20,767 - INFO - [ThreadPoolExecutor-0_0] - ✅ [http://10.10.10.188] Đăng nhập thành công
+2025-11-21 11:11:20,787 - INFO - [ThreadPoolExecutor-0_0] - ✅ [B6R1-INV-08] BỎ QUA: Đã ở trạng thái mong muốn (Disconnect Grid)
+2025-11-21 11:11:20,855 - INFO - [ThreadPoolExecutor-0_0] - ℹ️ Driver đã đóng
+2025-11-21 11:11:20,855 - INFO - [ThreadPoolExecutor-0_0] - ℹ️ [B6R2-INV-03] Bắt đầu xử lý ON
+2025-11-21 11:11:21,132 - INFO - [ThreadPoolExecutor-0_1] - ✅ [http://10.10.10.187] Đăng nhập thành công
+2025-11-21 11:11:21,162 - INFO - [ThreadPoolExecutor-0_1] - ✅ [B6R1-INV-07] BỎ QUA: Đã ở trạng thái mong muốn (Disconnect Grid)
+2025-11-21 11:11:21,227 - INFO - [ThreadPoolExecutor-0_1] - ℹ️ Driver đã đóng
+2025-11-21 11:11:21,227 - INFO - [ThreadPoolExecutor-0_1] - ℹ️ [B6R2-INV-04] Bắt đầu xử lý ON
+2025-11-21 11:11:21,415 - INFO - [ThreadPoolExecutor-0_2] - ℹ️ [http://10.10.10.189] Thực hiện đăng nhập...
+2025-11-21 11:11:21,632 - INFO - [ThreadPoolExecutor-0_0] - ℹ️ Driver khởi tạo thành công với WebDriverWait
+2025-11-21 11:11:21,632 - INFO - [ThreadPoolExecutor-0_0] - ℹ️ Truy cập URL: http://10.10.10.173 (lần 1)
+2025-11-21 11:11:22,118 - INFO - [ThreadPoolExecutor-0_4] - ℹ️ [http://10.10.10.190] Thực hiện đăng nhập...
+2025-11-21 11:11:22,216 - INFO - [ThreadPoolExecutor-0_1] - ℹ️ Driver khởi tạo thành công với WebDriverWait
+2025-11-21 11:11:22,216 - INFO - [ThreadPoolExecutor-0_1] - ℹ️ Truy cập URL: http://10.10.10.174 (lần 1)
+2025-11-21 11:11:23,433 - INFO - [ThreadPoolExecutor-0_3] - ℹ️ [http://10.10.10.171] Thực hiện đăng nhập...
+2025-11-21 11:11:24,165 - INFO - [ThreadPoolExecutor-0_2] - ✅ [http://10.10.10.189] Đăng nhập thành công
+2025-11-21 11:11:24,202 - INFO - [ThreadPoolExecutor-0_2] - ✅ [B6R1-INV-09] BỎ QUA: Đã ở trạng thái mong muốn (Disconnect Grid)
+2025-11-21 11:11:24,266 - INFO - [ThreadPoolExecutor-0_2] - ℹ️ Driver đã đóng
+2025-11-21 11:11:24,266 - INFO - [ThreadPoolExecutor-0_2] - ℹ️ [B6R2-INV-05] Bắt đầu xử lý ON
+2025-11-21 11:11:24,440 - INFO - [ThreadPoolExecutor-0_4] - ✅ [http://10.10.10.190] Đăng nhập thành công
+2025-11-21 11:11:24,461 - INFO - [ThreadPoolExecutor-0_4] - ✅ [B6R1-INV-10] BỎ QUA: Đã ở trạng thái mong muốn (Disconnect Grid)
+2025-11-21 11:11:24,530 - INFO - [ThreadPoolExecutor-0_4] - ℹ️ Driver đã đóng
+2025-11-21 11:11:24,530 - INFO - [ThreadPoolExecutor-0_4] - ℹ️ [B6R2-INV-06] Bắt đầu xử lý ON
+2025-11-21 11:11:25,014 - INFO - [ThreadPoolExecutor-0_2] - ℹ️ Driver khởi tạo thành công với WebDriverWait
+2025-11-21 11:11:25,015 - INFO - [ThreadPoolExecutor-0_2] - ℹ️ Truy cập URL: http://10.10.10.175 (lần 1)
+2025-11-21 11:11:25,319 - INFO - [ThreadPoolExecutor-0_4] - ℹ️ Driver khởi tạo thành công với WebDriverWait
+2025-11-21 11:11:25,320 - INFO - [ThreadPoolExecutor-0_4] - ℹ️ Truy cập URL: http://10.10.10.176 (lần 1)
+2025-11-21 11:11:27,220 - INFO - [ThreadPoolExecutor-0_5] - ℹ️ [http://10.10.10.172] Thực hiện đăng nhập...
+2025-11-21 11:11:28,069 - INFO - [ThreadPoolExecutor-0_3] - ✅ [http://10.10.10.171] Đăng nhập thành công
+2025-11-21 11:11:28,093 - INFO - [ThreadPoolExecutor-0_3] - ✅ [B6R2-INV-01] BỎ QUA: Đã ở trạng thái mong muốn (Disconnect Grid)
+2025-11-21 11:11:28,161 - INFO - [ThreadPoolExecutor-0_3] - ℹ️ Driver đã đóng
+2025-11-21 11:11:28,161 - INFO - [ThreadPoolExecutor-0_3] - ℹ️ [B6R2-INV-07] Bắt đầu xử lý ON
+2025-11-21 11:11:28,638 - INFO - [ThreadPoolExecutor-0_0] - ℹ️ [http://10.10.10.173] Thực hiện đăng nhập...
+2025-11-21 11:11:28,965 - INFO - [ThreadPoolExecutor-0_3] - ℹ️ Driver khởi tạo thành công với WebDriverWait
+2025-11-21 11:11:28,966 - INFO - [ThreadPoolExecutor-0_3] - ℹ️ Truy cập URL: http://10.10.10.177 (lần 1)
+2025-11-21 11:11:28,980 - INFO - [ThreadPoolExecutor-0_1] - ℹ️ [http://10.10.10.174] Thực hiện đăng nhập...
+2025-11-21 11:11:29,424 - INFO - [ThreadPoolExecutor-0_5] - ✅ [http://10.10.10.172] Đăng nhập thành công
+2025-11-21 11:11:29,447 - INFO - [ThreadPoolExecutor-0_5] - ✅ [B6R2-INV-02] BỎ QUA: Đã ở trạng thái mong muốn (Disconnect Grid)
+2025-11-21 11:11:29,511 - INFO - [ThreadPoolExecutor-0_5] - ℹ️ Driver đã đóng
+2025-11-21 11:11:29,511 - INFO - [ThreadPoolExecutor-0_5] - ℹ️ [B6R2-INV-08] Bắt đầu xử lý ON
+2025-11-21 11:11:30,233 - INFO - [ThreadPoolExecutor-0_5] - ℹ️ Driver khởi tạo thành công với WebDriverWait
+2025-11-21 11:11:30,233 - INFO - [ThreadPoolExecutor-0_5] - ℹ️ Truy cập URL: http://10.10.10.178 (lần 1)
+2025-11-21 11:11:31,742 - INFO - [ThreadPoolExecutor-0_1] - ✅ [http://10.10.10.174] Đăng nhập thành công
+2025-11-21 11:11:31,767 - INFO - [ThreadPoolExecutor-0_1] - ✅ [B6R2-INV-04] BỎ QUA: Đã ở trạng thái mong muốn (Disconnect Grid)
+2025-11-21 11:11:31,838 - INFO - [ThreadPoolExecutor-0_1] - ℹ️ Driver đã đóng
+2025-11-21 11:11:31,839 - INFO - [ThreadPoolExecutor-0_1] - ℹ️ [B6R2-INV-09] Bắt đầu xử lý ON
+2025-11-21 11:11:31,848 - INFO - [ThreadPoolExecutor-0_2] - ℹ️ [http://10.10.10.175] Thực hiện đăng nhập...
+2025-11-21 11:11:32,043 - INFO - [ThreadPoolExecutor-0_0] - ✅ [http://10.10.10.173] Đăng nhập thành công
+2025-11-21 11:11:32,071 - INFO - [ThreadPoolExecutor-0_0] - ✅ [B6R2-INV-03] BỎ QUA: Đã ở trạng thái mong muốn (Disconnect Grid)
+2025-11-21 11:11:32,138 - INFO - [ThreadPoolExecutor-0_0] - ℹ️ Driver đã đóng
+2025-11-21 11:11:32,138 - INFO - [ThreadPoolExecutor-0_0] - ℹ️ [B6R2-INV-10] Bắt đầu xử lý ON
+2025-11-21 11:11:32,343 - INFO - [ThreadPoolExecutor-0_4] - ℹ️ [http://10.10.10.176] Thực hiện đăng nhập...
+2025-11-21 11:11:32,875 - INFO - [ThreadPoolExecutor-0_1] - ℹ️ Driver khởi tạo thành công với WebDriverWait
+2025-11-21 11:11:32,875 - INFO - [ThreadPoolExecutor-0_1] - ℹ️ Truy cập URL: http://10.10.10.179 (lần 1)
+2025-11-21 11:11:33,173 - INFO - [ThreadPoolExecutor-0_0] - ℹ️ Driver khởi tạo thành công với WebDriverWait
+2025-11-21 11:11:33,173 - INFO - [ThreadPoolExecutor-0_0] - ℹ️ Truy cập URL: http://10.10.10.180 (lần 1)
+2025-11-21 11:11:34,185 - INFO - [ThreadPoolExecutor-0_2] - ✅ [http://10.10.10.175] Đăng nhập thành công
+2025-11-21 11:11:34,205 - INFO - [ThreadPoolExecutor-0_2] - ✅ [B6R2-INV-05] BỎ QUA: Đã ở trạng thái mong muốn (Disconnect Grid)
+2025-11-21 11:11:34,269 - INFO - [ThreadPoolExecutor-0_2] - ℹ️ Driver đã đóng
+2025-11-21 11:11:34,270 - INFO - [ThreadPoolExecutor-0_2] - ℹ️ [B7-INV-01] Bắt đầu xử lý ON
+2025-11-21 11:11:34,390 - INFO - [ThreadPoolExecutor-0_3] - ℹ️ [http://10.10.10.177] Thực hiện đăng nhập...
+2025-11-21 11:11:35,109 - INFO - [ThreadPoolExecutor-0_2] - ℹ️ Driver khởi tạo thành công với WebDriverWait
+2025-11-21 11:11:35,109 - INFO - [ThreadPoolExecutor-0_2] - ℹ️ Truy cập URL: http://10.10.10.191 (lần 1)
+2025-11-21 11:11:35,325 - INFO - [ThreadPoolExecutor-0_4] - ✅ [http://10.10.10.176] Đăng nhập thành công
+2025-11-21 11:11:35,351 - INFO - [ThreadPoolExecutor-0_4] - ✅ [B6R2-INV-06] BỎ QUA: Đã ở trạng thái mong muốn (Disconnect Grid)
+2025-11-21 11:11:35,414 - INFO - [ThreadPoolExecutor-0_4] - ℹ️ Driver đã đóng
+2025-11-21 11:11:35,414 - INFO - [ThreadPoolExecutor-0_4] - ℹ️ [B7-INV-02] Bắt đầu xử lý ON
+2025-11-21 11:11:35,828 - INFO - [ThreadPoolExecutor-0_5] - ℹ️ [http://10.10.10.178] Thực hiện đăng nhập...
+2025-11-21 11:11:36,119 - INFO - [ThreadPoolExecutor-0_4] - ℹ️ Driver khởi tạo thành công với WebDriverWait
+2025-11-21 11:11:36,120 - INFO - [ThreadPoolExecutor-0_4] - ℹ️ Truy cập URL: http://10.10.10.192 (lần 1)
+2025-11-21 11:11:37,285 - INFO - [ThreadPoolExecutor-0_3] - ✅ [http://10.10.10.177] Đăng nhập thành công
+2025-11-21 11:11:37,302 - INFO - [ThreadPoolExecutor-0_3] - ✅ [B6R2-INV-07] BỎ QUA: Đã ở trạng thái mong muốn (Disconnect Grid)
+2025-11-21 11:11:37,368 - INFO - [ThreadPoolExecutor-0_3] - ℹ️ Driver đã đóng
+2025-11-21 11:11:37,368 - INFO - [ThreadPoolExecutor-0_3] - ℹ️ [B7-INV-03] Bắt đầu xử lý ON
+2025-11-21 11:11:38,121 - INFO - [ThreadPoolExecutor-0_3] - ℹ️ Driver khởi tạo thành công với WebDriverWait
+2025-11-21 11:11:38,121 - INFO - [ThreadPoolExecutor-0_3] - ℹ️ Truy cập URL: http://10.10.10.193 (lần 1)
+2025-11-21 11:11:38,376 - INFO - [ThreadPoolExecutor-0_1] - ℹ️ [http://10.10.10.179] Thực hiện đăng nhập...
+2025-11-21 11:11:38,515 - INFO - [ThreadPoolExecutor-0_5] - ✅ [http://10.10.10.178] Đăng nhập thành công
+2025-11-21 11:11:38,531 - INFO - [ThreadPoolExecutor-0_5] - ✅ [B6R2-INV-08] BỎ QUA: Đã ở trạng thái mong muốn (Disconnect Grid)
+2025-11-21 11:11:38,596 - INFO - [ThreadPoolExecutor-0_5] - ℹ️ Driver đã đóng
+2025-11-21 11:11:38,596 - INFO - [ThreadPoolExecutor-0_5] - ℹ️ [B7-INV-04] Bắt đầu xử lý ON
+2025-11-21 11:11:38,942 - INFO - [ThreadPoolExecutor-0_0] - ℹ️ [http://10.10.10.180] Thực hiện đăng nhập...
+2025-11-21 11:11:39,321 - INFO - [ThreadPoolExecutor-0_5] - ℹ️ Driver khởi tạo thành công với WebDriverWait
+2025-11-21 11:11:39,321 - INFO - [ThreadPoolExecutor-0_5] - ℹ️ Truy cập URL: http://10.10.10.194 (lần 1)
+2025-11-21 11:11:40,251 - INFO - [ThreadPoolExecutor-0_2] - ℹ️ [http://10.10.10.191] Thực hiện đăng nhập...
+2025-11-21 11:11:40,432 - INFO - [ThreadPoolExecutor-0_1] - ✅ [http://10.10.10.179] Đăng nhập thành công
+2025-11-21 11:11:40,453 - INFO - [ThreadPoolExecutor-0_1] - ✅ [B6R2-INV-09] BỎ QUA: Đã ở trạng thái mong muốn (Disconnect Grid)
+2025-11-21 11:11:40,518 - INFO - [ThreadPoolExecutor-0_1] - ℹ️ Driver đã đóng
+2025-11-21 11:11:40,518 - INFO - [ThreadPoolExecutor-0_1] - ℹ️ [B7-INV-05] Bắt đầu xử lý ON
+2025-11-21 11:11:40,593 - INFO - [ThreadPoolExecutor-0_0] - ✅ [http://10.10.10.180] Đăng nhập thành công
+2025-11-21 11:11:40,618 - INFO - [ThreadPoolExecutor-0_0] - ✅ [B6R2-INV-10] BỎ QUA: Đã ở trạng thái mong muốn (Disconnect Grid)
+2025-11-21 11:11:40,707 - INFO - [ThreadPoolExecutor-0_0] - ℹ️ Driver đã đóng
+2025-11-21 11:11:40,707 - INFO - [ThreadPoolExecutor-0_0] - ℹ️ [B7-INV-06] Bắt đầu xử lý ON
+2025-11-21 11:11:41,324 - INFO - [ThreadPoolExecutor-0_4] - ℹ️ [http://10.10.10.192] Thực hiện đăng nhập...
+2025-11-21 11:11:41,529 - INFO - [ThreadPoolExecutor-0_0] - ℹ️ Driver khởi tạo thành công với WebDriverWait
+2025-11-21 11:11:41,530 - INFO - [ThreadPoolExecutor-0_0] - ℹ️ Truy cập URL: http://10.10.10.196 (lần 1)
+2025-11-21 11:11:41,533 - INFO - [ThreadPoolExecutor-0_1] - ℹ️ Driver khởi tạo thành công với WebDriverWait
+2025-11-21 11:11:41,534 - INFO - [ThreadPoolExecutor-0_1] - ℹ️ Truy cập URL: http://10.10.10.195 (lần 1)
+2025-11-21 11:11:42,436 - INFO - [ThreadPoolExecutor-0_4] - ✅ [http://10.10.10.192] Đăng nhập thành công
+2025-11-21 11:11:42,457 - INFO - [ThreadPoolExecutor-0_4] - ✅ [B7-INV-02] BỎ QUA: Đã ở trạng thái mong muốn (Disconnect Grid)
+2025-11-21 11:11:42,521 - INFO - [ThreadPoolExecutor-0_4] - ℹ️ Driver đã đóng
+2025-11-21 11:11:42,521 - INFO - [ThreadPoolExecutor-0_4] - ℹ️ [B7-INV-07] Bắt đầu xử lý ON
+2025-11-21 11:11:42,972 - INFO - [ThreadPoolExecutor-0_2] - ✅ [http://10.10.10.191] Đăng nhập thành công
+2025-11-21 11:11:42,995 - INFO - [ThreadPoolExecutor-0_2] - ✅ [B7-INV-01] BỎ QUA: Đã ở trạng thái mong muốn (Disconnect Grid)
+2025-11-21 11:11:43,070 - INFO - [ThreadPoolExecutor-0_2] - ℹ️ Driver đã đóng
+2025-11-21 11:11:43,070 - INFO - [ThreadPoolExecutor-0_2] - ℹ️ [B7-INV-08] Bắt đầu xử lý ON
+2025-11-21 11:11:43,311 - INFO - [ThreadPoolExecutor-0_4] - ℹ️ Driver khởi tạo thành công với WebDriverWait
+2025-11-21 11:11:43,311 - INFO - [ThreadPoolExecutor-0_4] - ℹ️ Truy cập URL: http://10.10.10.197 (lần 1)
+2025-11-21 11:11:43,342 - INFO - [ThreadPoolExecutor-0_3] - ℹ️ [http://10.10.10.193] Thực hiện đăng nhập...
+2025-11-21 11:11:44,057 - INFO - [ThreadPoolExecutor-0_2] - ℹ️ Driver khởi tạo thành công với WebDriverWait
+2025-11-21 11:11:44,057 - INFO - [ThreadPoolExecutor-0_2] - ℹ️ Truy cập URL: http://10.10.10.198 (lần 1)
+2025-11-21 11:11:44,509 - INFO - [ThreadPoolExecutor-0_5] - ℹ️ [http://10.10.10.194] Thực hiện đăng nhập...
+2025-11-21 11:11:46,168 - INFO - [ThreadPoolExecutor-0_3] - ✅ [http://10.10.10.193] Đăng nhập thành công
+2025-11-21 11:11:46,189 - INFO - [ThreadPoolExecutor-0_3] - ✅ [B7-INV-03] BỎ QUA: Đã ở trạng thái mong muốn (Disconnect Grid)
+2025-11-21 11:11:46,253 - INFO - [ThreadPoolExecutor-0_3] - ℹ️ Driver đã đóng
+2025-11-21 11:11:46,253 - INFO - [ThreadPoolExecutor-0_3] - ℹ️ [B7-INV-09] Bắt đầu xử lý ON
+2025-11-21 11:11:46,890 - INFO - [ThreadPoolExecutor-0_1] - ℹ️ [http://10.10.10.195] Thực hiện đăng nhập...
+2025-11-21 11:11:47,006 - INFO - [ThreadPoolExecutor-0_3] - ℹ️ Driver khởi tạo thành công với WebDriverWait
+2025-11-21 11:11:47,006 - INFO - [ThreadPoolExecutor-0_3] - ℹ️ Truy cập URL: http://10.10.10.199 (lần 1)
+2025-11-21 11:11:47,037 - INFO - [ThreadPoolExecutor-0_0] - ℹ️ [http://10.10.10.196] Thực hiện đăng nhập...
+2025-11-21 11:11:47,145 - INFO - [ThreadPoolExecutor-0_5] - ✅ [http://10.10.10.194] Đăng nhập thành công
+2025-11-21 11:11:47,168 - INFO - [ThreadPoolExecutor-0_5] - ✅ [B7-INV-04] BỎ QUA: Đã ở trạng thái mong muốn (Disconnect Grid)
+2025-11-21 11:11:47,234 - INFO - [ThreadPoolExecutor-0_5] - ℹ️ Driver đã đóng
+2025-11-21 11:11:47,234 - INFO - [ThreadPoolExecutor-0_5] - ℹ️ [B7-INV-10] Bắt đầu xử lý ON
+2025-11-21 11:11:47,971 - INFO - [ThreadPoolExecutor-0_5] - ℹ️ Driver khởi tạo thành công với WebDriverWait
+2025-11-21 11:11:47,971 - INFO - [ThreadPoolExecutor-0_5] - ℹ️ Truy cập URL: http://10.10.10.200 (lần 1)
+2025-11-21 11:11:48,570 - INFO - [ThreadPoolExecutor-0_4] - ℹ️ [http://10.10.10.197] Thực hiện đăng nhập...
+2025-11-21 11:11:49,336 - INFO - [ThreadPoolExecutor-0_2] - ℹ️ [http://10.10.10.198] Thực hiện đăng nhập...
+2025-11-21 11:11:49,879 - INFO - [ThreadPoolExecutor-0_0] - ✅ [http://10.10.10.196] Đăng nhập thành công
+2025-11-21 11:11:49,902 - INFO - [ThreadPoolExecutor-0_0] - ✅ [B7-INV-06] BỎ QUA: Đã ở trạng thái mong muốn (Disconnect Grid)
+2025-11-21 11:11:49,968 - INFO - [ThreadPoolExecutor-0_0] - ℹ️ Driver đã đóng
+2025-11-21 11:11:49,968 - INFO - [ThreadPoolExecutor-0_0] - ℹ️ [B8-INV-01] Bắt đầu xử lý ON
+2025-11-21 11:11:50,270 - INFO - [ThreadPoolExecutor-0_1] - ✅ [http://10.10.10.195] Đăng nhập thành công
+2025-11-21 11:11:50,289 - INFO - [ThreadPoolExecutor-0_1] - ✅ [B7-INV-05] BỎ QUA: Đã ở trạng thái mong muốn (Disconnect Grid)
+2025-11-21 11:11:50,361 - INFO - [ThreadPoolExecutor-0_1] - ℹ️ Driver đã đóng
+2025-11-21 11:11:50,362 - INFO - [ThreadPoolExecutor-0_1] - ℹ️ [B8-INV-02] Bắt đầu xử lý ON
+2025-11-21 11:11:50,708 - INFO - [ThreadPoolExecutor-0_0] - ℹ️ Driver khởi tạo thành công với WebDriverWait
+2025-11-21 11:11:50,709 - INFO - [ThreadPoolExecutor-0_0] - ℹ️ Truy cập URL: http://10.10.10.201 (lần 1)
+2025-11-21 11:11:51,131 - INFO - [ThreadPoolExecutor-0_1] - ℹ️ Driver khởi tạo thành công với WebDriverWait
+2025-11-21 11:11:51,132 - INFO - [ThreadPoolExecutor-0_1] - ℹ️ Truy cập URL: http://10.10.10.202 (lần 1)
+2025-11-21 11:11:51,318 - INFO - [ThreadPoolExecutor-0_4] - ✅ [http://10.10.10.197] Đăng nhập thành công
+2025-11-21 11:11:51,341 - INFO - [ThreadPoolExecutor-0_4] - ✅ [B7-INV-07] BỎ QUA: Đã ở trạng thái mong muốn (Disconnect Grid)
+2025-11-21 11:11:51,408 - INFO - [ThreadPoolExecutor-0_4] - ℹ️ Driver đã đóng
+2025-11-21 11:11:51,408 - INFO - [ThreadPoolExecutor-0_4] - ℹ️ [B8-INV-03] Bắt đầu xử lý ON
+2025-11-21 11:11:52,081 - INFO - [ThreadPoolExecutor-0_2] - ✅ [http://10.10.10.198] Đăng nhập thành công
+2025-11-21 11:11:52,105 - INFO - [ThreadPoolExecutor-0_2] - ✅ [B7-INV-08] BỎ QUA: Đã ở trạng thái mong muốn (Disconnect Grid)
+2025-11-21 11:11:52,154 - INFO - [ThreadPoolExecutor-0_4] - ℹ️ Driver khởi tạo thành công với WebDriverWait
+2025-11-21 11:11:52,155 - INFO - [ThreadPoolExecutor-0_4] - ℹ️ Truy cập URL: http://10.10.10.203 (lần 1)
+2025-11-21 11:11:52,178 - INFO - [ThreadPoolExecutor-0_2] - ℹ️ Driver đã đóng
+2025-11-21 11:11:52,178 - INFO - [ThreadPoolExecutor-0_2] - ℹ️ [B8-INV-04] Bắt đầu xử lý ON
+2025-11-21 11:11:52,404 - INFO - [ThreadPoolExecutor-0_3] - ℹ️ [http://10.10.10.199] Thực hiện đăng nhập...
+2025-11-21 11:11:53,029 - INFO - [ThreadPoolExecutor-0_2] - ℹ️ Driver khởi tạo thành công với WebDriverWait
+2025-11-21 11:11:53,029 - INFO - [ThreadPoolExecutor-0_2] - ℹ️ Truy cập URL: http://10.10.10.204 (lần 1)
+2025-11-21 11:11:53,330 - INFO - [ThreadPoolExecutor-0_5] - ℹ️ [http://10.10.10.200] Thực hiện đăng nhập...
+2025-11-21 11:11:54,793 - INFO - [ThreadPoolExecutor-0_3] - ✅ [http://10.10.10.199] Đăng nhập thành công
+2025-11-21 11:11:54,813 - INFO - [ThreadPoolExecutor-0_3] - ✅ [B7-INV-09] BỎ QUA: Đã ở trạng thái mong muốn (Disconnect Grid)
+2025-11-21 11:11:54,884 - INFO - [ThreadPoolExecutor-0_3] - ℹ️ Driver đã đóng
+2025-11-21 11:11:54,885 - INFO - [ThreadPoolExecutor-0_3] - ℹ️ [B8-INV-05] Bắt đầu xử lý ON
+2025-11-21 11:11:55,635 - INFO - [ThreadPoolExecutor-0_3] - ℹ️ Driver khởi tạo thành công với WebDriverWait
+2025-11-21 11:11:55,636 - INFO - [ThreadPoolExecutor-0_3] - ℹ️ Truy cập URL: http://10.10.10.205 (lần 1)
+2025-11-21 11:11:56,023 - INFO - [ThreadPoolExecutor-0_5] - ✅ [http://10.10.10.200] Đăng nhập thành công
+2025-11-21 11:11:56,045 - INFO - [ThreadPoolExecutor-0_5] - ✅ [B7-INV-10] BỎ QUA: Đã ở trạng thái mong muốn (Disconnect Grid)
+2025-11-21 11:11:56,111 - INFO - [ThreadPoolExecutor-0_5] - ℹ️ Driver đã đóng
+2025-11-21 11:11:56,111 - INFO - [ThreadPoolExecutor-0_5] - ℹ️ [B11-INV-01] Bắt đầu xử lý ON
+2025-11-21 11:11:56,135 - INFO - [ThreadPoolExecutor-0_0] - ℹ️ [http://10.10.10.201] Thực hiện đăng nhập...
+2025-11-21 11:11:56,573 - INFO - [ThreadPoolExecutor-0_1] - ℹ️ [http://10.10.10.202] Thực hiện đăng nhập...
+2025-11-21 11:11:56,889 - INFO - [ThreadPoolExecutor-0_5] - ℹ️ Driver khởi tạo thành công với WebDriverWait
+2025-11-21 11:11:56,889 - INFO - [ThreadPoolExecutor-0_5] - ℹ️ Truy cập URL: http://10.10.10.211 (lần 1)
+2025-11-21 11:11:57,656 - INFO - [ThreadPoolExecutor-0_4] - ℹ️ [http://10.10.10.203] Thực hiện đăng nhập...
+2025-11-21 11:11:58,375 - INFO - [ThreadPoolExecutor-0_0] - ✅ [http://10.10.10.201] Đăng nhập thành công
+2025-11-21 11:11:58,393 - INFO - [ThreadPoolExecutor-0_0] - ✅ [B8-INV-01] BỎ QUA: Đã ở trạng thái mong muốn (Disconnect Grid)
+2025-11-21 11:11:58,458 - INFO - [ThreadPoolExecutor-0_0] - ℹ️ Driver đã đóng
+2025-11-21 11:11:58,459 - INFO - [ThreadPoolExecutor-0_0] - ℹ️ [B11-INV-02] Bắt đầu xử lý ON
+2025-11-21 11:11:58,598 - INFO - [ThreadPoolExecutor-0_2] - ℹ️ [http://10.10.10.204] Thực hiện đăng nhập...
+2025-11-21 11:11:58,791 - INFO - [ThreadPoolExecutor-0_1] - ✅ [http://10.10.10.202] Đăng nhập thành công
+2025-11-21 11:11:58,813 - INFO - [ThreadPoolExecutor-0_1] - ✅ [B8-INV-02] BỎ QUA: Đã ở trạng thái mong muốn (Disconnect Grid)
+2025-11-21 11:11:58,879 - INFO - [ThreadPoolExecutor-0_1] - ℹ️ Driver đã đóng
+2025-11-21 11:11:58,879 - INFO - [ThreadPoolExecutor-0_1] - ℹ️ [B11-INV-03] Bắt đầu xử lý ON
+2025-11-21 11:11:59,270 - INFO - [ThreadPoolExecutor-0_0] - ℹ️ Driver khởi tạo thành công với WebDriverWait
+2025-11-21 11:11:59,270 - INFO - [ThreadPoolExecutor-0_0] - ℹ️ Truy cập URL: http://10.10.10.212 (lần 1)
+2025-11-21 11:12:01,314 - INFO - [ThreadPoolExecutor-0_1] - ℹ️ Driver khởi tạo thành công với WebDriverWait
+2025-11-21 11:12:01,315 - INFO - [ThreadPoolExecutor-0_1] - ℹ️ Truy cập URL: http://10.10.10.213 (lần 1)
+2025-11-21 11:12:01,878 - INFO - [ThreadPoolExecutor-0_4] - ✅ [http://10.10.10.203] Đăng nhập thành công
+2025-11-21 11:12:01,901 - INFO - [ThreadPoolExecutor-0_4] - ✅ [B8-INV-03] BỎ QUA: Đã ở trạng thái mong muốn (Disconnect Grid)
+2025-11-21 11:12:01,965 - INFO - [ThreadPoolExecutor-0_4] - ℹ️ Driver đã đóng
+2025-11-21 11:12:01,965 - INFO - [ThreadPoolExecutor-0_4] - ℹ️ [B11-INV-04] Bắt đầu xử lý ON
+2025-11-21 11:12:02,445 - INFO - [ThreadPoolExecutor-0_3] - ℹ️ [http://10.10.10.205] Thực hiện đăng nhập...
+2025-11-21 11:12:02,972 - INFO - [ThreadPoolExecutor-0_2] - ✅ [http://10.10.10.204] Đăng nhập thành công
+2025-11-21 11:12:02,989 - INFO - [ThreadPoolExecutor-0_4] - ℹ️ Driver khởi tạo thành công với WebDriverWait
+2025-11-21 11:12:02,989 - INFO - [ThreadPoolExecutor-0_4] - ℹ️ Truy cập URL: http://10.10.10.214 (lần 1)
+2025-11-21 11:12:03,009 - INFO - [ThreadPoolExecutor-0_2] - ✅ [B8-INV-04] BỎ QUA: Đã ở trạng thái mong muốn (Disconnect Grid)
+2025-11-21 11:12:03,081 - INFO - [ThreadPoolExecutor-0_2] - ℹ️ Driver đã đóng
+2025-11-21 11:12:03,082 - INFO - [ThreadPoolExecutor-0_2] - ℹ️ [B11-INV-05] Bắt đầu xử lý ON
+2025-11-21 11:12:04,026 - INFO - [ThreadPoolExecutor-0_2] - ℹ️ Driver khởi tạo thành công với WebDriverWait
+2025-11-21 11:12:04,026 - INFO - [ThreadPoolExecutor-0_2] - ℹ️ Truy cập URL: http://10.10.10.215 (lần 1)
+2025-11-21 11:12:04,314 - INFO - [ThreadPoolExecutor-0_5] - ℹ️ [http://10.10.10.211] Thực hiện đăng nhập...
+2025-11-21 11:12:05,427 - INFO - [ThreadPoolExecutor-0_3] - ✅ [http://10.10.10.205] Đăng nhập thành công
+2025-11-21 11:12:05,446 - INFO - [ThreadPoolExecutor-0_3] - ✅ [B8-INV-05] BỎ QUA: Đã ở trạng thái mong muốn (Disconnect Grid)
+2025-11-21 11:12:05,511 - INFO - [ThreadPoolExecutor-0_3] - ℹ️ Driver đã đóng
+2025-11-21 11:12:05,512 - INFO - [ThreadPoolExecutor-0_3] - ℹ️ [B11-INV-06] Bắt đầu xử lý ON
+2025-11-21 11:12:06,349 - INFO - [ThreadPoolExecutor-0_3] - ℹ️ Driver khởi tạo thành công với WebDriverWait
+2025-11-21 11:12:06,349 - INFO - [ThreadPoolExecutor-0_3] - ℹ️ Truy cập URL: http://10.10.10.216 (lần 1)
+2025-11-21 11:12:06,388 - INFO - [ThreadPoolExecutor-0_0] - ℹ️ [http://10.10.10.212] Thực hiện đăng nhập...
+2025-11-21 11:12:06,744 - INFO - [ThreadPoolExecutor-0_1] - ℹ️ [http://10.10.10.213] Thực hiện đăng nhập...
+2025-11-21 11:12:06,991 - INFO - [ThreadPoolExecutor-0_5] - ✅ [http://10.10.10.211] Đăng nhập thành công
+2025-11-21 11:12:07,013 - INFO - [ThreadPoolExecutor-0_5] - ✅ [B11-INV-01] BỎ QUA: Đã ở trạng thái mong muốn (Disconnect Grid)
+2025-11-21 11:12:07,079 - INFO - [ThreadPoolExecutor-0_5] - ℹ️ Driver đã đóng
+2025-11-21 11:12:07,079 - INFO - [ThreadPoolExecutor-0_5] - ℹ️ [B11-INV-07] Bắt đầu xử lý ON
+2025-11-21 11:12:07,842 - INFO - [ThreadPoolExecutor-0_5] - ℹ️ Driver khởi tạo thành công với WebDriverWait
+2025-11-21 11:12:07,842 - INFO - [ThreadPoolExecutor-0_5] - ℹ️ Truy cập URL: http://10.10.10.217 (lần 1)
+2025-11-21 11:12:08,370 - INFO - [ThreadPoolExecutor-0_1] - ✅ [http://10.10.10.213] Đăng nhập thành công
+2025-11-21 11:12:08,389 - INFO - [ThreadPoolExecutor-0_1] - ✅ [B11-INV-03] BỎ QUA: Đã ở trạng thái mong muốn (Disconnect Grid)
+2025-11-21 11:12:08,410 - INFO - [ThreadPoolExecutor-0_4] - ℹ️ [http://10.10.10.214] Thực hiện đăng nhập...
+2025-11-21 11:12:08,454 - INFO - [ThreadPoolExecutor-0_1] - ℹ️ Driver đã đóng
+2025-11-21 11:12:08,455 - INFO - [ThreadPoolExecutor-0_1] - ℹ️ [B11-INV-08] Bắt đầu xử lý ON
+2025-11-21 11:12:09,189 - INFO - [ThreadPoolExecutor-0_0] - ✅ [http://10.10.10.212] Đăng nhập thành công
+2025-11-21 11:12:09,203 - INFO - [ThreadPoolExecutor-0_1] - ℹ️ Driver khởi tạo thành công với WebDriverWait
+2025-11-21 11:12:09,204 - INFO - [ThreadPoolExecutor-0_1] - ℹ️ Truy cập URL: http://10.10.10.218 (lần 1)
+2025-11-21 11:12:09,212 - INFO - [ThreadPoolExecutor-0_0] - ✅ [B11-INV-02] BỎ QUA: Đã ở trạng thái mong muốn (Disconnect Grid)
+2025-11-21 11:12:09,279 - INFO - [ThreadPoolExecutor-0_0] - ℹ️ Driver đã đóng
+2025-11-21 11:12:09,279 - INFO - [ThreadPoolExecutor-0_0] - ℹ️ [B11-INV-09] Bắt đầu xử lý ON
+2025-11-21 11:12:09,591 - INFO - [ThreadPoolExecutor-0_2] - ℹ️ [http://10.10.10.215] Thực hiện đăng nhập...
+2025-11-21 11:12:10,079 - INFO - [ThreadPoolExecutor-0_0] - ℹ️ Driver khởi tạo thành công với WebDriverWait
+2025-11-21 11:12:10,079 - INFO - [ThreadPoolExecutor-0_0] - ℹ️ Truy cập URL: http://10.10.10.219 (lần 1)
+2025-11-21 11:12:11,168 - INFO - [ThreadPoolExecutor-0_4] - ✅ [http://10.10.10.214] Đăng nhập thành công
+2025-11-21 11:12:11,186 - INFO - [ThreadPoolExecutor-0_4] - ✅ [B11-INV-04] BỎ QUA: Đã ở trạng thái mong muốn (Disconnect Grid)
+2025-11-21 11:12:11,251 - INFO - [ThreadPoolExecutor-0_4] - ℹ️ Driver đã đóng
+2025-11-21 11:12:11,251 - INFO - [ThreadPoolExecutor-0_4] - ℹ️ [B11-INV-10] Bắt đầu xử lý ON
+2025-11-21 11:12:11,542 - INFO - [ThreadPoolExecutor-0_3] - ℹ️ [http://10.10.10.216] Thực hiện đăng nhập...
+2025-11-21 11:12:11,886 - INFO - [ThreadPoolExecutor-0_2] - ✅ [http://10.10.10.215] Đăng nhập thành công
+2025-11-21 11:12:11,942 - INFO - [ThreadPoolExecutor-0_2] - ✅ [B11-INV-05] BỎ QUA: Đã ở trạng thái mong muốn (Disconnect Grid)
+2025-11-21 11:12:12,065 - INFO - [ThreadPoolExecutor-0_4] - ℹ️ Driver khởi tạo thành công với WebDriverWait
+2025-11-21 11:12:12,065 - INFO - [ThreadPoolExecutor-0_4] - ℹ️ Truy cập URL: http://10.10.10.220 (lần 1)
+2025-11-21 11:12:13,017 - INFO - [ThreadPoolExecutor-0_2] - ℹ️ Driver đã đóng
+2025-11-21 11:12:13,017 - INFO - [ThreadPoolExecutor-0_2] - ℹ️ [B12-INV-01] Bắt đầu xử lý ON
+2025-11-21 11:12:13,294 - INFO - [ThreadPoolExecutor-0_5] - ℹ️ [http://10.10.10.217] Thực hiện đăng nhập...
+2025-11-21 11:12:13,786 - INFO - [ThreadPoolExecutor-0_2] - ℹ️ Driver khởi tạo thành công với WebDriverWait
+2025-11-21 11:12:13,787 - INFO - [ThreadPoolExecutor-0_2] - ℹ️ Truy cập URL: http://10.10.10.241 (lần 1)
+2025-11-21 11:12:13,880 - INFO - [ThreadPoolExecutor-0_3] - ✅ [http://10.10.10.216] Đăng nhập thành công
+2025-11-21 11:12:13,910 - INFO - [ThreadPoolExecutor-0_3] - ✅ [B11-INV-06] BỎ QUA: Đã ở trạng thái mong muốn (Disconnect Grid)
+2025-11-21 11:12:13,978 - INFO - [ThreadPoolExecutor-0_3] - ℹ️ Driver đã đóng
+2025-11-21 11:12:13,978 - INFO - [ThreadPoolExecutor-0_3] - ℹ️ [B12-INV-02] Bắt đầu xử lý ON
+2025-11-21 11:12:14,371 - INFO - [ThreadPoolExecutor-0_1] - ℹ️ [http://10.10.10.218] Thực hiện đăng nhập...
+2025-11-21 11:12:14,756 - INFO - [ThreadPoolExecutor-0_3] - ℹ️ Driver khởi tạo thành công với WebDriverWait
+2025-11-21 11:12:14,756 - INFO - [ThreadPoolExecutor-0_3] - ℹ️ Truy cập URL: http://10.10.10.242 (lần 1)
+2025-11-21 11:12:15,550 - INFO - [ThreadPoolExecutor-0_5] - ✅ [http://10.10.10.217] Đăng nhập thành công
+2025-11-21 11:12:15,571 - INFO - [ThreadPoolExecutor-0_5] - ✅ [B11-INV-07] BỎ QUA: Đã ở trạng thái mong muốn (Disconnect Grid)
+2025-11-21 11:12:15,632 - INFO - [ThreadPoolExecutor-0_0] - ℹ️ [http://10.10.10.219] Thực hiện đăng nhập...
+2025-11-21 11:12:15,637 - INFO - [ThreadPoolExecutor-0_5] - ℹ️ Driver đã đóng
+2025-11-21 11:12:15,637 - INFO - [ThreadPoolExecutor-0_5] - ℹ️ [B12-INV-03] Bắt đầu xử lý ON
+2025-11-21 11:12:16,395 - INFO - [ThreadPoolExecutor-0_5] - ℹ️ Driver khởi tạo thành công với WebDriverWait
+2025-11-21 11:12:16,395 - INFO - [ThreadPoolExecutor-0_5] - ℹ️ Truy cập URL: http://10.10.10.243 (lần 1)
+2025-11-21 11:12:17,136 - INFO - [ThreadPoolExecutor-0_1] - ✅ [http://10.10.10.218] Đăng nhập thành công
+2025-11-21 11:12:17,155 - INFO - [ThreadPoolExecutor-0_1] - ✅ [B11-INV-08] BỎ QUA: Đã ở trạng thái mong muốn (Disconnect Grid)
+2025-11-21 11:12:17,218 - INFO - [ThreadPoolExecutor-0_1] - ℹ️ Driver đã đóng
+2025-11-21 11:12:17,218 - INFO - [ThreadPoolExecutor-0_1] - ℹ️ [B12-INV-04] Bắt đầu xử lý ON
+2025-11-21 11:12:17,388 - INFO - [ThreadPoolExecutor-0_4] - ℹ️ [http://10.10.10.220] Thực hiện đăng nhập...
+2025-11-21 11:12:17,859 - INFO - [ThreadPoolExecutor-0_0] - ✅ [http://10.10.10.219] Đăng nhập thành công
+2025-11-21 11:12:17,887 - INFO - [ThreadPoolExecutor-0_0] - ✅ [B11-INV-09] BỎ QUA: Đã ở trạng thái mong muốn (Disconnect Grid)
+2025-11-21 11:12:17,949 - INFO - [ThreadPoolExecutor-0_1] - ℹ️ Driver khởi tạo thành công với WebDriverWait
+2025-11-21 11:12:17,950 - INFO - [ThreadPoolExecutor-0_1] - ℹ️ Truy cập URL: http://10.10.10.244 (lần 1)
+2025-11-21 11:12:17,955 - INFO - [ThreadPoolExecutor-0_0] - ℹ️ Driver đã đóng
+2025-11-21 11:12:17,955 - INFO - [ThreadPoolExecutor-0_0] - ℹ️ [B12-INV-05] Bắt đầu xử lý ON
+2025-11-21 11:12:18,693 - INFO - [ThreadPoolExecutor-0_0] - ℹ️ Driver khởi tạo thành công với WebDriverWait
+2025-11-21 11:12:18,693 - INFO - [ThreadPoolExecutor-0_0] - ℹ️ Truy cập URL: http://10.10.10.245 (lần 1)
+2025-11-21 11:12:19,213 - INFO - [ThreadPoolExecutor-0_2] - ℹ️ [http://10.10.10.241] Thực hiện đăng nhập...
+2025-11-21 11:12:20,029 - INFO - [ThreadPoolExecutor-0_4] - ✅ [http://10.10.10.220] Đăng nhập thành công
+2025-11-21 11:12:20,036 - INFO - [ThreadPoolExecutor-0_3] - ℹ️ [http://10.10.10.242] Thực hiện đăng nhập...
+2025-11-21 11:12:20,047 - INFO - [ThreadPoolExecutor-0_4] - ✅ [B11-INV-10] BỎ QUA: Đã ở trạng thái mong muốn (Disconnect Grid)
+2025-11-21 11:12:20,111 - INFO - [ThreadPoolExecutor-0_4] - ℹ️ Driver đã đóng
+2025-11-21 11:12:20,112 - INFO - [ThreadPoolExecutor-0_4] - ℹ️ [B12-INV-06] Bắt đầu xử lý ON
+2025-11-21 11:12:20,829 - INFO - [ThreadPoolExecutor-0_4] - ℹ️ Driver khởi tạo thành công với WebDriverWait
+2025-11-21 11:12:20,829 - INFO - [ThreadPoolExecutor-0_4] - ℹ️ Truy cập URL: http://10.10.10.246 (lần 1)
+2025-11-21 11:12:21,709 - INFO - [ThreadPoolExecutor-0_5] - ℹ️ [http://10.10.10.243] Thực hiện đăng nhập...
+2025-11-21 11:12:21,935 - INFO - [ThreadPoolExecutor-0_2] - ✅ [http://10.10.10.241] Đăng nhập thành công
+2025-11-21 11:12:21,958 - INFO - [ThreadPoolExecutor-0_2] - ✅ [B12-INV-01] BỎ QUA: Đã ở trạng thái mong muốn (Disconnect Grid)
+2025-11-21 11:12:22,025 - INFO - [ThreadPoolExecutor-0_2] - ℹ️ Driver đã đóng
+2025-11-21 11:12:22,026 - INFO - [ThreadPoolExecutor-0_2] - ℹ️ [B12-INV-07] Bắt đầu xử lý ON
+2025-11-21 11:12:22,789 - INFO - [ThreadPoolExecutor-0_2] - ℹ️ Driver khởi tạo thành công với WebDriverWait
+2025-11-21 11:12:22,790 - INFO - [ThreadPoolExecutor-0_2] - ℹ️ Truy cập URL: http://10.10.10.247 (lần 1)
+2025-11-21 11:12:22,812 - INFO - [ThreadPoolExecutor-0_3] - ✅ [http://10.10.10.242] Đăng nhập thành công
+2025-11-21 11:12:22,842 - INFO - [ThreadPoolExecutor-0_3] - ✅ [B12-INV-02] BỎ QUA: Đã ở trạng thái mong muốn (Disconnect Grid)
+2025-11-21 11:12:22,911 - INFO - [ThreadPoolExecutor-0_3] - ℹ️ Driver đã đóng
+2025-11-21 11:12:22,911 - INFO - [ThreadPoolExecutor-0_3] - ℹ️ [B12-INV-08] Bắt đầu xử lý ON
+2025-11-21 11:12:23,093 - INFO - [ThreadPoolExecutor-0_1] - ℹ️ [http://10.10.10.244] Thực hiện đăng nhập...
+2025-11-21 11:12:23,694 - INFO - [ThreadPoolExecutor-0_3] - ℹ️ Driver khởi tạo thành công với WebDriverWait
+2025-11-21 11:12:23,695 - INFO - [ThreadPoolExecutor-0_3] - ℹ️ Truy cập URL: http://10.10.10.248 (lần 1)
+2025-11-21 11:12:24,047 - INFO - [ThreadPoolExecutor-0_0] - ℹ️ [http://10.10.10.245] Thực hiện đăng nhập...
+2025-11-21 11:12:24,486 - INFO - [ThreadPoolExecutor-0_5] - ✅ [http://10.10.10.243] Đăng nhập thành công
+2025-11-21 11:12:24,509 - INFO - [ThreadPoolExecutor-0_5] - ✅ [B12-INV-03] BỎ QUA: Đã ở trạng thái mong muốn (Disconnect Grid)
+2025-11-21 11:12:24,576 - INFO - [ThreadPoolExecutor-0_5] - ℹ️ Driver đã đóng
+2025-11-21 11:12:24,576 - INFO - [ThreadPoolExecutor-0_5] - ℹ️ [B12-INV-09] Bắt đầu xử lý ON
+2025-11-21 11:12:25,286 - INFO - [ThreadPoolExecutor-0_5] - ℹ️ Driver khởi tạo thành công với WebDriverWait
+2025-11-21 11:12:25,286 - INFO - [ThreadPoolExecutor-0_5] - ℹ️ Truy cập URL: http://10.10.10.249 (lần 1)
+2025-11-21 11:12:25,339 - INFO - [ThreadPoolExecutor-0_1] - ✅ [http://10.10.10.244] Đăng nhập thành công
+2025-11-21 11:12:25,359 - INFO - [ThreadPoolExecutor-0_1] - ✅ [B12-INV-04] BỎ QUA: Đã ở trạng thái mong muốn (Disconnect Grid)
+2025-11-21 11:12:25,426 - INFO - [ThreadPoolExecutor-0_1] - ℹ️ Driver đã đóng
+2025-11-21 11:12:25,427 - INFO - [ThreadPoolExecutor-0_1] - ℹ️ [B12-INV-10] Bắt đầu xử lý ON
+2025-11-21 11:12:26,174 - INFO - [ThreadPoolExecutor-0_1] - ℹ️ Driver khởi tạo thành công với WebDriverWait
+2025-11-21 11:12:26,175 - INFO - [ThreadPoolExecutor-0_1] - ℹ️ Truy cập URL: http://10.10.10.250 (lần 1)
+2025-11-21 11:12:26,212 - INFO - [ThreadPoolExecutor-0_4] - ℹ️ [http://10.10.10.246] Thực hiện đăng nhập...
+2025-11-21 11:12:26,704 - INFO - [ThreadPoolExecutor-0_0] - ✅ [http://10.10.10.245] Đăng nhập thành công
+2025-11-21 11:12:26,724 - INFO - [ThreadPoolExecutor-0_0] - ✅ [B12-INV-05] BỎ QUA: Đã ở trạng thái mong muốn (Disconnect Grid)
+2025-11-21 11:12:26,792 - INFO - [ThreadPoolExecutor-0_0] - ℹ️ Driver đã đóng
+2025-11-21 11:12:26,792 - INFO - [ThreadPoolExecutor-0_0] - ℹ️ [B13-14-INV-01] Bắt đầu xử lý ON
+2025-11-21 11:12:27,540 - INFO - [ThreadPoolExecutor-0_0] - ℹ️ Driver khởi tạo thành công với WebDriverWait
+2025-11-21 11:12:27,541 - INFO - [ThreadPoolExecutor-0_0] - ℹ️ Truy cập URL: http://10.10.10.221 (lần 1)
+2025-11-21 11:12:28,143 - INFO - [ThreadPoolExecutor-0_2] - ℹ️ [http://10.10.10.247] Thực hiện đăng nhập...
+2025-11-21 11:12:28,404 - INFO - [ThreadPoolExecutor-0_4] - ✅ [http://10.10.10.246] Đăng nhập thành công
+2025-11-21 11:12:28,435 - INFO - [ThreadPoolExecutor-0_4] - ✅ [B12-INV-06] BỎ QUA: Đã ở trạng thái mong muốn (Disconnect Grid)
+2025-11-21 11:12:28,501 - INFO - [ThreadPoolExecutor-0_4] - ℹ️ Driver đã đóng
+2025-11-21 11:12:28,501 - INFO - [ThreadPoolExecutor-0_4] - ℹ️ [B13-14-INV-02] Bắt đầu xử lý ON
+2025-11-21 11:12:29,040 - INFO - [ThreadPoolExecutor-0_3] - ℹ️ [http://10.10.10.248] Thực hiện đăng nhập...
+2025-11-21 11:12:29,268 - INFO - [ThreadPoolExecutor-0_4] - ℹ️ Driver khởi tạo thành công với WebDriverWait
+2025-11-21 11:12:29,268 - INFO - [ThreadPoolExecutor-0_4] - ℹ️ Truy cập URL: http://10.10.10.222 (lần 1)
+2025-11-21 11:12:30,188 - INFO - [ThreadPoolExecutor-0_3] - ✅ [http://10.10.10.248] Đăng nhập thành công
+2025-11-21 11:12:30,209 - INFO - [ThreadPoolExecutor-0_3] - ✅ [B12-INV-08] BỎ QUA: Đã ở trạng thái mong muốn (Disconnect Grid)
+2025-11-21 11:12:30,280 - INFO - [ThreadPoolExecutor-0_3] - ℹ️ Driver đã đóng
+2025-11-21 11:12:30,280 - INFO - [ThreadPoolExecutor-0_3] - ℹ️ [B13-14-INV-03] Bắt đầu xử lý ON
+2025-11-21 11:12:30,646 - INFO - [ThreadPoolExecutor-0_5] - ℹ️ [http://10.10.10.249] Thực hiện đăng nhập...
+2025-11-21 11:12:30,883 - INFO - [ThreadPoolExecutor-0_2] - ✅ [http://10.10.10.247] Đăng nhập thành công
+2025-11-21 11:12:30,913 - INFO - [ThreadPoolExecutor-0_2] - ✅ [B12-INV-07] BỎ QUA: Đã ở trạng thái mong muốn (Disconnect Grid)
+2025-11-21 11:12:30,987 - INFO - [ThreadPoolExecutor-0_2] - ℹ️ Driver đã đóng
+2025-11-21 11:12:30,987 - INFO - [ThreadPoolExecutor-0_2] - ℹ️ [B13-14-INV-04] Bắt đầu xử lý ON
+2025-11-21 11:12:31,093 - INFO - [ThreadPoolExecutor-0_3] - ℹ️ Driver khởi tạo thành công với WebDriverWait
+2025-11-21 11:12:31,094 - INFO - [ThreadPoolExecutor-0_3] - ℹ️ Truy cập URL: http://10.10.10.223 (lần 1)
+2025-11-21 11:12:31,492 - INFO - [ThreadPoolExecutor-0_1] - ℹ️ [http://10.10.10.250] Thực hiện đăng nhập...
+2025-11-21 11:12:31,931 - INFO - [ThreadPoolExecutor-0_2] - ℹ️ Driver khởi tạo thành công với WebDriverWait
+2025-11-21 11:12:31,932 - INFO - [ThreadPoolExecutor-0_2] - ℹ️ Truy cập URL: http://10.10.10.224 (lần 1)
+2025-11-21 11:12:33,069 - INFO - [ThreadPoolExecutor-0_0] - ℹ️ [http://10.10.10.221] Thực hiện đăng nhập...
+2025-11-21 11:12:34,933 - INFO - [ThreadPoolExecutor-0_5] - ✅ [http://10.10.10.249] Đăng nhập thành công
+2025-11-21 11:12:34,960 - INFO - [ThreadPoolExecutor-0_5] - ✅ [B12-INV-09] BỎ QUA: Đã ở trạng thái mong muốn (Disconnect Grid)
+2025-11-21 11:12:35,026 - INFO - [ThreadPoolExecutor-0_5] - ℹ️ Driver đã đóng
+2025-11-21 11:12:35,026 - INFO - [ThreadPoolExecutor-0_5] - ℹ️ [B13-14-INV-05] Bắt đầu xử lý ON
+2025-11-21 11:12:35,184 - INFO - [ThreadPoolExecutor-0_1] - ✅ [http://10.10.10.250] Đăng nhập thành công
+2025-11-21 11:12:35,210 - INFO - [ThreadPoolExecutor-0_1] - ✅ [B12-INV-10] BỎ QUA: Đã ở trạng thái mong muốn (Disconnect Grid)
+2025-11-21 11:12:35,281 - INFO - [ThreadPoolExecutor-0_1] - ℹ️ Driver đã đóng
+2025-11-21 11:12:35,281 - INFO - [ThreadPoolExecutor-0_1] - ℹ️ [B13-14-INV-06] Bắt đầu xử lý ON
+2025-11-21 11:12:36,043 - INFO - [ThreadPoolExecutor-0_5] - ℹ️ Driver khởi tạo thành công với WebDriverWait
+2025-11-21 11:12:36,044 - INFO - [ThreadPoolExecutor-0_5] - ℹ️ Truy cập URL: http://10.10.10.225 (lần 1)
+2025-11-21 11:12:36,114 - INFO - [ThreadPoolExecutor-0_1] - ℹ️ Driver khởi tạo thành công với WebDriverWait
+2025-11-21 11:12:36,114 - INFO - [ThreadPoolExecutor-0_1] - ℹ️ Truy cập URL: http://10.10.10.226 (lần 1)
+2025-11-21 11:12:36,245 - INFO - [ThreadPoolExecutor-0_4] - ℹ️ [http://10.10.10.222] Thực hiện đăng nhập...
+2025-11-21 11:12:36,816 - INFO - [ThreadPoolExecutor-0_0] - ✅ [http://10.10.10.221] Đăng nhập thành công
+2025-11-21 11:12:36,836 - INFO - [ThreadPoolExecutor-0_0] - ✅ [B13-14-INV-01] BỎ QUA: Đã ở trạng thái mong muốn (Disconnect Grid)
+2025-11-21 11:12:36,900 - INFO - [ThreadPoolExecutor-0_0] - ℹ️ Driver đã đóng
+2025-11-21 11:12:36,900 - INFO - [ThreadPoolExecutor-0_0] - ℹ️ [B13-14-INV-07] Bắt đầu xử lý ON
+2025-11-21 11:12:37,609 - INFO - [ThreadPoolExecutor-0_0] - ℹ️ Driver khởi tạo thành công với WebDriverWait
+2025-11-21 11:12:37,609 - INFO - [ThreadPoolExecutor-0_0] - ℹ️ Truy cập URL: http://10.10.10.231 (lần 1)
+2025-11-21 11:12:38,018 - INFO - [ThreadPoolExecutor-0_3] - ℹ️ [http://10.10.10.223] Thực hiện đăng nhập...
+2025-11-21 11:12:38,959 - INFO - [ThreadPoolExecutor-0_4] - ✅ [http://10.10.10.222] Đăng nhập thành công
+2025-11-21 11:12:38,965 - INFO - [ThreadPoolExecutor-0_2] - ℹ️ [http://10.10.10.224] Thực hiện đăng nhập...
+2025-11-21 11:12:38,978 - INFO - [ThreadPoolExecutor-0_4] - ✅ [B13-14-INV-02] BỎ QUA: Đã ở trạng thái mong muốn (Disconnect Grid)
+2025-11-21 11:12:39,044 - INFO - [ThreadPoolExecutor-0_4] - ℹ️ Driver đã đóng
+2025-11-21 11:12:39,044 - INFO - [ThreadPoolExecutor-0_4] - ℹ️ [B13-14-INV-08] Bắt đầu xử lý ON
+2025-11-21 11:12:39,827 - INFO - [ThreadPoolExecutor-0_4] - ℹ️ Driver khởi tạo thành công với WebDriverWait
+2025-11-21 11:12:39,827 - INFO - [ThreadPoolExecutor-0_4] - ℹ️ Truy cập URL: http://10.10.10.232 (lần 1)
+2025-11-21 11:12:40,288 - INFO - [ThreadPoolExecutor-0_3] - ✅ [http://10.10.10.223] Đăng nhập thành công
+2025-11-21 11:12:40,306 - INFO - [ThreadPoolExecutor-0_3] - ✅ [B13-14-INV-03] BỎ QUA: Đã ở trạng thái mong muốn (Disconnect Grid)
+2025-11-21 11:12:40,371 - INFO - [ThreadPoolExecutor-0_3] - ℹ️ Driver đã đóng
+2025-11-21 11:12:40,371 - INFO - [ThreadPoolExecutor-0_3] - ℹ️ [B13-14-INV-09] Bắt đầu xử lý ON
+2025-11-21 11:12:41,090 - INFO - [ThreadPoolExecutor-0_3] - ℹ️ Driver khởi tạo thành công với WebDriverWait
+2025-11-21 11:12:41,090 - INFO - [ThreadPoolExecutor-0_3] - ℹ️ Truy cập URL: http://10.10.10.233 (lần 1)
+2025-11-21 11:12:41,667 - INFO - [ThreadPoolExecutor-0_1] - ℹ️ [http://10.10.10.226] Thực hiện đăng nhập...
+2025-11-21 11:12:41,726 - INFO - [ThreadPoolExecutor-0_5] - ℹ️ [http://10.10.10.225] Thực hiện đăng nhập...
+2025-11-21 11:12:42,261 - INFO - [ThreadPoolExecutor-0_2] - ✅ [http://10.10.10.224] Đăng nhập thành công
+2025-11-21 11:12:42,286 - INFO - [ThreadPoolExecutor-0_2] - ✅ [B13-14-INV-04] BỎ QUA: Đã ở trạng thái mong muốn (Disconnect Grid)
+2025-11-21 11:12:42,350 - INFO - [ThreadPoolExecutor-0_2] - ℹ️ Driver đã đóng
+2025-11-21 11:12:42,350 - INFO - [ThreadPoolExecutor-0_2] - ℹ️ [B13-14-INV-10] Bắt đầu xử lý ON
+2025-11-21 11:12:43,064 - INFO - [ThreadPoolExecutor-0_2] - ℹ️ Driver khởi tạo thành công với WebDriverWait
+2025-11-21 11:12:43,065 - INFO - [ThreadPoolExecutor-0_2] - ℹ️ Truy cập URL: http://10.10.10.234 (lần 1)
+2025-11-21 11:12:43,187 - INFO - [ThreadPoolExecutor-0_0] - ℹ️ [http://10.10.10.231] Thực hiện đăng nhập...
+2025-11-21 11:12:43,879 - INFO - [ThreadPoolExecutor-0_1] - ✅ [http://10.10.10.226] Đăng nhập thành công
+2025-11-21 11:12:43,899 - INFO - [ThreadPoolExecutor-0_1] - ✅ [B13-14-INV-06] BỎ QUA: Đã ở trạng thái mong muốn (Disconnect Grid)
+2025-11-21 11:12:43,964 - INFO - [ThreadPoolExecutor-0_1] - ℹ️ Driver đã đóng
+2025-11-21 11:12:44,530 - INFO - [ThreadPoolExecutor-0_5] - ✅ [http://10.10.10.225] Đăng nhập thành công
+2025-11-21 11:12:44,552 - INFO - [ThreadPoolExecutor-0_5] - ✅ [B13-14-INV-05] BỎ QUA: Đã ở trạng thái mong muốn (Disconnect Grid)
+2025-11-21 11:12:44,615 - INFO - [ThreadPoolExecutor-0_5] - ℹ️ Driver đã đóng
+2025-11-21 11:12:45,021 - INFO - [ThreadPoolExecutor-0_4] - ℹ️ [http://10.10.10.232] Thực hiện đăng nhập...
+2025-11-21 11:12:45,322 - INFO - [ThreadPoolExecutor-0_0] - ✅ [http://10.10.10.231] Đăng nhập thành công
+2025-11-21 11:12:45,346 - INFO - [ThreadPoolExecutor-0_0] - ✅ [B13-14-INV-07] BỎ QUA: Đã ở trạng thái mong muốn (Disconnect Grid)
+2025-11-21 11:12:45,409 - INFO - [ThreadPoolExecutor-0_0] - ℹ️ Driver đã đóng
+2025-11-21 11:12:46,432 - INFO - [ThreadPoolExecutor-0_3] - ℹ️ [http://10.10.10.233] Thực hiện đăng nhập...
+2025-11-21 11:12:46,579 - INFO - [ThreadPoolExecutor-0_4] - ✅ [http://10.10.10.232] Đăng nhập thành công
+2025-11-21 11:12:46,598 - INFO - [ThreadPoolExecutor-0_4] - ✅ [B13-14-INV-08] BỎ QUA: Đã ở trạng thái mong muốn (Disconnect Grid)
+2025-11-21 11:12:46,663 - INFO - [ThreadPoolExecutor-0_4] - ℹ️ Driver đã đóng
+2025-11-21 11:12:48,544 - INFO - [ThreadPoolExecutor-0_3] - ✅ [http://10.10.10.233] Đăng nhập thành công
+2025-11-21 11:12:48,545 - INFO - [ThreadPoolExecutor-0_2] - ℹ️ [http://10.10.10.234] Thực hiện đăng nhập...
+2025-11-21 11:12:48,564 - INFO - [ThreadPoolExecutor-0_3] - ✅ [B13-14-INV-09] BỎ QUA: Đã ở trạng thái mong muốn (Disconnect Grid)
+2025-11-21 11:12:48,628 - INFO - [ThreadPoolExecutor-0_3] - ℹ️ Driver đã đóng
+2025-11-21 11:12:50,687 - INFO - [ThreadPoolExecutor-0_2] - ✅ [http://10.10.10.234] Đăng nhập thành công
+2025-11-21 11:12:50,704 - INFO - [ThreadPoolExecutor-0_2] - ✅ [B13-14-INV-10] BỎ QUA: Đã ở trạng thái mong muốn (Disconnect Grid)
+2025-11-21 11:12:50,776 - INFO - [ThreadPoolExecutor-0_2] - ℹ️ Driver đã đóng
+2025-11-21 11:12:50,777 - INFO - [MainThread] - 📊 Hàng đợi - Chính: 0, Retry: 9, Hoàn thành: 123, Thất bại: 0
+2025-11-21 11:12:50,778 - INFO - [MainThread] - ℹ️ 📈 Tiến trình tổng: 123/132 (93.2%)
+2025-11-21 11:12:50,778 - INFO - [MainThread] - ℹ️ 🔄 Chuẩn bị vòng retry với 9 tasks
+2025-11-21 11:12:50,778 - INFO - [MainThread] - ℹ️ 🔄 Vòng xử lý thứ 2
+2025-11-21 11:12:50,778 - INFO - [MainThread] - ℹ️ Lấy task từ retry queue: B2-INV-01 (retry 1)
+2025-11-21 11:12:50,778 - INFO - [MainThread] - ℹ️ Lấy task từ retry queue: B2-INV-06 (retry 1)
+2025-11-21 11:12:50,778 - INFO - [MainThread] - ℹ️ Lấy task từ retry queue: B2-INV-02 (retry 1)
+2025-11-21 11:12:50,778 - INFO - [MainThread] - ℹ️ Lấy task từ retry queue: B2-INV-05 (retry 1)
+2025-11-21 11:12:50,779 - INFO - [MainThread] - ℹ️ Lấy task từ retry queue: B2-INV-03 (retry 1)
+2025-11-21 11:12:50,779 - INFO - [MainThread] - ℹ️ Lấy task từ retry queue: B2-INV-04 (retry 1)
+2025-11-21 11:12:50,779 - INFO - [MainThread] - ℹ️ Lấy task từ retry queue: B2-INV-08 (retry 1)
+2025-11-21 11:12:50,779 - INFO - [MainThread] - ℹ️ Lấy task từ retry queue: B2-INV-09 (retry 1)
+2025-11-21 11:12:50,779 - INFO - [MainThread] - ℹ️ Lấy task từ retry queue: B2-INV-07 (retry 1)
+2025-11-21 11:12:50,779 - INFO - [ThreadPoolExecutor-1_0] - ℹ️ [B2-INV-01] Bắt đầu xử lý ON
+2025-11-21 11:12:50,780 - INFO - [ThreadPoolExecutor-1_1] - ℹ️ [B2-INV-06] Bắt đầu xử lý ON
+2025-11-21 11:12:50,780 - INFO - [ThreadPoolExecutor-1_2] - ℹ️ [B2-INV-02] Bắt đầu xử lý ON
+2025-11-21 11:12:50,781 - INFO - [ThreadPoolExecutor-1_3] - ℹ️ [B2-INV-05] Bắt đầu xử lý ON
+2025-11-21 11:12:50,781 - INFO - [ThreadPoolExecutor-1_4] - ℹ️ [B2-INV-03] Bắt đầu xử lý ON
+2025-11-21 11:12:50,782 - INFO - [ThreadPoolExecutor-1_5] - ℹ️ [B2-INV-04] Bắt đầu xử lý ON
+2025-11-21 11:12:51,695 - INFO - [ThreadPoolExecutor-1_3] - ℹ️ Driver khởi tạo thành công với WebDriverWait
+2025-11-21 11:12:51,695 - INFO - [ThreadPoolExecutor-1_3] - ℹ️ Truy cập URL: http://10.10.10.105 (lần 1)
+2025-11-21 11:12:51,734 - INFO - [ThreadPoolExecutor-1_5] - ℹ️ Driver khởi tạo thành công với WebDriverWait
+2025-11-21 11:12:51,735 - INFO - [ThreadPoolExecutor-1_5] - ℹ️ Truy cập URL: http://10.10.10.104 (lần 1)
+2025-11-21 11:12:51,792 - INFO - [ThreadPoolExecutor-1_0] - ℹ️ Driver khởi tạo thành công với WebDriverWait
+2025-11-21 11:12:51,792 - INFO - [ThreadPoolExecutor-1_0] - ℹ️ Truy cập URL: http://10.10.10.101 (lần 1)
+2025-11-21 11:12:51,806 - INFO - [ThreadPoolExecutor-1_2] - ℹ️ Driver khởi tạo thành công với WebDriverWait
+2025-11-21 11:12:51,806 - INFO - [ThreadPoolExecutor-1_2] - ℹ️ Truy cập URL: http://10.10.10.102 (lần 1)
+2025-11-21 11:12:51,993 - INFO - [ThreadPoolExecutor-1_1] - ℹ️ Driver khởi tạo thành công với WebDriverWait
+2025-11-21 11:12:51,994 - INFO - [ThreadPoolExecutor-1_1] - ℹ️ Truy cập URL: http://10.10.10.106 (lần 1)
+2025-11-21 11:12:52,030 - INFO - [ThreadPoolExecutor-1_4] - ℹ️ Driver khởi tạo thành công với WebDriverWait
+2025-11-21 11:12:52,031 - INFO - [ThreadPoolExecutor-1_4] - ℹ️ Truy cập URL: http://10.10.10.103 (lần 1)
+2025-11-21 11:12:55,423 - INFO - [ThreadPoolExecutor-1_5] - ℹ️ [http://10.10.10.104] Thực hiện đăng nhập...
+2025-11-21 11:12:55,423 - INFO - [ThreadPoolExecutor-1_2] - ℹ️ [http://10.10.10.102] Thực hiện đăng nhập...
+2025-11-21 11:12:55,424 - INFO - [ThreadPoolExecutor-1_3] - ℹ️ [http://10.10.10.105] Thực hiện đăng nhập...
+2025-11-21 11:12:55,424 - INFO - [ThreadPoolExecutor-1_0] - ℹ️ [http://10.10.10.101] Thực hiện đăng nhập...
+2025-11-21 11:12:55,711 - INFO - [ThreadPoolExecutor-1_1] - ℹ️ [http://10.10.10.106] Thực hiện đăng nhập...
+2025-11-21 11:12:55,712 - INFO - [ThreadPoolExecutor-1_4] - ℹ️ [http://10.10.10.103] Thực hiện đăng nhập...
+2025-11-21 11:13:05,987 - WARNING - [ThreadPoolExecutor-1_3] - ⚠️ [http://10.10.10.105] Không tìm thấy field username, có thể đã đăng nhập
+2025-11-21 11:13:05,987 - WARNING - [ThreadPoolExecutor-1_2] - ⚠️ [http://10.10.10.102] Không tìm thấy field username, có thể đã đăng nhập
+2025-11-21 11:13:05,988 - WARNING - [ThreadPoolExecutor-1_0] - ⚠️ [http://10.10.10.101] Không tìm thấy field username, có thể đã đăng nhập
+2025-11-21 11:13:05,988 - WARNING - [ThreadPoolExecutor-1_5] - ⚠️ [http://10.10.10.104] Không tìm thấy field username, có thể đã đăng nhập
+2025-11-21 11:13:06,425 - WARNING - [ThreadPoolExecutor-1_4] - ⚠️ [http://10.10.10.103] Không tìm thấy field username, có thể đã đăng nhập
+2025-11-21 11:13:06,426 - WARNING - [ThreadPoolExecutor-1_1] - ⚠️ [http://10.10.10.106] Không tìm thấy field username, có thể đã đăng nhập
+2025-11-21 11:13:12,699 - WARNING - [ThreadPoolExecutor-1_2] - ⚠️ Không tìm thấy element grid control
+2025-11-21 11:13:12,699 - WARNING - [ThreadPoolExecutor-1_3] - ⚠️ Không tìm thấy element grid control
+2025-11-21 11:13:12,700 - WARNING - [ThreadPoolExecutor-1_5] - ⚠️ Không tìm thấy element grid control
+2025-11-21 11:13:12,700 - WARNING - [ThreadPoolExecutor-1_0] - ⚠️ Không tìm thấy element grid control
+2025-11-21 11:13:12,700 - WARNING - [ThreadPoolExecutor-1_2] - ⚠️ [B2-INV-02] Không thể xác định trạng thái hiện tại
+2025-11-21 11:13:12,701 - WARNING - [ThreadPoolExecutor-1_3] - ⚠️ [B2-INV-05] Không thể xác định trạng thái hiện tại
+2025-11-21 11:13:12,701 - WARNING - [ThreadPoolExecutor-1_5] - ⚠️ [B2-INV-04] Không thể xác định trạng thái hiện tại
+2025-11-21 11:13:12,701 - WARNING - [ThreadPoolExecutor-1_0] - ⚠️ [B2-INV-01] Không thể xác định trạng thái hiện tại
+2025-11-21 11:13:12,766 - INFO - [ThreadPoolExecutor-1_2] - ℹ️ Driver đã đóng
+2025-11-21 11:13:12,766 - INFO - [ThreadPoolExecutor-1_3] - ℹ️ Driver đã đóng
+2025-11-21 11:13:12,766 - INFO - [ThreadPoolExecutor-1_2] - ℹ️ [B2-INV-08] Bắt đầu xử lý ON
+2025-11-21 11:13:12,766 - WARNING - [MainThread] - ⚠️ Đã chuyển B2-INV-02 sang retry queue (lần 2)
+2025-11-21 11:13:12,767 - INFO - [ThreadPoolExecutor-1_3] - ℹ️ [B2-INV-09] Bắt đầu xử lý ON
+2025-11-21 11:13:12,767 - INFO - [ThreadPoolExecutor-1_5] - ℹ️ Driver đã đóng
+2025-11-21 11:13:12,768 - WARNING - [MainThread] - ⚠️ Đã chuyển B2-INV-05 sang retry queue (lần 2)
+2025-11-21 11:13:12,769 - INFO - [ThreadPoolExecutor-1_0] - ℹ️ Driver đã đóng
+2025-11-21 11:13:12,769 - INFO - [ThreadPoolExecutor-1_5] - ℹ️ [B2-INV-07] Bắt đầu xử lý ON
+2025-11-21 11:13:12,769 - WARNING - [MainThread] - ⚠️ Đã chuyển B2-INV-04 sang retry queue (lần 2)
+2025-11-21 11:13:12,772 - WARNING - [MainThread] - ⚠️ Đã chuyển B2-INV-01 sang retry queue (lần 2)
+2025-11-21 11:13:13,213 - WARNING - [ThreadPoolExecutor-1_1] - ⚠️ Không tìm thấy element grid control
+2025-11-21 11:13:13,214 - WARNING - [ThreadPoolExecutor-1_4] - ⚠️ Không tìm thấy element grid control
+2025-11-21 11:13:13,214 - WARNING - [ThreadPoolExecutor-1_1] - ⚠️ [B2-INV-06] Không thể xác định trạng thái hiện tại
+2025-11-21 11:13:13,214 - WARNING - [ThreadPoolExecutor-1_4] - ⚠️ [B2-INV-03] Không thể xác định trạng thái hiện tại
+2025-11-21 11:13:13,286 - INFO - [ThreadPoolExecutor-1_4] - ℹ️ Driver đã đóng
+2025-11-21 11:13:13,287 - INFO - [ThreadPoolExecutor-1_1] - ℹ️ Driver đã đóng
+2025-11-21 11:13:13,287 - WARNING - [MainThread] - ⚠️ Đã chuyển B2-INV-03 sang retry queue (lần 2)
+2025-11-21 11:13:13,288 - WARNING - [MainThread] - ⚠️ Đã chuyển B2-INV-06 sang retry queue (lần 2)
+2025-11-21 11:13:13,564 - INFO - [ThreadPoolExecutor-1_5] - ℹ️ Driver khởi tạo thành công với WebDriverWait
+2025-11-21 11:13:13,565 - INFO - [ThreadPoolExecutor-1_5] - ℹ️ Truy cập URL: http://10.10.10.107 (lần 1)
+2025-11-21 11:13:13,598 - INFO - [ThreadPoolExecutor-1_3] - ℹ️ Driver khởi tạo thành công với WebDriverWait
+2025-11-21 11:13:13,599 - INFO - [ThreadPoolExecutor-1_3] - ℹ️ Truy cập URL: http://10.10.10.109 (lần 1)
+2025-11-21 11:13:13,607 - INFO - [ThreadPoolExecutor-1_2] - ℹ️ Driver khởi tạo thành công với WebDriverWait
+2025-11-21 11:13:13,607 - INFO - [ThreadPoolExecutor-1_2] - ℹ️ Truy cập URL: http://10.10.10.108 (lần 1)
+2025-11-21 11:13:17,272 - INFO - [ThreadPoolExecutor-1_5] - ℹ️ [http://10.10.10.107] Thực hiện đăng nhập...
+2025-11-21 11:13:17,273 - INFO - [ThreadPoolExecutor-1_3] - ℹ️ [http://10.10.10.109] Thực hiện đăng nhập...
+2025-11-21 11:13:17,273 - INFO - [ThreadPoolExecutor-1_2] - ℹ️ [http://10.10.10.108] Thực hiện đăng nhập...
+2025-11-21 11:13:27,871 - WARNING - [ThreadPoolExecutor-1_5] - ⚠️ [http://10.10.10.107] Không tìm thấy field username, có thể đã đăng nhập
+2025-11-21 11:13:27,872 - WARNING - [ThreadPoolExecutor-1_2] - ⚠️ [http://10.10.10.108] Không tìm thấy field username, có thể đã đăng nhập
+2025-11-21 11:13:27,872 - WARNING - [ThreadPoolExecutor-1_3] - ⚠️ [http://10.10.10.109] Không tìm thấy field username, có thể đã đăng nhập
+2025-11-21 11:13:33,108 - WARNING - [ThreadPoolExecutor-1_3] - ⚠️ Không tìm thấy element grid control
+2025-11-21 11:13:33,109 - WARNING - [ThreadPoolExecutor-1_2] - ⚠️ Không tìm thấy element grid control
+2025-11-21 11:13:33,109 - WARNING - [ThreadPoolExecutor-1_5] - ⚠️ Không tìm thấy element grid control
+2025-11-21 11:13:33,109 - WARNING - [ThreadPoolExecutor-1_3] - ⚠️ [B2-INV-09] Không thể xác định trạng thái hiện tại
+2025-11-21 11:13:33,109 - WARNING - [ThreadPoolExecutor-1_2] - ⚠️ [B2-INV-08] Không thể xác định trạng thái hiện tại
+2025-11-21 11:13:33,109 - WARNING - [ThreadPoolExecutor-1_5] - ⚠️ [B2-INV-07] Không thể xác định trạng thái hiện tại
+2025-11-21 11:13:33,185 - INFO - [ThreadPoolExecutor-1_2] - ℹ️ Driver đã đóng
+2025-11-21 11:13:33,185 - INFO - [ThreadPoolExecutor-1_5] - ℹ️ Driver đã đóng
+2025-11-21 11:13:33,185 - WARNING - [MainThread] - ⚠️ Đã chuyển B2-INV-08 sang retry queue (lần 2)
+2025-11-21 11:13:33,185 - WARNING - [MainThread] - ⚠️ Đã chuyển B2-INV-07 sang retry queue (lần 2)
+2025-11-21 11:13:33,186 - INFO - [ThreadPoolExecutor-1_3] - ℹ️ Driver đã đóng
+2025-11-21 11:13:33,186 - WARNING - [MainThread] - ⚠️ Đã chuyển B2-INV-09 sang retry queue (lần 2)
+2025-11-21 11:13:33,187 - INFO - [MainThread] - 📊 Hàng đợi - Chính: 0, Retry: 9, Hoàn thành: 123, Thất bại: 0
+2025-11-21 11:13:33,187 - INFO - [MainThread] - ℹ️ 📈 Tiến trình tổng: 123/132 (93.2%)
+2025-11-21 11:13:33,187 - INFO - [MainThread] - ℹ️ 🔄 Chuẩn bị vòng retry với 9 tasks
+2025-11-21 11:13:33,188 - INFO - [MainThread] - ℹ️ 🔄 Vòng xử lý thứ 3
+2025-11-21 11:13:33,188 - INFO - [MainThread] - ℹ️ Lấy task từ retry queue: B2-INV-02 (retry 2)
+2025-11-21 11:13:33,188 - INFO - [MainThread] - ℹ️ Lấy task từ retry queue: B2-INV-05 (retry 2)
+2025-11-21 11:13:33,188 - INFO - [MainThread] - ℹ️ Lấy task từ retry queue: B2-INV-04 (retry 2)
+2025-11-21 11:13:33,188 - INFO - [MainThread] - ℹ️ Lấy task từ retry queue: B2-INV-01 (retry 2)
+2025-11-21 11:13:33,188 - INFO - [MainThread] - ℹ️ Lấy task từ retry queue: B2-INV-03 (retry 2)
+2025-11-21 11:13:33,188 - INFO - [MainThread] - ℹ️ Lấy task từ retry queue: B2-INV-06 (retry 2)
+2025-11-21 11:13:33,188 - INFO - [MainThread] - ℹ️ Lấy task từ retry queue: B2-INV-08 (retry 2)
+2025-11-21 11:13:33,189 - INFO - [MainThread] - ℹ️ Lấy task từ retry queue: B2-INV-07 (retry 2)
+2025-11-21 11:13:33,189 - INFO - [MainThread] - ℹ️ Lấy task từ retry queue: B2-INV-09 (retry 2)
+2025-11-21 11:13:33,189 - INFO - [ThreadPoolExecutor-2_0] - ℹ️ [B2-INV-02] Bắt đầu xử lý ON
+2025-11-21 11:13:33,189 - INFO - [ThreadPoolExecutor-2_1] - ℹ️ [B2-INV-05] Bắt đầu xử lý ON
+2025-11-21 11:13:33,190 - INFO - [ThreadPoolExecutor-2_2] - ℹ️ [B2-INV-04] Bắt đầu xử lý ON
+2025-11-21 11:13:33,191 - INFO - [ThreadPoolExecutor-2_3] - ℹ️ [B2-INV-01] Bắt đầu xử lý ON
+2025-11-21 11:13:33,192 - INFO - [ThreadPoolExecutor-2_4] - ℹ️ [B2-INV-03] Bắt đầu xử lý ON
+2025-11-21 11:13:33,193 - INFO - [ThreadPoolExecutor-2_5] - ℹ️ [B2-INV-06] Bắt đầu xử lý ON
+2025-11-21 11:13:34,114 - INFO - [ThreadPoolExecutor-2_5] - ℹ️ Driver khởi tạo thành công với WebDriverWait
+2025-11-21 11:13:34,115 - INFO - [ThreadPoolExecutor-2_5] - ℹ️ Truy cập URL: http://10.10.10.106 (lần 1)
+2025-11-21 11:13:34,131 - INFO - [ThreadPoolExecutor-2_2] - ℹ️ Driver khởi tạo thành công với WebDriverWait
+2025-11-21 11:13:34,132 - INFO - [ThreadPoolExecutor-2_0] - ℹ️ Driver khởi tạo thành công với WebDriverWait
+2025-11-21 11:13:34,133 - INFO - [ThreadPoolExecutor-2_2] - ℹ️ Truy cập URL: http://10.10.10.104 (lần 1)
+2025-11-21 11:13:34,133 - INFO - [ThreadPoolExecutor-2_0] - ℹ️ Truy cập URL: http://10.10.10.102 (lần 1)
+2025-11-21 11:13:34,189 - INFO - [ThreadPoolExecutor-2_3] - ℹ️ Driver khởi tạo thành công với WebDriverWait
+2025-11-21 11:13:34,191 - INFO - [ThreadPoolExecutor-2_3] - ℹ️ Truy cập URL: http://10.10.10.101 (lần 1)
+2025-11-21 11:13:34,384 - INFO - [ThreadPoolExecutor-2_1] - ℹ️ Driver khởi tạo thành công với WebDriverWait
+2025-11-21 11:13:34,385 - INFO - [ThreadPoolExecutor-2_1] - ℹ️ Truy cập URL: http://10.10.10.105 (lần 1)
+2025-11-21 11:13:34,410 - INFO - [ThreadPoolExecutor-2_4] - ℹ️ Driver khởi tạo thành công với WebDriverWait
+2025-11-21 11:13:34,410 - INFO - [ThreadPoolExecutor-2_4] - ℹ️ Truy cập URL: http://10.10.10.103 (lần 1)
+2025-11-21 11:13:37,824 - INFO - [ThreadPoolExecutor-2_3] - ℹ️ [http://10.10.10.101] Thực hiện đăng nhập...
+2025-11-21 11:13:37,825 - INFO - [ThreadPoolExecutor-2_5] - ℹ️ [http://10.10.10.106] Thực hiện đăng nhập...
+2025-11-21 11:13:37,826 - INFO - [ThreadPoolExecutor-2_2] - ℹ️ [http://10.10.10.104] Thực hiện đăng nhập...
+2025-11-21 11:13:37,826 - INFO - [ThreadPoolExecutor-2_0] - ℹ️ [http://10.10.10.102] Thực hiện đăng nhập...
+2025-11-21 11:13:38,144 - INFO - [ThreadPoolExecutor-2_4] - ℹ️ [http://10.10.10.103] Thực hiện đăng nhập...
+2025-11-21 11:13:38,145 - INFO - [ThreadPoolExecutor-2_1] - ℹ️ [http://10.10.10.105] Thực hiện đăng nhập...
+2025-11-21 11:13:49,883 - WARNING - [ThreadPoolExecutor-2_3] - ⚠️ [http://10.10.10.101] Không tìm thấy field username, có thể đã đăng nhập
+2025-11-21 11:13:49,883 - WARNING - [ThreadPoolExecutor-2_5] - ⚠️ [http://10.10.10.106] Không tìm thấy field username, có thể đã đăng nhập
+2025-11-21 11:13:49,884 - WARNING - [ThreadPoolExecutor-2_2] - ⚠️ [http://10.10.10.104] Không tìm thấy field username, có thể đã đăng nhập
+2025-11-21 11:13:49,884 - WARNING - [ThreadPoolExecutor-2_0] - ⚠️ [http://10.10.10.102] Không tìm thấy field username, có thể đã đăng nhập
+2025-11-21 11:13:50,291 - WARNING - [ThreadPoolExecutor-2_1] - ⚠️ [http://10.10.10.105] Không tìm thấy field username, có thể đã đăng nhập
+2025-11-21 11:13:50,291 - WARNING - [ThreadPoolExecutor-2_4] - ⚠️ [http://10.10.10.103] Không tìm thấy field username, có thể đã đăng nhập
+2025-11-21 11:13:55,198 - WARNING - [ThreadPoolExecutor-2_2] - ⚠️ Không tìm thấy element grid control
+2025-11-21 11:13:55,199 - WARNING - [ThreadPoolExecutor-2_0] - ⚠️ Không tìm thấy element grid control
+2025-11-21 11:13:55,199 - WARNING - [ThreadPoolExecutor-2_3] - ⚠️ Không tìm thấy element grid control
+2025-11-21 11:13:55,200 - WARNING - [ThreadPoolExecutor-2_5] - ⚠️ Không tìm thấy element grid control
+2025-11-21 11:13:55,200 - WARNING - [ThreadPoolExecutor-2_2] - ⚠️ [B2-INV-04] Không thể xác định trạng thái hiện tại
+2025-11-21 11:13:55,200 - WARNING - [ThreadPoolExecutor-2_0] - ⚠️ [B2-INV-02] Không thể xác định trạng thái hiện tại
+2025-11-21 11:13:55,200 - WARNING - [ThreadPoolExecutor-2_3] - ⚠️ [B2-INV-01] Không thể xác định trạng thái hiện tại
+2025-11-21 11:13:55,200 - WARNING - [ThreadPoolExecutor-2_5] - ⚠️ [B2-INV-06] Không thể xác định trạng thái hiện tại
+2025-11-21 11:13:55,266 - INFO - [ThreadPoolExecutor-2_2] - ℹ️ Driver đã đóng
+2025-11-21 11:13:55,266 - INFO - [ThreadPoolExecutor-2_0] - ℹ️ Driver đã đóng
+2025-11-21 11:13:55,266 - INFO - [ThreadPoolExecutor-2_2] - ℹ️ [B2-INV-08] Bắt đầu xử lý ON
+2025-11-21 11:13:55,266 - WARNING - [MainThread] - ⚠️ Đã chuyển B2-INV-04 sang retry queue (lần 3)
+2025-11-21 11:13:55,266 - INFO - [ThreadPoolExecutor-2_3] - ℹ️ Driver đã đóng
+2025-11-21 11:13:55,267 - INFO - [ThreadPoolExecutor-2_0] - ℹ️ [B2-INV-07] Bắt đầu xử lý ON
+2025-11-21 11:13:55,267 - WARNING - [MainThread] - ⚠️ Đã chuyển B2-INV-02 sang retry queue (lần 3)
+2025-11-21 11:13:55,267 - INFO - [ThreadPoolExecutor-2_5] - ℹ️ Driver đã đóng
+2025-11-21 11:13:55,267 - INFO - [ThreadPoolExecutor-2_3] - ℹ️ [B2-INV-09] Bắt đầu xử lý ON
+2025-11-21 11:13:55,268 - WARNING - [MainThread] - ⚠️ Đã chuyển B2-INV-01 sang retry queue (lần 3)
+2025-11-21 11:13:55,270 - WARNING - [MainThread] - ⚠️ Đã chuyển B2-INV-06 sang retry queue (lần 3)
+2025-11-21 11:13:55,642 - WARNING - [ThreadPoolExecutor-2_1] - ⚠️ Không tìm thấy element grid control
+2025-11-21 11:13:55,642 - WARNING - [ThreadPoolExecutor-2_4] - ⚠️ Không tìm thấy element grid control
+2025-11-21 11:13:55,642 - WARNING - [ThreadPoolExecutor-2_1] - ⚠️ [B2-INV-05] Không thể xác định trạng thái hiện tại
+2025-11-21 11:13:55,643 - WARNING - [ThreadPoolExecutor-2_4] - ⚠️ [B2-INV-03] Không thể xác định trạng thái hiện tại
+2025-11-21 11:13:55,735 - INFO - [ThreadPoolExecutor-2_1] - ℹ️ Driver đã đóng
+2025-11-21 11:13:55,735 - WARNING - [MainThread] - ⚠️ Đã chuyển B2-INV-05 sang retry queue (lần 3)
+2025-11-21 11:13:55,736 - INFO - [ThreadPoolExecutor-2_4] - ℹ️ Driver đã đóng
+2025-11-21 11:13:55,737 - WARNING - [MainThread] - ⚠️ Đã chuyển B2-INV-03 sang retry queue (lần 3)
+2025-11-21 11:13:56,282 - INFO - [ThreadPoolExecutor-2_2] - ℹ️ Driver khởi tạo thành công với WebDriverWait
+2025-11-21 11:13:56,282 - INFO - [ThreadPoolExecutor-2_2] - ℹ️ Truy cập URL: http://10.10.10.108 (lần 1)
+2025-11-21 11:13:56,310 - INFO - [ThreadPoolExecutor-2_0] - ℹ️ Driver khởi tạo thành công với WebDriverWait
+2025-11-21 11:13:56,311 - INFO - [ThreadPoolExecutor-2_0] - ℹ️ Truy cập URL: http://10.10.10.107 (lần 1)
+2025-11-21 11:13:56,319 - INFO - [ThreadPoolExecutor-2_3] - ℹ️ Driver khởi tạo thành công với WebDriverWait
+2025-11-21 11:13:56,320 - INFO - [ThreadPoolExecutor-2_3] - ℹ️ Truy cập URL: http://10.10.10.109 (lần 1)
+2025-11-21 11:14:00,062 - INFO - [ThreadPoolExecutor-2_2] - ℹ️ [http://10.10.10.108] Thực hiện đăng nhập...
+2025-11-21 11:14:00,062 - INFO - [ThreadPoolExecutor-2_3] - ℹ️ [http://10.10.10.109] Thực hiện đăng nhập...
+2025-11-21 11:14:00,063 - INFO - [ThreadPoolExecutor-2_0] - ℹ️ [http://10.10.10.107] Thực hiện đăng nhập...
+2025-11-21 11:14:10,652 - WARNING - [ThreadPoolExecutor-2_0] - ⚠️ [http://10.10.10.107] Không tìm thấy field username, có thể đã đăng nhập
+2025-11-21 11:14:10,652 - WARNING - [ThreadPoolExecutor-2_2] - ⚠️ [http://10.10.10.108] Không tìm thấy field username, có thể đã đăng nhập
+2025-11-21 11:14:10,652 - WARNING - [ThreadPoolExecutor-2_3] - ⚠️ [http://10.10.10.109] Không tìm thấy field username, có thể đã đăng nhập
+2025-11-21 11:14:17,348 - WARNING - [ThreadPoolExecutor-2_3] - ⚠️ Không tìm thấy element grid control
+2025-11-21 11:14:17,349 - WARNING - [ThreadPoolExecutor-2_0] - ⚠️ Không tìm thấy element grid control
+2025-11-21 11:14:17,349 - WARNING - [ThreadPoolExecutor-2_2] - ⚠️ Không tìm thấy element grid control
+2025-11-21 11:14:17,349 - WARNING - [ThreadPoolExecutor-2_3] - ⚠️ [B2-INV-09] Không thể xác định trạng thái hiện tại
+2025-11-21 11:14:17,349 - WARNING - [ThreadPoolExecutor-2_0] - ⚠️ [B2-INV-07] Không thể xác định trạng thái hiện tại
+2025-11-21 11:14:17,349 - WARNING - [ThreadPoolExecutor-2_2] - ⚠️ [B2-INV-08] Không thể xác định trạng thái hiện tại
+2025-11-21 11:14:17,415 - INFO - [ThreadPoolExecutor-2_3] - ℹ️ Driver đã đóng
+2025-11-21 11:14:17,415 - WARNING - [MainThread] - ⚠️ Đã chuyển B2-INV-09 sang retry queue (lần 3)
+2025-11-21 11:14:17,417 - INFO - [ThreadPoolExecutor-2_2] - ℹ️ Driver đã đóng
+2025-11-21 11:14:17,417 - WARNING - [MainThread] - ⚠️ Đã chuyển B2-INV-08 sang retry queue (lần 3)
+2025-11-21 11:14:17,418 - INFO - [ThreadPoolExecutor-2_0] - ℹ️ Driver đã đóng
+2025-11-21 11:14:17,418 - WARNING - [MainThread] - ⚠️ Đã chuyển B2-INV-07 sang retry queue (lần 3)
+2025-11-21 11:14:17,419 - INFO - [MainThread] - 📊 Hàng đợi - Chính: 0, Retry: 9, Hoàn thành: 123, Thất bại: 0
+2025-11-21 11:14:17,419 - INFO - [MainThread] - ℹ️ 📈 Tiến trình tổng: 123/132 (93.2%)
+2025-11-21 11:14:17,419 - INFO - [MainThread] - ℹ️ 🔄 Chuẩn bị vòng retry với 9 tasks
+2025-11-21 11:14:17,419 - INFO - [MainThread] - ℹ️ 🔄 Vòng xử lý thứ 4
+2025-11-21 11:14:17,419 - INFO - [MainThread] - ℹ️ Lấy task từ retry queue: B2-INV-04 (retry 3)
+2025-11-21 11:14:17,419 - INFO - [MainThread] - ℹ️ Lấy task từ retry queue: B2-INV-02 (retry 3)
+2025-11-21 11:14:17,419 - INFO - [MainThread] - ℹ️ Lấy task từ retry queue: B2-INV-01 (retry 3)
+2025-11-21 11:14:17,420 - INFO - [MainThread] - ℹ️ Lấy task từ retry queue: B2-INV-06 (retry 3)
+2025-11-21 11:14:17,420 - INFO - [MainThread] - ℹ️ Lấy task từ retry queue: B2-INV-05 (retry 3)
+2025-11-21 11:14:17,420 - INFO - [MainThread] - ℹ️ Lấy task từ retry queue: B2-INV-03 (retry 3)
+2025-11-21 11:14:17,420 - INFO - [MainThread] - ℹ️ Lấy task từ retry queue: B2-INV-09 (retry 3)
+2025-11-21 11:14:17,420 - INFO - [MainThread] - ℹ️ Lấy task từ retry queue: B2-INV-08 (retry 3)
+2025-11-21 11:14:17,420 - INFO - [MainThread] - ℹ️ Lấy task từ retry queue: B2-INV-07 (retry 3)
+2025-11-21 11:14:17,420 - INFO - [ThreadPoolExecutor-3_0] - ℹ️ [B2-INV-04] Bắt đầu xử lý ON
+2025-11-21 11:14:17,421 - INFO - [ThreadPoolExecutor-3_1] - ℹ️ [B2-INV-02] Bắt đầu xử lý ON
+2025-11-21 11:14:17,421 - INFO - [ThreadPoolExecutor-3_2] - ℹ️ [B2-INV-01] Bắt đầu xử lý ON
+2025-11-21 11:14:17,422 - INFO - [ThreadPoolExecutor-3_3] - ℹ️ [B2-INV-06] Bắt đầu xử lý ON
+2025-11-21 11:14:17,423 - INFO - [ThreadPoolExecutor-3_4] - ℹ️ [B2-INV-05] Bắt đầu xử lý ON
+2025-11-21 11:14:17,425 - INFO - [ThreadPoolExecutor-3_5] - ℹ️ [B2-INV-03] Bắt đầu xử lý ON
+2025-11-21 11:14:18,729 - INFO - [ThreadPoolExecutor-3_3] - ℹ️ Driver khởi tạo thành công với WebDriverWait
+2025-11-21 11:14:18,729 - INFO - [ThreadPoolExecutor-3_3] - ℹ️ Truy cập URL: http://10.10.10.106 (lần 1)
+2025-11-21 11:14:18,731 - INFO - [ThreadPoolExecutor-3_5] - ℹ️ Driver khởi tạo thành công với WebDriverWait
+2025-11-21 11:14:18,732 - INFO - [ThreadPoolExecutor-3_1] - ℹ️ Driver khởi tạo thành công với WebDriverWait
+2025-11-21 11:14:18,733 - INFO - [ThreadPoolExecutor-3_5] - ℹ️ Truy cập URL: http://10.10.10.103 (lần 1)
+2025-11-21 11:14:18,734 - INFO - [ThreadPoolExecutor-3_4] - ℹ️ Driver khởi tạo thành công với WebDriverWait
+2025-11-21 11:14:18,735 - INFO - [ThreadPoolExecutor-3_4] - ℹ️ Truy cập URL: http://10.10.10.105 (lần 1)
+2025-11-21 11:14:18,735 - INFO - [ThreadPoolExecutor-3_1] - ℹ️ Truy cập URL: http://10.10.10.102 (lần 1)
+2025-11-21 11:14:18,749 - INFO - [ThreadPoolExecutor-3_0] - ℹ️ Driver khởi tạo thành công với WebDriverWait
+2025-11-21 11:14:18,750 - INFO - [ThreadPoolExecutor-3_0] - ℹ️ Truy cập URL: http://10.10.10.104 (lần 1)
+2025-11-21 11:14:18,794 - INFO - [ThreadPoolExecutor-3_2] - ℹ️ Driver khởi tạo thành công với WebDriverWait
+2025-11-21 11:14:18,798 - INFO - [ThreadPoolExecutor-3_2] - ℹ️ Truy cập URL: http://10.10.10.101 (lần 1)
+2025-11-21 11:14:22,474 - INFO - [ThreadPoolExecutor-3_2] - ℹ️ [http://10.10.10.101] Thực hiện đăng nhập...
+2025-11-21 11:14:22,475 - INFO - [ThreadPoolExecutor-3_5] - ℹ️ [http://10.10.10.103] Thực hiện đăng nhập...
+2025-11-21 11:14:22,476 - INFO - [ThreadPoolExecutor-3_3] - ℹ️ [http://10.10.10.106] Thực hiện đăng nhập...
+2025-11-21 11:14:22,477 - INFO - [ThreadPoolExecutor-3_0] - ℹ️ [http://10.10.10.104] Thực hiện đăng nhập...
+2025-11-21 11:14:22,478 - INFO - [ThreadPoolExecutor-3_4] - ℹ️ [http://10.10.10.105] Thực hiện đăng nhập...
+2025-11-21 11:14:22,479 - INFO - [ThreadPoolExecutor-3_1] - ℹ️ [http://10.10.10.102] Thực hiện đăng nhập...
+2025-11-21 11:14:33,108 - WARNING - [ThreadPoolExecutor-3_3] - ⚠️ [http://10.10.10.106] Không tìm thấy field username, có thể đã đăng nhập
+2025-11-21 11:14:33,109 - WARNING - [ThreadPoolExecutor-3_5] - ⚠️ [http://10.10.10.103] Không tìm thấy field username, có thể đã đăng nhập
+2025-11-21 11:14:33,109 - WARNING - [ThreadPoolExecutor-3_1] - ⚠️ [http://10.10.10.102] Không tìm thấy field username, có thể đã đăng nhập
+2025-11-21 11:14:33,109 - WARNING - [ThreadPoolExecutor-3_0] - ⚠️ [http://10.10.10.104] Không tìm thấy field username, có thể đã đăng nhập
+2025-11-21 11:14:33,110 - WARNING - [ThreadPoolExecutor-3_4] - ⚠️ [http://10.10.10.105] Không tìm thấy field username, có thể đã đăng nhập
+2025-11-21 11:14:33,111 - WARNING - [ThreadPoolExecutor-3_2] - ⚠️ [http://10.10.10.101] Không tìm thấy field username, có thể đã đăng nhập
+2025-11-21 11:14:38,397 - WARNING - [ThreadPoolExecutor-3_5] - ⚠️ Không tìm thấy element grid control
+2025-11-21 11:14:38,398 - WARNING - [ThreadPoolExecutor-3_2] - ⚠️ Không tìm thấy element grid control
+2025-11-21 11:14:38,398 - WARNING - [ThreadPoolExecutor-3_3] - ⚠️ Không tìm thấy element grid control
+2025-11-21 11:14:38,398 - WARNING - [ThreadPoolExecutor-3_5] - ⚠️ [B2-INV-03] Không thể xác định trạng thái hiện tại
+2025-11-21 11:14:38,398 - WARNING - [ThreadPoolExecutor-3_2] - ⚠️ [B2-INV-01] Không thể xác định trạng thái hiện tại
+2025-11-21 11:14:38,399 - WARNING - [ThreadPoolExecutor-3_1] - ⚠️ Không tìm thấy element grid control
+2025-11-21 11:14:38,399 - WARNING - [ThreadPoolExecutor-3_4] - ⚠️ Không tìm thấy element grid control
+2025-11-21 11:14:38,399 - WARNING - [ThreadPoolExecutor-3_0] - ⚠️ Không tìm thấy element grid control
+2025-11-21 11:14:38,399 - WARNING - [ThreadPoolExecutor-3_3] - ⚠️ [B2-INV-06] Không thể xác định trạng thái hiện tại
+2025-11-21 11:14:38,401 - WARNING - [ThreadPoolExecutor-3_1] - ⚠️ [B2-INV-02] Không thể xác định trạng thái hiện tại
+2025-11-21 11:14:38,401 - WARNING - [ThreadPoolExecutor-3_4] - ⚠️ [B2-INV-05] Không thể xác định trạng thái hiện tại
+2025-11-21 11:14:38,401 - WARNING - [ThreadPoolExecutor-3_0] - ⚠️ [B2-INV-04] Không thể xác định trạng thái hiện tại
+2025-11-21 11:14:38,489 - INFO - [ThreadPoolExecutor-3_1] - ℹ️ Driver đã đóng
+2025-11-21 11:14:38,490 - INFO - [ThreadPoolExecutor-3_1] - ℹ️ [B2-INV-09] Bắt đầu xử lý ON
+2025-11-21 11:14:38,490 - ERROR - [MainThread] - ❌ Task B2-INV-02 đã vượt quá số lần retry tối đa
+2025-11-21 11:14:38,491 - INFO - [ThreadPoolExecutor-3_3] - ℹ️ Driver đã đóng
+2025-11-21 11:14:38,492 - INFO - [ThreadPoolExecutor-3_5] - ℹ️ Driver đã đóng
+2025-11-21 11:14:38,493 - INFO - [ThreadPoolExecutor-3_3] - ℹ️ [B2-INV-08] Bắt đầu xử lý ON
+2025-11-21 11:14:38,493 - ERROR - [MainThread] - ❌ Task B2-INV-06 đã vượt quá số lần retry tối đa
+2025-11-21 11:14:38,493 - INFO - [ThreadPoolExecutor-3_5] - ℹ️ [B2-INV-07] Bắt đầu xử lý ON
+2025-11-21 11:14:38,494 - ERROR - [MainThread] - ❌ Task B2-INV-03 đã vượt quá số lần retry tối đa
+2025-11-21 11:14:38,521 - INFO - [ThreadPoolExecutor-3_4] - ℹ️ Driver đã đóng
+2025-11-21 11:14:38,522 - ERROR - [MainThread] - ❌ Task B2-INV-05 đã vượt quá số lần retry tối đa
+2025-11-21 11:14:38,532 - INFO - [ThreadPoolExecutor-3_0] - ℹ️ Driver đã đóng
+2025-11-21 11:14:38,532 - ERROR - [MainThread] - ❌ Task B2-INV-04 đã vượt quá số lần retry tối đa
+2025-11-21 11:14:39,210 - INFO - [ThreadPoolExecutor-3_1] - ℹ️ Driver khởi tạo thành công với WebDriverWait
+2025-11-21 11:14:39,211 - INFO - [ThreadPoolExecutor-3_1] - ℹ️ Truy cập URL: http://10.10.10.109 (lần 1)
+2025-11-21 11:14:39,451 - INFO - [ThreadPoolExecutor-3_3] - ℹ️ Driver khởi tạo thành công với WebDriverWait
+2025-11-21 11:14:39,452 - INFO - [ThreadPoolExecutor-3_3] - ℹ️ Truy cập URL: http://10.10.10.108 (lần 1)
+2025-11-21 11:14:39,472 - INFO - [ThreadPoolExecutor-3_2] - ℹ️ Driver đã đóng
+2025-11-21 11:14:39,472 - ERROR - [MainThread] - ❌ Task B2-INV-01 đã vượt quá số lần retry tối đa
+2025-11-21 11:14:39,486 - INFO - [ThreadPoolExecutor-3_5] - ℹ️ Driver khởi tạo thành công với WebDriverWait
+2025-11-21 11:14:39,487 - INFO - [ThreadPoolExecutor-3_5] - ℹ️ Truy cập URL: http://10.10.10.107 (lần 1)
+2025-11-21 11:14:42,804 - INFO - [ThreadPoolExecutor-3_1] - ℹ️ [http://10.10.10.109] Thực hiện đăng nhập...
+2025-11-21 11:14:43,096 - INFO - [ThreadPoolExecutor-3_3] - ℹ️ [http://10.10.10.108] Thực hiện đăng nhập...
+2025-11-21 11:14:43,098 - INFO - [ThreadPoolExecutor-3_5] - ℹ️ [http://10.10.10.107] Thực hiện đăng nhập...
+2025-11-21 11:14:54,979 - WARNING - [ThreadPoolExecutor-3_1] - ⚠️ [http://10.10.10.109] Không tìm thấy field username, có thể đã đăng nhập
+2025-11-21 11:14:55,203 - WARNING - [ThreadPoolExecutor-3_3] - ⚠️ [http://10.10.10.108] Không tìm thấy field username, có thể đã đăng nhập
+2025-11-21 11:14:55,204 - WARNING - [ThreadPoolExecutor-3_5] - ⚠️ [http://10.10.10.107] Không tìm thấy field username, có thể đã đăng nhập
+2025-11-21 11:15:00,255 - WARNING - [ThreadPoolExecutor-3_1] - ⚠️ Không tìm thấy element grid control
+2025-11-21 11:15:00,255 - WARNING - [ThreadPoolExecutor-3_1] - ⚠️ [B2-INV-09] Không thể xác định trạng thái hiện tại
+2025-11-21 11:15:00,333 - INFO - [ThreadPoolExecutor-3_1] - ℹ️ Driver đã đóng
+2025-11-21 11:15:00,333 - ERROR - [MainThread] - ❌ Task B2-INV-09 đã vượt quá số lần retry tối đa
+2025-11-21 11:15:00,502 - WARNING - [ThreadPoolExecutor-3_3] - ⚠️ Không tìm thấy element grid control
+2025-11-21 11:15:00,503 - WARNING - [ThreadPoolExecutor-3_5] - ⚠️ Không tìm thấy element grid control
+2025-11-21 11:15:00,503 - WARNING - [ThreadPoolExecutor-3_3] - ⚠️ [B2-INV-08] Không thể xác định trạng thái hiện tại
+2025-11-21 11:15:00,503 - WARNING - [ThreadPoolExecutor-3_5] - ⚠️ [B2-INV-07] Không thể xác định trạng thái hiện tại
+2025-11-21 11:15:00,568 - INFO - [ThreadPoolExecutor-3_5] - ℹ️ Driver đã đóng
+2025-11-21 11:15:00,569 - INFO - [ThreadPoolExecutor-3_3] - ℹ️ Driver đã đóng
+2025-11-21 11:15:00,569 - ERROR - [MainThread] - ❌ Task B2-INV-07 đã vượt quá số lần retry tối đa
+2025-11-21 11:15:00,569 - ERROR - [MainThread] - ❌ Task B2-INV-08 đã vượt quá số lần retry tối đa
+2025-11-21 11:15:00,570 - INFO - [MainThread] - 📊 Hàng đợi - Chính: 0, Retry: 0, Hoàn thành: 123, Thất bại: 9
+2025-11-21 11:15:00,570 - INFO - [MainThread] - ℹ️ 📈 Tiến trình tổng: 123/132 (93.2%)
+2025-11-21 11:15:00,570 - INFO - [MainThread] - ℹ️ ============================================================
+2025-11-21 11:15:00,570 - INFO - [MainThread] - ℹ️ 🎯 BÁO CÁO TỔNG KẾT - PHIÊN BẢN 0.3 (SMART QUEUE)
+2025-11-21 11:15:00,570 - INFO - [MainThread] - ℹ️ ============================================================
+2025-11-21 11:15:00,570 - INFO - [MainThread] - ℹ️ 📦 Tổng số tác vụ: 132
+2025-11-21 11:15:00,571 - INFO - [MainThread] - ℹ️ ✅ Thành công: 123
+2025-11-21 11:15:00,571 - INFO - [MainThread] - ℹ️ ❌ Thất bại: 9
+2025-11-21 11:15:00,571 - INFO - [MainThread] - ℹ️ ⏭️ Bỏ qua: 0
+2025-11-21 11:15:00,571 - INFO - [MainThread] - ℹ️ 🔄 Số lần retry đã dùng: 27
+2025-11-21 11:15:00,571 - INFO - [MainThread] - ℹ️ 📊 Tỷ lệ thành công: 93.2%
+2025-11-21 11:15:00,571 - INFO - [MainThread] - ℹ️ ⏱️ Thời gian trung bình/task: 2.7s
+2025-11-21 11:15:00,571 - INFO - [MainThread] - ℹ️ 🕒 Tổng thời gian thực hiện: 0:06:00.238972
+2025-11-21 11:15:00,571 - INFO - [MainThread] - ℹ️ 🔍 CHI TIẾT LỖI:
+2025-11-21 11:15:00,571 - ERROR - [MainThread] - ❌ [B2-INV-02] Vượt quá số lần retry tối đa: Không thể xác định trạng thái hiện tại
+2025-11-21 11:15:00,572 - ERROR - [MainThread] - ❌ [B2-INV-06] Vượt quá số lần retry tối đa: Không thể xác định trạng thái hiện tại
+2025-11-21 11:15:00,572 - ERROR - [MainThread] - ❌ [B2-INV-03] Vượt quá số lần retry tối đa: Không thể xác định trạng thái hiện tại
+2025-11-21 11:15:00,572 - ERROR - [MainThread] - ❌ [B2-INV-05] Vượt quá số lần retry tối đa: Không thể xác định trạng thái hiện tại
+2025-11-21 11:15:00,572 - ERROR - [MainThread] - ❌ [B2-INV-04] Vượt quá số lần retry tối đa: Không thể xác định trạng thái hiện tại
+2025-11-21 11:15:00,572 - ERROR - [MainThread] - ❌ [B2-INV-01] Vượt quá số lần retry tối đa: Không thể xác định trạng thái hiện tại
+2025-11-21 11:15:00,572 - ERROR - [MainThread] - ❌ [B2-INV-09] Vượt quá số lần retry tối đa: Không thể xác định trạng thái hiện tại
+2025-11-21 11:15:00,572 - ERROR - [MainThread] - ❌ [B2-INV-07] Vượt quá số lần retry tối đa: Không thể xác định trạng thái hiện tại
+2025-11-21 11:15:00,572 - ERROR - [MainThread] - ❌ [B2-INV-08] Vượt quá số lần retry tối đa: Không thể xác định trạng thái hiện tại
