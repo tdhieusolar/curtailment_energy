@@ -13,7 +13,7 @@ import re
 USERNAME = "installer"
 PASSWORD = "Mo_g010rP!"
 CHROMIUM_DRIVER_PATH = "/usr/bin/chromedriver" # Đường dẫn Driver đã xác định trên Orange Pi
-MAX_WORKERS = 4
+MAX_WORKERS = 8
 
 # CÁC BỘ CHỌN (SELECTORS)
 # ON-OFF
@@ -95,11 +95,18 @@ def turn_on_grid(driver):
     Trả về: (bool, message)
     """
     try:
-        link_element = WebDriverWait(driver, 10).until(
-            EC.element_to_be_clickable((By.ID, ID_CONNECT_GRID_LINK))
+        link_locator = (By.ID, ID_CONNECT_GRID_LINK)
+        WebDriverWait(driver, 10).until(
+            EC.element_to_be_clickable(link_locator)
         )
-        text_before = link_element.text.strip()
 
+        WebDriverWait(driver, 5).until(
+            lambda driver: driver.find_element(*link_locator).text.strip() in ("Disconnect Grid", "Connect Grid")
+        )
+        
+        link_element = driver.find_element(*link_locator)
+        text_before = link_element.text.strip()
+        
         if text_before == "Connect Grid":
             # Cần BẬT
             actions = ActionChains(driver)
@@ -134,9 +141,16 @@ def turn_off_grid(driver):
     Trả về: (bool, message)
     """
     try:
-        link_element = WebDriverWait(driver, 10).until(
-            EC.element_to_be_clickable((By.ID, ID_CONNECT_GRID_LINK))
+        link_locator = (By.ID, ID_CONNECT_GRID_LINK)
+        WebDriverWait(driver, 10).until(
+            EC.element_to_be_clickable(link_locator)
         )
+
+        WebDriverWait(driver, 5).until(
+            lambda driver: driver.find_element(*link_locator).text.strip() in ("Disconnect Grid", "Connect Grid")
+        )
+        
+        link_element = driver.find_element(*link_locator)
         text_before = link_element.text.strip()
 
         if text_before == "Disconnect Grid":
@@ -146,6 +160,7 @@ def turn_off_grid(driver):
             # time.sleep(1) # Chờ trạng thái cập nhật
             WebDriverWait(driver, 3).until(
                 EC.text_to_be_present_in_element((By.ID, ID_CONNECT_GRID_LINK), "Connect Grid")
+        
             )
             
             text_after = driver.find_element(By.ID, ID_CONNECT_GRID_LINK).text.strip()
@@ -321,9 +336,7 @@ def run_parallel(list_request):
                     
                     tasks_to_run.append((full_inv_name, target_url, required_action, inv_status))
                     count_added += 1
-
-    
-    
+   
     print(f"Tổng cộng có {len(tasks_to_run)} tác vụ INV cần xử lý.")
 
     # 2. PHÂN CHIA TÁC VỤ CHO CÁC LUỒNG (ROUND-ROBIN DISTRIBUTION)
@@ -683,32 +696,43 @@ def run_logger():
 # -----------------------------
 
 def main():
-    run_logger()
-    # run_parallel(CONTROL_REQUESTS_ON)
+    # run_logger()
+    run_parallel(CONTROL_REQUESTS_ON)
+    run_parallel(ON_ALL)
     # run_sequentially(CONTROL_REQUESTS_ON)
 
 if __name__ == "__main__":
-    CONTROL_REQUESTS = {
-        "B2": {"action": "OFF", "count": 10},
+    CONTROL_REQUESTS_OFF = {
         "B3R1": {"action": "OFF", "count": 9},
         "B4R2": {"action": "OFF", "count": 10},
         "B5R2": {"action": "OFF", "count": 10},
-        "B6R2": {"action": "OFF", "count": 10},
-        "B7": {"action": "OFF", "count": 10},
-        "B8": {"action": "OFF", "count": 5},
-        "B13-14": {"action": "OFF", "count": 10},
-    } 
+        "B8": {"action": "OFF", "count": 4},
+    }
+
     CONTROL_REQUESTS_ON = {
-        "B2": {"action": "ON", "count": 10},
         "B3R1": {"action": "ON", "count": 9},
         "B4R2": {"action": "ON", "count": 10},
         "B5R2": {"action": "ON", "count": 10},
+        "B8": {"action": "ON", "count": 4},
+    }
+
+    ON_ALL = {
+        "B2": {"action": "ON", "count": 9},
+        "B3R1": {"action": "ON", "count": 9},
+        "B3R2": {"action": "ON", "count": 9},
+        "B4R1": {"action": "ON", "count": 10},
+        "B4R2": {"action": "ON", "count": 10},
+        "B5R1": {"action": "ON", "count": 10},
+        "B5R2": {"action": "ON", "count": 10},
+        "B6R1": {"action": "ON", "count": 10},
         "B6R2": {"action": "ON", "count": 10},
         "B7": {"action": "ON", "count": 10},
         "B8": {"action": "ON", "count": 5},
-        "B13-14": {"action": "ON", "count": 10},
         "B11": {"action": "ON", "count": 10},
-    }    
+        "B12": {"action": "ON", "count": 10},
+        "B13-14": {"action": "ON", "count": 10},
+    }
+
     SYSTEM_URLS = {
         "Zone B": {
             "B2": {
@@ -732,7 +756,7 @@ if __name__ == "__main__":
                 "INV-06": { "url": "10.10.10.126", "info": "Inverter số 6", "status": "OK"},
                 "INV-07": { "url": "10.10.10.127", "info": "Inverter số 7", "status": "OK"},
                 "INV-08": { "url": "10.10.10.128", "info": "Inverter số 8", "status": "OK"},
-                "INV-09": { "url": "10.10.10.129", "info": "Inverter số 9", "status": "FAULTY"},
+                "INV-09": { "url": "10.10.10.129", "info": "Inverter số 9", "status": "OK"},
             },
             "B3R2": {
                 "INV-01": { "url": "10.10.10.111", "info": "Inverter số 1", "status": "OK"},
@@ -786,7 +810,7 @@ if __name__ == "__main__":
                 "INV-02": { "url": "10.10.10.152", "info": "Inverter số 2", "status": "OK"},
                 "INV-03": { "url": "10.10.10.153", "info": "Inverter số 3", "status": "OK"},
                 "INV-04": { "url": "10.10.10.154", "info": "Inverter số 4", "status": "OK"},
-                "INV-05": { "url": "10.10.10.155", "info": "Inverter số 5", "status": "FAULTY"},
+                "INV-05": { "url": "10.10.10.155", "info": "Inverter số 5", "status": "OK"},
                 "INV-06": { "url": "10.10.10.156", "info": "Inverter số 6", "status": "OK"},
                 "INV-07": { "url": "10.10.10.157", "info": "Inverter số 7", "status": "OK"},
                 "INV-08": { "url": "10.10.10.158", "info": "Inverter số 8", "status": "OK"},
@@ -807,7 +831,7 @@ if __name__ == "__main__":
             },
             "B6R2": {
                 "INV-01": { "url": "10.10.10.171", "info": "Inverter số 1", "status": "OK"},
-                "INV-02": { "url": "10.10.10.172", "info": "Inverter số 2", "status": "FAULTY"},
+                "INV-02": { "url": "10.10.10.172", "info": "Inverter số 2", "status": "OK"},
                 "INV-03": { "url": "10.10.10.173", "info": "Inverter số 3", "status": "OK"},
                 "INV-04": { "url": "10.10.10.174", "info": "Inverter số 4", "status": "OK"},
                 "INV-05": { "url": "10.10.10.175", "info": "Inverter số 5", "status": "OK"},
@@ -825,7 +849,7 @@ if __name__ == "__main__":
                 "INV-05": { "url": "10.10.10.195", "info": "Inverter số 5", "status": "OK"},
                 "INV-06": { "url": "10.10.10.196", "info": "Inverter số 6", "status": "OK"},
                 "INV-07": { "url": "10.10.10.197", "info": "Inverter số 7", "status": "OK"},
-                "INV-08": { "url": "10.10.10.198", "info": "Inverter số 8", "status": "FAULTY"},
+                "INV-08": { "url": "10.10.10.198", "info": "Inverter số 8", "status": "OK"},
                 "INV-09": { "url": "10.10.10.199", "info": "Inverter số 9", "status": "OK"},
                 "INV-10": { "url": "10.10.10.200", "info": "Inverter số 10", "status": "OK"},
             },
@@ -846,7 +870,7 @@ if __name__ == "__main__":
                 "INV-07": { "url": "10.10.10.217", "info": "Inverter số 7", "status": "OK"},
                 "INV-08": { "url": "10.10.10.218", "info": "Inverter số 8", "status": "OK"},
                 "INV-09": { "url": "10.10.10.219", "info": "Inverter số 9", "status": "OK"},
-                "INV-10": { "url": "10.10.10.220", "info": "Inverter số 10", "status": "FAULTY"},
+                "INV-10": { "url": "10.10.10.220", "info": "Inverter số 10", "status": "OK"},
             },
             "B12": {
                 "INV-01": { "url": "10.10.10.241", "info": "Inverter số 1", "status": "OK"},
@@ -861,7 +885,7 @@ if __name__ == "__main__":
                 "INV-10": { "url": "10.10.10.250", "info": "Inverter số 10", "status": "OK"},
             },  
             "B13-14": {
-                "INV-01": { "url": "10.10.10.221", "info": "B13 Inverter số 1", "status": "FAULTY"},
+                "INV-01": { "url": "10.10.10.221", "info": "B13 Inverter số 1", "status": "OK"},
                 "INV-02": { "url": "10.10.10.222", "info": "B13 Inverter số 2", "status": "OK"},
                 "INV-03": { "url": "10.10.10.223", "info": "B13 Inverter số 3", "status": "OK"},
                 "INV-04": { "url": "10.10.10.224", "info": "B13 Inverter số 4", "status": "OK"},
