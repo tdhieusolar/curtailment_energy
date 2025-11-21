@@ -1,0 +1,36 @@
+2025-11-21 16:54:17,571 - INFO - [MainThread] - ℹ️ 🚀 Bắt đầu xử lý 1 yêu cầu - Phiên bản 0.4.1 (Dynamic Driver Pool)
+2025-11-21 16:54:17,571 - INFO - [MainThread] - ℹ️ 📊 Tổng số inverters cần xử lý: 3
+2025-11-21 16:54:17,572 - INFO - [MainThread] - ℹ️ 📦 Tổng số tasks: 3
+2025-11-21 16:54:17,572 - INFO - [MainThread] - ℹ️ 🔄 Đang khởi tạo driver pool...
+2025-11-21 16:54:17,572 - INFO - [MainThread] - ℹ️ 📊 Tính toán pool size: 3 tasks / 5 tasks/driver = 2 drivers
+2025-11-21 16:54:17,572 - INFO - [MainThread] - ℹ️ 🔄 Tính toán: 3 tasks → 2 drivers
+2025-11-21 16:54:18,305 - INFO - [MainThread] - ℹ️ 🚀 Đã khởi tạo driver 1/2
+2025-11-21 16:54:18,995 - INFO - [MainThread] - ℹ️ 🚀 Đã khởi tạo driver 2/2
+2025-11-21 16:54:18,995 - INFO - [MainThread] - ℹ️ ✅ Đã khởi tạo thành công 2/2 drivers
+2025-11-21 16:54:18,995 - INFO - [MainThread] - ℹ️ 🎯 Driver pool: 2 drivers (Available: 2, In Use: 0)
+2025-11-21 16:54:18,995 - INFO - [MainThread] - ℹ️ 📥 Đã thêm 3 tasks vào hàng đợi chính
+2025-11-21 16:54:18,996 - INFO - [MainThread] - ℹ️ 🔄 Xử lý batch 1 với 3 tasks
+2025-11-21 16:54:18,996 - INFO - [ThreadPoolExecutor-0_0] - ℹ️ [B3R2-INV-01] Bắt đầu xử lý ON
+2025-11-21 16:54:18,996 - INFO - [ThreadPoolExecutor-0_1] - ℹ️ [B3R2-INV-02] Bắt đầu xử lý ON
+2025-11-21 16:54:18,998 - INFO - [ThreadPoolExecutor-0_2] - ℹ️ [B3R2-INV-03] Bắt đầu xử lý ON
+2025-11-21 16:54:28,515 - INFO - [ThreadPoolExecutor-0_1] - ✅ [B3R2-INV-02] BỎ QUA: Đã ở trạng thái mong muốn (Disconnect Grid)
+2025-11-21 16:54:29,063 - INFO - [ThreadPoolExecutor-0_0] - ✅ [B3R2-INV-01] BỎ QUA: Đã ở trạng thái mong muốn (Disconnect Grid)
+2025-11-21 16:54:39,624 - INFO - [ThreadPoolExecutor-0_2] - ✅ [B3R2-INV-03] BỎ QUA: Đã ở trạng thái mong muốn (Disconnect Grid)
+2025-11-21 16:54:39,655 - INFO - [MainThread] - ℹ️ 📦 Batch 1: Hoàn thành 3, Retry 0, Thất bại 0
+2025-11-21 16:54:39,655 - INFO - [MainThread] - 📊 Hàng đợi - Chính: 0, Retry: 0, Hoàn thành: 3, Thất bại: 0
+2025-11-21 16:54:39,655 - INFO - [MainThread] - ℹ️ 📈 Tiến trình tổng: 3/3 (100.0%)
+2025-11-21 16:54:39,655 - INFO - [MainThread] - ℹ️ ⏹️ Chỉ còn ít tasks retry, kết thúc sớm
+2025-11-21 16:54:39,656 - INFO - [MainThread] - ℹ️ ============================================================
+2025-11-21 16:54:39,656 - INFO - [MainThread] - ℹ️ 🎯 BÁO CÁO TỔNG KẾT - PHIÊN BẢN 0.4.1 (DYNAMIC DRIVER POOL)
+2025-11-21 16:54:39,656 - INFO - [MainThread] - ℹ️ ============================================================
+2025-11-21 16:54:39,656 - INFO - [MainThread] - ℹ️ 📦 Tổng số tác vụ: 3
+2025-11-21 16:54:39,656 - INFO - [MainThread] - ℹ️ 🎯 Số drivers sử dụng: 2
+2025-11-21 16:54:39,656 - INFO - [MainThread] - ℹ️ ✅ Thành công: 3
+2025-11-21 16:54:39,656 - INFO - [MainThread] - ℹ️ ❌ Thất bại: 0
+2025-11-21 16:54:39,656 - INFO - [MainThread] - ℹ️ ⏭️ Bỏ qua: 0
+2025-11-21 16:54:39,656 - INFO - [MainThread] - ℹ️ 🔄 Tổng số lần retry: 0
+2025-11-21 16:54:39,656 - INFO - [MainThread] - ℹ️ 📊 Tỷ lệ thành công: 100.0%
+2025-11-21 16:54:39,657 - INFO - [MainThread] - ℹ️ ⏱️ Thời gian trung bình/task: 7.36s
+2025-11-21 16:54:39,657 - INFO - [MainThread] - ℹ️ 🕒 Tổng thời gian thực hiện: 0:00:22.084672
+2025-11-21 16:54:39,657 - INFO - [MainThread] - ℹ️ 🧹 Đang dọn dẹp driver pool...
+2025-11-21 16:54:39,819 - INFO - [MainThread] - ℹ️ ✅ Đã đóng 2 drivers

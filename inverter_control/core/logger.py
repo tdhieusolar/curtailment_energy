@@ -1,5 +1,6 @@
+# core/logger.py
 """
-Lớp quản lý logging - Phiên bản 0.4.1
+Lớp quản lý logging - Phiên bản 0.5.0
 """
 
 import logging
@@ -7,9 +8,10 @@ import sys
 from config.settings import CONFIG
 
 class InverterControlLogger:
-    """Lớp quản lý logging - Phiên bản 0.4.1"""
+    """Lớp quản lý logging - Phiên bản 0.5.0"""
     
     def __init__(self):
+        self.version = CONFIG.get("version", "0.5.0")
         self.setup_logging()
         
     def setup_logging(self):
@@ -42,6 +44,10 @@ class InverterControlLogger:
     def log_debug(self, message, inv_name=""):
         prefix = f"[{inv_name}] " if inv_name else ""
         self.logger.debug(f"🔍 {prefix}{message}")
+    
+    def log_version(self):
+        """Log phiên bản chương trình"""
+        self.logger.info(f"🚀 Khởi động Inverter Control v{self.version}")
     
     def log_queue_stats(self, stats):
         """Log thống kê hàng đợi"""
