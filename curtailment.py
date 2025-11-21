@@ -4,13 +4,10 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.action_chains import ActionChains
-from selenium.common.exceptions import TimeoutException, NoSuchElementException
-import time
+from selenium.common.exceptions import TimeoutException, NoSuchElementException, StaleElementReferenceException
 import threading
 from concurrent.futures import ThreadPoolExecutor, as_completed
-import re
 import logging
-import json
 from datetime import datetime
 import sys
 import os
@@ -18,7 +15,7 @@ import os
 # Import cấu hình hệ thống
 from system_config import SYSTEM_URLS, CONTROL_REQUESTS_OFF, CONTROL_REQUESTS_ON, ON_ALL
 
-# --- CẤU HÌNH NÂNG CAO ---
+# --- CẤU HÌNH NÂNG CAO PHIÊN BẢN 0.2 ---
 CONFIG = {
     "credentials": {
         "username": "installer",
@@ -27,43 +24,46 @@ CONFIG = {
     "driver": {
         "path": "/usr/bin/chromedriver",
         "headless": True,
-        "timeout": 30,
-        "page_load_timeout": 60
+        "timeout": 25,
+        "page_load_timeout": 30,
+        "element_timeout": 10,
+        "action_timeout": 5
     },
     "performance": {
-        "max_workers": 8,
+        "max_workers": 6,  # Giảm để ổn định hơn
         "retry_attempts": 2,
-        "retry_delay": 3,
+        "retry_delay": 2,
         "batch_size": 5
     },
     "logging": {
         "level": "INFO",
         "format": "%(asctime)s - %(levelname)s - [%(threadName)s] - %(message)s",
-        "file": "inverter_control.log"
+        "file": "inverter_control_v0.2.log"
     }
 }
 
-# SELECTORS - ĐƯỢC CẬP NHẬT DỰA TRÊN HTML MỚI
+# SELECTORS - ĐƯỢC TỐI ƯU CHO WEBDRIVERWAIT
 SELECTORS = {
     "login": {
         "dropdown_toggle": "#login-dropdown-list > a.dropdown-toggle",
         "username_field": "login-username",
         "password_field": "login-password", 
-        "login_button": "login-buttons-password"
+        "login_button": "login-buttons-password",
+        "user_indicator": "installer"  # Text xuất hiện khi đã login
     },
     "grid_control": {
-        "connect_link": "link-grid-disconnect"
+        "connect_link": "link-grid-disconnect",
+        "status_indicator": ["Disconnect Grid", "Connect Grid"]
     },
     "monitoring": {
         "status_line": "#status-line-dsp",
         "power_active": ".js-active-power",
-        "power_apparent": ".js-apparent-power",
-        "yield_today": ".k-yield span:nth-child(2) b"
+        "navbar": ".navbar"  # Element chung để chờ trang load
     }
 }
 
 class InverterControlLogger:
-    """Lớp quản lý logging nâng cao"""
+    """Lớp quản lý logging nâng cao - Phiên bản 0.2"""
     
     def __init__(self):
         self.setup_logging()
@@ -94,16 +94,21 @@ class InverterControlLogger:
     def log_info(self, message, inv_name=""):
         prefix = f"[{inv_name}] " if inv_name else ""
         self.logger.info(f"ℹ️ {prefix}{message}")
+    
+    def log_debug(self, message, inv_name=""):
+        prefix = f"[{inv_name}] " if inv_name else ""
+        self.logger.debug(f"🔍 {prefix}{message}")
 
 class InverterDriver:
-    """Lớp quản lý WebDriver với tính năng phục hồi"""
+    """Lớp quản lý WebDriver với WebDriverWait - Phiên bản 0.2"""
     
     def __init__(self):
         self.driver = None
         self.logger = InverterControlLogger()
+        self.wait = None
     
     def initialize_driver(self):
-        """Khởi tạo WebDriver với cấu hình nâng cao"""
+        """Khởi tạo WebDriver với cấu hình tối ưu"""
         try:
             service = Service(CONFIG["driver"]["path"])
             
@@ -118,7 +123,7 @@ class InverterDriver:
             chrome_options.add_experimental_option("excludeSwitches", ["enable-automation"])
             chrome_options.add_experimental_option('useAutomationExtension', False)
 
-            # Tối ưu hiệu suất
+            # Tối ưu hiệu suất - Phiên bản 0.2
             chrome_options.add_experimental_option(
                 "prefs", {
                     "profile.managed_default_content_settings.images": 2,
@@ -126,6 +131,9 @@ class InverterDriver:
                     "profile.managed_default_content_settings.fonts": 2,
                     "profile.managed_default_content_settings.media_stream": 2,
                     "profile.default_content_setting_values.notifications": 2,
+                    "profile.default_content_setting_values.geolocation": 2,
+                    "profile.default_content_setting_values.camera": 2,
+                    "profile.default_content_setting_values.microphone": 2,
                 }
             )
             
@@ -133,32 +141,77 @@ class InverterDriver:
             self.driver.set_page_load_timeout(CONFIG["driver"]["page_load_timeout"])
             self.driver.execute_script("Object.defineProperty(navigator, 'webdriver', {get: () => undefined})")
             
-            self.logger.log_info("Driver khởi tạo thành công")
+            # Khởi tạo WebDriverWait
+            self.wait = WebDriverWait(self.driver, CONFIG["driver"]["element_timeout"])
+            
+            self.logger.log_info("Driver khởi tạo thành công với WebDriverWait")
             return self.driver
             
         except Exception as e:
             self.logger.log_error(f"Khởi tạo Driver thất bại: {e}")
             return None
     
-    def safe_find_element(self, by, value, timeout=10):
-        """Tìm element an toàn với timeout"""
+    def wait_for_element(self, by, value, timeout=None):
+        """Chờ element xuất hiện với timeout tùy chỉnh"""
         try:
-            return WebDriverWait(self.driver, timeout).until(
-                EC.presence_of_element_located((by, value))
-            )
+            wait_timeout = timeout or CONFIG["driver"]["element_timeout"]
+            wait = WebDriverWait(self.driver, wait_timeout)
+            return wait.until(EC.presence_of_element_located((by, value)))
         except TimeoutException:
+            self.logger.log_debug(f"Timeout chờ element: {by}={value}")
             return None
     
-    def safe_click(self, by, value, timeout=10):
-        """Click an toàn với timeout"""
+    def wait_for_element_clickable(self, by, value, timeout=None):
+        """Chờ element có thể click được"""
         try:
-            element = WebDriverWait(self.driver, timeout).until(
-                EC.element_to_be_clickable((by, value))
-            )
-            element.click()
-            return True
+            wait_timeout = timeout or CONFIG["driver"]["element_timeout"]
+            wait = WebDriverWait(self.driver, wait_timeout)
+            return wait.until(EC.element_to_be_clickable((by, value)))
         except TimeoutException:
+            self.logger.log_debug(f"Timeout chờ element clickable: {by}={value}")
+            return None
+    
+    def wait_for_text_present(self, by, value, text, timeout=None):
+        """Chờ text xuất hiện trong element"""
+        try:
+            wait_timeout = timeout or CONFIG["driver"]["element_timeout"]
+            wait = WebDriverWait(self.driver, wait_timeout)
+            return wait.until(EC.text_to_be_present_in_element((by, value), text))
+        except TimeoutException:
+            self.logger.log_debug(f"Timeout chờ text '{text}' trong element: {by}={value}")
             return False
+    
+    def wait_for_page_loaded(self, timeout=None):
+        """Chờ trang web load hoàn tất"""
+        try:
+            wait_timeout = timeout or CONFIG["driver"]["page_load_timeout"]
+            wait = WebDriverWait(self.driver, wait_timeout)
+            return wait.until(lambda driver: driver.execute_script("return document.readyState") == "complete")
+        except TimeoutException:
+            self.logger.log_warning("Timeout chờ trang load hoàn tất")
+            return False
+    
+    def safe_click(self, by, value, timeout=None):
+        """Click an toàn với retry mechanism"""
+        for attempt in range(2):  # Retry 1 lần
+            try:
+                element = self.wait_for_element_clickable(by, value, timeout)
+                if element:
+                    element.click()
+                    return True
+            except StaleElementReferenceException:
+                self.logger.log_debug(f"Stale element, retry click: {by}={value}")
+                continue
+        return False
+    
+    def safe_send_keys(self, by, value, keys, timeout=None):
+        """Nhập text an toàn"""
+        element = self.wait_for_element(by, value, timeout)
+        if element:
+            element.clear()
+            element.send_keys(keys)
+            return True
+        return False
     
     def quit(self):
         """Đóng driver an toàn"""
@@ -167,14 +220,14 @@ class InverterDriver:
             self.logger.log_info("Driver đã đóng")
 
 class InverterController:
-    """Lớp chính điều khiển inverter"""
+    """Lớp chính điều khiển inverter - Phiên bản 0.2 với WebDriverWait"""
     
     def __init__(self, driver_manager):
         self.driver_manager = driver_manager
         self.logger = InverterControlLogger()
     
     def login(self, url, username=None, password=None):
-        """Đăng nhập với retry mechanism - ĐÃ SỬA LỖI"""
+        """Đăng nhập sử dụng WebDriverWait - KHÔNG DÙNG time.sleep"""
         username = username or CONFIG["credentials"]["username"]
         password = password or CONFIG["credentials"]["password"]
         
@@ -188,14 +241,15 @@ class InverterController:
                 if not url.startswith(('http://', 'https://')):
                     url = f"http://{url}"
                 
-                self.logger.log_info(f"Truy cập URL: {url}")
+                self.logger.log_info(f"Truy cập URL: {url} (lần {attempt + 1})")
                 self.driver_manager.driver.get(url)
                 
-                # Chờ trang load
-                time.sleep(3)
+                # Chờ trang load hoàn tất
+                if not self.driver_manager.wait_for_page_loaded():
+                    self.logger.log_warning("Trang load chậm, tiếp tục thử...", url)
                 
-                # KIỂM TRA XEM ĐÃ ĐĂNG NHẬP CHƯA
-                if "installer" in self.driver_manager.driver.page_source:
+                # KIỂM TRA XEM ĐÃ ĐĂNG NHẬP CHƯA - Sử dụng WebDriverWait
+                if self.driver_manager.wait_for_text_present(By.TAG_NAME, "body", "installer", timeout=3):
                     self.logger.log_success("Đã đăng nhập sẵn", url)
                     return True
                 
@@ -203,76 +257,64 @@ class InverterController:
                 self.logger.log_info("Thực hiện đăng nhập...", url)
                 
                 # Click dropdown đăng nhập (nếu có)
-                dropdown = self.driver_manager.safe_find_element(
-                    By.CSS_SELECTOR, SELECTORS["login"]["dropdown_toggle"]
+                dropdown = self.driver_manager.wait_for_element_clickable(
+                    By.CSS_SELECTOR, SELECTORS["login"]["dropdown_toggle"], timeout=5
                 )
                 if dropdown:
                     dropdown.click()
-                    time.sleep(1)
+                    # Chờ dropdown mở ra
+                    self.driver_manager.wait_for_element(By.ID, SELECTORS["login"]["username_field"], timeout=3)
                 
-                # Nhập username
-                username_field = self.driver_manager.safe_find_element(
-                    By.ID, SELECTORS["login"]["username_field"]
-                )
-                if username_field:
-                    username_field.clear()
-                    username_field.send_keys(username)
-                    self.logger.log_info("Đã nhập username", url)
-                else:
-                    self.logger.log_warning("Không tìm thấy field username", url)
-                
-                # Nhập password
-                password_field = self.driver_manager.safe_find_element(
-                    By.ID, SELECTORS["login"]["password_field"]
-                )
-                if password_field:
-                    password_field.clear()
-                    password_field.send_keys(password)
-                    self.logger.log_info("Đã nhập password", url)
-                else:
-                    self.logger.log_warning("Không tìm thấy field password", url)
-                
-                # Click nút đăng nhập
-                login_button = self.driver_manager.safe_find_element(
-                    By.ID, SELECTORS["login"]["login_button"]
-                )
-                if login_button:
-                    login_button.click()
-                    self.logger.log_info("Đã click nút đăng nhập", url)
-                    
-                    # Chờ đăng nhập
-                    time.sleep(3)
-                    
-                    # Kiểm tra đăng nhập thành công
-                    if "installer" in self.driver_manager.driver.page_source:
-                        self.logger.log_success("Đăng nhập thành công", url)
-                        return True
-                    else:
-                        self.logger.log_warning("Có thể đăng nhập thất bại", url)
-                        # Vẫn tiếp tục vì có thể đã đăng nhập nhưng không hiển thị
-                        return True
-                else:
-                    self.logger.log_warning("Không tìm thấy nút đăng nhập, có thể đã đăng nhập", url)
+                # Nhập username với WebDriverWait
+                if not self.driver_manager.safe_send_keys(By.ID, SELECTORS["login"]["username_field"], username, timeout=5):
+                    self.logger.log_warning("Không tìm thấy field username, có thể đã đăng nhập", url)
                     return True
+                
+                # Nhập password với WebDriverWait
+                if not self.driver_manager.safe_send_keys(By.ID, SELECTORS["login"]["password_field"], password, timeout=5):
+                    self.logger.log_warning("Không tìm thấy field password", url)
+                    return False
+                
+                # Click nút đăng nhập với WebDriverWait
+                if not self.driver_manager.safe_click(By.ID, SELECTORS["login"]["login_button"], timeout=5):
+                    self.logger.log_warning("Không tìm thấy nút đăng nhập", url)
+                    return False
+                
+                # CHỜ ĐĂNG NHẬP THÀNH CÔNG - Sử dụng WebDriverWait
+                # Cách 1: Chờ text "installer" xuất hiện
+                if self.driver_manager.wait_for_text_present(By.TAG_NAME, "body", "installer", timeout=10):
+                    self.logger.log_success("Đăng nhập thành công", url)
+                    return True
+                
+                # Cách 2: Chờ navbar load hoàn tất như một dấu hiệu đăng nhập thành công
+                if self.driver_manager.wait_for_element(By.CSS_SELECTOR, SELECTORS["monitoring"]["navbar"], timeout=5):
+                    self.logger.log_success("Đăng nhập thành công (qua navbar)", url)
+                    return True
+                
+                self.logger.log_warning("Không xác định được trạng thái đăng nhập", url)
+                # Vẫn trả về True để thử điều khiển
+                return True
                     
             except Exception as e:
                 self.logger.log_warning(f"Lần đăng nhập {attempt + 1} thất bại: {e}", url)
                 if attempt < CONFIG["performance"]["retry_attempts"]:
-                    time.sleep(CONFIG["performance"]["retry_delay"])
+                    self.logger.log_info(f"Thử lại sau {CONFIG['performance']['retry_delay']}s...", url)
+                    # Sử dụng WebDriverWait thay vì time.sleep
+                    self.driver_manager.wait_for_element(By.TAG_NAME, "body", timeout=CONFIG["performance"]["retry_delay"])
                 else:
                     self.logger.log_error("Đăng nhập thất bại sau tất cả các lần thử", url)
         
         return False
     
     def get_grid_status(self):
-        """Lấy trạng thái hiện tại của grid"""
+        """Lấy trạng thái hiện tại của grid với WebDriverWait"""
         try:
-            link_element = self.driver_manager.safe_find_element(
-                By.ID, SELECTORS["grid_control"]["connect_link"]
+            link_element = self.driver_manager.wait_for_element(
+                By.ID, SELECTORS["grid_control"]["connect_link"], timeout=5
             )
             if link_element:
                 status = link_element.text.strip()
-                self.logger.log_info(f"Trạng thái grid: {status}")
+                self.logger.log_debug(f"Trạng thái grid: {status}")
                 return status
             else:
                 self.logger.log_warning("Không tìm thấy element grid control")
@@ -281,7 +323,7 @@ class InverterController:
         return None
     
     def perform_grid_action(self, target_action):
-        """Thực hiện hành động ON/OFF với grid"""
+        """Thực hiện hành động ON/OFF với grid sử dụng WebDriverWait"""
         current_status = self.get_grid_status()
         
         if not current_status:
@@ -300,38 +342,41 @@ class InverterController:
             return False, f"LỖI: Đang ở trạng thái ngược lại ({current_status})"
         
         try:
-            link_element = self.driver_manager.safe_find_element(
-                By.ID, SELECTORS["grid_control"]["connect_link"]
+            link_element = self.driver_manager.wait_for_element_clickable(
+                By.ID, SELECTORS["grid_control"]["connect_link"], timeout=5
             )
             if not link_element:
                 return False, "Không tìm thấy element điều khiển grid"
             
             self.logger.log_info(f"Thực hiện {target_action} grid...")
             
-            # Thực hiện double click
+            # Thực hiện double click với ActionChains
             actions = ActionChains(self.driver_manager.driver)
             actions.double_click(link_element).perform()
             
-            # Chờ trạng thái thay đổi
-            time.sleep(2)
+            # CHỜ TRẠNG THÁI THAY ĐỔI - Sử dụng WebDriverWait thay vì time.sleep
+            status_changed = self.driver_manager.wait_for_text_present(
+                By.ID, SELECTORS["grid_control"]["connect_link"], expected_status_after, timeout=10
+            )
             
-            new_status = self.get_grid_status()
-            if new_status == expected_status_after:
+            if status_changed:
+                new_status = self.get_grid_status()
                 return True, f"THÀNH CÔNG: Chuyển từ '{current_status}' sang '{new_status}'"
             else:
-                return False, f"LỖI: Trạng thái không thay đổi như mong đợi (Hiện tại: {new_status})"
+                new_status = self.get_grid_status()
+                return False, f"LỖI: Trạng thái không thay đổi (Hiện tại: {new_status})"
                 
         except Exception as e:
             return False, f"LỖI THỰC HIỆN: {e}"
 
 class TaskProcessor:
-    """Xử lý tác vụ đa luồng"""
+    """Xử lý tác vụ đa luồng - Phiên bản 0.2"""
     
     def __init__(self):
         self.logger = InverterControlLogger()
     
     def process_single_inverter(self, task_info):
-        """Xử lý một inverter duy nhất - ĐÃ SỬA LỖI"""
+        """Xử lý một inverter duy nhất - Tối ưu với WebDriverWait"""
         full_inv_name, target_url, required_action, inv_status = task_info
         
         self.logger.log_info(f"Bắt đầu xử lý {required_action}", full_inv_name)
@@ -379,18 +424,18 @@ class TaskProcessor:
             driver_manager.quit()
     
     def run_parallel_optimized(self, control_requests):
-        """Chạy song song tối ưu với quản lý tài nguyên hiệu quả"""
+        """Chạy song song tối ưu - Phiên bản 0.2"""
         start_time = datetime.now()
-        self.logger.log_info(f"Bắt đầu xử lý {len(control_requests)} yêu cầu")
+        self.logger.log_info(f"🚀 Bắt đầu xử lý {len(control_requests)} yêu cầu - Phiên bản 0.2")
         
         # Tạo danh sách tác vụ
         tasks = self._prepare_tasks(control_requests)
         total_tasks = len(tasks)
         
-        self.logger.log_info(f"Tổng số tác vụ cần xử lý: {total_tasks}")
+        self.logger.log_info(f"📊 Tổng số tác vụ cần xử lý: {total_tasks}")
         
         if total_tasks == 0:
-            self.logger.log_warning("Không có tác vụ nào để xử lý!")
+            self.logger.log_warning("⚠️ Không có tác vụ nào để xử lý!")
             return []
         
         # Xử lý song song
@@ -412,10 +457,11 @@ class TaskProcessor:
                     completed += 1
                     
                     # Log tiến trình
-                    if completed % 5 == 0 or completed == total_tasks:
+                    progress_percent = (completed / total_tasks) * 100
+                    if completed % 3 == 0 or completed == total_tasks:  # Log ít hơn để giảm I/O
                         self.logger.log_info(
-                            f"Đã hoàn thành {completed}/{total_tasks} tác vụ "
-                            f"({completed/total_tasks*100:.1f}%)"
+                            f"📈 Đã hoàn thành {completed}/{total_tasks} tác vụ "
+                            f"({progress_percent:.1f}%)"
                         )
                         
                 except Exception as e:
@@ -457,7 +503,7 @@ class TaskProcessor:
         return tasks
     
     def _analyze_results(self, results, start_time):
-        """Phân tích và báo cáo kết quả"""
+        """Phân tích và báo cáo kết quả - Phiên bản 0.2"""
         end_time = datetime.now()
         duration = end_time - start_time
         
@@ -472,29 +518,35 @@ class TaskProcessor:
             stats[status] = stats.get(status, 0) + 1
         
         # In báo cáo
-        self.logger.log_info("=" * 50)
-        self.logger.log_info("BÁO CÁO TỔNG KẾT")
-        self.logger.log_info("=" * 50)
-        self.logger.log_info(f"Tổng số tác vụ: {len(results)}")
-        self.logger.log_info(f"Thành công: {stats['SUCCESS']}")
-        self.logger.log_info(f"Thất bại: {stats['FAILED']}")
-        self.logger.log_info(f"Bỏ qua: {stats['SKIPPED']}")
+        self.logger.log_info("=" * 60)
+        self.logger.log_info("🎯 BÁO CÁO TỔNG KẾT - PHIÊN BẢN 0.2")
+        self.logger.log_info("=" * 60)
+        self.logger.log_info(f"📦 Tổng số tác vụ: {len(results)}")
+        self.logger.log_info(f"✅ Thành công: {stats['SUCCESS']}")
+        self.logger.log_info(f"❌ Thất bại: {stats['FAILED']}")
+        self.logger.log_info(f"⏭️ Bỏ qua: {stats['SKIPPED']}")
         
         if len(results) > 0:
             success_rate = (stats['SUCCESS'] / len(results)) * 100
-            self.logger.log_info(f"Tỷ lệ thành công: {success_rate:.1f}%")
+            self.logger.log_info(f"📊 Tỷ lệ thành công: {success_rate:.1f}%")
         
-        self.logger.log_info(f"Thời gian thực hiện: {duration}")
+        # Tính thời gian trung bình mỗi task
+        total_seconds = duration.total_seconds()
+        if len(results) > 0:
+            avg_time = total_seconds / len(results)
+            self.logger.log_info(f"⏱️ Thời gian trung bình/task: {avg_time:.1f}s")
+        
+        self.logger.log_info(f"🕒 Tổng thời gian thực hiện: {duration}")
         
         # In lỗi chi tiết
         errors = [(name, msg) for name, status, msg in results if status == "FAILED"]
         if errors:
-            self.logger.log_info("CHI TIẾT LỖI:")
+            self.logger.log_info("🔍 CHI TIẾT LỖI:")
             for name, msg in errors:
                 self.logger.log_error(msg, name)
 
 def main():
-    """Hàm chính với menu lựa chọn"""
+    """Hàm chính với menu lựa chọn - Phiên bản 0.2"""
     processor = TaskProcessor()
     
     # Các kịch bản điều khiển
@@ -505,21 +557,25 @@ def main():
         "4": {"name": "Tùy chỉnh", "requests": None}
     }
     
-    print("CHƯƠNG TRÌNH ĐIỀU KHIỂN INVERTER")
-    print("=" * 40)
+    print("🚀 CHƯƠNG TRÌNH ĐIỀU KHIỂN INVERTER - PHIÊN BẢN 0.2")
+    print("=" * 50)
+    print("🎯 Tối ưu hiệu suất với WebDriverWait")
+    print("⏱️  Loại bỏ hoàn toàn time.sleep")
+    print("=" * 50)
     
     for key, scenario in SCENARIOS.items():
         print(f"{key}. {scenario['name']}")
     
-    choice = input("Chọn kịch bản (1-4): ").strip()
+    choice = input("\nChọn kịch bản (1-4): ").strip()
     
     if choice in SCENARIOS:
         if choice == "4":
             # Cho phép nhập tùy chỉnh
             custom_requests = {}
-            print("Nhập cấu hình tùy chỉnh (định dạng: TênStation SốLượng HànhĐộng)")
-            print("Ví dụ: B3R1 5 OFF")
-            print("Nhập 'done' để kết thúc")
+            print("\n🎛️  Chế độ tùy chỉnh")
+            print("📝 Định dạng: TênStation SốLượng HànhĐộng")
+            print("💡 Ví dụ: B3R1 5 OFF")
+            print("⏹️  Nhập 'done' để kết thúc")
             
             while True:
                 line = input("Nhập: ").strip()
@@ -533,26 +589,26 @@ def main():
                             "action": action.upper(),
                             "count": int(count)
                         }
-                        print(f"Đã thêm: {station} - {count} INV - {action}")
+                        print(f"✅ Đã thêm: {station} - {count} INV - {action}")
                     else:
-                        print("Định dạng không hợp lệ! Ví dụ: B3R1 5 OFF")
+                        print("❌ Định dạng không hợp lệ! Ví dụ: B3R1 5 OFF")
                 except ValueError:
-                    print("Số lượng phải là số nguyên!")
+                    print("❌ Số lượng phải là số nguyên!")
             
             requests = custom_requests
         else:
             requests = SCENARIOS[choice]["requests"]
         
-        print(f"\nĐang xử lý kịch bản: {SCENARIOS[choice]['name']}")
-        print(f"Số lượng yêu cầu: {len(requests)}")
+        print(f"\n🎯 Đang xử lý kịch bản: {SCENARIOS[choice]['name']}")
+        print(f"📊 Số lượng yêu cầu: {len(requests)}")
         
-        confirm = input("Xác nhận thực hiện? (y/n): ").strip().lower()
+        confirm = input("✅ Xác nhận thực hiện? (y/n): ").strip().lower()
         if confirm == 'y':
             processor.run_parallel_optimized(requests)
         else:
-            print("Đã hủy thực hiện.")
+            print("⏹️ Đã hủy thực hiện.")
     else:
-        print("Lựa chọn không hợp lệ!")
+        print("❌ Lựa chọn không hợp lệ!")
 
 if __name__ == "__main__":
     main()
