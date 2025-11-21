@@ -1,15 +1,10 @@
 #!/bin/bash
 
-# File: run_inverter.sh
-# Chạy chương trình inverter control trong venv với auto ChromeDriver setup
-
 echo "🚀 Khởi động Inverter Control System v0.5.3..."
 echo "================================================"
 
-# Đường dẫn đến venv
 VENV_DIR="venv"
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-
 cd "$SCRIPT_DIR"
 
 # Kiểm tra và kích hoạt venv
@@ -29,20 +24,21 @@ if ! python -c "import selenium, pandas, psutil, webdriver_manager" &> /dev/null
     pip install -r requirements.txt
 fi
 
-# Thiết lập ChromeDriver
-echo "🔧 Thiết lập ChromeDriver..."
-python setup_chromedriver.py
+# Kiểm tra hệ thống trình duyệt
+echo "🔧 Kiểm tra hệ thống trình duyệt..."
+python system_check.py
 
 if [ $? -ne 0 ]; then
-    echo "❌ Không thể thiết lập ChromeDriver"
+    echo "❌ Hệ thống trình duyệt chưa sẵn sàng"
+    deactivate
     exit 1
 fi
 
-# Chạy chương trình
+# Chạy chương trình chính
 echo "✅ Khởi chạy chương trình..."
 python main.py
 
-# Deactivate venv khi kết thúc
+# Deactivate venv
 deactivate
 
 echo ""

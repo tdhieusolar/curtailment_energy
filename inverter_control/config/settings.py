@@ -1,52 +1,63 @@
 # config/settings.py
-"""
-Cấu hình hệ thống - Phiên bản 0.5.3 - Auto ChromeDriver
-"""
-
 import os
 import sys
+import platform
 
-def get_chromedriver_path():
-    """Tự động xác định đường dẫn ChromeDriver"""
+def detect_browser_config():
+    """Tự động phát hiện cấu hình trình duyệt"""
     
-    # Thử các đường dẫn phổ biến
-    possible_paths = []
+    # Ưu tiên file cấu hình auto-generated
+    if os.path.exists("browser_config.py"):
+        try:
+            from browser_config import BROWSER, BROWSER_PATH, DRIVER_PATH
+            print(f"✅ Sử dụng cấu hình từ browser_config.py: {BROWSER.upper()}")
+            return DRIVER_PATH, BROWSER_PATH, BROWSER
+        except:
+            pass
     
-    # Đường dẫn trong project
-    if sys.platform.startswith("win32"):
-        possible_paths.extend([
-            os.path.join("drivers", "chromedriver.exe"),
-            "chromedriver.exe",
-            r"C:\Windows\System32\chromedriver.exe"
-        ])
+    # Fallback: tự động phát hiện
+    system = platform.system().lower()
+    
+    # Kiểm tra Edge trên Windows
+    if system == "windows":
+        edge_paths = [
+            r"C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe",
+            r"C:\Program Files\Microsoft\Edge\Application\msedge.exe"
+        ]
+        for path in edge_paths:
+            if os.path.exists(path):
+                print("✅ Phát hiện Microsoft Edge")
+                return "msedgedriver.exe", path, "edge"
+    
+    # Kiểm tra Chrome
+    chrome_paths = []
+    if system == "windows":
+        chrome_paths = [
+            r"C:\Program Files\Google\Chrome\Application\chrome.exe",
+            r"C:\Program Files (x86)\Google\Chrome\Application\chrome.exe"
+        ]
     else:
-        possible_paths.extend([
-            os.path.join("drivers", "chromedriver"),
-            "/usr/local/bin/chromedriver",
-            "/usr/bin/chromedriver",
-            "/snap/bin/chromedriver",
-            "chromedriver"
-        ])
+        chrome_paths = [
+            "/usr/bin/google-chrome",
+            "/usr/bin/google-chrome-stable",
+            "/usr/bin/chromium-browser"
+        ]
     
-    # Kiểm tra từng đường dẫn
-    for path in possible_paths:
+    for path in chrome_paths:
         if os.path.exists(path):
-            print(f"✅ Tìm thấy ChromeDriver tại: {path}")
-            return path
+            print("✅ Phát hiện Google Chrome/Chromium")
+            return "chromedriver", path, "chrome"
     
-    # Nếu không tìm thấy, thử cài đặt tự động
-    print("❌ Không tìm thấy ChromeDriver, đang thử cài đặt tự động...")
-    try:
-        from webdriver_manager.chrome import ChromeDriverManager
-        driver_path = ChromeDriverManager().install()
-        print(f"✅ Đã cài đặt ChromeDriver tại: {driver_path}")
-        return driver_path
-    except Exception as e:
-        print(f"⚠️ Không thể cài đặt tự động ChromeDriver: {e}")
-        # Fallback path
-        return "/usr/bin/chromedriver" if not sys.platform.startswith("win32") else "chromedriver.exe"
+    # Fallback cuối cùng
+    print("⚠️ Không phát hiện trình duyệt, sử dụng mặc định")
+    if system == "windows":
+        return "msedgedriver.exe", r"C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe", "edge"
+    else:
+        return "chromedriver", "/usr/bin/chromium-browser", "chrome"
 
-# Cấu hình tối ưu cho phiên bản optimized pool
+# Lấy cấu hình trình duyệt
+DRIVER_PATH, BROWSER_PATH, BROWSER_TYPE = detect_browser_config()
+
 CONFIG = {
     "version": "0.5.3",
     "excel_file": "inverter_config.xlsx",
@@ -55,7 +66,9 @@ CONFIG = {
         "password": "Mo_g010rP!"
     },
     "driver": {
-        "path": get_chromedriver_path(),  # Sử dụng hàm tự động
+        "path": DRIVER_PATH,
+        "browser_path": BROWSER_PATH,
+        "browser_type": BROWSER_TYPE,
         "headless": True,
         "timeout": 25,
         "page_load_timeout": 20,
