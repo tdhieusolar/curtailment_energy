@@ -196,3 +196,20 @@ ON_ALL = {
     "B12": {"action": "ON", "count": 10},
     "B13-14": {"action": "ON", "count": 10},
 }
+
+OFF_ALL = {
+    "B2": {"action": "OFF", "count": 10},
+    "B3R1": {"action": "OFF", "count": 9},
+    "B3R2": {"action": "OFF", "count": 9},
+    "B4R1": {"action": "OFF", "count": 10},
+    "B4R2": {"action": "OFF", "count": 10},
+    "B5R1": {"action": "OFF", "count": 10},
+    "B5R2": {"action": "OFF", "count": 10},
+    "B6R1": {"action": "OFF", "count": 10},
+    "B6R2": {"action": "OFF", "count": 10},
+    "B7": {"action": "OFF", "count": 10},
+    "B8": {"action": "OFF", "count": 5},
+    "B11": {"action": "OFF", "count": 10},
+    "B12": {"action": "OFF", "count": 10},
+    "B13-14": {"action": "OFF", "count": 10},
+}

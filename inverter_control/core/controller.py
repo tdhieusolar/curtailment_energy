@@ -1,6 +1,6 @@
 # core/controller.py
 """
-Lớp điều khiển inverter với driver từ pool - Phiên bản sửa lỗi
+Lớp điều khiển inverter với driver từ pool - Phiên bản 0.5.2 tối ưu
 """
 
 from selenium.webdriver.common.by import By
@@ -13,7 +13,7 @@ from core.logger import InverterControlLogger
 from config.selectors import SELECTORS
 
 class InverterController:
-    """Lớp điều khiển inverter với driver từ pool"""
+    """Lớp điều khiển inverter với driver từ pool - Phiên bản tối ưu"""
     
     def __init__(self, driver, config):
         self.driver = driver
@@ -21,7 +21,7 @@ class InverterController:
         self.logger = InverterControlLogger(config)
     
     def wait_for_element(self, by, value, timeout=None):
-        """Chờ element xuất hiện"""
+        """Chờ element xuất hiện - Phiên bản tối ưu"""
         try:
             wait_timeout = timeout or self.config["driver"]["element_timeout"]
             wait = WebDriverWait(self.driver, wait_timeout)
@@ -30,7 +30,7 @@ class InverterController:
             return None
     
     def wait_for_element_clickable(self, by, value, timeout=None):
-        """Chờ element có thể click"""
+        """Chờ element có thể click - Phiên bản tối ưu"""
         try:
             wait_timeout = timeout or self.config["driver"]["element_timeout"]
             wait = WebDriverWait(self.driver, wait_timeout)
@@ -39,7 +39,7 @@ class InverterController:
             return None
     
     def wait_for_text_present(self, by, value, text, timeout=None):
-        """Chờ text xuất hiện"""
+        """Chờ text xuất hiện - Phiên bản tối ưu"""
         try:
             wait_timeout = timeout or self.config["driver"]["element_timeout"]
             wait = WebDriverWait(self.driver, wait_timeout)
@@ -48,7 +48,7 @@ class InverterController:
             return False
     
     def wait_for_page_loaded(self, timeout=None):
-        """Chờ trang web load hoàn tất"""
+        """Chờ trang web load hoàn tất - Phiên bản tối ưu"""
         try:
             wait_timeout = timeout or self.config["driver"]["page_load_timeout"]
             wait = WebDriverWait(self.driver, wait_timeout)
@@ -57,7 +57,7 @@ class InverterController:
             return False
     
     def fast_login(self, url, username=None, password=None):
-        """Đăng nhập nhanh với driver được tái sử dụng"""
+        """Đăng nhập nhanh với driver được tái sử dụng - Phiên bản tối ưu"""
         username = username or self.config["credentials"]["username"]
         password = password or self.config["credentials"]["password"]
         
@@ -67,27 +67,26 @@ class InverterController:
             
             self.driver.get(url)
             
-            # Chờ trang load
-            if not self.wait_for_page_loaded(timeout=15):
+            # Chờ trang load với timeout ngắn hơn
+            if not self.wait_for_page_loaded(timeout=10):
                 self.logger.log_debug("Trang load chậm, tiếp tục thử...")
-                return False
             
-            # Kiểm tra đã đăng nhập chưa
-            if self.wait_for_text_present(By.TAG_NAME, "body", "installer", timeout=2):
+            # Kiểm tra đã đăng nhập chưa - nhanh hơn
+            if self.wait_for_text_present(By.TAG_NAME, "body", "installer", timeout=1):
                 self.logger.log_debug("Đã đăng nhập sẵn")
                 return True
             
-            # Đăng nhập
+            # Đăng nhập với timeout ngắn hơn
             dropdown = self.wait_for_element_clickable(
-                By.CSS_SELECTOR, SELECTORS["login"]["dropdown_toggle"], timeout=3
+                By.CSS_SELECTOR, SELECTORS["login"]["dropdown_toggle"], timeout=2
             )
             if dropdown:
                 dropdown.click()
-                # Chờ dropdown mở
-                self.wait_for_element(By.ID, SELECTORS["login"]["username_field"], timeout=2)
+                # Chờ dropdown mở với timeout ngắn
+                self.wait_for_element(By.ID, SELECTORS["login"]["username_field"], timeout=1)
             
             # Nhập username
-            username_field = self.wait_for_element(By.ID, SELECTORS["login"]["username_field"], timeout=3)
+            username_field = self.wait_for_element(By.ID, SELECTORS["login"]["username_field"], timeout=2)
             if not username_field:
                 self.logger.log_debug("Không tìm thấy field username, có thể đã đăng nhập")
                 return True
@@ -96,7 +95,7 @@ class InverterController:
             username_field.send_keys(username)
             
             # Nhập password
-            password_field = self.wait_for_element(By.ID, SELECTORS["login"]["password_field"], timeout=3)
+            password_field = self.wait_for_element(By.ID, SELECTORS["login"]["password_field"], timeout=2)
             if not password_field:
                 self.logger.log_debug("Không tìm thấy field password")
                 return False
@@ -105,20 +104,20 @@ class InverterController:
             password_field.send_keys(password)
             
             # Click đăng nhập
-            login_btn = self.wait_for_element_clickable(By.ID, SELECTORS["login"]["login_button"], timeout=3)
+            login_btn = self.wait_for_element_clickable(By.ID, SELECTORS["login"]["login_button"], timeout=2)
             if not login_btn:
                 self.logger.log_debug("Không tìm thấy nút đăng nhập")
                 return False
             
             login_btn.click()
             
-            # Chờ đăng nhập thành công
-            if self.wait_for_text_present(By.TAG_NAME, "body", "installer", timeout=8):
+            # Chờ đăng nhập thành công với timeout ngắn hơn
+            if self.wait_for_text_present(By.TAG_NAME, "body", "installer", timeout=5):
                 self.logger.log_debug("Đăng nhập thành công")
                 return True
             
             # Thử cách khác để kiểm tra đăng nhập
-            if self.wait_for_element(By.CSS_SELECTOR, SELECTORS["monitoring"]["navbar"], timeout=3):
+            if self.wait_for_element(By.CSS_SELECTOR, SELECTORS["monitoring"]["navbar"], timeout=2):
                 self.logger.log_debug("Đăng nhập thành công (qua navbar)")
                 return True
             
@@ -130,11 +129,11 @@ class InverterController:
             return False
     
     def get_grid_status(self):
-        """Lấy trạng thái grid từ text và hình ảnh"""
+        """Lấy trạng thái grid từ text và hình ảnh - Phiên bản tối ưu"""
         try:
-            # Tìm element grid control
+            # Tìm element grid control với timeout ngắn hơn
             link_element = self.wait_for_element(
-                By.ID, SELECTORS["grid_control"]["connect_link"], timeout=5
+                By.ID, SELECTORS["grid_control"]["connect_link"], timeout=3
             )
             
             if not link_element:
@@ -170,7 +169,7 @@ class InverterController:
             return None
     
     def perform_grid_action(self, target_action):
-        """Thực hiện hành động grid với double click"""
+        """Thực hiện hành động grid với double click - Phiên bản tối ưu"""
         current_status = self.get_grid_status()
         
         if not current_status:
@@ -197,7 +196,7 @@ class InverterController:
         try:
             # Tìm element grid control
             link_element = self.wait_for_element_clickable(
-                By.ID, SELECTORS["grid_control"]["connect_link"], timeout=5
+                By.ID, SELECTORS["grid_control"]["connect_link"], timeout=3
             )
             if not link_element:
                 return False, "Không tìm thấy element điều khiển grid"
@@ -207,20 +206,17 @@ class InverterController:
             # Scroll element vào view
             self.driver.execute_script("arguments[0].scrollIntoView({block: 'center'});", link_element)
             
-            # Chờ một chút để đảm bảo element visible
-            import time
-            time.sleep(1)
-            
             # Thực hiện double click
             actions = ActionChains(self.driver)
             actions.move_to_element(link_element).double_click().perform()
             
             self.logger.log_debug("Đã thực hiện double click, chờ trạng thái thay đổi...")
             
-            # Chờ trạng thái thay đổi
+            # Chờ trạng thái thay đổi với timeout ngắn hơn
             status_changed = False
-            for i in range(10):  # Chờ tối đa 10 giây
-                time.sleep(1)
+            for i in range(6):  # Chờ tối đa 6 giây (giảm từ 10)
+                import time
+                time.sleep(0.5)  # Giảm thời gian chờ giữa các lần kiểm tra
                 new_status = self.get_grid_status()
                 self.logger.log_debug(f"Lần {i+1}: Trạng thái mới: '{new_status}'")
                 
@@ -244,14 +240,15 @@ class InverterController:
             try:
                 self.logger.log_debug("Element bị stale, thử lại...")
                 link_element = self.wait_for_element_clickable(
-                    By.ID, SELECTORS["grid_control"]["connect_link"], timeout=3
+                    By.ID, SELECTORS["grid_control"]["connect_link"], timeout=2
                 )
                 if link_element:
                     actions = ActionChains(self.driver)
                     actions.move_to_element(link_element).double_click().perform()
                     
                     # Kiểm tra kết quả
-                    time.sleep(3)
+                    import time
+                    time.sleep(2)
                     new_status = self.get_grid_status()
                     if new_status == expected_status_after:
                         return True, f"THÀNH CÔNG: Chuyển từ '{current_status}' sang '{new_status}'"

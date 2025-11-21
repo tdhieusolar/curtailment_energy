@@ -1,23 +1,23 @@
 # config/settings.py
 """
-Cấu hình hệ thống - Phiên bản 0.5.1
+Cấu hình hệ thống - Phiên bản 0.5.3 - Optimized Pool
 """
 
 import os
 
-# --- CẤU HÌNH PHIÊN BẢN 0.5.1 - EXCEL CONFIG ---
-VERSION = "0.5.1"
+# --- CẤU HÌNH PHIÊN BẢN 0.5.3 - OPTIMIZED POOL ---
+VERSION = "0.5.3"
 EXCEL_CONFIG_FILE = "inverter_config.xlsx"
 
-# Cấu hình mặc định từ system_config (KHÔNG thay đổi)
+# Cấu hình mặc định từ system_config
 from .system_config import SYSTEM_URLS as ORIGINAL_SYSTEM_URLS
 from .system_config import CONTROL_REQUESTS_OFF, CONTROL_REQUESTS_ON, ON_ALL
 
-# Biến để lưu config từ Excel (sẽ được khởi tạo sau)
+# Biến để lưu config từ Excel
 EXCEL_SYSTEM_URLS = None
 EXCEL_CONTROL_SCENARIOS = None
 
-# Cấu hình mặc định
+# Cấu hình tối ưu cho phiên bản optimized pool
 CONFIG = {
     "version": VERSION,
     "excel_file": EXCEL_CONFIG_FILE,
@@ -29,19 +29,19 @@ CONFIG = {
         "path": "/usr/bin/chromedriver",
         "headless": True,
         "timeout": 25,
-        "page_load_timeout": 30,
-        "element_timeout": 10,
+        "page_load_timeout": 20,
+        "element_timeout": 8,
         "action_timeout": 5,
         "max_pool_size": 8,
-        "min_pool_size": 2
+        "min_pool_size": 1  # QUAN TRỌNG: Giảm min_pool_size xuống 1
     },
     "performance": {
         "max_workers": 8,
         "retry_attempts": 1,
         "retry_delay": 1,
-        "batch_size": 10,
+        "batch_size": 8,
         "max_retry_queue": 2,
-        "tasks_per_driver": 5
+        "tasks_per_driver": 4
     },
     "logging": {
         "level": "INFO",
@@ -85,7 +85,7 @@ def load_config_from_excel():
             "3": {"name": "Bật tất cả inverter", "requests": ON_ALL}
         }
     
-    print(f"✅ Đã tải cấu hình từ Excel: {len(EXCEL_SYSTEM_URLS)} zones, {len(EXCEL_CONTROL_SCENARIOS)} scenarios")
+    print(f"✅ Đã tải cấu hình từ Excel: {len(EXCEL_SYSTEM_URLS)} zones, {len(EXCEL_CONTROL_SCENARIOS)} scenarios (v{VERSION})")
     return EXCEL_SYSTEM_URLS, EXCEL_CONTROL_SCENARIOS
 
 # Export các biến để tương thích với code cũ

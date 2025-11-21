@@ -1,13 +1,13 @@
 # config/excel_reader.py
 """
-Đọc cấu hình từ file Excel - Phiên bản 0.5.1
+Đọc cấu hình từ file Excel - Phiên bản 0.5.2 với Bật/tắt 1 INV
 """
 
 import pandas as pd
 import os
 
 class ExcelConfigReader:
-    """Lớp đọc cấu hình từ file Excel"""
+    """Lớp đọc cấu hình từ file Excel với hỗ trợ Bật tất cả (bỏ OFF_ALL)"""
     
     def __init__(self, excel_file_path="inverter_config.xlsx"):
         self.excel_file_path = excel_file_path
@@ -111,11 +111,11 @@ class ExcelConfigReader:
             return None
     
     def read_control_scenarios(self):
-        """Đọc scenarios điều khiển từ Excel - KHÔNG CÓ Scenario_Name"""
+        """Đọc scenarios điều khiển từ Excel - Hỗ trợ Bật tất cả (bỏ OFF_ALL)"""
         try:
             df = pd.read_excel(self.excel_file_path, sheet_name='Control_Scenarios')
             
-            # Kiểm tra cột bắt buộc (đã bỏ Scenario_Name)
+            # Kiểm tra cột bắt buộc
             required_columns = ['Station', 'Action', 'Count']
             missing_columns = [col for col in required_columns if col not in df.columns]
             
@@ -123,12 +123,29 @@ class ExcelConfigReader:
                 self.logger.log_error(f"Thiếu cột trong sheet Control_Scenarios: {', '.join(missing_columns)}")
                 return {}
             
-            # Xây dựng scenarios - Tự động phân loại ON/OFF
+            # Xây dựng scenarios - CHỈ HỖ TRỢ Bật tất cả (bỏ OFF_ALL)
             scenarios = {
                 "Tắt một số inverter": {},
-                "Bật một số inverter": {}
+                "Bật một số inverter": {},
+                "Bật tất cả inverter": {}  # CHỈ Bật tất cả, không có Tắt tất cả
             }
             
+            # Đọc tất cả stations từ hệ thống để tạo scenario "Bật tất cả"
+            system_stations = self.read_stations_config()
+            if system_stations:
+                all_stations = {}
+                for zone_name, stations in system_stations.items():
+                    for station_name, inverters in stations.items():
+                        all_stations[station_name] = len(inverters)
+                
+                # Tạo scenario Bật tất cả
+                for station, count in all_stations.items():
+                    scenarios["Bật tất cả inverter"][station] = {
+                        "action": "ON",
+                        "count": count
+                    }
+            
+            # Đọc scenarios từ Excel
             for _, row in df.iterrows():
                 station = row['Station']
                 action = row['Action']
@@ -148,7 +165,7 @@ class ExcelConfigReader:
                     "count": count
                 }
             
-            self.logger.log_info(f"✅ Đã đọc {len(scenarios)} scenarios từ Excel")
+            self.logger.log_info(f"✅ Đã đọc {len([s for s in scenarios.values() if s])} scenarios từ Excel (bỏ OFF_ALL)")
             return scenarios
             
         except Exception as e:
@@ -156,7 +173,7 @@ class ExcelConfigReader:
             return {}
     
     def get_available_scenarios(self):
-        """Lấy danh sách scenarios có sẵn"""
+        """Lấy danh sách scenarios có sẵn - Bao gồm Bật tất cả (bỏ OFF_ALL)"""
         scenarios = self.read_control_scenarios()
         if not scenarios:
             self.logger.log_warning("⚠️ Không có scenarios nào trong file Excel")
@@ -173,7 +190,7 @@ class ExcelConfigReader:
                 }
                 index += 1
         
-        self.logger.log_info(f"✅ Đã tạo {len(scenario_list)} scenarios cho menu")
+        self.logger.log_info(f"✅ Đã tạo {len(scenario_list)} scenarios cho menu (bao gồm Bật tất cả, bỏ OFF_ALL)")
         return scenario_list
     
     def validate_scenario_with_system(self, scenario_requests, system_urls):
@@ -208,7 +225,7 @@ class ExcelConfigReader:
         return errors, warnings
 
     def create_excel_template(self):
-        """Tạo file Excel template với format mới"""
+        """Tạo file Excel template với format mới - Bao gồm Bật tất cả (bỏ OFF_ALL)"""
         try:
             # Tạo DataFrame cho Stations
             stations_data = {
@@ -223,7 +240,7 @@ class ExcelConfigReader:
             }
             df_stations = pd.DataFrame(stations_data)
             
-            # Tạo DataFrame cho Control_Scenarios - KHÔNG CÓ Scenario_Name
+            # Tạo DataFrame cho Control_Scenarios - Bao gồm Bật tất cả (bỏ OFF_ALL)
             scenarios_data = {
                 'Station': ['B3R1', 'B4R2', 'B5R2', 'B8', 'B3R1', 'B4R2', 'B5R2', 'B8'],
                 'Action': ['OFF', 'OFF', 'OFF', 'OFF', 'ON', 'ON', 'ON', 'ON'],
@@ -236,7 +253,7 @@ class ExcelConfigReader:
                 df_stations.to_excel(writer, sheet_name='Stations', index=False)
                 df_scenarios.to_excel(writer, sheet_name='Control_Scenarios', index=False)
             
-            self.logger.log_info(f"✅ Đã tạo file template: {self.excel_file_path}")
+            self.logger.log_info(f"✅ Đã tạo file template: {self.excel_file_path} (bao gồm hỗ trợ Bật tất cả, bỏ OFF_ALL)")
             return True
             
         except Exception as e:
