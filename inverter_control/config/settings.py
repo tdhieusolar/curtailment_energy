@@ -1,39 +1,68 @@
 # config/settings.py
 """
-Cấu hình hệ thống - Phiên bản 0.5.3 - Optimized Pool
+Cấu hình hệ thống - Phiên bản 0.5.3 - Auto ChromeDriver
 """
 
 import os
+import sys
 
-# --- CẤU HÌNH PHIÊN BẢN 0.5.3 - OPTIMIZED POOL ---
-VERSION = "0.5.3"
-EXCEL_CONFIG_FILE = "inverter_config.xlsx"
-
-# Cấu hình mặc định từ system_config
-from .system_config import SYSTEM_URLS as ORIGINAL_SYSTEM_URLS
-from .system_config import CONTROL_REQUESTS_OFF, CONTROL_REQUESTS_ON, ON_ALL
-
-# Biến để lưu config từ Excel
-EXCEL_SYSTEM_URLS = None
-EXCEL_CONTROL_SCENARIOS = None
+def get_chromedriver_path():
+    """Tự động xác định đường dẫn ChromeDriver"""
+    
+    # Thử các đường dẫn phổ biến
+    possible_paths = []
+    
+    # Đường dẫn trong project
+    if sys.platform.startswith("win32"):
+        possible_paths.extend([
+            os.path.join("drivers", "chromedriver.exe"),
+            "chromedriver.exe",
+            r"C:\Windows\System32\chromedriver.exe"
+        ])
+    else:
+        possible_paths.extend([
+            os.path.join("drivers", "chromedriver"),
+            "/usr/local/bin/chromedriver",
+            "/usr/bin/chromedriver",
+            "/snap/bin/chromedriver",
+            "chromedriver"
+        ])
+    
+    # Kiểm tra từng đường dẫn
+    for path in possible_paths:
+        if os.path.exists(path):
+            print(f"✅ Tìm thấy ChromeDriver tại: {path}")
+            return path
+    
+    # Nếu không tìm thấy, thử cài đặt tự động
+    print("❌ Không tìm thấy ChromeDriver, đang thử cài đặt tự động...")
+    try:
+        from webdriver_manager.chrome import ChromeDriverManager
+        driver_path = ChromeDriverManager().install()
+        print(f"✅ Đã cài đặt ChromeDriver tại: {driver_path}")
+        return driver_path
+    except Exception as e:
+        print(f"⚠️ Không thể cài đặt tự động ChromeDriver: {e}")
+        # Fallback path
+        return "/usr/bin/chromedriver" if not sys.platform.startswith("win32") else "chromedriver.exe"
 
 # Cấu hình tối ưu cho phiên bản optimized pool
 CONFIG = {
-    "version": VERSION,
-    "excel_file": EXCEL_CONFIG_FILE,
+    "version": "0.5.3",
+    "excel_file": "inverter_config.xlsx",
     "credentials": {
         "username": "installer",
         "password": "Mo_g010rP!"
     },
     "driver": {
-        "path": "/usr/bin/chromedriver",
+        "path": get_chromedriver_path(),  # Sử dụng hàm tự động
         "headless": True,
         "timeout": 25,
         "page_load_timeout": 20,
         "element_timeout": 8,
         "action_timeout": 5,
         "max_pool_size": 8,
-        "min_pool_size": 1  # QUAN TRỌNG: Giảm min_pool_size xuống 1
+        "min_pool_size": 1
     },
     "performance": {
         "max_workers": 8,
@@ -45,10 +74,24 @@ CONFIG = {
     },
     "logging": {
         "level": "INFO",
-        "format": f"%(asctime)s - %(levelname)s - [%(threadName)s] - v{VERSION} - %(message)s",
-        "file": f"inverter_control_v{VERSION}.log"
+        "format": "%(asctime)s - %(levelname)s - [%(threadName)s] - v0.5.3 - %(message)s",
+        "file": "inverter_control_v0.5.3.log"
     }
 }
+
+# Export các biến để tương thích với code cũ
+VERSION = CONFIG["version"]
+EXCEL_CONFIG_FILE = CONFIG["excel_file"]
+
+# Cấu hình mặc định từ system_config
+from .system_config import SYSTEM_URLS as ORIGINAL_SYSTEM_URLS
+from .system_config import CONTROL_REQUESTS_OFF, CONTROL_REQUESTS_ON, ON_ALL
+
+# Biến để lưu config từ Excel
+EXCEL_SYSTEM_URLS = None
+EXCEL_CONTROL_SCENARIOS = None
+SYSTEM_URLS = ORIGINAL_SYSTEM_URLS
+CONTROL_SCENARIOS = None
 
 def load_config_from_excel():
     """Load cấu hình từ file Excel và trả về config"""
@@ -87,7 +130,3 @@ def load_config_from_excel():
     
     print(f"✅ Đã tải cấu hình từ Excel: {len(EXCEL_SYSTEM_URLS)} zones, {len(EXCEL_CONTROL_SCENARIOS)} scenarios (v{VERSION})")
     return EXCEL_SYSTEM_URLS, EXCEL_CONTROL_SCENARIOS
-
-# Export các biến để tương thích với code cũ
-SYSTEM_URLS = ORIGINAL_SYSTEM_URLS
-CONTROL_SCENARIOS = None

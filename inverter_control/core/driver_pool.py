@@ -1,18 +1,25 @@
 # core/driver_pool.py
 """
-Pool quản lý driver động - Phiên bản 0.5.3 - Optimized Pool Size
+Pool quản lý driver động - Phiên bản 0.5.3 - Auto ChromeDriver
 """
 
 import math
 import queue
 import threading
+import os
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
 from selenium.common.exceptions import WebDriverException
 from core.logger import InverterControlLogger
 
+try:
+    from webdriver_manager.chrome import ChromeDriverManager
+    WEBDRIVER_MANAGER_AVAILABLE = True
+except ImportError:
+    WEBDRIVER_MANAGER_AVAILABLE = False
+
 class DynamicDriverPool:
-    """Pool quản lý driver động với pool size tối ưu"""
+    """Pool quản lý driver động với auto ChromeDriver setup"""
     
     def __init__(self, config):
         self.config = config
@@ -24,8 +31,88 @@ class DynamicDriverPool:
         self.pool_size = 0
         
         # Sử dụng Semaphore để kiểm soát truy cập
-        self.driver_semaphore = threading.Semaphore(0)  # Bắt đầu với 0
+        self.driver_semaphore = threading.Semaphore(0)
         
+    def get_chromedriver_path(self):
+        """Lấy đường dẫn ChromeDriver tự động"""
+        configured_path = self.config["driver"]["path"]
+        
+        # Kiểm tra đường dẫn cấu hình
+        if os.path.exists(configured_path):
+            return configured_path
+        
+        # Thử các đường dẫn khác
+        possible_paths = []
+        if os.name == 'nt':  # Windows
+            possible_paths.extend([
+                os.path.join("drivers", "chromedriver.exe"),
+                "chromedriver.exe",
+                r"C:\Windows\System32\chromedriver.exe"
+            ])
+        else:  # Linux/Mac
+            possible_paths.extend([
+                os.path.join("drivers", "chromedriver"),
+                "/usr/local/bin/chromedriver",
+                "/usr/bin/chromedriver",
+                "/snap/bin/chromedriver"
+            ])
+        
+        for path in possible_paths:
+            if os.path.exists(path):
+                self.logger.log_info(f"✅ Tìm thấy ChromeDriver tại: {path}")
+                return path
+        
+        # Sử dụng webdriver-manager nếu có
+        if WEBDRIVER_MANAGER_AVAILABLE:
+            try:
+                self.logger.log_info("📥 Đang tải ChromeDriver tự động...")
+                driver_path = ChromeDriverManager().install()
+                self.logger.log_info(f"✅ Đã cài đặt ChromeDriver tại: {driver_path}")
+                return driver_path
+            except Exception as e:
+                self.logger.log_error(f"❌ Lỗi webdriver-manager: {e}")
+        
+        # Fallback
+        self.logger.log_warning("⚠️ Sử dụng đường dẫn mặc định cho ChromeDriver")
+        return "/usr/bin/chromedriver" if os.name != 'nt' else "chromedriver.exe"
+    
+    def _create_driver_robust(self):
+        """Tạo driver với exception handling toàn diện"""
+        try:
+            driver_path = self.get_chromedriver_path()
+            service = Service(driver_path)
+            
+            chrome_options = webdriver.ChromeOptions()
+            if self.config["driver"]["headless"]:
+                chrome_options.add_argument("--headless=new")
+            chrome_options.add_argument("--no-sandbox")
+            chrome_options.add_argument("--disable-dev-shm-usage")
+            chrome_options.add_argument("--disable-gpu")
+            chrome_options.add_argument("--window-size=1920,1080")
+            chrome_options.add_argument("--disable-blink-features=AutomationControlled")
+            chrome_options.add_experimental_option("excludeSwitches", ["enable-automation"])
+            chrome_options.add_experimental_option('useAutomationExtension', False)
+
+            # Tối ưu hóa cho performance
+            chrome_options.page_load_strategy = 'eager'
+            chrome_options.add_experimental_option("prefs", {
+                "profile.managed_default_content_settings.images": 2,
+            })
+            
+            driver = webdriver.Chrome(service=service, options=chrome_options)
+            driver.set_page_load_timeout(self.config["driver"]["page_load_timeout"])
+            driver.implicitly_wait(2)
+            driver.execute_script("Object.defineProperty(navigator, 'webdriver', {get: () => undefined})")
+            
+            return driver
+            
+        except WebDriverException as e:
+            self.logger.log_error(f"❌ Lỗi WebDriver: {e}")
+            return None
+        except Exception as e:
+            self.logger.log_error(f"❌ Lỗi tạo driver: {e}")
+            return None
+
     def initialize_pool(self, total_tasks):
         """Khởi tạo pool driver - Phiên bản tối ưu cho ít tasks"""
         if self.is_initialized:
@@ -89,42 +176,6 @@ class DynamicDriverPool:
         
         self.logger.log_info(f"📊 Tính toán pool size: {total_tasks} tasks → {optimal_size} drivers")
         return optimal_size
-    
-    def _create_driver_robust(self):
-        """Tạo driver với exception handling toàn diện"""
-        try:
-            service = Service(self.config["driver"]["path"])
-            
-            chrome_options = webdriver.ChromeOptions()
-            if self.config["driver"]["headless"]:
-                chrome_options.add_argument("--headless")
-            chrome_options.add_argument("--no-sandbox")
-            chrome_options.add_argument("--disable-dev-shm-usage")
-            chrome_options.add_argument("--disable-gpu")
-            chrome_options.add_argument("--window-size=1920,1080")
-            chrome_options.add_argument("--disable-blink-features=AutomationControlled")
-            chrome_options.add_experimental_option("excludeSwitches", ["enable-automation"])
-            chrome_options.add_experimental_option('useAutomationExtension', False)
-
-            # Tối ưu hóa cho performance
-            chrome_options.page_load_strategy = 'eager'  # Không chờ load hoàn toàn
-            chrome_options.add_experimental_option("prefs", {
-                "profile.managed_default_content_settings.images": 2,
-            })
-            
-            driver = webdriver.Chrome(service=service, options=chrome_options)
-            driver.set_page_load_timeout(self.config["driver"]["page_load_timeout"])
-            driver.implicitly_wait(2)  # Giảm implicit wait
-            driver.execute_script("Object.defineProperty(navigator, 'webdriver', {get: () => undefined})")
-            
-            return driver
-            
-        except WebDriverException as e:
-            self.logger.log_error(f"❌ Lỗi WebDriver: {e}")
-            return None
-        except Exception as e:
-            self.logger.log_error(f"❌ Lỗi tạo driver: {e}")
-            return None
     
     def get_driver(self, timeout=20):
         """Lấy driver từ pool sử dụng semaphore"""
