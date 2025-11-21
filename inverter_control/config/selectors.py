@@ -1,5 +1,6 @@
+# config/selectors.py
 """
-CSS Selectors cho web elements
+CSS Selectors cho web elements - Cập nhật cho phiên bản mới
 """
 
 SELECTORS = {
@@ -11,8 +12,10 @@ SELECTORS = {
         "user_indicator": "installer"
     },
     "grid_control": {
-        "connect_link": "link-grid-disconnect",
-        "status_indicator": ["Disconnect Grid", "Connect Grid"]
+        "connect_link": "link-grid-disconnect",  # ID của thẻ a
+        "status_indicator": ["Disconnect Grid", "Connect Grid"],  # Text trong span
+        "status_image": "img[src*='flash']",  # Selector cho hình ảnh trạng thái
+        "status_text": ".menu-text"  # Selector cho text trạng thái
     },
     "monitoring": {
         "status_line": "#status-line-dsp",

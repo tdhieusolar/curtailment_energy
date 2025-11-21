@@ -1,3 +1,4 @@
+# core/task_queue.py
 """
 Hàng đợi thông minh quản lý task và retry
 """
@@ -6,7 +7,6 @@ import threading
 from collections import deque
 from datetime import datetime
 from core.logger import InverterControlLogger
-from config.settings import CONFIG
 
 class InverterTask:
     """Lớp đại diện cho một task inverter với tracking retry"""
@@ -24,9 +24,9 @@ class InverterTask:
     def __str__(self):
         return f"InverterTask({self.full_inv_name}, {self.required_action}, retry={self.retry_count})"
     
-    def should_retry(self):
+    def should_retry(self, max_retry_queue):
         """Kiểm tra xem task có nên retry không"""
-        return self.retry_count < CONFIG["performance"]["max_retry_queue"]
+        return self.retry_count < max_retry_queue
     
     def mark_retry(self, error_msg=None):
         """Đánh dấu task cần retry"""
@@ -38,12 +38,13 @@ class InverterTask:
 class SmartTaskQueue:
     """Hàng đợi thông minh quản lý task và retry"""
     
-    def __init__(self):
+    def __init__(self, config):
+        self.config = config
         self.primary_queue = deque()  # Hàng đợi chính
         self.retry_queue = deque()    # Hàng đợi retry
         self.completed_tasks = []     # Task đã hoàn thành
         self.failed_tasks = []        # Task thất bại hoàn toàn
-        self.logger = InverterControlLogger()
+        self.logger = InverterControlLogger(config)
         self.lock = threading.Lock()  # Lock cho thread safety
     
     def add_tasks(self, tasks):
@@ -73,7 +74,7 @@ class SmartTaskQueue:
     def add_to_retry_queue(self, task, error_msg=None):
         """Thêm task vào hàng đợi retry"""
         with self.lock:
-            if task.should_retry():
+            if task.should_retry(self.config["performance"]["max_retry_queue"]):
                 task.mark_retry(error_msg)
                 self.retry_queue.append(task)
                 self.logger.log_warning(f"⏳ Đã chuyển {task.full_inv_name} sang retry queue (lần {task.retry_count})")

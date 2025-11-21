@@ -1,3 +1,4 @@
+# core/driver_pool.py
 """
 Pool quản lý driver động dựa trên số lượng tasks
 """
@@ -8,16 +9,16 @@ import threading
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
 from core.logger import InverterControlLogger
-from config.settings import CONFIG
 
 class DynamicDriverPool:
     """Pool quản lý driver động dựa trên số lượng tasks"""
     
-    def __init__(self):
+    def __init__(self, config):
+        self.config = config
         self.available_drivers = queue.Queue()
         self.in_use_drivers = set()
         self.lock = threading.Lock()
-        self.logger = InverterControlLogger()
+        self.logger = InverterControlLogger(config)
         self.is_initialized = False
         self.pool_size = 0
     
@@ -50,22 +51,22 @@ class DynamicDriverPool:
     def _calculate_optimal_pool_size(self, total_tasks):
         """Tính toán số driver tối ưu dựa trên số lượng tasks"""
         # Công thức: min(max_pool_size, max(min_pool_size, ceil(total_tasks / tasks_per_driver)))
-        calculated_size = math.ceil(total_tasks / CONFIG["performance"]["tasks_per_driver"])
+        calculated_size = math.ceil(total_tasks / self.config["performance"]["tasks_per_driver"])
         
         # Giới hạn trong khoảng min_pool_size đến max_pool_size
-        optimal_size = max(CONFIG["driver"]["min_pool_size"], 
-                          min(CONFIG["driver"]["max_pool_size"], calculated_size))
+        optimal_size = max(self.config["driver"]["min_pool_size"], 
+                          min(self.config["driver"]["max_pool_size"], calculated_size))
         
-        self.logger.log_info(f"📊 Tính toán pool size: {total_tasks} tasks / {CONFIG['performance']['tasks_per_driver']} tasks/driver = {optimal_size} drivers")
+        self.logger.log_info(f"📊 Tính toán pool size: {total_tasks} tasks / {self.config['performance']['tasks_per_driver']} tasks/driver = {optimal_size} drivers")
         return optimal_size
     
     def _create_driver(self):
         """Tạo driver mới"""
         try:
-            service = Service(CONFIG["driver"]["path"])
+            service = Service(self.config["driver"]["path"])
             
             chrome_options = webdriver.ChromeOptions()
-            if CONFIG["driver"]["headless"]:
+            if self.config["driver"]["headless"]:
                 chrome_options.add_argument("--headless")
             chrome_options.add_argument("--no-sandbox")
             chrome_options.add_argument("--disable-dev-shm-usage")
@@ -87,7 +88,7 @@ class DynamicDriverPool:
             )
             
             driver = webdriver.Chrome(service=service, options=chrome_options)
-            driver.set_page_load_timeout(CONFIG["driver"]["page_load_timeout"])
+            driver.set_page_load_timeout(self.config["driver"]["page_load_timeout"])
             driver.execute_script("Object.defineProperty(navigator, 'webdriver', {get: () => undefined})")
             
             return driver

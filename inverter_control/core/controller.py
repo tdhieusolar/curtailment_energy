@@ -1,28 +1,29 @@
+# core/controller.py
 """
-Lớp điều khiển inverter với driver từ pool
+Lớp điều khiển inverter với driver từ pool - Phiên bản sửa lỗi
 """
 
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.action_chains import ActionChains
-from selenium.common.exceptions import TimeoutException
+from selenium.common.exceptions import TimeoutException, StaleElementReferenceException
 
 from core.logger import InverterControlLogger
-from config.settings import CONFIG
 from config.selectors import SELECTORS
 
 class InverterController:
     """Lớp điều khiển inverter với driver từ pool"""
     
-    def __init__(self, driver):
+    def __init__(self, driver, config):
         self.driver = driver
-        self.logger = InverterControlLogger()
+        self.config = config
+        self.logger = InverterControlLogger(config)
     
     def wait_for_element(self, by, value, timeout=None):
         """Chờ element xuất hiện"""
         try:
-            wait_timeout = timeout or CONFIG["driver"]["element_timeout"]
+            wait_timeout = timeout or self.config["driver"]["element_timeout"]
             wait = WebDriverWait(self.driver, wait_timeout)
             return wait.until(EC.presence_of_element_located((by, value)))
         except TimeoutException:
@@ -31,7 +32,7 @@ class InverterController:
     def wait_for_element_clickable(self, by, value, timeout=None):
         """Chờ element có thể click"""
         try:
-            wait_timeout = timeout or CONFIG["driver"]["element_timeout"]
+            wait_timeout = timeout or self.config["driver"]["element_timeout"]
             wait = WebDriverWait(self.driver, wait_timeout)
             return wait.until(EC.element_to_be_clickable((by, value)))
         except TimeoutException:
@@ -40,7 +41,7 @@ class InverterController:
     def wait_for_text_present(self, by, value, text, timeout=None):
         """Chờ text xuất hiện"""
         try:
-            wait_timeout = timeout or CONFIG["driver"]["element_timeout"]
+            wait_timeout = timeout or self.config["driver"]["element_timeout"]
             wait = WebDriverWait(self.driver, wait_timeout)
             return wait.until(EC.text_to_be_present_in_element((by, value), text))
         except TimeoutException:
@@ -49,7 +50,7 @@ class InverterController:
     def wait_for_page_loaded(self, timeout=None):
         """Chờ trang web load hoàn tất"""
         try:
-            wait_timeout = timeout or CONFIG["driver"]["page_load_timeout"]
+            wait_timeout = timeout or self.config["driver"]["page_load_timeout"]
             wait = WebDriverWait(self.driver, wait_timeout)
             return wait.until(lambda driver: driver.execute_script("return document.readyState") == "complete")
         except TimeoutException:
@@ -57,8 +58,8 @@ class InverterController:
     
     def fast_login(self, url, username=None, password=None):
         """Đăng nhập nhanh với driver được tái sử dụng"""
-        username = username or CONFIG["credentials"]["username"]
-        password = password or CONFIG["credentials"]["password"]
+        username = username or self.config["credentials"]["username"]
+        password = password or self.config["credentials"]["password"]
         
         try:
             if not url.startswith(('http://', 'https://')):
@@ -129,63 +130,137 @@ class InverterController:
             return False
     
     def get_grid_status(self):
-        """Lấy trạng thái grid"""
+        """Lấy trạng thái grid từ text và hình ảnh"""
         try:
+            # Tìm element grid control
             link_element = self.wait_for_element(
-                By.ID, SELECTORS["grid_control"]["connect_link"], timeout=3
+                By.ID, SELECTORS["grid_control"]["connect_link"], timeout=5
             )
-            if link_element:
-                status = link_element.text.strip()
-                self.logger.log_debug(f"Trạng thái grid: {status}")
-                return status
-            else:
+            
+            if not link_element:
                 self.logger.log_debug("Không tìm thấy element grid control")
+                return None
+            
+            # Lấy text trạng thái từ span
+            status_text_element = link_element.find_element(By.CSS_SELECTOR, SELECTORS["grid_control"]["status_text"])
+            status_text = status_text_element.text.strip() if status_text_element else ""
+            
+            # Lấy thông tin từ hình ảnh
+            img_element = link_element.find_element(By.CSS_SELECTOR, SELECTORS["grid_control"]["status_image"])
+            img_src = img_element.get_attribute("src") if img_element else ""
+            
+            self.logger.log_debug(f"Trạng thái grid - Text: '{status_text}', Image: '{img_src}'")
+            
+            # Xác định trạng thái dựa trên text và hình ảnh
+            if "Disconnect Grid" in status_text:
+                return "Disconnect Grid"
+            elif "Connect Grid" in status_text:
+                return "Connect Grid"
+            else:
+                # Fallback: dựa vào hình ảnh
+                if "flash_off" in img_src:
+                    return "Disconnect Grid"
+                elif "flash_on" in img_src:
+                    return "Connect Grid"
+                else:
+                    return status_text  # Trả về text gốc nếu không xác định được
+                    
         except Exception as e:
             self.logger.log_debug(f"Lỗi khi lấy trạng thái grid: {e}")
-        return None
+            return None
     
     def perform_grid_action(self, target_action):
-        """Thực hiện hành động grid"""
+        """Thực hiện hành động grid với double click"""
         current_status = self.get_grid_status()
         
         if not current_status:
             return False, "Không thể xác định trạng thái hiện tại"
         
-        expected_status_after = "Disconnect Grid" if target_action == "ON" else "Connect Grid"
+        self.logger.log_debug(f"Trạng thái hiện tại: '{current_status}', Hành động mong muốn: '{target_action}'")
+        
+        # Xác định trạng thái mong muốn sau khi thực hiện
+        if target_action == "ON":
+            expected_status_after = "Disconnect Grid"  # Bật lên -> Disconnect Grid
+            should_perform_action = current_status == "Connect Grid"
+        elif target_action == "OFF":
+            expected_status_after = "Connect Grid"  # Tắt đi -> Connect Grid
+            should_perform_action = current_status == "Disconnect Grid"
+        else:
+            return False, f"Hành động không hợp lệ: {target_action}"
         
         # Kiểm tra trạng thái hiện tại
-        if (target_action == "ON" and current_status == "Disconnect Grid") or \
-           (target_action == "OFF" and current_status == "Connect Grid"):
-            return True, f"BỎ QUA: Đã ở trạng thái mong muốn ({current_status})"
-        
-        if (target_action == "ON" and current_status == "Connect Grid") or \
-           (target_action == "OFF" and current_status == "Disconnect Grid"):
-            return False, f"LỖI: Đang ở trạng thái ngược lại ({current_status})"
+        if not should_perform_action:
+            status_message = f"BỎ QUA: Đã ở trạng thái mong muốn (Hiện tại: {current_status})"
+            self.logger.log_debug(status_message)
+            return True, status_message
         
         try:
+            # Tìm element grid control
             link_element = self.wait_for_element_clickable(
-                By.ID, SELECTORS["grid_control"]["connect_link"], timeout=3
+                By.ID, SELECTORS["grid_control"]["connect_link"], timeout=5
             )
             if not link_element:
                 return False, "Không tìm thấy element điều khiển grid"
             
             self.logger.log_debug(f"Thực hiện {target_action} grid...")
             
+            # Scroll element vào view
+            self.driver.execute_script("arguments[0].scrollIntoView({block: 'center'});", link_element)
+            
+            # Chờ một chút để đảm bảo element visible
+            import time
+            time.sleep(1)
+            
             # Thực hiện double click
             actions = ActionChains(self.driver)
-            actions.double_click(link_element).perform()
+            actions.move_to_element(link_element).double_click().perform()
+            
+            self.logger.log_debug("Đã thực hiện double click, chờ trạng thái thay đổi...")
             
             # Chờ trạng thái thay đổi
-            status_changed = self.wait_for_text_present(
-                By.ID, SELECTORS["grid_control"]["connect_link"], expected_status_after, timeout=8
-            )
+            status_changed = False
+            for i in range(10):  # Chờ tối đa 10 giây
+                time.sleep(1)
+                new_status = self.get_grid_status()
+                self.logger.log_debug(f"Lần {i+1}: Trạng thái mới: '{new_status}'")
+                
+                if new_status == expected_status_after:
+                    status_changed = True
+                    break
+                elif new_status != current_status:
+                    # Trạng thái đã thay đổi nhưng không như mong đợi
+                    self.logger.log_debug(f"Trạng thái đã thay đổi từ '{current_status}' sang '{new_status}'")
+                    break
             
             if status_changed:
-                new_status = self.get_grid_status()
-                return True, f"THÀNH CÔNG: Chuyển từ '{current_status}' sang '{new_status}'"
+                final_status = self.get_grid_status()
+                return True, f"THÀNH CÔNG: Chuyển từ '{current_status}' sang '{final_status}'"
             else:
-                new_status = self.get_grid_status()
-                return False, f"LỖI: Trạng thái không thay đổi (Hiện tại: {new_status})"
+                final_status = self.get_grid_status()
+                return False, f"LỖI: Trạng thái không thay đổi như mong đợi (Hiện tại: {final_status}, Mong đợi: {expected_status_after})"
+                
+        except StaleElementReferenceException:
+            # Element bị stale, thử lại
+            try:
+                self.logger.log_debug("Element bị stale, thử lại...")
+                link_element = self.wait_for_element_clickable(
+                    By.ID, SELECTORS["grid_control"]["connect_link"], timeout=3
+                )
+                if link_element:
+                    actions = ActionChains(self.driver)
+                    actions.move_to_element(link_element).double_click().perform()
+                    
+                    # Kiểm tra kết quả
+                    time.sleep(3)
+                    new_status = self.get_grid_status()
+                    if new_status == expected_status_after:
+                        return True, f"THÀNH CÔNG: Chuyển từ '{current_status}' sang '{new_status}'"
+                    else:
+                        return False, f"LỖI: Trạng thái không thay đổi (Hiện tại: {new_status})"
+                else:
+                    return False, "LỖI: Không thể tìm thấy element sau khi retry"
+            except Exception as retry_e:
+                return False, f"LỖI THỰC HIỆN (retry): {retry_e}"
                 
         except Exception as e:
-            return False, f"LỖI THỰC HIỆN: {e}"
+            return False, f"LỖI THỰC HIỆN: {str(e)}"

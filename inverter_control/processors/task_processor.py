@@ -1,5 +1,6 @@
+# processors/task_processor.py
 """
-Xử lý tác vụ với Dynamic Driver Pool - Phiên bản 0.4.1
+Xử lý tác vụ với Dynamic Driver Pool - Phiên bản 0.5.1
 """
 
 import threading
@@ -10,22 +11,23 @@ from core.driver_pool import DynamicDriverPool
 from core.task_queue import SmartTaskQueue, InverterTask
 from core.controller import InverterController
 from core.logger import InverterControlLogger
-from config.settings import CONFIG, SYSTEM_URLS
 
 class TaskProcessor:
-    """Xử lý tác vụ với Dynamic Driver Pool - Phiên bản 0.4.1"""
+    """Xử lý tác vụ với Dynamic Driver Pool - Phiên bản 0.5.1"""
     
-    def __init__(self):
-        self.logger = InverterControlLogger()
-        self.task_queue = SmartTaskQueue()
-        self.driver_pool = DynamicDriverPool()  # Dynamic pool
+    def __init__(self, config, system_urls):
+        self.config = config
+        self.system_urls = system_urls
+        self.logger = InverterControlLogger(config)
+        self.task_queue = SmartTaskQueue(config)
+        self.driver_pool = DynamicDriverPool(config)  # Dynamic pool
     
     def prepare_tasks(self, control_requests):
         """Chuẩn bị tasks và tính toán số lượng"""
         tasks = []
         total_inverters = 0
         
-        for zone_name, stations in SYSTEM_URLS.items():
+        for zone_name, stations in self.system_urls.items():
             for station_name, inverters in stations.items():
                 if station_name in control_requests:
                     request = control_requests[station_name]
@@ -66,7 +68,7 @@ class TaskProcessor:
         
         try:
             # Tạo controller với driver từ pool
-            controller = InverterController(driver)
+            controller = InverterController(driver, self.config)
             
             # Đăng nhập và xử lý
             login_success = controller.fast_login(task.target_url)
@@ -105,7 +107,7 @@ class TaskProcessor:
     def run_parallel_optimized(self, control_requests):
         """Chạy song song với dynamic driver pool"""
         start_time = datetime.now()
-        self.logger.log_info(f"🚀 Bắt đầu xử lý {len(control_requests)} yêu cầu - Phiên bản 0.4.1 (Dynamic Driver Pool)")
+        self.logger.log_info(f"🚀 Bắt đầu xử lý {len(control_requests)} yêu cầu - Phiên bản {self.config['version']} (Excel Config)")
         
         try:
             # Chuẩn bị tasks và tính toán số lượng
@@ -177,14 +179,14 @@ class TaskProcessor:
         batch_stats = {"completed": 0, "retried": 0, "failed": 0}
         
         # Lấy batch tasks để xử lý
-        batch_tasks = self.task_queue.get_next_batch(CONFIG["performance"]["max_workers"])
+        batch_tasks = self.task_queue.get_next_batch(self.config["performance"]["max_workers"])
         
         if not batch_tasks:
             return batch_stats
         
         self.logger.log_info(f"🔄 Xử lý batch {batch_number} với {len(batch_tasks)} tasks")
         
-        with ThreadPoolExecutor(max_workers=CONFIG["performance"]["max_workers"]) as executor:
+        with ThreadPoolExecutor(max_workers=self.config["performance"]["max_workers"]) as executor:
             # Gửi tasks để xử lý song song
             future_to_task = {
                 executor.submit(self.process_single_inverter, task): task 
@@ -195,7 +197,7 @@ class TaskProcessor:
             for future in as_completed(future_to_task):
                 task = future_to_task[future]
                 try:
-                    processed_task, status, message = future.result(timeout=CONFIG["driver"]["timeout"])
+                    processed_task, status, message = future.result(timeout=self.config["driver"]["timeout"])
                     
                     if status == "SUCCESS":
                         self.task_queue.mark_completed(processed_task, status, message)
@@ -243,7 +245,7 @@ class TaskProcessor:
             for future in as_completed(future_to_task):
                 task = future_to_task[future]
                 try:
-                    processed_task, status, message = future.result(timeout=CONFIG["driver"]["timeout"])
+                    processed_task, status, message = future.result(timeout=self.config["driver"]["timeout"])
                     
                     if status in ["SUCCESS", "SKIPPED"]:
                         self.task_queue.mark_completed(processed_task, status, message)
@@ -286,7 +288,7 @@ class TaskProcessor:
         
         # In báo cáo
         self.logger.log_info("=" * 60)
-        self.logger.log_info("🎯 BÁO CÁO TỔNG KẾT - PHIÊN BẢN 0.4.1 (DYNAMIC DRIVER POOL)")
+        self.logger.log_info(f"🎯 BÁO CÁO TỔNG KẾT - PHIÊN BẢN {self.config['version']} (EXCEL CONFIG)")
         self.logger.log_info("=" * 60)
         self.logger.log_info(f"📦 Tổng số tác vụ: {total_tasks}")
         self.logger.log_info(f"🎯 Số drivers sử dụng: {pool_info['pool_size']}")
@@ -309,6 +311,6 @@ class TaskProcessor:
         # In lỗi chi tiết
         errors = [(name, msg) for name, status, msg in results if status == "FAILED"]
         if errors:
-            self.logger.log_info("🔍 CHI TIẾT LỖI:")
+            self.logger.log_info("🔍 CHI TIẾT LỚI:")
             for name, msg in errors:
                 self.logger.log_error(msg, name)
