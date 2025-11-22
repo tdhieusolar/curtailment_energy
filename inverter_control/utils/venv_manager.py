@@ -7,7 +7,7 @@ import venv
 from pathlib import Path
 
 class VenvManager:
-    """Quản lý virtual environment tự động"""
+    """Quản lý virtual environment tự động - Phiên bản cải tiến"""
     
     def __init__(self, project_root="."):
         self.project_root = Path(project_root)
@@ -68,8 +68,8 @@ class VenvManager:
         except:
             return False
     
-    def activate_venv_for_current_process(self):
-        """Kích hoạt virtual environment cho process hiện tại"""
+    def activate_venv_properly(self):
+        """Kích hoạt virtual environment đúng cách"""
         if self.is_venv_activated():
             print("✅ Virtual environment đã được kích hoạt")
             return True
@@ -78,22 +78,16 @@ class VenvManager:
             print("❌ Virtual environment không tồn tại")
             return False
         
-        print("🔧 Đang kích hoạt virtual environment cho process hiện tại...")
+        print("🔧 Đang kích hoạt virtual environment...")
         
         try:
-            # Thêm venv vào sys.path
-            if self.is_windows:
-                site_packages = self.venv_dir / "Lib" / "site-packages"
-            else:
-                site_packages = self.venv_dir / "lib" / f"python{sys.version_info.major}.{sys.version_info.minor}" / "site-packages"
-            
-            if site_packages.exists():
-                sys.path.insert(0, str(site_packages))
-            
-            # Thay thế sys.executable và sys.prefix
+            # PHƯƠNG PHÁP 1: Sử dụng subprocess để chạy pip install
+            # Giữ sys.path cũ để import các module utils
+            old_sys_path = sys.path.copy()
             old_executable = sys.executable
+            
+            # Thay đổi sys.executable để các subprocess sau này sử dụng venv
             sys.executable = str(self.python_exe)
-            sys.prefix = str(self.venv_dir)
             
             print(f"✅ Đã kích hoạt venv: {sys.executable}")
             return True
@@ -102,21 +96,21 @@ class VenvManager:
             print(f"❌ Lỗi kích hoạt venv: {e}")
             return False
     
-    def install_requirements(self, requirements_file="requirements.txt"):
-        """Cài đặt requirements trong venv"""
+    def install_requirements_in_venv(self):
+        """Cài đặt requirements trong venv sử dụng subprocess"""
         if not self.is_venv_exists():
             print("❌ Virtual environment không tồn tại")
             return False
         
-        requirements_path = self.project_root / requirements_file
+        requirements_path = self.project_root / "requirements.txt"
         if not requirements_path.exists():
-            print(f"❌ File {requirements_file} không tồn tại")
+            print(f"❌ File requirements.txt không tồn tại")
             return False
         
-        print("📦 Đang cài đặt dependencies từ requirements.txt...")
+        print("📦 Đang cài đặt dependencies trong venv...")
         
         try:
-            # Sử dụng pip từ venv
+            # Sử dụng pip từ venv qua subprocess
             result = subprocess.run(
                 [str(self.pip_exe), "install", "-r", str(requirements_path)],
                 capture_output=True,
@@ -125,10 +119,10 @@ class VenvManager:
             )
             
             if result.returncode == 0:
-                print("✅ Đã cài đặt tất cả dependencies")
+                print("✅ Đã cài đặt tất cả dependencies trong venv")
                 return True
             else:
-                print(f"⚠️ Có thể có warning khi cài đặt: {result.stderr}")
+                print(f"⚠️ Có thể có warning: {result.stderr}")
                 # Vẫn trả về True nếu chỉ có warning
                 return "ERROR" not in result.stderr.upper()
                 
@@ -139,7 +133,7 @@ class VenvManager:
             print(f"❌ Lỗi không xác định: {e}")
             return False
     
-    def install_package(self, package_name):
+    def install_package_in_venv(self, package_name):
         """Cài đặt package cụ thể trong venv"""
         if not self.is_venv_exists():
             print("❌ Virtual environment không tồn tại")
@@ -154,69 +148,38 @@ class VenvManager:
             )
             
             if result.returncode == 0:
-                print(f"✅ Đã cài đặt {package_name}")
+                print(f"✅ Đã cài đặt {package_name} trong venv")
                 return True
             else:
-                print(f"⚠️ Có thể có warning khi cài đặt {package_name}: {result.stderr}")
+                print(f"⚠️ Có thể có warning: {result.stderr}")
                 return "ERROR" not in result.stderr.upper()
                 
         except subprocess.TimeoutExpired:
             print(f"❌ Timeout khi cài đặt {package_name}")
             return False
     
-    def get_venv_python_path(self):
-        """Lấy đường dẫn Python trong venv"""
-        return str(self.python_exe) if self.is_venv_exists() else sys.executable
-    
-    def run_main_directly(self):
-        """Chạy main.py trực tiếp trong process hiện tại sau khi kích hoạt venv"""
-        if not self.is_venv_exists():
-            print("❌ Virtual environment không tồn tại")
-            return False
-        
-        try:
-            # Kích hoạt venv cho process hiện tại
-            if not self.activate_venv_for_current_process():
-                return False
-            
-            # Import và chạy main
-            print("🔧 Đang import main module...")
-            
-            # Thêm project root vào sys.path
-            sys.path.insert(0, str(self.project_root))
-            
-            # Import main
-            from main import main as app_main
-            
-            print("🎯 Đang khởi chạy ứng dụng chính...")
-            app_main()
-            return True
-            
-        except ImportError as e:
-            print(f"❌ Lỗi import: {e}")
-            return False
-        except Exception as e:
-            print(f"❌ Lỗi khi chạy ứng dụng: {e}")
-            import traceback
-            traceback.print_exc()
-            return False
-    
-    def setup_complete_environment(self):
-        """Thiết lập môi trường hoàn chỉnh: venv + dependencies"""
-        print("🔧 THIẾT LẬP MÔI TRƯỜNG HOÀN CHỈNH")
+    def setup_venv_first(self):
+        """Thiết lập venv đầu tiên - CORE FUNCTION"""
+        print("🔧 THIẾT LẬP VIRTUAL ENVIRONMENT ĐẦU TIÊN")
         print("=" * 40)
         
         # 1. Kiểm tra hoặc tạo venv
         if not self.is_venv_exists():
             print("📦 Virtual environment chưa tồn tại...")
             if not self.create_venv():
+                print("❌ Không thể tạo virtual environment")
                 return False
         else:
             print("✅ Virtual environment đã tồn tại")
         
-        # 2. Cài đặt dependencies
-        print("📦 Kiểm tra và cài đặt dependencies...")
-        if not self.install_requirements():
+        # 2. Kích hoạt venv
+        if not self.activate_venv_properly():
+            print("⚠️ Không thể kích hoạt venv đúng cách")
+            return False
+        
+        # 3. Cài đặt dependencies trong venv
+        print("📦 Kiểm tra và cài đặt dependencies trong venv...")
+        if not self.install_requirements_in_venv():
             print("⚠️ Không thể cài đặt requirements, thử cài đặt từng package...")
             
             # Fallback: cài đặt từng package
@@ -231,12 +194,12 @@ class VenvManager:
             
             all_success = True
             for package in packages:
-                if not self.install_package(package):
-                    print(f"⚠️ Không thể cài đặt {package}")
+                if not self.install_package_in_venv(package):
+                    print(f"⚠️ Không thể cài đặt {package} trong venv")
                     all_success = False
             
             if not all_success:
-                print("⚠️ Một số package không thể cài đặt tự động")
+                print("⚠️ Một số package không thể cài đặt tự động trong venv")
         
-        print("🎉 THIẾT LẬP MÔI TRƯỜNG HOÀN TẤT")
+        print("🎉 THIẾT LẬP VENV HOÀN TẤT")
         return True

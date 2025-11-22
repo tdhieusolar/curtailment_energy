@@ -8,19 +8,36 @@ import shutil
 from pathlib import Path
 
 class SystemChecker:
-    """Kiểm tra hệ thống toàn diện cho mọi OS"""
+    """Kiểm tra hệ thống toàn diện - Phiên bản hỗ trợ venv"""
     
-    def __init__(self):
+    def __init__(self, venv_manager=None):
         self.system = platform.system().lower()
         self.is_windows = self.system == "windows"
         self.is_linux = self.system == "linux" 
         self.is_mac = self.system == "darwin"
         self.architecture = platform.architecture()[0]
         self.python_version = platform.python_version()
+        self.venv_manager = venv_manager
         
         self.checks = []
         self.failed_checks = []
         
+    def check_python_environment(self):
+        """Kiểm tra môi trường Python (system vs venv)"""
+        if self.venv_manager and self.venv_manager.is_venv_activated():
+            env_type = "Virtual Environment"
+            python_path = sys.executable
+            status = True
+            message = f"VENV: {python_path}"
+        else:
+            env_type = "System Python" 
+            python_path = sys.executable
+            status = True
+            message = f"SYSTEM: {python_path}"
+        
+        self._add_check("Python Environment", status, message)
+        return status
+    
     def check_python_version(self):
         """Kiểm tra phiên bản Python"""
         major, minor, _ = map(int, self.python_version.split('.'))
@@ -32,7 +49,7 @@ class SystemChecker:
         return True
     
     def check_required_packages(self):
-        """Kiểm tra packages cần thiết"""
+        """Kiểm tra packages cần thiết - trong venv nếu được kích hoạt"""
         required_packages = {
             'selenium': '4.15.0',
             'pandas': '2.1.3', 
@@ -44,16 +61,21 @@ class SystemChecker:
         all_ok = True
         for package, min_version in required_packages.items():
             try:
+                # Thử import package
                 module = importlib.import_module(package)
                 installed_version = getattr(module, '__version__', 'unknown')
                 
                 if installed_version != 'unknown':
-                    # Đơn giản hóa version check
                     status = True
                     message = f"{package} {installed_version}"
+                    
+                    # Kiểm tra version nếu cần
+                    if min_version and self._compare_versions(installed_version, min_version) < 0:
+                        status = False
+                        message = f"{package} {installed_version} (need {min_version}+)"
                 else:
-                    status = False
-                    message = f"{package} not found"
+                    status = True  # Vẫn OK nếu có package nhưng không lấy được version
+                    message = f"{package} (version unknown)"
                     
                 self._add_check(f"Package: {package}", status, message)
                 if not status:
@@ -65,6 +87,22 @@ class SystemChecker:
         
         return all_ok
     
+    def _compare_versions(self, v1, v2):
+        """So sánh version strings đơn giản"""
+        try:
+            from packaging import version
+            v1_parsed = version.parse(v1)
+            v2_parsed = version.parse(v2)
+            if v1_parsed < v2_parsed:
+                return -1
+            elif v1_parsed > v2_parsed:
+                return 1
+            else:
+                return 0
+        except:
+            # Fallback: so sánh string đơn giản
+            return (v1 > v2) - (v1 < v2)
+    
     def check_browsers(self):
         """Kiểm tra trình duyệt có sẵn"""
         browsers = self._get_available_browsers()
@@ -73,7 +111,7 @@ class SystemChecker:
             self._add_check("Web Browsers", False, "No compatible browser found")
             return False
         
-        browser_list = ", ".join([f"{name} ({path})" for name, path in browsers])
+        browser_list = ", ".join([f"{name}" for name, path in browsers])
         self._add_check("Web Browsers", True, browser_list)
         return True
     
@@ -85,13 +123,14 @@ class SystemChecker:
             self._add_check("Web Drivers", False, "No web driver found")
             return False
         
-        driver_list = ", ".join([f"{name} ({path})" for name, path in drivers])
+        driver_list = ", ".join([f"{name}" for name, path in drivers])
         self._add_check("Web Drivers", True, driver_list)
         return True
     
     def check_system_resources(self):
         """Kiểm tra tài nguyên hệ thống"""
         try:
+            # Thử import psutil trong venv
             import psutil
             
             # RAM
@@ -111,26 +150,38 @@ class SystemChecker:
             return status
             
         except ImportError:
-            self._add_check("System Resources", True, "Cannot check (psutil not available)")
-            return True
+            self._add_check("System Resources", False, "psutil not available")
+            return False
     
     def check_network_connectivity(self):
         """Kiểm tra kết nối mạng"""
-        test_urls = [
-            "https://www.google.com",
-            "https://www.github.com",
-            "https://pypi.org"
-        ]
-        
-        connected = False
-        for url in test_urls:
-            if self._test_url_connectivity(url):
-                connected = True
-                break
-        
-        self._add_check("Network Connectivity", connected, 
-                       "Connected" if connected else "No internet connection")
-        return connected
+        try:
+            # Thử import requests trong venv
+            import requests
+            
+            test_urls = [
+                "https://www.google.com",
+                "https://www.github.com",
+                "https://pypi.org"
+            ]
+            
+            connected = False
+            for url in test_urls:
+                try:
+                    response = requests.get(url, timeout=5)
+                    if response.status_code == 200:
+                        connected = True
+                        break
+                except:
+                    continue
+            
+            self._add_check("Network Connectivity", connected, 
+                           "Connected" if connected else "No internet connection")
+            return connected
+            
+        except ImportError:
+            self._add_check("Network Connectivity", False, "requests not available")
+            return False
     
     def _get_available_browsers(self):
         """Lấy danh sách trình duyệt có sẵn"""
@@ -182,28 +233,6 @@ class SystemChecker:
         for path in edge_paths:
             if os.path.exists(path):
                 browsers.append(("Edge", path))
-                break
-        
-        # Firefox
-        firefox_paths = []
-        if self.is_windows:
-            firefox_paths = [
-                r"C:\Program Files\Mozilla Firefox\firefox.exe",
-                r"C:\Program Files (x86)\Mozilla Firefox\firefox.exe"
-            ]
-        elif self.is_linux:
-            firefox_paths = [
-                "/usr/bin/firefox",
-                "/usr/bin/firefox-esr"
-            ]
-        else:  # mac
-            firefox_paths = [
-                "/Applications/Firefox.app/Contents/MacOS/firefox"
-            ]
-        
-        for path in firefox_paths:
-            if os.path.exists(path):
-                browsers.append(("Firefox", path))
                 break
         
         return browsers
@@ -258,15 +287,6 @@ class SystemChecker:
         
         return drivers
     
-    def _test_url_connectivity(self, url, timeout=5):
-        """Test kết nối đến URL"""
-        try:
-            import requests
-            response = requests.get(url, timeout=timeout)
-            return response.status_code == 200
-        except:
-            return False
-    
     def _add_check(self, name, status, message):
         """Thêm kết quả kiểm tra"""
         self.checks.append({
@@ -278,11 +298,16 @@ class SystemChecker:
             self.failed_checks.append(name)
     
     def run_full_check(self):
-        """Chạy kiểm tra toàn diện"""
+        """Chạy kiểm tra toàn diện - trong venv nếu được kích hoạt"""
         print("🔍 KIỂM TRA HỆ THỐNG TOÀN DIỆN")
+        if self.venv_manager and self.venv_manager.is_venv_activated():
+            print("📍 Môi trường: VIRTUAL ENVIRONMENT")
+        else:
+            print("📍 Môi trường: SYSTEM PYTHON")
         print("=" * 50)
         
         checks = [
+            self.check_python_environment,
             self.check_python_version,
             self.check_required_packages,
             self.check_system_resources,
@@ -318,13 +343,3 @@ class SystemChecker:
     def get_failed_checks(self):
         """Lấy danh sách các check thất bại"""
         return self.failed_checks
-    
-    def get_system_info(self):
-        """Lấy thông tin hệ thống"""
-        return {
-            'os': platform.system(),
-            'os_version': platform.version(),
-            'architecture': self.architecture,
-            'python_version': self.python_version,
-            'processor': platform.processor()
-        }

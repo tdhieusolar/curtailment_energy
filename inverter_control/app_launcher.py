@@ -2,7 +2,7 @@
 #!/usr/bin/env python3
 """
 Inverter Control System - Universal Launcher
-Chạy tự động trên mọi hệ điều hành với tự động cài đặt dependencies và venv
+TRÌNH TỰ ĐÚNG: Venv → Dependencies → System Check → Run App
 """
 
 import os
@@ -23,7 +23,7 @@ def setup_environment():
     Path("logs").mkdir(exist_ok=True)
 
 def main():
-    """Hàm chính"""
+    """Hàm chính - TRÌNH TỰ ĐÚNG"""
     try:
         setup_environment()
         
@@ -35,31 +35,35 @@ def main():
         from utils.system_checker import SystemChecker
         from utils.dependency_manager import DependencyManager
         
-        # 1. THIẾT LẬP VENV
-        print("\n🔧 THIẾT LẬP VIRTUAL ENVIRONMENT...")
+        # 1. THIẾT LẬP VENV ĐẦU TIÊN
+        print("\n🔧 BƯỚC 1: THIẾT LẬP VIRTUAL ENVIRONMENT...")
         venv_manager = VenvManager()
         
-        venv_ready = venv_manager.setup_complete_environment()
+        venv_ready = venv_manager.setup_venv_first()
         if not venv_ready:
-            print("⚠️ Có vấn đề với virtual environment, tiếp tục với system Python")
+            print("⚠️ Không thể thiết lập venv, tiếp tục với system Python")
+            # Tạo system checker không có venv
+            checker = SystemChecker()
+        else:
+            # Tạo system checker với venv đã kích hoạt
+            checker = SystemChecker(venv_manager=venv_manager)
         
-        # 2. KIỂM TRA HỆ THỐNG
-        print("\n🔍 KIỂM TRA HỆ THỐNG...")
-        checker = SystemChecker()
+        # 2. KIỂM TRA HỆ THỐNG TRONG MÔI TRƯỜNG HIỆN TẠI (VENV HOẶC SYSTEM)
+        print("\n🔍 BƯỚC 2: KIỂM TRA HỆ THỐNG...")
         system_ready = checker.run_full_check()
         
-        # 3. CÀI ĐẶT TỰ ĐỘNG NẾU CẦN
+        # 3. CÀI ĐẶT SYSTEM DEPENDENCIES NẾU CẦN
         if not system_ready:
-            print("\n🔧 TIẾN HÀNH CÀI ĐẶT TỰ ĐỘNG...")
+            print("\n🔧 BƯỚC 3: CÀI ĐẶT SYSTEM DEPENDENCIES...")
             print("=" * 40)
             
             manager = DependencyManager()
             
-            # Cài đặt system dependencies
+            # Cài đặt system dependencies (trình duyệt, drivers hệ thống)
             if any(check in checker.get_failed_checks() for check in ["Web Browsers", "Web Drivers"]):
                 print("\n🔧 Cài đặt system dependencies...")
                 if not manager.install_system_dependencies():
-                    print("⚠️ Có thể cần cài đặt thủ công một số dependencies")
+                    print("⚠️ Có thể cần cài đặt thủ công một số system dependencies")
             
             # Cài đặt web drivers
             if "Web Drivers" in checker.get_failed_checks():
@@ -67,36 +71,32 @@ def main():
                 if not manager.install_webdrivers():
                     print("⚠️ Có thể cần cài đặt web drivers thủ công")
             
-            # Kiểm tra lại sau khi cài đặt
+            # Kiểm tra lại sau khi cài đặt system dependencies
             print("\n🔍 KIỂM TRA LẠI SAU KHI CÀI ĐẶT...")
             system_ready = checker.run_full_check()
         
         # 4. CHẠY ỨNG DỤNG CHÍNH
         if system_ready:
-            print("\n🎉 KHỞI CHẠY ỨNG DỤNG CHÍNH...")
+            print("\n🎉 BƯỚC 4: KHỞI CHẠY ỨNG DỤNG CHÍNH...")
             print("=" * 40)
             
-            # Chạy trong venv nếu có
-            if venv_manager.is_venv_exists():
-                print("🐍 Chạy ứng dụng trong virtual environment...")
-                success = venv_manager.run_main_directly()
-                if not success:
-                    print("⚠️ Không thể chạy trong venv, thử với system Python...")
-                    # Fallback to system Python
-                    try:
-                        from main import main as app_main
-                        app_main()
-                    except Exception as e:
-                        print(f"❌ Lỗi khi chạy với system Python: {e}")
-            else:
-                # Chạy với system Python
-                print("🐍 Chạy ứng dụng với system Python...")
-                try:
-                    from main import main as app_main
-                    app_main()
-                except Exception as e:
-                    print(f"❌ Lỗi khi chạy ứng dụng: {e}")
-                    return False
+            # Import và chạy main
+            try:
+                # Thêm project root vào path
+                sys.path.insert(0, str(Path(__file__).parent))
+                
+                from main import main as app_main
+                print("🚀 Đang khởi chạy ứng dụng...")
+                app_main()
+                
+            except ImportError as e:
+                print(f"❌ Lỗi import ứng dụng: {e}")
+                return False
+            except Exception as e:
+                print(f"❌ Lỗi khi chạy ứng dụng: {e}")
+                import traceback
+                traceback.print_exc()
+                return False
                 
         else:
             print("\n❌ KHÔNG THỂ KHỞI CHẠY")
