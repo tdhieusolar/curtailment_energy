@@ -2,7 +2,7 @@
 #!/usr/bin/env python3
 """
 Inverter Control System - Universal Launcher
-TRÌNH TỰ ĐÚNG: Venv → Dependencies → System Check → Run App
+CÀI ĐẶT THÔNG MINH: Chỉ cài đặt khi cần thiết
 """
 
 import os
@@ -23,7 +23,7 @@ def setup_environment():
     Path("logs").mkdir(exist_ok=True)
 
 def main():
-    """Hàm chính - TRÌNH TỰ ĐÚNG"""
+    """Hàm chính - CÀI ĐẶT THÔNG MINH"""
     try:
         setup_environment()
         
@@ -35,49 +35,56 @@ def main():
         from utils.system_checker import SystemChecker
         from utils.dependency_manager import DependencyManager
         
-        # 1. THIẾT LẬP VENV ĐẦU TIÊN
-        print("\n🔧 BƯỚC 1: THIẾT LẬP VIRTUAL ENVIRONMENT...")
+        # 1. KIỂM TRA HỆ THỐNG BAN ĐẦU (trong system Python)
+        print("\n🔍 BƯỚC 1: KIỂM TRA HỆ THỐNG BAN ĐẦU...")
+        initial_checker = SystemChecker()
+        initial_status = initial_checker.run_full_check()
+        
+        # 2. THIẾT LẬP VENV THÔNG MINH
+        print("\n🔧 BƯỚC 2: THIẾT LẬP VIRTUAL ENVIRONMENT THÔNG MINH...")
         venv_manager = VenvManager()
         
-        venv_ready = venv_manager.setup_venv_first()
+        # Thiết lập venv với thông tin từ system checker
+        venv_ready = venv_manager.setup_venv_smart(initial_checker)
+        
         if not venv_ready:
             print("⚠️ Không thể thiết lập venv, tiếp tục với system Python")
-            # Tạo system checker không có venv
-            checker = SystemChecker()
+            final_checker = initial_checker
         else:
-            # Tạo system checker với venv đã kích hoạt
-            checker = SystemChecker(venv_manager=venv_manager)
+            # 3. KIỂM TRA LẠI TRONG VENV
+            print("\n🔍 BƯỚC 3: KIỂM TRA HỆ THỐNG TRONG VENV...")
+            final_checker = SystemChecker(venv_manager=venv_manager)
+            final_status = final_checker.run_full_check()
         
-        # 2. KIỂM TRA HỆ THỐNG TRONG MÔI TRƯỜNG HIỆN TẠI (VENV HOẶC SYSTEM)
-        print("\n🔍 BƯỚC 2: KIỂM TRA HỆ THỐNG...")
-        system_ready = checker.run_full_check()
+        # 4. CÀI ĐẶT SYSTEM DEPENDENCIES NẾU CẦN
+        system_ready = final_checker.run_full_check() if 'final_checker' in locals() else initial_status
         
-        # 3. CÀI ĐẶT SYSTEM DEPENDENCIES NẾU CẦN
         if not system_ready:
-            print("\n🔧 BƯỚC 3: CÀI ĐẶT SYSTEM DEPENDENCIES...")
+            print("\n🔧 BƯỚC 4: CÀI ĐẶT SYSTEM DEPENDENCIES (NẾU CẦN)...")
             print("=" * 40)
             
             manager = DependencyManager()
             
-            # Cài đặt system dependencies (trình duyệt, drivers hệ thống)
-            if any(check in checker.get_failed_checks() for check in ["Web Browsers", "Web Drivers"]):
-                print("\n🔧 Cài đặt system dependencies...")
-                if not manager.install_system_dependencies():
-                    print("⚠️ Có thể cần cài đặt thủ công một số system dependencies")
+            # Chỉ cài đặt system dependencies nếu thực sự cần
+            failed_checks = final_checker.get_failed_checks()
             
-            # Cài đặt web drivers
-            if "Web Drivers" in checker.get_failed_checks():
-                print("\n🚗 Cài đặt web drivers...")
+            if "Web Browsers" in failed_checks:
+                print("\n🔧 Trình duyệt không tìm thấy, đang cài đặt...")
+                if not manager.install_system_dependencies():
+                    print("⚠️ Có thể cần cài đặt thủ công trình duyệt")
+            
+            if "Web Drivers" in failed_checks:
+                print("\n🚗 Web drivers không tìm thấy, đang cài đặt...")
                 if not manager.install_webdrivers():
-                    print("⚠️ Có thể cần cài đặt web drivers thủ công")
+                    print("⚠️ Có thể cần cài đặt thủ công web drivers")
             
             # Kiểm tra lại sau khi cài đặt system dependencies
             print("\n🔍 KIỂM TRA LẠI SAU KHI CÀI ĐẶT...")
-            system_ready = checker.run_full_check()
+            system_ready = final_checker.run_full_check()
         
-        # 4. CHẠY ỨNG DỤNG CHÍNH
+        # 5. CHẠY ỨNG DỤNG CHÍNH
         if system_ready:
-            print("\n🎉 BƯỚC 4: KHỞI CHẠY ỨNG DỤNG CHÍNH...")
+            print("\n🎉 BƯỚC 5: KHỞI CHẠY ỨNG DỤNG CHÍNH...")
             print("=" * 40)
             
             # Import và chạy main

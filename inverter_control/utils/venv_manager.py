@@ -7,7 +7,7 @@ import venv
 from pathlib import Path
 
 class VenvManager:
-    """Quản lý virtual environment tự động - Phiên bản cải tiến"""
+    """Quản lý virtual environment với cài đặt thông minh"""
     
     def __init__(self, project_root="."):
         self.project_root = Path(project_root)
@@ -81,11 +81,6 @@ class VenvManager:
         print("🔧 Đang kích hoạt virtual environment...")
         
         try:
-            # PHƯƠNG PHÁP 1: Sử dụng subprocess để chạy pip install
-            # Giữ sys.path cũ để import các module utils
-            old_sys_path = sys.path.copy()
-            old_executable = sys.executable
-            
             # Thay đổi sys.executable để các subprocess sau này sử dụng venv
             sys.executable = str(self.python_exe)
             
@@ -96,71 +91,70 @@ class VenvManager:
             print(f"❌ Lỗi kích hoạt venv: {e}")
             return False
     
-    def install_requirements_in_venv(self):
-        """Cài đặt requirements trong venv sử dụng subprocess"""
-        if not self.is_venv_exists():
-            print("❌ Virtual environment không tồn tại")
-            return False
-        
-        requirements_path = self.project_root / "requirements.txt"
-        if not requirements_path.exists():
-            print(f"❌ File requirements.txt không tồn tại")
-            return False
-        
-        print("📦 Đang cài đặt dependencies trong venv...")
-        
-        try:
-            # Sử dụng pip từ venv qua subprocess
-            result = subprocess.run(
-                [str(self.pip_exe), "install", "-r", str(requirements_path)],
-                capture_output=True,
-                text=True,
-                timeout=300  # 5 minutes timeout
-            )
-            
-            if result.returncode == 0:
-                print("✅ Đã cài đặt tất cả dependencies trong venv")
-                return True
-            else:
-                print(f"⚠️ Có thể có warning: {result.stderr}")
-                # Vẫn trả về True nếu chỉ có warning
-                return "ERROR" not in result.stderr.upper()
-                
-        except subprocess.TimeoutExpired:
-            print("❌ Timeout khi cài đặt dependencies")
-            return False
-        except Exception as e:
-            print(f"❌ Lỗi không xác định: {e}")
-            return False
+    def install_packages_smart(self, packages_to_install):
+    """Cài đặt packages thông minh từ requirements.txt"""
+    if not packages_to_install:
+        print("✅ Tất cả packages đã được cài đặt với phiên bản phù hợp")
+        return True
     
-    def install_package_in_venv(self, package_name):
-        """Cài đặt package cụ thể trong venv"""
-        if not self.is_venv_exists():
-            print("❌ Virtual environment không tồn tại")
-            return False
+    if not self.is_venv_exists():
+        print("❌ Virtual environment không tồn tại")
+        return False
+    
+    print(f"📦 Đang cài đặt {len(packages_to_install)} packages từ requirements.txt...")
+    
+    success_count = 0
+    for package, required_spec in packages_to_install.items():
+        print(f"🔧 Đang xử lý {package}...")
         
         try:
+            # Tạo installation specification
+            if required_spec:
+                # Có version requirement
+                install_spec = f"{package}{required_spec}"
+            else:
+                # Không có version requirement
+                install_spec = package
+            
             result = subprocess.run(
-                [str(self.pip_exe), "install", package_name],
+                [str(self.pip_exe), "install", install_spec],
                 capture_output=True,
                 text=True,
                 timeout=120
             )
             
             if result.returncode == 0:
-                print(f"✅ Đã cài đặt {package_name} trong venv")
-                return True
+                print(f"✅ Đã cài đặt {install_spec}")
+                success_count += 1
             else:
-                print(f"⚠️ Có thể có warning: {result.stderr}")
-                return "ERROR" not in result.stderr.upper()
+                print(f"⚠️ Có vấn đề với {package}: {result.stderr}")
                 
         except subprocess.TimeoutExpired:
-            print(f"❌ Timeout khi cài đặt {package_name}")
-            return False
+            print(f"❌ Timeout khi cài đặt {package}")
+        except Exception as e:
+            print(f"❌ Lỗi khi cài đặt {package}: {e}")
     
-    def setup_venv_first(self):
-        """Thiết lập venv đầu tiên - CORE FUNCTION"""
-        print("🔧 THIẾT LẬP VIRTUAL ENVIRONMENT ĐẦU TIÊN")
+    print(f"📊 Kết quả: {success_count}/{len(packages_to_install)} packages thành công")
+    return success_count > 0
+
+    def install_requirements_smart(self, system_checker):
+        """Cài đặt requirements thông minh dựa trên kết quả kiểm tra"""
+        if not self.is_venv_exists():
+            print("❌ Virtual environment không tồn tại")
+            return False
+        
+        # Lấy packages cần cài đặt từ system checker
+        packages_to_install = system_checker.get_packages_to_install()
+        
+        if not packages_to_install:
+            print("✅ Tất cả packages đã được cài đặt với phiên bản phù hợp")
+            return True
+        
+        return self.install_packages_smart(packages_to_install)
+    
+    def setup_venv_smart(self, system_checker):
+        """Thiết lập venv thông minh - chỉ cài đặt khi cần"""
+        print("🔧 THIẾT LẬP VIRTUAL ENVIRONMENT THÔNG MINH")
         print("=" * 40)
         
         # 1. Kiểm tra hoặc tạo venv
@@ -177,29 +171,13 @@ class VenvManager:
             print("⚠️ Không thể kích hoạt venv đúng cách")
             return False
         
-        # 3. Cài đặt dependencies trong venv
-        print("📦 Kiểm tra và cài đặt dependencies trong venv...")
-        if not self.install_requirements_in_venv():
-            print("⚠️ Không thể cài đặt requirements, thử cài đặt từng package...")
-            
-            # Fallback: cài đặt từng package
-            packages = [
-                "selenium==4.15.0",
-                "pandas==2.1.3", 
-                "psutil==5.9.6",
-                "openpyxl==3.1.2",
-                "requests==2.31.0",
-                "webdriver-manager==4.0.1"
-            ]
-            
-            all_success = True
-            for package in packages:
-                if not self.install_package_in_venv(package):
-                    print(f"⚠️ Không thể cài đặt {package} trong venv")
-                    all_success = False
-            
-            if not all_success:
-                print("⚠️ Một số package không thể cài đặt tự động trong venv")
+        # 3. Cài đặt packages thông minh
+        print("📦 Kiểm tra và cài đặt packages thông minh...")
+        success = self.install_requirements_smart(system_checker)
         
-        print("🎉 THIẾT LẬP VENV HOÀN TẤT")
-        return True
+        if success:
+            print("🎉 THIẾT LẬP VENV THÔNG MINH HOÀN TẤT")
+        else:
+            print("⚠️ Có vấn đề khi cài đặt packages")
+        
+        return success

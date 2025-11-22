@@ -8,7 +8,7 @@ import shutil
 from pathlib import Path
 
 class SystemChecker:
-    """Kiểm tra hệ thống toàn diện - Phiên bản hỗ trợ venv"""
+    """Kiểm tra hệ thống toàn diện với kiểm tra phiên bản từ requirements.txt"""
     
     def __init__(self, venv_manager=None):
         self.system = platform.system().lower()
@@ -21,7 +21,89 @@ class SystemChecker:
         
         self.checks = []
         self.failed_checks = []
+        self.package_versions = {}  # Lưu phiên bản packages
         
+    def _load_requirements_from_file(self):
+        """Đọc requirements từ file requirements.txt"""
+        requirements_path = Path("requirements.txt")
+        
+        if not requirements_path.exists():
+            print(f"⚠️ File requirements.txt không tồn tại, sử dụng requirements mặc định")
+            return self._get_default_requirements()
+        
+        required_packages = {}
+        
+        try:
+            with open(requirements_path, 'r', encoding='utf-8') as f:
+                for line in f:
+                    line = line.strip()
+                    
+                    # Bỏ qua comment và empty lines
+                    if not line or line.startswith('#') or line.startswith('--'):
+                        continue
+                    
+                    # Xử lý line requirements
+                    package_spec = line.split('#')[0].strip()  # Remove comments
+                    
+                    if package_spec:
+                        # Phân tích package specification
+                        package_name, version_spec = self._parse_package_spec(package_spec)
+                        if package_name:
+                            required_packages[package_name] = version_spec
+            
+            print(f"✅ Đã đọc {len(required_packages)} packages từ requirements.txt")
+            return required_packages
+            
+        except Exception as e:
+            print(f"❌ Lỗi đọc requirements.txt: {e}")
+            return self._get_default_requirements()
+    
+    def _parse_package_spec(self, package_spec):
+        """Phân tích package specification thành tên và version requirement"""
+        # Các operators phổ biến
+        operators = ['==', '>=', '<=', '>', '<', '~=', '!=']
+        
+        # Tìm operator đầu tiên
+        operator_pos = -1
+        found_operator = None
+        
+        for op in operators:
+            pos = package_spec.find(op)
+            if pos != -1 and (operator_pos == -1 or pos < operator_pos):
+                operator_pos = pos
+                found_operator = op
+        
+        if operator_pos != -1 and found_operator:
+            # Có version specification
+            package_name = package_spec[:operator_pos].strip()
+            version_spec = package_spec[operator_pos:].strip()
+            
+            # Chuẩn hóa version spec để so sánh
+            if found_operator in ['>=', '==']:
+                # Giữ nguyên cho >= và ==
+                return package_name, version_spec
+            elif found_operator == '~=':
+                # Compatible release ~= → chuyển thành >=
+                base_version = version_spec[len(found_operator):].strip()
+                return package_name, f">={base_version}"
+            else:
+                # Các operators khác → chỉ lấy tên package, bỏ qua version constraint phức tạp
+                return package_name, None
+        else:
+            # Không có version specification
+            return package_spec.strip(), None
+    
+    def _get_default_requirements(self):
+        """Requirements mặc định nếu không có file"""
+        return {
+            'selenium': '>=4.15.0',
+            'pandas': '>=2.1.3', 
+            'psutil': '>=5.9.6',
+            'openpyxl': '>=3.1.2',
+            'requests': '>=2.31.0',
+            'webdriver-manager': '>=4.0.1'
+        }
+    
     def check_python_environment(self):
         """Kiểm tra môi trường Python (system vs venv)"""
         if self.venv_manager and self.venv_manager.is_venv_activated():
@@ -49,59 +131,156 @@ class SystemChecker:
         return True
     
     def check_required_packages(self):
-        """Kiểm tra packages cần thiết - trong venv nếu được kích hoạt"""
-        required_packages = {
-            'selenium': '4.15.0',
-            'pandas': '2.1.3', 
-            'psutil': '5.9.6',
-            'openpyxl': '3.1.2',
-            'requests': '2.31.0'
-        }
+        """Kiểm tra packages cần thiết từ requirements.txt"""
+        # Đọc requirements từ file
+        required_packages = self._load_requirements_from_file()
+        
+        if not required_packages:
+            self._add_check("Requirements File", False, "No requirements found")
+            return False
         
         all_ok = True
-        for package, min_version in required_packages.items():
+        for package, required_spec in required_packages.items():
             try:
                 # Thử import package
                 module = importlib.import_module(package)
                 installed_version = getattr(module, '__version__', 'unknown')
                 
+                # Lưu phiên bản hiện tại
+                self.package_versions[package] = installed_version
+                
                 if installed_version != 'unknown':
-                    status = True
-                    message = f"{package} {installed_version}"
-                    
-                    # Kiểm tra version nếu cần
-                    if min_version and self._compare_versions(installed_version, min_version) < 0:
-                        status = False
-                        message = f"{package} {installed_version} (need {min_version}+)"
+                    # Kiểm tra version nếu có requirement
+                    if required_spec:
+                        version_ok = self._check_version_compatibility(installed_version, required_spec)
+                        
+                        if version_ok:
+                            status = True
+                            message = f"{package} {installed_version} ✓"
+                        else:
+                            status = False
+                            message = f"{package} {installed_version} (need {required_spec})"
+                    else:
+                        # Không có version requirement → chỉ cần có package
+                        status = True
+                        message = f"{package} {installed_version} ✓"
+                        
+                    self._add_check(f"Package: {package}", status, message)
+                    if not status:
+                        all_ok = False
                 else:
-                    status = True  # Vẫn OK nếu có package nhưng không lấy được version
+                    # Có package nhưng không lấy được version
+                    status = True
                     message = f"{package} (version unknown)"
-                    
-                self._add_check(f"Package: {package}", status, message)
-                if not status:
-                    all_ok = False
+                    self._add_check(f"Package: {package}", status, message)
                     
             except ImportError:
-                self._add_check(f"Package: {package}", False, "Not installed")
+                # Package chưa được cài đặt
+                self.package_versions[package] = None
+                requirement_msg = f" (need {required_spec})" if required_spec else ""
+                self._add_check(f"Package: {package}", False, f"Not installed{requirement_msg}")
                 all_ok = False
         
         return all_ok
     
-    def _compare_versions(self, v1, v2):
-        """So sánh version strings đơn giản"""
+    def _check_version_compatibility(self, installed_version, required_spec):
+        """Kiểm tra compatibility giữa version installed và requirement"""
+        if installed_version in (None, "", "unknown"):
+            return False
+
         try:
             from packaging import version
-            v1_parsed = version.parse(v1)
-            v2_parsed = version.parse(v2)
-            if v1_parsed < v2_parsed:
-                return -1
-            elif v1_parsed > v2_parsed:
-                return 1
+            from packaging.specifiers import SpecifierSet
+            
+            installed = version.parse(installed_version)
+            
+            # Phân tích requirement specification
+            if required_spec.startswith('>='):
+                min_version = version.parse(required_spec[2:].strip())
+                return installed >= min_version
+            elif required_spec.startswith('=='):
+                exact_version = version.parse(required_spec[2:].strip())
+                return installed == exact_version
+            elif required_spec.startswith('>'):
+                min_version = version.parse(required_spec[1:].strip())
+                return installed > min_version
+            elif required_spec.startswith('<='):
+                max_version = version.parse(required_spec[2:].strip())
+                return installed <= max_version
+            elif required_spec.startswith('<'):
+                max_version = version.parse(required_spec[1:].strip())
+                return installed < max_version
             else:
-                return 0
+                # Sử dụng SpecifierSet cho các trường hợp phức tạp
+                specifier = SpecifierSet(required_spec)
+                return specifier.contains(installed_version)
+                
+        except ImportError:
+            # Fallback: so sánh đơn giản cho >=
+            if required_spec.startswith('>='):
+                required_version = required_spec[2:].strip()
+                return self._simple_version_compare(installed_version, required_version) >= 0
+            else:
+                # Không thể kiểm tra phức tạp without packaging → trả về True để tránh false negative
+                return True
+    
+    def _simple_version_compare(self, v1, v2):
+        """So sánh version đơn giản (chỉ cho numeric versions)"""
+        try:
+            def parse_version(v):
+                # Chỉ lấy phần số, bỏ qua suffixes như .dev, .post, etc.
+                parts = []
+                for part in v.split('.'):
+                    # Chỉ lấy phần số
+                    numeric_part = ''
+                    for char in part:
+                        if char.isdigit():
+                            numeric_part += char
+                        else:
+                            break
+                    if numeric_part:
+                        parts.append(int(numeric_part))
+                return tuple(parts)
+            
+            v1_parts = parse_version(v1)
+            v2_parts = parse_version(v2)
+            
+            # So sánh từng phần
+            for i in range(max(len(v1_parts), len(v2_parts))):
+                v1_part = v1_parts[i] if i < len(v1_parts) else 0
+                v2_part = v2_parts[i] if i < len(v2_parts) else 0
+                
+                if v1_part < v2_part:
+                    return -1
+                elif v1_part > v2_part:
+                    return 1
+            
+            return 0
+            
         except:
-            # Fallback: so sánh string đơn giản
-            return (v1 > v2) - (v1 < v2)
+            # Fallback cuối cùng: so sánh string
+            return (v1 >= v2) - (v1 < v2)
+    
+    def get_packages_to_install(self):
+        """Lấy danh sách packages cần cài đặt (chưa có hoặc phiên bản không phù hợp)"""
+        required_packages = self._load_requirements_from_file()
+        
+        if not required_packages:
+            return {}
+        
+        packages_to_install = {}
+        
+        for package, required_spec in required_packages.items():
+            installed_version = self.package_versions.get(package)
+            
+            if installed_version is None:
+                # Package chưa cài đặt
+                packages_to_install[package] = required_spec
+            elif required_spec and not self._check_version_compatibility(installed_version, required_spec):
+                # Package có phiên bản không phù hợp
+                packages_to_install[package] = required_spec
+        
+        return packages_to_install
     
     def check_browsers(self):
         """Kiểm tra trình duyệt có sẵn"""
@@ -130,7 +309,6 @@ class SystemChecker:
     def check_system_resources(self):
         """Kiểm tra tài nguyên hệ thống"""
         try:
-            # Thử import psutil trong venv
             import psutil
             
             # RAM
@@ -156,7 +334,6 @@ class SystemChecker:
     def check_network_connectivity(self):
         """Kiểm tra kết nối mạng"""
         try:
-            # Thử import requests trong venv
             import requests
             
             test_urls = [
@@ -298,7 +475,7 @@ class SystemChecker:
             self.failed_checks.append(name)
     
     def run_full_check(self):
-        """Chạy kiểm tra toàn diện - trong venv nếu được kích hoạt"""
+        """Chạy kiểm tra toàn diện"""
         print("🔍 KIỂM TRA HỆ THỐNG TOÀN DIỆN")
         if self.venv_manager and self.venv_manager.is_venv_activated():
             print("📍 Môi trường: VIRTUAL ENVIRONMENT")
@@ -333,6 +510,15 @@ class SystemChecker:
         
         print("=" * 50)
         
+        # Hiển thị packages cần cài đặt
+        packages_to_install = self.get_packages_to_install()
+        if packages_to_install:
+            print(f"📦 Cần cài đặt/update {len(packages_to_install)} packages:")
+            for package, required_spec in packages_to_install.items():
+                current_version = self.package_versions.get(package, "Not installed")
+                requirement_msg = f" (need {required_spec})" if required_spec else ""
+                print(f"   - {package}: {current_version} → {package}{requirement_msg}")
+        
         if self.failed_checks:
             print(f"❌ Có {len(self.failed_checks)} vấn đề cần giải quyết:")
             for failed in self.failed_checks:
@@ -343,3 +529,7 @@ class SystemChecker:
     def get_failed_checks(self):
         """Lấy danh sách các check thất bại"""
         return self.failed_checks
+    
+    def get_packages_status(self):
+        """Lấy trạng thái tất cả packages"""
+        return self.package_versions.copy()
