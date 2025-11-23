@@ -270,7 +270,6 @@ class SystemChecker:
         return packages_to_install
     
     # --- CÁC METHOD KIỂM TRA HỆ THỐNG VÀ TÀI NGUYÊN (GIỮ NGUYÊN) ---
-    
     def check_browsers(self):
         """Kiểm tra trình duyệt có sẵn"""
         browsers = self._get_available_browsers()
@@ -283,7 +282,7 @@ class SystemChecker:
         self._add_check("Web Browsers", True, browser_list)
         return True
         
-   def check_webdrivers(self):
+    def check_webdrivers(self): 
         """Kiểm tra web drivers (Tự động tải về nếu có webdriver-manager)"""
         try:
             # Import webdriver-manager tại chỗ (Lazy import)
@@ -326,7 +325,7 @@ class SystemChecker:
                 # Nếu không tìm thấy driver, có thể không tìm thấy trình duyệt.
                 manual_drivers = self._get_available_drivers()
                 if manual_drivers:
-                     self._add_check("Web Drivers", True, f"Manual Driver(s) OK: {', '.join([name for name, path in manual_drivers])}")
+                    self._add_check("Web Drivers", True, f"Manual Driver(s) OK: {', '.join([name for name, path in manual_drivers])}")
                 return False
                 
         except ImportError:

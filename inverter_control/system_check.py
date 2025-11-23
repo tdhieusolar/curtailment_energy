@@ -421,7 +421,7 @@ DRIVER_PATH = "{config['driver_path']}"
 # BROWSER_PATH = r"C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe"
 # DRIVER_PATH = "msedgedriver.exe"
 '''
-        with open("browser_config.py", "w", encoding="utf-8") as f:
+        with open("config/browser_config.py", "w", encoding="utf-8") as f:
             f.write(config_content)
         print("✅ Đã lưu cấu hình vào browser_config.py")
 

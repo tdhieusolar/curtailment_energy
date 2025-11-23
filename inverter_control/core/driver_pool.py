@@ -1,4 +1,3 @@
-# core/driver_pool.py
 """
 Pool quản lý driver động - Phiên bản 0.5.3 - Multi-Browser Support
 Hỗ trợ: Chrome, Edge, Firefox với auto-detection và fallback
@@ -18,7 +17,23 @@ from selenium.webdriver.chrome.options import Options as ChromeOptions
 from selenium.webdriver.edge.options import Options as EdgeOptions
 from selenium.webdriver.firefox.options import Options as FirefoxOptions
 from selenium.common.exceptions import WebDriverException, SessionNotCreatedException
-from core.logger import InverterControlLogger
+# Giả định core.logger đã được định nghĩa
+from core.logger import InverterControlLogger 
+
+# --- CÁC THƯ VIỆN ĐỘNG (Dùng Try/Except) ---
+WD_MANAGER_AVAILABLE = False
+try:
+    from webdriver_manager.chrome import ChromeDriverManager
+    from webdriver_manager.microsoft import EdgeDriverManager
+    from webdriver_manager.firefox import GeckoDriverManager
+    WD_MANAGER_AVAILABLE = True
+except ImportError:
+    pass
+except Exception:
+    # Lỗi khác khi import (ví dụ: quyền hạn)
+    pass
+# ---------------------------------------------
+
 
 class DynamicDriverPool:
     """Pool quản lý driver động với hỗ trợ đa trình duyệt và auto-recovery"""
@@ -43,27 +58,24 @@ class DynamicDriverPool:
         # WebDriver manager flags
         self.wdm_available = self._check_webdriver_manager()
         
-        self.logger.log_info(f"🚀 Khởi tạo Driver Pool - Browser: {self.browser_type}")
+        self.logger.log_info(f"🚀 Khởi tạo Driver Pool - Browser: {self.browser_type.upper()}")
     
     def _check_webdriver_manager(self):
-        """Kiểm tra webdriver-manager availability"""
-        try:
-            import webdriver_manager
-            return True
-        except ImportError:
-            self.logger.log_warning("⚠️ webdriver-manager không khả dụng, sử dụng driver manual")
-            return False
+        """Kiểm tra webdriver-manager availability bằng biến toàn cục"""
+        if not WD_MANAGER_AVAILABLE:
+            self.logger.log_warning("⚠️ webdriver-manager không khả dụng, sử dụng driver manual hoặc system PATH")
+        return WD_MANAGER_AVAILABLE
     
     def detect_best_browser(self):
         """Tự động phát hiện trình duyệt tốt nhất"""
+        # Ưu tiên Edge trên Windows, sau đó là Chrome
         browsers_to_check = []
         
         if sys.platform.startswith("win"):
-            # Windows - Ưu tiên Edge, sau đó Chrome
             browsers_to_check = [
                 ("edge", [
-                    r"C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe",
-                    r"C:\Program Files\Microsoft\Edge\Application\msedge.exe"
+                    r"C:\Program Files\Microsoft\Edge\Application\msedge.exe",
+                    r"C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe"
                 ]),
                 ("chrome", [
                     r"C:\Program Files\Google\Chrome\Application\chrome.exe",
@@ -74,14 +86,10 @@ class DynamicDriverPool:
             # Linux/Mac - Ưu tiên Chrome/Chromium
             browsers_to_check = [
                 ("chrome", [
-                    "/usr/bin/google-chrome",
-                    "/usr/bin/google-chrome-stable",
-                    "/usr/bin/chromium-browser",
-                    "/usr/bin/chromium"
+                    "/usr/bin/google-chrome", "/usr/bin/chromium-browser"
                 ]),
                 ("edge", [
-                    "/usr/bin/microsoft-edge",
-                    "/usr/bin/microsoft-edge-stable"
+                    "/usr/bin/microsoft-edge", "/usr/bin/microsoft-edge-stable"
                 ])
             ]
         
@@ -95,47 +103,24 @@ class DynamicDriverPool:
         return "auto", ""
     
     def get_driver_path(self, browser_type):
-        """Lấy đường dẫn driver cho trình duyệt cụ thể"""
-        # Nếu đã cấu hình đường dẫn và tồn tại
+        """
+        Lấy đường dẫn driver cho trình duyệt cụ thể.
+        Với Selenium 4+, hàm này chủ yếu dùng để trả về tên file cho fallback manual.
+        """
+        # Nếu đã cấu hình đường dẫn và tồn tại (ưu tiên)
         if self.driver_path and os.path.exists(self.driver_path):
             return self.driver_path
         
-        # Tự động cài đặt driver nếu webdriver-manager available
-        if self.wdm_available:
-            try:
-                if browser_type == "chrome":
-                    from webdriver_manager.chrome import ChromeDriverManager
-                    driver_path = ChromeDriverManager().install()
-                    self.logger.log_info(f"✅ Đã cài đặt ChromeDriver: {driver_path}")
-                    return driver_path
-                elif browser_type == "edge":
-                    from webdriver_manager.microsoft import EdgeDriverManager
-                    driver_path = EdgeDriverManager().install()
-                    self.logger.log_info(f"✅ Đã cài đặt EdgeDriver: {driver_path}")
-                    return driver_path
-                elif browser_type == "firefox":
-                    from webdriver_manager.firefox import GeckoDriverManager
-                    driver_path = GeckoDriverManager().install()
-                    self.logger.log_info(f"✅ Đã cài đặt GeckoDriver: {driver_path}")
-                    return driver_path
-            except Exception as e:
-                self.logger.log_error(f"❌ Lỗi cài đặt driver tự động: {e}")
-        
-        # Fallback: sử dụng system driver
-        if sys.platform.startswith("win"):
-            if browser_type == "chrome":
-                return "chromedriver.exe"
-            elif browser_type == "edge":
-                return "msedgedriver.exe"
-            else:
-                return "geckodriver.exe"
+        # Không còn dùng WDM ở đây nữa, chỉ trả về tên file cho Service tự tìm.
+        if browser_type == "chrome":
+            return "chromedriver.exe" if sys.platform.startswith("win") else "chromedriver"
+        elif browser_type == "edge":
+            return "msedgedriver.exe" if sys.platform.startswith("win") else "msedgedriver"
+        elif browser_type == "firefox":
+            return "geckodriver.exe" if sys.platform.startswith("win") else "geckodriver"
         else:
-            if browser_type == "chrome":
-                return "/usr/bin/chromedriver"
-            elif browser_type == "edge":
-                return "/usr/bin/msedgedriver"
-            else:
-                return "/usr/bin/geckodriver"
+            return ""
+
     
     def _create_driver_robust(self):
         """Tạo driver với robust error handling và retry mechanism"""
@@ -143,17 +128,17 @@ class DynamicDriverPool:
         
         for attempt in range(max_retries + 1):
             try:
-                # Xác định trình duyệt để sử dụng
+                # 1. Xác định trình duyệt để sử dụng
+                browser_type, browser_path = self.browser_type, self.browser_path
                 if self.browser_type == "auto":
                     browser_type, browser_path = self.detect_best_browser()
-                else:
-                    browser_type = self.browser_type
-                    browser_path = self.browser_path
                 
                 self.logger.log_debug(f"🔄 Tạo driver {browser_type.upper()} (lần {attempt + 1})")
                 
+                # 2. Lấy driver path (Chỉ để xác định tên file nếu cần)
                 driver_path = self.get_driver_path(browser_type)
                 
+                # 3. Tạo driver
                 if browser_type == "chrome":
                     driver = self._create_chrome_driver(driver_path, browser_path)
                 elif browser_type == "edge":
@@ -169,13 +154,12 @@ class DynamicDriverPool:
                     return driver
                 
             except SessionNotCreatedException as e:
-                self.logger.log_error(f"❌ Lỗi phiên driver (attempt {attempt + 1}): {e}")
-                if "This version of ChromeDriver only supports" in str(e):
-                    self.logger.log_warning("⚠️ Phiên bản ChromeDriver không tương thích, thử cài đặt lại...")
-                    # Xóa cache driver để tải lại phiên bản mới
+                self.logger.log_error(f"❌ Lỗi phiên driver (attempt {attempt + 1}): Driver/Browser không tương thích. Chi tiết: {e.msg.splitlines()[0]}")
+                if "This version of ChromeDriver only supports" in str(e) and self.wdm_available:
+                    self.logger.log_warning("⚠️ Phiên bản Driver không tương thích, thử dọn cache...")
                     self._clean_driver_cache()
             except WebDriverException as e:
-                self.logger.log_error(f"❌ Lỗi WebDriver (attempt {attempt + 1}): {e}")
+                self.logger.log_error(f"❌ Lỗi WebDriver (attempt {attempt + 1}): {e.msg.splitlines()[0]}")
             except Exception as e:
                 self.logger.log_error(f"❌ Lỗi không xác định (attempt {attempt + 1}): {e}")
             
@@ -192,6 +176,7 @@ class DynamicDriverPool:
         """Dọn dẹp cache driver cũ"""
         try:
             if self.wdm_available:
+                # Cần import riêng nếu muốn dùng chức năng này
                 from webdriver_manager.core.driver_cache import DriverCacheManager
                 cache_manager = DriverCacheManager()
                 cache_manager.clean_driver_cache()
@@ -199,19 +184,36 @@ class DynamicDriverPool:
         except Exception as e:
             self.logger.log_debug(f"⚠️ Không thể dọn dẹp cache: {e}")
     
+    # ----------------------------------------------------
+    # --- CÁC HÀM KHỞI TẠO DRIVER CỤ THỂ (SỬA Ở ĐÂY) ---
+    # ----------------------------------------------------
+    
     def _create_chrome_driver(self, driver_path, browser_path):
-        """Tạo Chrome driver"""
-        service = ChromeService(driver_path)
+        """Tạo Chrome driver với Service tự động hoặc thủ công"""
+        
+        service = None
+        
+        try:
+            if self.wdm_available:
+                # 1. Tự động tải driver tương thích
+                service = ChromeService(ChromeDriverManager().install())
+                self.logger.log_debug("🔧 Sử dụng ChromeDriverManager (Auto-install)")
+            else:
+                # 2. Fallback: Nếu không có WDM, Service sẽ tự tìm trong PATH
+                service = ChromeService(driver_path) if os.path.exists(driver_path) else ChromeService()
+                self.logger.log_debug(f"🔧 Sử dụng Service Chrome mặc định/Manual: {driver_path}")
+                
+        except Exception as e:
+            self.logger.log_warning(f"⚠️ Lỗi khởi tạo ChromeService: {e.__class__.__name__}. Thử Service mặc định.")
+            service = ChromeService()
+            
         options = ChromeOptions()
         
-        # Chỉ định Chrome binary nếu có
         if browser_path and os.path.exists(browser_path):
             options.binary_location = browser_path
             self.logger.log_debug(f"🔧 Sử dụng Chrome binary: {browser_path}")
         
         options = self._add_common_options(options)
-        
-        # Chrome-specific options
         options.add_argument("--disable-extensions")
         options.add_argument("--disable-plugins")
         options.add_argument("--disable-popup-blocking")
@@ -221,18 +223,31 @@ class DynamicDriverPool:
         return driver
     
     def _create_edge_driver(self, driver_path, browser_path):
-        """Tạo Edge driver"""
-        service = EdgeService(driver_path)
+        """Tạo Edge driver với Service tự động hoặc thủ công"""
+        
+        service = None
+        
+        try:
+            if self.wdm_available:
+                # 1. Tự động tải driver tương thích
+                service = EdgeService(EdgeDriverManager().install())
+                self.logger.log_debug("🔧 Sử dụng EdgeDriverManager (Auto-install)")
+            else:
+                # 2. Fallback: Service sẽ tự tìm msedgedriver.exe (thường có sẵn trên Win)
+                service = EdgeService(driver_path) if os.path.exists(driver_path) else EdgeService()
+                self.logger.log_debug(f"🔧 Sử dụng Service Edge mặc định/Manual: {driver_path}")
+                
+        except Exception as e:
+            self.logger.log_warning(f"⚠️ Lỗi khởi tạo EdgeService: {e.__class__.__name__}. Thử Service mặc định.")
+            service = EdgeService()
+            
         options = EdgeOptions()
         
-        # Chỉ định Edge binary nếu có
         if browser_path and os.path.exists(browser_path):
             options.binary_location = browser_path
             self.logger.log_debug(f"🔧 Sử dụng Edge binary: {browser_path}")
         
         options = self._add_common_options(options)
-        
-        # Edge-specific options
         options.add_argument("--disable-extensions")
         options.add_argument("--inprivate")
         
@@ -242,10 +257,25 @@ class DynamicDriverPool:
     
     def _create_firefox_driver(self, driver_path, browser_path):
         """Tạo Firefox driver"""
-        service = FirefoxService(driver_path)
+        
+        service = None
+        
+        try:
+            if self.wdm_available:
+                # 1. Tự động tải driver tương thích
+                service = FirefoxService(GeckoDriverManager().install())
+                self.logger.log_debug("🔧 Sử dụng GeckoDriverManager (Auto-install)")
+            else:
+                # 2. Fallback: Service sẽ tự tìm geckodriver
+                service = FirefoxService(driver_path) if os.path.exists(driver_path) else FirefoxService()
+                self.logger.log_debug(f"🔧 Sử dụng Service Firefox mặc định/Manual: {driver_path}")
+                
+        except Exception as e:
+            self.logger.log_warning(f"⚠️ Lỗi khởi tạo FirefoxService: {e.__class__.__name__}. Thử Service mặc định.")
+            service = FirefoxService()
+            
         options = FirefoxOptions()
         
-        # Chỉ định Firefox binary nếu có
         if browser_path and os.path.exists(browser_path):
             options.binary_location = browser_path
             self.logger.log_debug(f"🔧 Sử dụng Firefox binary: {browser_path}")
@@ -269,6 +299,10 @@ class DynamicDriverPool:
         self._setup_driver_common(driver)
         return driver
     
+    # ----------------------------------------------------
+    # --- CÁC HÀM HỖ TRỢ KHÁC (GIỮ NGUYÊN) ---
+    # ----------------------------------------------------
+    
     def _add_common_options(self, options):
         """Thêm options chung cho tất cả trình duyệt"""
         if self.config["driver"]["headless"]:
@@ -283,20 +317,31 @@ class DynamicDriverPool:
         options.add_argument("--disable-background-timer-throttling")
         options.add_argument("--disable-backgrounding-occluded-windows")
         options.add_argument("--disable-renderer-backgrounding")
+
+        # 🔔 THÊM DÒNG NÀY ĐỂ GIẢM BỚT LOG CỦA TRÌNH DUYỆT (Log Level 3 = Warning/Error/Fatal)
+        if isinstance(options, (ChromeOptions, EdgeOptions)):
+            # Thiết lập Log Level 3 (Warning/Error/Fatal) để lọc bớt log nội bộ.
+            options.add_argument("--log-level=3")
         
-        options.add_experimental_option("excludeSwitches", ["enable-automation", "enable-logging"])
-        options.add_experimental_option('useAutomationExtension', False)
+        # Sử dụng API mới hơn cho Options
+        # Cần kiểm tra nếu options hỗ trợ add_experimental_option trước
+        if isinstance(options, (ChromeOptions, EdgeOptions)):
+            options.add_experimental_option("excludeSwitches", ["enable-automation", "enable-logging"])
+            options.add_experimental_option('useAutomationExtension', False)
+        
         options.page_load_strategy = 'eager'
         
-        options.add_experimental_option("prefs", {
-            "profile.managed_default_content_settings.images": 2,
-            "profile.default_content_setting_values.notifications": 2,
-            "profile.password_manager_enabled": False,
-            "credentials_enable_service": False,
-            "download.prompt_for_download": False,
-            "download.directory_upgrade": True,
-            "safebrowsing.enabled": True
-        })
+        # Thêm prefs cho Chrome/Edge (Firefox dùng set_preference)
+        if isinstance(options, (ChromeOptions, EdgeOptions)):
+            options.add_experimental_option("prefs", {
+                "profile.managed_default_content_settings.images": 2,
+                "profile.default_content_setting_values.notifications": 2,
+                "profile.password_manager_enabled": False,
+                "credentials_enable_service": False,
+                "download.prompt_for_download": False,
+                "download.directory_upgrade": True,
+                "safebrowsing.enabled": True
+            })
         
         return options
     
@@ -305,11 +350,14 @@ class DynamicDriverPool:
         driver.set_page_load_timeout(self.config["driver"]["page_load_timeout"])
         driver.implicitly_wait(self.config["driver"]["element_timeout"])
         
-        # Ẩn automation
-        driver.execute_script("Object.defineProperty(navigator, 'webdriver', {get: () => undefined})")
-        driver.execute_cdp_cmd('Network.setUserAgentOverride', {
-            "userAgent": driver.execute_script("return navigator.userAgent").replace("Headless", "")
-        })
+        # Ẩn automation (chỉ hoạt động với Chrome/Edge)
+        try:
+            driver.execute_script("Object.defineProperty(navigator, 'webdriver', {get: () => undefined})")
+            driver.execute_cdp_cmd('Network.setUserAgentOverride', {
+                "userAgent": driver.execute_script("return navigator.userAgent").replace("Headless", "")
+            })
+        except:
+            pass # Bỏ qua nếu không phải Chrome/Edge
     
     def initialize_pool(self, total_tasks):
         """Khởi tạo pool driver với tính toán kích thước tối ưu"""
@@ -319,7 +367,7 @@ class DynamicDriverPool:
             
         self.pool_size = self._calculate_optimal_pool_size(total_tasks)
         
-        self.logger.log_info(f"🔄 Khởi tạo {self.pool_size} drivers cho {total_tasks} tasks")
+        self.logger.log_info(f"ℹ️ 🔄 Khởi tạo {self.pool_size} drivers cho {total_tasks} tasks")
         
         successful_drivers = 0
         failed_drivers = 0
@@ -417,22 +465,35 @@ class DynamicDriverPool:
             except:
                 pass
             
-            # Tạo driver mới thay thế
+            # Tạo driver mới thay thế (Không release semaphore ở đây, vì driver cũ đã được 'acquire' và bị loại bỏ)
             new_driver = self._create_driver_robust()
             if new_driver:
                 self.available_drivers.put(new_driver)
-                self.driver_semaphore.release()
+                self.driver_semaphore.release() # Release chỉ khi tạo driver mới thành công
                 self.logger.log_info("🔄 Đã thay thế driver hỏng")
+            else:
+                self.logger.log_error("❌ Không thể tạo driver thay thế!")
             return
         
         # Reset driver state
         try:
             driver.delete_all_cookies()
-            # Quay về trang trống để giải phóng bộ nhớ
             driver.get("about:blank")
         except Exception as e:
-            self.logger.log_debug(f"🔧 Lỗi reset driver: {e}")
-        
+            self.logger.log_debug(f"🔧 Lỗi reset driver: {e}. Coi như driver bị hỏng.")
+            # Nếu reset thất bại, đóng driver này và tạo driver mới (tái sử dụng logic health check failed)
+            try:
+                driver.quit()
+            except:
+                pass
+            
+            new_driver = self._create_driver_robust()
+            if new_driver:
+                self.available_drivers.put(new_driver)
+                self.driver_semaphore.release() 
+                self.logger.log_info("🔄 Đã thay thế driver lỗi reset")
+            return
+            
         # Trả driver về pool
         with self.lock:
             if driver in self.in_use_drivers:
@@ -448,8 +509,7 @@ class DynamicDriverPool:
         """Kiểm tra driver có còn hoạt động không"""
         try:
             # Test cơ bản
-            current_url = driver.current_url
-            driver.title  # Test thêm
+            driver.title 
             return True
         except Exception as e:
             self.logger.log_debug(f"🔧 Driver health check failed: {e}")
@@ -470,7 +530,6 @@ class DynamicDriverPool:
                 driver = self.available_drivers.get_nowait()
                 driver.quit()
                 closed_count += 1
-                # Giảm semaphore
                 try:
                     self.driver_semaphore.acquire(blocking=False)
                 except:
@@ -510,7 +569,6 @@ class DynamicDriverPool:
         self.cleanup()
         time.sleep(2)
         
-        # Thử khởi tạo lại với size nhỏ
         self.pool_size = self.config["driver"]["min_pool_size"]
         successful_drivers = 0
         

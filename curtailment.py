@@ -61,7 +61,7 @@ CONFIG = {
     "logging": {
         "level": "INFO",
         "format": f"%(asctime)s - %(levelname)s - [%(threadName)s] - v{VERSION} - %(message)s",
-        "file": f"inverter_control_v{VERSION}.log"
+        "file": f"logs/inverter_control_v{VERSION}.log"
     }
 }
 

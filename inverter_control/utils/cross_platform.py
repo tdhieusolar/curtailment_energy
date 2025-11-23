@@ -135,7 +135,7 @@ HEADLESS = {config['headless']}
 TIMEOUT = {config['timeout']}
 """
         
-        with open("browser_config.py", "w", encoding="utf-8") as f:
+        with open("config/browser_config.py", "w", encoding="utf-8") as f:
             f.write(config_content)
         
         return config

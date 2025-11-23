@@ -7,7 +7,7 @@ def detect_browser_config():
     """Tự động phát hiện cấu hình trình duyệt"""
     
     # Ưu tiên file cấu hình auto-generated
-    if os.path.exists("browser_config.py"):
+    if os.path.exists("config/browser_config.py"):
         try:
             from browser_config import BROWSER, BROWSER_PATH, DRIVER_PATH
             print(f"✅ Sử dụng cấu hình từ browser_config.py: {BROWSER.upper()}")
@@ -88,7 +88,7 @@ CONFIG = {
     "logging": {
         "level": "INFO",
         "format": "%(asctime)s - %(levelname)s - [%(threadName)s] - v0.5.3 - %(message)s",
-        "file": "inverter_control_v0.5.3.log"
+        "file": "logs/inverter_control_v0.5.3.log"
     }
 }
 

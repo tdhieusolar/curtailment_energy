@@ -19,7 +19,7 @@ class InverterControlLogger:
             "logging": {
                 "level": "INFO",
                 "format": "%(asctime)s - %(levelname)s - [%(threadName)s] - v0.5.1 - %(message)s",
-                "file": "inverter_control_v0.5.1.log"
+                "file": "logs/inverter_control_v0.5.1.log"
             }
         }
         
