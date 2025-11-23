@@ -1,93 +1,104 @@
 @echo off
-REM #######################################################
-REM # Setup Development Environment Script cho Windows    #
-REM #######################################################
-
-REM Thoat khoi script neu co loi xay ra
 setlocal enabledelayedexpansion
 
-REM --- 1. Tao moi truong ao (venv) ---
+REM #######################################################
+REM # setup_dev.bat - Windows Equivalent of setup_dev.sh #
+REM #######################################################
 
-IF NOT EXIST "venv" (
+REM ==========================================
+REM CAU HINH
+REM ==========================================
+set VENV_NAME=venv
+set REQS_IN_FILE=requirements.in
+set REQS_OUT_FILE=requirements.txt
+set PIP_TOOLS_PACKAGE=pip-tools
+
+echo.
+echo === KHOI TAO MOI TRUONG PHAT TRIEN (DEV SETUP) ===
+echo =========================================================
+
+REM --- 1. TAO VENV VA KICH HOAT ---
+IF NOT EXIST "%VENV_NAME%" (
     echo.
-    echo 🌐 Tao moi truong ao (venv)...
-    python -m venv venv
+    echo [TAO VENV] Dang tao Venv va kich hoat...
+    python -m venv "%VENV_NAME%"
     IF ERRORLEVEL 1 (
-        echo ❌ LOI: Khong the tao moi truong ao. Kiem tra xem Python co trong PATH khong.
+        echo.
+        echo [ERROR] Khong the tao Venv. Kiem tra Python trong PATH.
         goto :end
     )
-    echo ✅ Tao venv thanh cong.
-) ELSE (
-    echo.
-    echo 🌐 Moi truong ao venv da ton tai. Bo qua buoc tao.
 )
 
-REM --- 2. Kich hoat Venv va Cai dat pip-tools ---
-
-REM Duong dan kich hoat Venv tren Windows
-set VENV_ACTIVATE=.\venv\Scripts\activate.bat
-
-IF EXIST "%VENV_ACTIVATE%" (
-    echo.
-    echo 🛠️ Kich hoat Venv va cai dat pip-tools...
-    call "%VENV_ACTIVATE%"
-    
-    pip install pip-tools
-    IF ERRORLEVEL 1 (
-        echo ❌ LOI: Khong the cai dat pip-tools. Kiem tra ket noi mang.
-        goto :deactivate
-    )
-    echo ✅ pip-tools da duoc cai dat.
+set VENV_ACTIVATE_PATH="%VENV_NAME%\Scripts\activate.bat"
+IF EXIST %VENV_ACTIVATE_PATH% (
+    call %VENV_ACTIVATE_PATH%
+    echo [SUCCESS] Da kich hoat Venv.
 ) ELSE (
     echo.
-    echo ❌ LOI: Khong tim thay script kich hoat Venv.
+    echo [FATAL ERROR] Khong the tim thay script kich hoat Venv.
     goto :end
 )
 
-REM --- 3. Bien dich requirements.in thanh requirements.txt ---
-
-IF EXIST "requirements.in" (
+REM --- 2. TAO requirements.in (Neu thieu) ---
+IF NOT EXIST "%REQS_IN_FILE%" (
     echo.
-    echo 📝 Bien dich requirements.in thanh requirements.txt...
-    pip-compile requirements.in
-    IF ERRORLEVEL 1 (
-        echo ❌ LOI: pip-compile that bai. Kiem tra cu phap requirements.in.
-        goto :deactivate
-    )
-    echo ✅ requirements.txt da duoc tao.
-) ELSE (
-    echo.
-    echo ⚠️ Khong tim thay file requirements.in. Bo qua buoc bien dich.
-    echo ⚠️ Vui long tao file requirements.in voi danh sach cac goi chinh.
-)
-
-REM --- 4. Dong bo cac thu vien Python (Giong nhu trong launch.bat) ---
-
-IF EXIST "requirements.txt" (
-    echo.
-    echo 📦 Dong bo cac thu vien Python tu requirements.txt...
-    pip-sync requirements.txt
+    echo [TAO FILE] Tao file %REQS_IN_FILE% voi cac phu thuoc mac dinh...
     
-    IF ERRORLEVEL 1 (
-        echo ⚠️ pip-sync bi loi, thu dung pip install -r...
-        pip install -r requirements.txt
-        IF ERRORLEVEL 1 (
-            echo ❌ LOI: Khong the cai dat cac thu vien.
-            goto :deactivate
-        )
-    )
-    echo ✅ Dong bo thu vien hoan tat.
+    (
+        echo # Danh sach cac thu vien chinh ban su dung. Pip-tools se tu tim cac phu thuoc khac.
+        echo selenium
+        echo pandas
+        echo psutil
+        echo requests
+    ) > "%REQS_IN_FILE%"
+    
+    echo [SUCCESS] %REQS_IN_FILE% da san sang de chinh sua.
 )
 
-REM --- 5. Ket thuc va Tat Venv ---
+REM --- 3. CAI DAT CONG CU PHAT TRIEN (PIP-TOOLS) ---
+echo.
+echo [CAI DAT] Dang cai dat %PIP_TOOLS_PACKAGE% de quan ly dependencies...
+pip install %PIP_TOOLS_PACKAGE% --upgrade > NUL 2>&1
+echo [SUCCESS] Da cai dat %PIP_TOOLS_PACKAGE%.
+
+REM --- 4. BIEN DICH VA TAO requirements.txt ---
+echo.
+echo [BIEN DICH] Dang bien dich %REQS_IN_FILE% sang %REQS_OUT_FILE%...
+
+pip-compile "%REQS_IN_FILE%"
+
+IF ERRORLEVEL 1 (
+    echo.
+    echo [ERROR] Loi bien dich. Kiem tra %REQS_IN_FILE%.
+    goto :deactivate
+)
+echo [SUCCESS] Da tao %REQS_OUT_FILE% thanh cong.
+
+REM --- 5. CAI DAT THU VIEN VAO VENV HIEN TAI ---
+echo.
+echo [SYNC] Dang cai dat toan bo thu vien (Pip-sync)...
+pip-sync
+
+IF ERRORLEVEL 1 (
+    echo.
+    echo [WARNING] pip-sync bi loi, thu dung pip install -r...
+    pip install -r "%REQS_OUT_FILE%"
+)
+
+echo.
+echo [SUCCESS] MOI TRUONG PHAT TRIEN DA SAN SANG!
+echo ---------------------------------------------------------
+echo.
+echo 👉 Bay gio ban co the chay: launch.bat
+
+REM Khong deactivate de giu moi truong phat trien mo
 
 :deactivate
-echo.
-echo 🚪 Tat Venv.
-deactivate
+REM Deactivate chi duoc goi neu co loi xay ra va can thoat
+IF DEFINED VIRTUAL_ENV (
+    deactivate
+)
 
 :end
-echo.
-echo === Qua trinh setup da hoan tat. ===
 pause
 endlocal

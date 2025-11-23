@@ -282,34 +282,62 @@ class SystemChecker:
         browser_list = ", ".join([f"{name}" for name, path in browsers])
         self._add_check("Web Browsers", True, browser_list)
         return True
-    
-    def check_webdrivers(self):
+        
+   def check_webdrivers(self):
         """Kiểm tra web drivers (Tự động tải về nếu có webdriver-manager)"""
         try:
             # Import webdriver-manager tại chỗ (Lazy import)
             from webdriver_manager.chrome import ChromeDriverManager
+            from webdriver_manager.firefox import GeckoDriverManager
+            from webdriver_manager.microsoft import EdgeChromiumDriverManager
             from webdriver_manager.core.utils import ChromeType
             
-            # Cố gắng tải/kiểm tra ChromeDriver
-            # Dòng này đã được chứng minh hoạt động trong báo cáo trước
-            driver_path = ChromeDriverManager(chrome_type=ChromeType.ANY).install()
+            drivers_ok = []
             
-            self._add_check("Web Drivers", True, f"Tương thích (Chrome) ✓: {os.path.basename(driver_path)}")
-            return True
-        except ImportError:
-            # Fallback về kiểm tra driver thủ công nếu không có webdriver-manager
-            drivers = self._get_available_drivers()
-            if not drivers:
-                self._add_check("Web Drivers", False, "webdriver-manager/driver thủ công không có.")
+            # --- 1. KIEM TRA CHROME/CHROMIUM ---
+            try:
+                # Thu lay Chrome/Chromium (bao gom ca Brave, Opera...)
+                driver_path_chrome = ChromeDriverManager(chrome_type=ChromeType.ANY).install()
+                drivers_ok.append(f"ChromeDriver: {os.path.basename(driver_path_chrome)}")
+            except Exception as e:
+                pass # Bo qua neu khong tim thay Chrome
+                
+            # --- 2. KIEM TRA EDGE ---
+            try:
+                driver_path_edge = EdgeChromiumDriverManager().install()
+                drivers_ok.append(f"EdgeDriver: {os.path.basename(driver_path_edge)}")
+            except Exception as e:
+                pass # Bo qua neu khong tim thay Edge
+                
+            # --- 3. KIEM TRA FIREFOX ---
+            try:
+                driver_path_firefox = GeckoDriverManager().install()
+                drivers_ok.append(f"GeckoDriver (Firefox): {os.path.basename(driver_path_firefox)}")
+            except Exception as e:
+                pass # Bo qua neu khong tim thay Firefox
+            
+            if drivers_ok:
+                self._add_check("Web Drivers", True, "Tương thích ✓: " + ", ".join(drivers_ok))
+                # Driver tự động tải về cũng ngụ ý trình duyệt đã được tìm thấy
+                self._add_check("Web Browsers", True, "Trình duyệt được tìm thấy (thông qua WebDriver Manager)")
+                return True
+            else:
+                self._add_check("Web Drivers", False, "LỖI: Không tải được driver tương thích cho Chrome/Edge/Firefox.")
+                # Nếu không tìm thấy driver, có thể không tìm thấy trình duyệt.
+                manual_drivers = self._get_available_drivers()
+                if manual_drivers:
+                     self._add_check("Web Drivers", True, f"Manual Driver(s) OK: {', '.join([name for name, path in manual_drivers])}")
                 return False
-            driver_list = ", ".join([f"{name}" for name, path in drivers])
-            self._add_check("Web Drivers", True, f"Manual Driver(s) OK: {driver_list}")
-            return True # Vẫn coi là thành công vì có driver thủ công
-        except Exception as e:
-            # Lỗi khác (không tìm thấy Chrome, lỗi mạng khi tải driver)
-            self._add_check("Web Drivers", False, f"LỖI: Không tải được ChromeDriver. ({e.__class__.__name__})")
+                
+        except ImportError:
+            # Fallback nếu thiếu webdriver-manager (nhưng lỗi này khó xảy ra nếu bạn chạy setup_dev)
+            self._add_check("Web Drivers", False, "Thư viện 'webdriver-manager' bị thiếu. Vui lòng chạy setup_dev.bat.")
             return False
-    
+        except Exception as e:
+            # Lỗi khác (Lỗi mạng, lỗi hệ thống)
+            self._add_check("Web Drivers", False, f"LỖI: Không thể tải driver. (Chi tiết: {e.__class__.__name__})")
+            return False
+
     def check_system_resources(self):
         """Kiểm tra tài nguyên hệ thống"""
         try:
