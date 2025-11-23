@@ -1,0 +1,6 @@
+# Danh sách cac thu vien chinh ban su dung. Pip-tools se tu tim cac phu thuoc khac.
+selenium
+pandas
+psutil
+requests
+openpyxl

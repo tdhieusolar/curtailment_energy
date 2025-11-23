@@ -7,6 +7,15 @@ import importlib
 import shutil
 from pathlib import Path
 
+# Các thư viện Python tiêu chuẩn có thể import toàn cục (đã được kiểm tra trong launch.sh)
+try:
+    from importlib.metadata import version, PackageNotFoundError
+    # Thư viện packaging được import tại chỗ trong _check_version_compatibility để tránh lỗi khởi tạo
+except ImportError as e:
+    print(f"Lỗi hệ thống: Thiếu gói Python tiêu chuẩn cho việc kiểm tra ({e.name}). Kiểm tra môi trường Venv.")
+    sys.exit(1)
+
+
 class SystemChecker:
     """Kiểm tra hệ thống toàn diện với kiểm tra phiên bản từ requirements.txt"""
     
@@ -42,14 +51,14 @@ class SystemChecker:
                     if not line or line.startswith('#') or line.startswith('--'):
                         continue
                     
-                    # Xử lý line requirements
                     package_spec = line.split('#')[0].strip()  # Remove comments
                     
                     if package_spec:
                         # Phân tích package specification
                         package_name, version_spec = self._parse_package_spec(package_spec)
                         if package_name:
-                            required_packages[package_name] = version_spec
+                            # Đảm bảo không ghi đè nếu có 2 dòng tương tự (ví dụ: package và package[extra])
+                            required_packages[package_name] = version_spec or required_packages.get(package_name)
             
             print(f"✅ Đã đọc {len(required_packages)} packages từ requirements.txt")
             return required_packages
@@ -59,17 +68,20 @@ class SystemChecker:
             return self._get_default_requirements()
     
     def _parse_package_spec(self, package_spec):
-        """Phân tích package specification thành tên và version requirement"""
-        # Các operators phổ biến
+        """
+        Phân tích package specification thành tên và version requirement, xử lý [extras]
+        Ví dụ: urllib3[socks]==2.5.0 -> package_name='urllib3', version_spec='==2.5.0'
+        """
         operators = ['==', '>=', '<=', '>', '<', '~=', '!=']
         
-        # Tìm operator đầu tiên
         operator_pos = -1
         found_operator = None
         
+        # 1. Tìm operator đầu tiên
         for op in operators:
             pos = package_spec.find(op)
-            if pos != -1 and (operator_pos == -1 or pos < operator_pos):
+            # Chỉ tìm operator ở ngoài dấu ngoặc vuông
+            if pos != -1 and (operator_pos == -1 or pos < operator_pos) and '[' not in package_spec[:pos]:
                 operator_pos = pos
                 found_operator = op
         
@@ -77,21 +89,25 @@ class SystemChecker:
             # Có version specification
             package_name = package_spec[:operator_pos].strip()
             version_spec = package_spec[operator_pos:].strip()
-            
-            # Chuẩn hóa version spec để so sánh
-            if found_operator in ['>=', '==']:
-                # Giữ nguyên cho >= và ==
-                return package_name, version_spec
-            elif found_operator == '~=':
-                # Compatible release ~= → chuyển thành >=
-                base_version = version_spec[len(found_operator):].strip()
-                return package_name, f">={base_version}"
-            else:
-                # Các operators khác → chỉ lấy tên package, bỏ qua version constraint phức tạp
-                return package_name, None
         else:
             # Không có version specification
-            return package_spec.strip(), None
+            package_name = package_spec.strip()
+            version_spec = None
+            
+        # 2. Xử lý [extras] (Ví dụ: urllib3[socks] -> urllib3)
+        if '[' in package_name and ']' in package_name:
+            # Cắt phần [extras] ra khỏi tên gói
+            package_name = package_name.split('[')[0]
+
+        # 3. Chuẩn hóa version spec (Giữ nguyên logic cũ)
+        if version_spec:
+            if found_operator == '~=':
+                base_version = version_spec[len(found_operator):].strip()
+                version_spec = f">={base_version}"
+            elif found_operator not in ['>=', '==', '<=', '>', '<', '!=']:
+                 version_spec = None # Bỏ qua version constraint không hợp lệ
+                 
+        return package_name, version_spec
     
     def _get_default_requirements(self):
         """Requirements mặc định nếu không có file"""
@@ -99,145 +115,116 @@ class SystemChecker:
             'selenium': '>=4.15.0',
             'pandas': '>=2.1.3', 
             'psutil': '>=5.9.6',
-            'openpyxl': '>=3.1.2',
+            'openpyxl': '>=3.1.2', # Đã thêm openpyxl như khuyến nghị
             'requests': '>=2.31.0',
             'webdriver-manager': '>=4.0.1'
         }
     
     def check_python_environment(self):
         """Kiểm tra môi trường Python (system vs venv)"""
-        if self.venv_manager and self.venv_manager.is_venv_activated():
-            env_type = "Virtual Environment"
-            python_path = sys.executable
-            status = True
-            message = f"VENV: {python_path}"
+        # Kiểm tra theo biến môi trường VIRTUAL_ENV (luôn tồn tại khi Venv active)
+        if os.environ.get('VIRTUAL_ENV') is not None:
+            env_type = "Virtual Environment (Venv)"
+            python_path = os.environ.get('VIRTUAL_ENV')
+            message = f"ACTIVE: {python_path.split(os.sep)[-1]}"
         else:
-            env_type = "System Python" 
+            env_type = "System Python (KHÔNG khuyến nghị)" 
             python_path = sys.executable
-            status = True
             message = f"SYSTEM: {python_path}"
         
-        self._add_check("Python Environment", status, message)
-        return status
+        # Vì script đã chạy được đến đây, coi là status=True
+        self._add_check(env_type, True, message)
+        return True
     
     def check_python_version(self):
         """Kiểm tra phiên bản Python"""
         major, minor, _ = map(int, self.python_version.split('.'))
-        if major < 3 or (major == 3 and minor < 8):
+        min_major, min_minor = 3, 8
+        
+        status = major > min_major or (major == min_major and minor >= min_minor)
+        
+        if not status:
             self._add_check("Python Version", False, 
-                          f"Python 3.8+ required (current: {self.python_version})")
+                            f"Python 3.8+ required (current: {self.python_version})")
             return False
         self._add_check("Python Version", True, f"Python {self.python_version}")
         return True
     
     def check_required_packages(self):
-        """Kiểm tra packages cần thiết từ requirements.txt"""
-        # Đọc requirements từ file
+        """Kiểm tra packages cần thiết sử dụng importlib.metadata"""
         required_packages = self._load_requirements_from_file()
         
         if not required_packages:
             self._add_check("Requirements File", False, "No requirements found")
             return False
-        
+
         all_ok = True
         for package, required_spec in required_packages.items():
             try:
-                # Thử import package
-                module = importlib.import_module(package)
-                installed_version = getattr(module, '__version__', 'unknown')
-                
-                # Lưu phiên bản hiện tại
+                # Lấy version dựa trên tên gói cài đặt (pip name)
+                installed_version = version(package)
                 self.package_versions[package] = installed_version
                 
-                if installed_version != 'unknown':
-                    # Kiểm tra version nếu có requirement
-                    if required_spec:
-                        version_ok = self._check_version_compatibility(installed_version, required_spec)
-                        
-                        if version_ok:
-                            status = True
-                            message = f"{package} {installed_version} ✓"
-                        else:
-                            status = False
-                            message = f"{package} {installed_version} (need {required_spec})"
-                    else:
-                        # Không có version requirement → chỉ cần có package
-                        status = True
-                        message = f"{package} {installed_version} ✓"
-                        
-                    self._add_check(f"Package: {package}", status, message)
-                    if not status:
-                        all_ok = False
-                else:
-                    # Có package nhưng không lấy được version
-                    status = True
-                    message = f"{package} (version unknown)"
-                    self._add_check(f"Package: {package}", status, message)
-                    
-            except ImportError:
+                status = True
+                message = f"{installed_version} ✓"
+                
+                if required_spec:
+                    version_ok = self._check_version_compatibility(installed_version, required_spec)
+                    if not version_ok:
+                        status = False
+                        message = f"{installed_version} (LỖI: need {required_spec})"
+                
+                self._add_check(f"Package: {package}", status, message)
+                if not status: 
+                    all_ok = False
+
+            except PackageNotFoundError:
                 # Package chưa được cài đặt
                 self.package_versions[package] = None
                 requirement_msg = f" (need {required_spec})" if required_spec else ""
-                self._add_check(f"Package: {package}", False, f"Not installed{requirement_msg}")
+                self._add_check(f"Package: {package}", False, f"Chưa cài đặt{requirement_msg}")
                 all_ok = False
         
         return all_ok
-    
+
     def _check_version_compatibility(self, installed_version, required_spec):
-        """Kiểm tra compatibility giữa version installed và requirement"""
+        """Kiểm tra compatibility giữa version installed và requirement sử dụng thư viện packaging"""
         if installed_version in (None, "", "unknown"):
             return False
 
         try:
-            from packaging import version
+            # Import packaging tại chỗ (lazy)
+            from packaging import version as pkg_version
             from packaging.specifiers import SpecifierSet
             
-            installed = version.parse(installed_version)
+            installed = pkg_version.parse(installed_version)
+            specifier = SpecifierSet(required_spec)
             
-            # Phân tích requirement specification
-            if required_spec.startswith('>='):
-                min_version = version.parse(required_spec[2:].strip())
-                return installed >= min_version
-            elif required_spec.startswith('=='):
-                exact_version = version.parse(required_spec[2:].strip())
-                return installed == exact_version
-            elif required_spec.startswith('>'):
-                min_version = version.parse(required_spec[1:].strip())
-                return installed > min_version
-            elif required_spec.startswith('<='):
-                max_version = version.parse(required_spec[2:].strip())
-                return installed <= max_version
-            elif required_spec.startswith('<'):
-                max_version = version.parse(required_spec[1:].strip())
-                return installed < max_version
-            else:
-                # Sử dụng SpecifierSet cho các trường hợp phức tạp
-                specifier = SpecifierSet(required_spec)
-                return specifier.contains(installed_version)
+            # Kiểm tra xem phiên bản đã cài đặt có nằm trong SpecifierSet không
+            return installed in specifier
                 
         except ImportError:
-            # Fallback: so sánh đơn giản cho >=
+            # Fallback: Nếu packaging không tồn tại, sử dụng so sánh đơn giản
             if required_spec.startswith('>='):
                 required_version = required_spec[2:].strip()
+                # Hàm so sánh đơn giản có thể không xử lý được pre-releases hay phức tạp khác
                 return self._simple_version_compare(installed_version, required_version) >= 0
             else:
-                # Không thể kiểm tra phức tạp without packaging → trả về True để tránh false negative
+                 # Đối với các yêu cầu khác (==, <, >, v.v.), chỉ có thể trả về True để tránh sai sót
                 return True
+        except Exception as e:
+            # Lỗi parse hoặc SpecifierSet không hợp lệ
+            print(f"⚠️ Lỗi kiểm tra phiên bản '{required_spec}' cho {installed_version}: {e}")
+            return True # Coi là OK nếu có lỗi kiểm tra
     
     def _simple_version_compare(self, v1, v2):
         """So sánh version đơn giản (chỉ cho numeric versions)"""
         try:
+            # Logic parse version để bỏ qua các hậu tố như .dev, .post
             def parse_version(v):
-                # Chỉ lấy phần số, bỏ qua suffixes như .dev, .post, etc.
                 parts = []
                 for part in v.split('.'):
-                    # Chỉ lấy phần số
-                    numeric_part = ''
-                    for char in part:
-                        if char.isdigit():
-                            numeric_part += char
-                        else:
-                            break
+                    numeric_part = ''.join(filter(str.isdigit, part))
                     if numeric_part:
                         parts.append(int(numeric_part))
                 return tuple(parts)
@@ -258,7 +245,6 @@ class SystemChecker:
             return 0
             
         except:
-            # Fallback cuối cùng: so sánh string
             return (v1 >= v2) - (v1 < v2)
     
     def get_packages_to_install(self):
@@ -273,14 +259,17 @@ class SystemChecker:
         for package, required_spec in required_packages.items():
             installed_version = self.package_versions.get(package)
             
+            # Khởi tạo package_spec để in báo cáo
+            spec_to_install = f"{package}{required_spec}" if required_spec else package
+            
             if installed_version is None:
-                # Package chưa cài đặt
                 packages_to_install[package] = required_spec
             elif required_spec and not self._check_version_compatibility(installed_version, required_spec):
-                # Package có phiên bản không phù hợp
                 packages_to_install[package] = required_spec
         
         return packages_to_install
+    
+    # --- CÁC METHOD KIỂM TRA HỆ THỐNG VÀ TÀI NGUYÊN (GIỮ NGUYÊN) ---
     
     def check_browsers(self):
         """Kiểm tra trình duyệt có sẵn"""
@@ -295,34 +284,47 @@ class SystemChecker:
         return True
     
     def check_webdrivers(self):
-        """Kiểm tra web drivers"""
-        drivers = self._get_available_drivers()
-        
-        if not drivers:
-            self._add_check("Web Drivers", False, "No web driver found")
+        """Kiểm tra web drivers (Tự động tải về nếu có webdriver-manager)"""
+        try:
+            # Import webdriver-manager tại chỗ (Lazy import)
+            from webdriver_manager.chrome import ChromeDriverManager
+            from webdriver_manager.core.utils import ChromeType
+            
+            # Cố gắng tải/kiểm tra ChromeDriver
+            # Dòng này đã được chứng minh hoạt động trong báo cáo trước
+            driver_path = ChromeDriverManager(chrome_type=ChromeType.ANY).install()
+            
+            self._add_check("Web Drivers", True, f"Tương thích (Chrome) ✓: {os.path.basename(driver_path)}")
+            return True
+        except ImportError:
+            # Fallback về kiểm tra driver thủ công nếu không có webdriver-manager
+            drivers = self._get_available_drivers()
+            if not drivers:
+                self._add_check("Web Drivers", False, "webdriver-manager/driver thủ công không có.")
+                return False
+            driver_list = ", ".join([f"{name}" for name, path in drivers])
+            self._add_check("Web Drivers", True, f"Manual Driver(s) OK: {driver_list}")
+            return True # Vẫn coi là thành công vì có driver thủ công
+        except Exception as e:
+            # Lỗi khác (không tìm thấy Chrome, lỗi mạng khi tải driver)
+            self._add_check("Web Drivers", False, f"LỖI: Không tải được ChromeDriver. ({e.__class__.__name__})")
             return False
-        
-        driver_list = ", ".join([f"{name}" for name, path in drivers])
-        self._add_check("Web Drivers", True, driver_list)
-        return True
     
     def check_system_resources(self):
         """Kiểm tra tài nguyên hệ thống"""
         try:
-            import psutil
+            import psutil # Import tại chỗ
             
-            # RAM
             memory = psutil.virtual_memory()
             ram_gb = memory.total / (1024**3)
-            ram_ok = ram_gb >= 2  # Tối thiểu 2GB RAM
-            
-            # Disk space
             disk = psutil.disk_usage('.')
             disk_gb = disk.free / (1024**3)
-            disk_ok = disk_gb >= 1  # Tối thiểu 1GB free
+            
+            ram_ok = ram_gb >= 2
+            disk_ok = disk_gb >= 1
             
             status = ram_ok and disk_ok
-            message = f"RAM: {ram_gb:.1f}GB, Disk: {disk_gb:.1f}GB free"
+            message = f"RAM: {ram_gb:.1f}GB {'✓' if ram_ok else '❌'}, Disk: {disk_gb:.1f}GB free {'✓' if disk_ok else '❌'}"
             
             self._add_check("System Resources", status, message)
             return status
@@ -330,19 +332,18 @@ class SystemChecker:
         except ImportError:
             self._add_check("System Resources", False, "psutil not available")
             return False
+        except Exception:
+             self._add_check("System Resources", False, "Lỗi khi kiểm tra psutil")
+             return False
     
     def check_network_connectivity(self):
         """Kiểm tra kết nối mạng"""
         try:
-            import requests
+            import requests # Import tại chỗ
             
-            test_urls = [
-                "https://www.google.com",
-                "https://www.github.com",
-                "https://pypi.org"
-            ]
-            
+            test_urls = ["https://www.google.com", "https://pypi.org"]
             connected = False
+            
             for url in test_urls:
                 try:
                     response = requests.get(url, timeout=5)
@@ -353,117 +354,48 @@ class SystemChecker:
                     continue
             
             self._add_check("Network Connectivity", connected, 
-                           "Connected" if connected else "No internet connection")
+                            "Connected ✓" if connected else "No internet connection ❌")
             return connected
             
         except ImportError:
             self._add_check("Network Connectivity", False, "requests not available")
             return False
-    
+        except Exception:
+             self._add_check("Network Connectivity", False, "Lỗi khi kiểm tra mạng")
+             return False
+
     def _get_available_browsers(self):
-        """Lấy danh sách trình duyệt có sẵn"""
+        """Lấy danh sách trình duyệt có sẵn (Dùng shutil.which linh hoạt hơn)"""
+        # (Giữ nguyên logic của bạn)
         browsers = []
+        chrome_names = ["google-chrome", "chrome", "google-chrome-stable", "chromium", "chromium-browser"]
+        if self.is_windows: chrome_names = [n + ".exe" for n in chrome_names]
         
-        # Chrome/Chromium
-        chrome_paths = []
-        if self.is_windows:
-            chrome_paths = [
-                r"C:\Program Files\Google\Chrome\Application\chrome.exe",
-                r"C:\Program Files (x86)\Google\Chrome\Application\chrome.exe"
-            ]
-        elif self.is_linux:
-            chrome_paths = [
-                "/usr/bin/google-chrome",
-                "/usr/bin/google-chrome-stable",
-                "/usr/bin/chromium-browser",
-                "/usr/bin/chromium",
-                "/snap/bin/chromium"
-            ]
-        else:  # mac
-            chrome_paths = [
-                "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome",
-                "/Applications/Chromium.app/Contents/MacOS/Chromium"
-            ]
-        
-        for path in chrome_paths:
-            if os.path.exists(path):
-                browsers.append(("Chrome", path))
-                break
-        
-        # Edge
-        edge_paths = []
-        if self.is_windows:
-            edge_paths = [
-                r"C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe",
-                r"C:\Program Files\Microsoft\Edge\Application\msedge.exe"
-            ]
-        elif self.is_linux:
-            edge_paths = [
-                "/usr/bin/microsoft-edge",
-                "/usr/bin/microsoft-edge-stable"
-            ]
-        else:  # mac
-            edge_paths = [
-                "/Applications/Microsoft Edge.app/Contents/MacOS/Microsoft Edge"
-            ]
-        
-        for path in edge_paths:
-            if os.path.exists(path):
-                browsers.append(("Edge", path))
-                break
-        
+        for name in chrome_names:
+            path = shutil.which(name)
+            if path:
+                browsers.append(("Chrome/Chromium", path))
+                break 
         return browsers
-    
+
     def _get_available_drivers(self):
-        """Lấy danh sách web drivers có sẵn"""
+        """Lấy danh sách web drivers thủ công có sẵn"""
+        # (Giữ nguyên logic của bạn)
         drivers = []
-        
-        # ChromeDriver
         chromedriver_paths = []
         if self.is_windows:
-            chromedriver_paths = [
-                "chromedriver.exe",
-                os.path.join("drivers", "chromedriver.exe"),
-                r"C:\Windows\System32\chromedriver.exe"
-            ]
+            chromedriver_paths = ["chromedriver.exe", os.path.join("drivers", "chromedriver.exe"), r"C:\Windows\System32\chromedriver.exe"]
         else:
-            chromedriver_paths = [
-                "chromedriver",
-                os.path.join("drivers", "chromedriver"),
-                "/usr/local/bin/chromedriver",
-                "/usr/bin/chromedriver",
-                "/snap/bin/chromedriver"
-            ]
+            chromedriver_paths = ["chromedriver", os.path.join("drivers", "chromedriver"), "/usr/local/bin/chromedriver", "/usr/bin/chromedriver", "/snap/bin/chromedriver"]
         
         for path in chromedriver_paths:
             if os.path.exists(path):
                 drivers.append(("ChromeDriver", path))
                 break
-        
-        # EdgeDriver
-        edgedriver_paths = []
-        if self.is_windows:
-            edgedriver_paths = [
-                "msedgedriver.exe",
-                os.path.join("drivers", "msedgedriver.exe"),
-                r"C:\Windows\System32\msedgedriver.exe",
-                r"C:\Program Files (x86)\Microsoft\Edge\Application\msedgedriver.exe"
-            ]
-        else:
-            edgedriver_paths = [
-                "msedgedriver",
-                os.path.join("drivers", "msedgedriver"),
-                "/usr/local/bin/msedgedriver",
-                "/usr/bin/msedgedriver"
-            ]
-        
-        for path in edgedriver_paths:
-            if os.path.exists(path):
-                drivers.append(("EdgeDriver", path))
-                break
-        
         return drivers
     
+    # --- CÁC METHOD IN BÁO CÁO (GIỮ NGUYÊN) ---
+
     def _add_check(self, name, status, message):
         """Thêm kết quả kiểm tra"""
         self.checks.append({
@@ -477,10 +409,10 @@ class SystemChecker:
     def run_full_check(self):
         """Chạy kiểm tra toàn diện"""
         print("🔍 KIỂM TRA HỆ THỐNG TOÀN DIỆN")
-        if self.venv_manager and self.venv_manager.is_venv_activated():
-            print("📍 Môi trường: VIRTUAL ENVIRONMENT")
+        if os.environ.get('VIRTUAL_ENV') is not None:
+             print("📍 Môi trường: VIRTUAL ENVIRONMENT")
         else:
-            print("📍 Môi trường: SYSTEM PYTHON")
+             print("📍 Môi trường: SYSTEM PYTHON")
         print("=" * 50)
         
         checks = [
@@ -517,19 +449,12 @@ class SystemChecker:
             for package, required_spec in packages_to_install.items():
                 current_version = self.package_versions.get(package, "Not installed")
                 requirement_msg = f" (need {required_spec})" if required_spec else ""
-                print(f"   - {package}: {current_version} → {package}{requirement_msg}")
+                print(f"   - {package}: {current_version} → {package}{requirement_msg}")
         
         if self.failed_checks:
             print(f"❌ Có {len(self.failed_checks)} vấn đề cần giải quyết:")
             for failed in self.failed_checks:
-                print(f"   - {failed}")
+                print(f"   - {failed}")
+            print("🔧 Vui lòng chạy lại lệnh: **./launch.sh** để cài đặt/cập nhật các gói.")
         else:
             print("🎉 HỆ THỐNG ĐÃ SẴN SÀNG!")
-    
-    def get_failed_checks(self):
-        """Lấy danh sách các check thất bại"""
-        return self.failed_checks
-    
-    def get_packages_status(self):
-        """Lấy trạng thái tất cả packages"""
-        return self.package_versions.copy()

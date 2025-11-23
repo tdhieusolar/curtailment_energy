@@ -92,50 +92,50 @@ class VenvManager:
             return False
     
     def install_packages_smart(self, packages_to_install):
-    """Cài đặt packages thông minh từ requirements.txt"""
-    if not packages_to_install:
-        print("✅ Tất cả packages đã được cài đặt với phiên bản phù hợp")
-        return True
-    
-    if not self.is_venv_exists():
-        print("❌ Virtual environment không tồn tại")
-        return False
-    
-    print(f"📦 Đang cài đặt {len(packages_to_install)} packages từ requirements.txt...")
-    
-    success_count = 0
-    for package, required_spec in packages_to_install.items():
-        print(f"🔧 Đang xử lý {package}...")
-        
-        try:
-            # Tạo installation specification
-            if required_spec:
-                # Có version requirement
-                install_spec = f"{package}{required_spec}"
-            else:
-                # Không có version requirement
-                install_spec = package
-            
-            result = subprocess.run(
-                [str(self.pip_exe), "install", install_spec],
-                capture_output=True,
-                text=True,
-                timeout=120
-            )
-            
-            if result.returncode == 0:
-                print(f"✅ Đã cài đặt {install_spec}")
-                success_count += 1
-            else:
-                print(f"⚠️ Có vấn đề với {package}: {result.stderr}")
-                
-        except subprocess.TimeoutExpired:
-            print(f"❌ Timeout khi cài đặt {package}")
-        except Exception as e:
-            print(f"❌ Lỗi khi cài đặt {package}: {e}")
-    
-    print(f"📊 Kết quả: {success_count}/{len(packages_to_install)} packages thành công")
-    return success_count > 0
+        """Cài đặt packages thông minh từ requirements.txt"""
+
+        if not packages_to_install:
+            print("✅ Tất cả packages đã được cài đặt với phiên bản phù hợp")
+            return True
+
+        if not self.is_venv_exists():
+            print("❌ Virtual environment không tồn tại")
+            return False
+
+        print(f"📦 Đang cài đặt {len(packages_to_install)} packages từ requirements.txt...")
+
+        success_count = 0
+        for package, required_spec in packages_to_install.items():
+            print(f"🔧 Đang xử lý {package}...")
+
+            try:
+                if required_spec:
+                    install_spec = f"{package}{required_spec}"
+                else:
+                    install_spec = package
+
+                result = subprocess.run(
+                    [str(self.pip_exe), "install", install_spec],
+                    capture_output=True,
+                    text=True,
+                    timeout=120
+                )
+
+                if result.returncode == 0:
+                    print(f"✅ Đã cài đặt {install_spec}")
+                    success_count += 1
+                else:
+                    print(f"⚠️ Có vấn đề với {package}: {result.stderr}")
+
+            except subprocess.TimeoutExpired:
+                print(f"❌ Timeout khi cài đặt {package}")
+            except Exception as e:
+                print(f"❌ Lỗi khi cài đặt {package}: {e}")
+
+        print(f"📊 Kết quả: {success_count}/{len(packages_to_install)} packages thành công")
+        return success_count > 0
+
+
 
     def install_requirements_smart(self, system_checker):
         """Cài đặt requirements thông minh dựa trên kết quả kiểm tra"""

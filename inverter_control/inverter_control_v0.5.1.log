@@ -1,7 +1,0 @@
-2025-11-21 20:25:01,643 - INFO - [MainThread] - v0.5.1 - ℹ️ 📊 Tính toán pool size: 1 tasks / 5 tasks/driver = 2 drivers
-2025-11-21 20:25:01,643 - INFO - [MainThread] - v0.5.1 - ℹ️ 🔄 Tính toán: 1 tasks → 2 drivers
-2025-11-21 20:25:02,411 - INFO - [MainThread] - v0.5.1 - ℹ️ 🚀 Đã khởi tạo driver 1/2
-2025-11-21 20:25:03,175 - INFO - [MainThread] - v0.5.1 - ℹ️ 🚀 Đã khởi tạo driver 2/2
-2025-11-21 20:25:03,175 - INFO - [MainThread] - v0.5.1 - ℹ️ ✅ Đã khởi tạo thành công 2/2 drivers
-2025-11-21 20:25:17,787 - INFO - [MainThread] - v0.5.1 - ℹ️ 🧹 Đang dọn dẹp driver pool...
-2025-11-21 20:25:17,961 - INFO - [MainThread] - v0.5.1 - ℹ️ ✅ Đã đóng 2 drivers
